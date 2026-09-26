@@ -521,3 +521,10 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 .merch-grid--home { grid-template-columns: repeat(2, 1fr); max-width: 760px; margin-inline: auto; }
 @media (min-width: 960px) { .merch-grid--home { grid-template-columns: repeat(2, 1fr); } }
 .product-media img { image-rendering: auto; }
+.casa-hero-logo img { max-height: clamp(110px, 18vw, 170px); width: auto; max-width: clamp(170px, 26vw, 280px); }
+/* Hero de una casa sin foto todavía: color de su marca (o azul del sitio) en vez de gris */
+.casa-hero--sin-foto > .ph {
+  background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.18), rgba(255,255,255,0) 60%), var(--casa-color, #5E9FD6);
+}
+.casa-hero--sin-foto > .ph > span { display: none; }
+.casa-hero--sin-foto { text-shadow: 0 1px 12px rgba(0, 40, 60, 0.25); }

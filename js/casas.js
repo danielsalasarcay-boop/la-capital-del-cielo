@@ -162,7 +162,7 @@
 
     root.innerHTML =
       /* Hero */
-      '<section class="page-hero page-hero--image casa-hero">' +
+      '<section class="page-hero page-hero--image casa-hero' + (c.imagen_portada ? '' : ' casa-hero--sin-foto') + '"' + (c.color ? ' style="--casa-color:' + esc(c.color) + '"' : '') + '>' +
         media(c.imagen_portada, c.nombre, 'ph-fill', true) +
         '<div class="container page-hero-content">' +
           (c.logo
