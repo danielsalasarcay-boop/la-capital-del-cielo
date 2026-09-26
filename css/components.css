@@ -227,9 +227,15 @@
   transition: transform .25s var(--ease), box-shadow .25s var(--ease);
 }
 .float-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(8, 28, 54, .3); text-decoration: none; }
-.float-btn--wa { width: 56px; height: 56px; background: var(--color-wa); }
-.float-btn--wa svg { width: 28px; height: 28px; }
-.float-btn--ig { width: 44px; height: 44px; background: var(--color-white); color: var(--color-brand-deep); }
+/* Mismo tamaño para ambos */
+.float-btn { width: 54px; height: 54px; }
+.float-btn svg { width: 27px; height: 27px; }
+.float-btn--wa { background: var(--color-wa); }
+/* Colores oficiales de Instagram */
+.float-btn--ig {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: var(--color-white);
+}
 .footer-bottom { padding-right: 84px; } /* espacio para los botones flotantes */
 
 /* ==========================================================================
