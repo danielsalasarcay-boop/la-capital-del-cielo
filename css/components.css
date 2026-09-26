@@ -702,3 +702,4 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
   .hero-brand .btn { min-height: 38px; padding-block: 0.4rem; }
 }
 .site-header.over-hero.menu-open .header-logo { opacity: 1; transform: none; pointer-events: auto; }
+.form-error { color: #B42318; font-size: var(--fs-sm); }

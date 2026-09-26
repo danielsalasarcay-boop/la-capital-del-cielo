@@ -147,6 +147,8 @@
     setMeta('meta[name="description"]', 'content', desc);
     setMeta('meta[property="og:title"]', 'content', document.title);
     setMeta('meta[property="og:description"]', 'content', desc);
+    setMeta('link[rel="canonical"]', 'href', location.origin + location.pathname + '?id=' + encodeURIComponent(c.id));
+    setMeta('meta[property="og:url"]', 'content', location.origin + location.pathname + '?id=' + encodeURIComponent(c.id));
 
     var li = function (arr) {
       return (arr || []).map(function (x) { return '<li>' + esc(I18n.pick(x)) + '</li>'; }).join('');
@@ -250,18 +252,41 @@
   function initContactForm() {
     var form = document.getElementById('contact-form');
     if (!form) return;
+    var f = form.elements, err = document.getElementById('form-error');
+    function iso(d) { /* fecha local (no UTC) */
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function fmt(v) { var p = v.split('-'); return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : v; }
+    /* no se pueden elegir fechas pasadas; la salida siempre después de la llegada */
+    var hoy = iso(new Date());
+    f.llegada.min = hoy; f.salida.min = hoy;
+    f.llegada.addEventListener('change', function () {
+      if (!f.llegada.value) return;
+      var sig = new Date(f.llegada.value + 'T12:00:00'); sig.setDate(sig.getDate() + 1);
+      f.salida.min = iso(sig);
+      if (f.salida.value && f.salida.value <= f.llegada.value) f.salida.value = '';
+      if (err) err.hidden = true;
+    });
+    f.salida.addEventListener('change', function () { if (err) err.hidden = true; });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var f = form.elements;
+      if (f.llegada.value && f.salida.value && f.salida.value <= f.llegada.value) {
+        if (err) err.hidden = false;
+        f.salida.focus();
+        return;
+      }
       var lines = [
         I18n.t('wa.general'),
-        f.nombre.value ? I18n.t('contacto.nombre') + ': ' + f.nombre.value : '',
+        f.nombre.value.trim() ? I18n.t('contacto.nombre') + ': ' + f.nombre.value.trim() : '',
         f.casa.value ? I18n.t('contacto.casa') + ': ' + f.casa.value : '',
-        f.llegada.value ? I18n.t('contacto.llegada') + ': ' + f.llegada.value : '',
-        f.salida.value ? I18n.t('contacto.salida') + ': ' + f.salida.value : '',
+        f.llegada.value ? I18n.t('contacto.llegada') + ': ' + fmt(f.llegada.value) : '',
+        f.salida.value ? I18n.t('contacto.salida') + ': ' + fmt(f.salida.value) : '',
         f.personas.value ? I18n.t('contacto.personas') + ': ' + f.personas.value : ''
       ].filter(Boolean);
-      window.open(waLink(lines.join('\n')), '_blank', 'noopener');
+      var url = waLink(lines.join('\n'));
+      var win = window.open(url, '_blank');
+      if (win) { win.opener = null; } else { window.location.href = url; } /* si el navegador bloquea la ventana */
     });
   }
 

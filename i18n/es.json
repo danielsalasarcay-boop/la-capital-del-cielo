@@ -110,7 +110,8 @@
     "enviar": "Enviar por WhatsApp",
     "telefono": "Teléfono",
     "email": "Email",
-    "instagram": "Instagram"
+    "instagram": "Instagram",
+    "error_fechas": "La fecha de salida debe ser posterior a la de llegada."
   },
   "footer": {
     "contacto": "Contacto",
@@ -125,5 +126,10 @@
     "comprar": "Comprar",
     "ver_todo": "Ver las otras camisas",
     "wa": "Hola, quiero comprar la camisa {nombre} ({precio}). Mi talla es: "
+  },
+  "error404": {
+    "title": "Página no encontrada",
+    "sub": "La página que buscas no existe o cambió de lugar.",
+    "volver": "Volver al inicio"
   }
 }

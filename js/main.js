@@ -149,6 +149,17 @@ window.waLink = waLink;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.classList.toggle('no-scroll', open);
     });
+    function closeMenu() {
+      header.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('no-scroll');
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('menu-open')) { closeMenu(); toggle.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (header.classList.contains('menu-open') && !header.contains(e.target)) closeMenu();
+    });
     header.querySelectorAll('.nav-list a').forEach(function (a) {
       a.addEventListener('click', function () {
         header.classList.remove('menu-open');

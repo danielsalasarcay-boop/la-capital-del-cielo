@@ -110,7 +110,8 @@
     "enviar": "Send via WhatsApp",
     "telefono": "Phone",
     "email": "Email",
-    "instagram": "Instagram"
+    "instagram": "Instagram",
+    "error_fechas": "The departure date must be after the arrival date."
   },
   "footer": {
     "contacto": "Contact",
@@ -125,5 +126,10 @@
     "comprar": "Buy",
     "ver_todo": "See the other shirts",
     "wa": "Hi, I'd like to buy the {nombre} shirt ({precio}). My size is: "
+  },
+  "error404": {
+    "title": "Page not found",
+    "sub": "The page you're looking for doesn't exist or has moved.",
+    "volver": "Back to home"
   }
 }
