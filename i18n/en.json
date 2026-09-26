@@ -5,7 +5,8 @@
     "roques": "Los Roques",
     "contacto": "Contact",
     "reservar": "Book",
-    "menu": "Menu"
+    "menu": "Menu",
+    "merch": "Merchandise"
   },
   "wa": {
     "general": "Hi, I'd like information to book a house in Los Roques with La Capital del Cielo."
@@ -23,8 +24,7 @@
   },
   "home": {
     "hero_kicker": "Los Roques · Venezuela",
-    "hero_sub": "Short hero subtitle. Private houses with staff included.",
-    "hero_cta": "See the houses",
+    "hero_cta": "Booking",
     "about_kicker": "About us",
     "about_title": "About us title",
     "about_text": "Placeholder: short text about La Capital del Cielo.",
@@ -42,12 +42,12 @@
   "exp": {
     "staff_t": "Service staff",
     "staff_d": "Placeholder: staff description.",
-    "chef_t": "Private chef",
-    "chef_d": "Placeholder: chef description.",
+    "chef_t": "Excellent cuisine",
+    "chef_d": "All our properties offer excellent cuisine, prepared by their own chef.",
     "limpieza_t": "Daily housekeeping",
     "limpieza_d": "Placeholder: housekeeping description.",
-    "bote_t": "Private boat",
-    "bote_d": "Placeholder: boat description (depends on the house).",
+    "bote_t": "Private boat to the cays",
+    "bote_d": "Casa Verde and Macanao Lodge include a private boat to explore the cays.",
     "page_title": "Experience page title",
     "page_sub": "Placeholder: what every stay includes.",
     "servicios_t": "Additional services",
@@ -66,7 +66,10 @@
     "mapa_ph": "Map (placeholder)",
     "sitio_propio": "Visit the house's website",
     "no_encontrada": "We couldn't find this house.",
-    "volver": "Back to houses"
+    "volver": "Back to houses",
+    "distribucion": "Room layout",
+    "no_incluye": "Not included",
+    "tipos": "Rooms to choose from"
   },
   "roques": {
     "page_title": "Los Roques page title",
@@ -98,5 +101,13 @@
     "enlaces": "Links",
     "siguenos": "Follow us",
     "rights": "All rights reserved."
+  },
+  "merch": {
+    "kicker": "Merchandise",
+    "title": "Our shirts",
+    "sub": "Long-sleeve shirts with designs inspired by Los Roques.",
+    "comprar": "Buy",
+    "ver_todo": "See all merchandise",
+    "wa": "Hi, I'd like to buy the {nombre} shirt ({precio}). My size is: "
   }
 }

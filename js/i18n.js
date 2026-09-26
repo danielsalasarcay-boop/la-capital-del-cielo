@@ -55,7 +55,7 @@
 
     load: function (lang) {
       if (cache[lang]) return Promise.resolve(cache[lang]);
-      return fetch('i18n/' + lang + '.json')
+      return fetch('i18n/' + lang + '.json', { cache: 'no-cache' })
         .then(function (r) { return r.json(); })
         .then(function (json) { cache[lang] = json; return json; });
     },

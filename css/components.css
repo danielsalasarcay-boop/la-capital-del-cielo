@@ -23,9 +23,9 @@
 }
 .btn:hover { text-decoration: none; }
 .btn-sm { min-height: 38px; padding: 0.45rem 1rem; font-size: var(--fs-xs); }
-.btn-primary { background: var(--color-brand-dark); color: var(--color-white); }
-.btn-primary:hover { background: var(--color-brand-deep); }
-.btn-outline { border-color: var(--color-brand-dark); color: var(--color-brand-dark); }
+.btn-primary { background: var(--color-brand); color: var(--color-brand-deep); }
+.btn-primary:hover { background: var(--color-brand-hover); }
+.btn-outline { border-color: var(--color-brand); color: var(--color-brand-deep); }
 .btn-outline:hover { background: var(--color-brand-soft); }
 
 /* --- Selector de idioma ES | EN --- */
@@ -140,7 +140,7 @@
    .bg-media envuelve un <img> con srcset: carga la versión adecuada al
    ancho de pantalla y se recorta con object-fit como un background.
    ========================================================================== */
-.bg-media { position: absolute; inset: 0; z-index: -2; overflow: hidden; background: var(--color-brand-deep); }
+.bg-media { position: absolute; inset: 0; z-index: -2; overflow: hidden; background: #3E9FD3; }
 .bg-media img { width: 100%; height: 100%; object-fit: cover; }
 .bg-media::after { content: ""; position: absolute; inset: 0; } /* overlay por sección */
 .photo-section { position: relative; isolation: isolate; overflow: hidden; }
@@ -181,8 +181,8 @@ html.is-loading .hero-brand > * { animation-play-state: paused; }
 .site-header.over-hero .header-logo { opacity: 0; transform: translateY(-6px); pointer-events: none; }
 
 /* Botón claro para usar sobre foto */
-.btn-light { background: var(--color-white); color: var(--color-brand-deep); }
-.btn-light:hover { background: var(--color-brand-soft); }
+.btn-light { background: var(--color-brand); color: var(--color-brand-deep); }
+.btn-light:hover { background: var(--color-brand-hover); }
 
 /* --- Teaser Los Roques: bote con bañistas + panel translúcido --- */
 .photo-section--roques { min-height: 88svh; display: flex; align-items: flex-end; }
@@ -226,10 +226,6 @@ html.is-loading .hero-brand > * { animation-play-state: paused; }
 .icon-link:hover { background: var(--color-brand-soft); }
 @media (max-width: 400px) { .header-actions .icon-link { display: none; } } /* en móvil muy angosto queda el botón flotante */
 
-/* Botones sociales en el footer */
-.social-row { display: flex; gap: var(--space-1); margin-top: var(--space-2); }
-.social-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); color: var(--color-white); transition: background .2s var(--ease), border-color .2s var(--ease); }
-.social-btn:hover { background: rgba(255,255,255,.12); border-color: var(--color-brand); text-decoration: none; }
 
 /* Botones flotantes (todas las páginas) */
 .float-actions {
@@ -254,7 +250,6 @@ html.is-loading .hero-brand > * { animation-play-state: paused; }
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   color: var(--color-white);
 }
-.footer-bottom { padding-right: 84px; } /* espacio para los botones flotantes */
 
 /* ==========================================================================
    Pantalla de carga (estilo casa-panza / casa-verde, con el logo de LCDC)
@@ -315,34 +310,6 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .hero-brand .kicker { color: rgba(255, 255, 255, 0.85); }
 
 /* ==========================================================================
-   Footer con cielo de Los Roques (pelícano + helicóptero)
-   La foto ocupa solo la franja superior y se funde en azul marino abajo,
-   donde van los datos de contacto.
-   ========================================================================== */
-.site-footer {
-  --sky-h: clamp(17rem, 9rem + 22vw, 30rem);
-  position: relative; isolation: isolate; overflow: hidden;
-  padding-top: calc(var(--sky-h) - 3rem);
-  background: var(--color-brand-deep);
-}
-.footer-sky { position: absolute; inset: 0 0 auto 0; height: var(--sky-h); z-index: -1; }
-.footer-sky picture, .footer-sky img { display: block; width: 100%; height: 100%; }
-.footer-sky img { object-fit: cover; object-position: 100% 30%; }
-.footer-sky::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(15, 47, 87, 0) 0%,
-    rgba(15, 47, 87, 0) 62%,
-    rgba(15, 47, 87, 0.6) 82%,
-    var(--color-brand-deep) 100%);
-}
-.footer-logo { width: 190px; background: none; padding: 0; border-radius: 0; }
-@media (max-width: 699px) {
-  .site-footer { --sky-h: 26rem; }
-  .footer-sky img { object-position: 50% 40%; }
-}
-
-/* ==========================================================================
    Fotos de las casas (con respaldo a caja gris si falta el archivo)
    ========================================================================== */
 .media { position: relative; overflow: hidden; width: 100%; background: var(--color-bg-alt); }
@@ -378,33 +345,134 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 /* ==========================================================================
    Tipografía de marca (letras del logo) en menú, botones y títulos pequeños
    ========================================================================== */
-.nav-list a, .btn, .lang-btn, .footer-title, .card-title, .facts-list dd {
+.nav-list a, .btn, .lang-btn, .card-title, .facts-list dd {
   font-family: var(--font-display);
   font-weight: 400;
 }
 .nav-list a { font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; }
-.nav-list a[aria-current="page"] { font-weight: 400; color: var(--color-brand-dark); border-bottom-color: currentColor; }
+.nav-list a[aria-current="page"] { font-weight: 400; color: var(--color-brand-deep); box-shadow: inset 0 -2px 0 var(--color-brand); }
 .btn { font-size: 0.95rem; letter-spacing: 0.06em; }
 .btn-sm { font-size: 0.85rem; }
 .lang-btn { font-size: 0.85rem; letter-spacing: 0.08em; }
-.footer-title { font-size: 0.9rem; letter-spacing: 0.14em; }
 .kicker { font-weight: 400; }
 .card-title { font-size: 1.6rem; }
 @media (min-width: 960px) { .nav-list a { font-size: 0.85rem; } }
 
+
 /* ==========================================================================
-   Footer más compacto: menos azul oscuro abajo
+   Footer: foto del cielo (pelícano + helicóptero) y un solo bloque limpio
+   a la izquierda; la derecha queda libre para la foto.
    ========================================================================== */
-.site-footer { --sky-h: clamp(15rem, 8rem + 18vw, 25rem); padding-bottom: var(--space-2); padding-top: calc(var(--sky-h) - 4.5rem); }
-.footer-grid { gap: var(--space-3) var(--space-4); }
-.footer-list li + li { margin-top: 0.3rem; }
-.footer-title { margin-bottom: var(--space-1); }
-.footer-logo { width: 160px; }
-.footer-bottom { margin-top: var(--space-3); padding-top: var(--space-2); }
-@media (max-width: 959px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-grid > .footer-col:first-child { grid-column: 1 / -1; }
+.site-footer {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding-block: clamp(3rem, 2rem + 3vw, 4.5rem) var(--space-3);
+  background: #3E9FD3; color: var(--color-white);
+  text-shadow: 0 1px 8px rgba(0, 45, 90, 0.35);
+}
+.site-footer a { color: var(--color-white); }
+.site-footer a:hover { text-decoration: none; opacity: 0.8; }
+.footer-sky { position: absolute; inset: 0; z-index: -1; }
+.footer-sky picture, .footer-sky img { display: block; width: 100%; height: 100%; }
+.footer-sky img { object-fit: cover; object-position: 100% 45%; }
+.footer-sky::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0, 50, 100, 0.32) 0%, rgba(0, 50, 100, 0.14) 45%, rgba(0, 50, 100, 0) 70%);
+}
+.footer-inner { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+.footer-logo { width: 170px; height: auto; filter: drop-shadow(0 2px 10px rgba(0, 45, 90, 0.3)); }
+.footer-nav ul { display: flex; flex-wrap: wrap; gap: 0 var(--space-3); }
+.footer-nav a { display: inline-block; padding-block: 0.45rem; font-size: 1.05rem; letter-spacing: 0.04em; }
+.footer-contact { display: flex; flex-wrap: wrap; gap: 0.25rem var(--space-4); }
+.footer-contact a { display: inline-flex; align-items: center; gap: 0.55rem; padding-block: 0.45rem; }
+.footer-contact svg { width: 19px; height: 19px; flex: none; filter: drop-shadow(0 1px 6px rgba(0, 45, 90, 0.3)); }
+.footer-copy { font-size: var(--fs-xs); opacity: 0.85; padding-top: var(--space-2); border-top: 1px solid rgba(255, 255, 255, 0.35); min-width: min(100%, 520px); }
+@media (min-width: 700px) {
+  .footer-inner { max-width: min(640px, 62%); margin-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); margin-right: 0; padding-inline: 0; }
 }
 @media (max-width: 699px) {
-  .site-footer { --sky-h: 20rem; }
+  /* móvil: el pelícano y el helicóptero arriba, libres; el texto debajo */
+  .site-footer { padding-top: 15rem; }
+  .footer-sky img { object-position: 50% 15%; }
+  .footer-sky::after { background: linear-gradient(to bottom, rgba(0, 50, 100, 0) 0%, rgba(0, 50, 100, 0) 38%, rgba(0, 50, 100, 0.3) 60%, rgba(0, 50, 100, 0.34) 100%); }
+  .footer-contact { flex-direction: column; }
+  .footer-copy { padding-right: 70px; } /* espacio para los botones flotantes */
+}
+
+/* ==========================================================================
+   Ajustes móvil / tablet
+   ========================================================================== */
+.meta-list { flex-wrap: wrap; gap: 0.25rem var(--space-2); }
+.meta-list li { white-space: nowrap; }
+.card-actions .btn { flex: 1 1 auto; }
+.contact-list a { display: inline-block; padding-block: 0.35rem; }
+.nav-cta { display: none; }
+@media (max-width: 959px) {
+  .header-nav { max-height: calc(100svh - var(--header-h)); overflow-y: auto; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); }
+  .nav-list a { font-size: 1.1rem; padding-block: 1rem; }
+}
+@media (max-width: 599px) {
+  .nav-cta { display: block; padding-top: var(--space-3); }
+  .nav-cta .btn { width: 100%; border-bottom: 0; padding-block: 0.9rem; }
+  .header-logo img { height: 40px; }
+  .header-actions { gap: var(--space-1); }
+}
+/* teléfono horizontal: el hero no debe cortar el logo */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero { min-height: 100vh; }
+  .hero-logo img { width: clamp(200px, 32vw, 340px); }
+  .hero-content { padding-block: calc(var(--header-h) + var(--space-2)) var(--space-3); }
+  .casa-hero, .photo-section--roques, .photo-section--cta { min-height: 100vh; }
+}
+@media (hover: none) { .card:hover .media img { transform: none; } }
+@media (min-width: 960px) { .nav-list a { padding-block: 0.8rem; display: inline-block; } }
+
+
+/* Ficha: distribución, no incluye y nota */
+.facts-sub { font-size: 1.1rem; margin-bottom: 0.25rem; }
+.incluye-sub { margin-top: var(--space-4); }
+.pill-list--muted li { background: #EEF0F2; color: var(--color-muted); }
+.casa-nota { margin-top: var(--space-3); max-width: 640px; color: var(--color-muted); font-style: italic; }
+
+/* Tipos de habitación */
+.room-groups { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+@media (min-width: 760px) { .room-groups { grid-template-columns: 1.4fr 1fr; } }
+.room-list { list-style: none; margin-top: var(--space-2); border-top: 1px solid var(--color-line); }
+.room-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; padding-block: 0.9rem; border-bottom: 1px solid var(--color-line); }
+.room-name { color: var(--color-brand-deep); font-size: 1.1rem; }
+.room-detail { color: var(--color-muted); }
+
+/* Footer: enlaces sin viñetas; móvil con más cielo libre arriba */
+.footer-nav ul, .footer-contact { list-style: none; padding: 0; margin: 0; }
+@media (max-width: 699px) { .site-footer { padding-top: 18rem; } }
+
+/* ==========================================================================
+   Merchandise
+   ========================================================================== */
+.merch-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 960px) { .merch-grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-4); } }
+.product { display: flex; flex-direction: column; background: var(--color-white); border: 1px solid var(--color-line); border-radius: var(--radius-lg); overflow: hidden; }
+.product-media { aspect-ratio: 1; background: var(--color-white); overflow: hidden; }
+.product-media img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.8s var(--ease); }
+@media (hover: hover) { .product:hover .product-media img { transform: scale(1.04); } }
+.product-body { display: flex; flex-direction: column; gap: 0.15rem; padding: var(--space-2) var(--space-2) var(--space-3); flex: 1; }
+.product-name { font-size: 1.35rem; }
+.product-type { font-size: var(--fs-sm); color: var(--color-muted); }
+.product-price { font-size: 1.1rem; color: var(--color-brand-deep); margin-top: 0.25rem; }
+.product-buy { margin-top: auto; align-self: stretch; }
+.product-body > .product-buy { margin-top: var(--space-2); }
+@media (max-width: 420px) {
+  .merch-grid { gap: var(--space-1); }
+  .product-body { padding: 0.75rem 0.75rem 1rem; }
+  .product-name { font-size: 1.15rem; }
+  .product-buy { font-size: 0.75rem; padding-inline: 0.5rem; }
+}
+.product-buy svg { width: 18px; height: 18px; }
+@media (max-width: 420px) { .product-buy { font-size: 0.85rem; } }
+
+/* Footer móvil: la foto solo arriba (pelícano + helicóptero libres), el texto debajo sobre el mismo cielo */
+@media (max-width: 699px) {
+  .site-footer { padding-top: 22rem; background: #3E9FD3; }
+  .footer-sky { bottom: auto; height: 24rem; }
+  .footer-sky img { object-position: 50% 0%; }
+  .footer-sky::after { background: linear-gradient(to bottom, rgba(62, 159, 211, 0) 0%, rgba(62, 159, 211, 0) 70%, #3E9FD3 100%); }
 }

@@ -26,6 +26,7 @@ window.SITE = SITE;
 /* Íconos SVG (heredan el color con currentColor) */
 var ICONS = {
   whatsapp: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.94.95-3.48-.22-.36a9.43 9.43 0 0 1-1.44-5.02c0-5.2 4.24-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.27 11.27 0 0 0 12.05.7C5.8.7.7 5.8.7 12.05c0 2 .52 3.95 1.52 5.67L.6 23.3l5.72-1.5a11.3 11.3 0 0 0 5.72 1.46h.01c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.02z"/></svg>',
+  mail: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>',
   instagram: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>'
 };
 window.ICONS = ICONS;
@@ -38,6 +39,7 @@ window.waLink = waLink;
     { href: 'casas.html', key: 'nav.casas' },
     { href: 'experiencia.html', key: 'nav.experiencia' },
     { href: 'los-roques.html', key: 'nav.roques' },
+    { href: 'merchandise.html', key: 'nav.merch' },
     { href: 'contacto.html', key: 'nav.contacto' }
   ];
 
@@ -64,7 +66,9 @@ window.waLink = waLink;
           '<img src="img/general/logo.png" alt="' + SITE.nombre + '" width="956" height="462">' +
         '</a>' +
         '<nav class="header-nav" id="main-nav" aria-label="Principal">' +
-          '<ul class="nav-list">' + links + '</ul>' +
+          '<ul class="nav-list">' + links +
+            '<li class="nav-cta"><a class="btn btn-primary" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener" data-i18n="nav.reservar"></a></li>' +
+          '</ul>' +
         '</nav>' +
         '<div class="header-actions">' +
           '<a class="icon-link" href="' + SITE.instagramUrl + '" target="_blank" rel="noopener" aria-label="Instagram @' + SITE.instagram + '">' + ICONS.instagram + '</a>' +
@@ -98,34 +102,17 @@ window.waLink = waLink;
           '<img src="img/general/cielo-footer-2400.jpg" srcset="img/general/cielo-footer-1200.jpg 1200w, img/general/cielo-footer-2400.jpg 2400w" sizes="100vw" alt="" loading="lazy" decoding="async">' +
         '</picture>' +
       '</div>' +
-      '<div class="container footer-grid">' +
-        '<div class="footer-col">' +
+      '<div class="container footer-inner">' +
+        '<a href="index.html" class="footer-brand" aria-label="' + SITE.nombre + '">' +
           '<img class="footer-logo" src="img/general/logo-white.png" alt="' + SITE.nombre + '" width="956" height="462" loading="lazy">' +
-        '</div>' +
-        '<div class="footer-col">' +
-          '<h3 class="footer-title" data-i18n="footer.contacto"></h3>' +
-          '<ul class="footer-list">' +
-            '<li><a data-wa data-wa-msg="wa.general" target="_blank" rel="noopener">' + SITE.telefonoVisible + '</a></li>' +
-            '<li><a href="mailto:' + SITE.email + '">' + SITE.email + '</a></li>' +
-          '</ul>' +
-        '</div>' +
-        '<div class="footer-col">' +
-          '<h3 class="footer-title" data-i18n="footer.enlaces"></h3>' +
-          '<ul class="footer-list">' + links + '</ul>' +
-        '</div>' +
-        '<div class="footer-col">' +
-          '<h3 class="footer-title" data-i18n="footer.siguenos"></h3>' +
-          '<ul class="footer-list">' +
-            '<li><a href="' + SITE.instagramUrl + '" target="_blank" rel="noopener">@' + SITE.instagram + '</a></li>' +
-          '</ul>' +
-          '<div class="social-row">' +
-            '<a class="social-btn" href="' + SITE.instagramUrl + '" target="_blank" rel="noopener" aria-label="Instagram">' + ICONS.instagram + '</a>' +
-            '<a class="social-btn" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener" aria-label="WhatsApp">' + ICONS.whatsapp + '</a>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="container footer-bottom">' +
-        '<small>© ' + year + ' ' + SITE.nombre + '. <span data-i18n="footer.rights"></span></small>' +
+        '</a>' +
+        '<nav class="footer-nav" aria-label="Footer"><ul>' + links + '</ul></nav>' +
+        '<ul class="footer-contact">' +
+          '<li><a data-wa data-wa-msg="wa.general" target="_blank" rel="noopener">' + ICONS.whatsapp + '<span>' + SITE.telefonoVisible + '</span></a></li>' +
+          '<li><a href="mailto:' + SITE.email + '">' + ICONS.mail + '<span>' + SITE.email + '</span></a></li>' +
+          '<li><a href="' + SITE.instagramUrl + '" target="_blank" rel="noopener">' + ICONS.instagram + '<span>@' + SITE.instagram + '</span></a></li>' +
+        '</ul>' +
+        '<p class="footer-copy">© ' + year + ' ' + SITE.nombre + '. <span data-i18n="footer.rights"></span></p>' +
       '</div>';
   }
 

@@ -3,6 +3,7 @@
     {
       "id": "casa-verde",
       "nombre": "Casa Verde",
+      "tipo": "casa",
       "logo": "img/casas/casa-verde/logo.png",
       "ubicacion": {
         "es": "Frente al mar · Gran Roque",
@@ -17,7 +18,7 @@
         "en": "Casa Verde sits in a privileged spot, right on the water in Gran Roque. Its terrace looks over the turquoise sea and a walkway under a bougainvillea pergola leads straight to the shore. Placeholder: the rest of the description comes in the content phase."
       },
       "capacidad": 10,
-      "habitaciones": 5,
+      "habitaciones": 3,
       "incluye": [
         {
           "es": "Staff de servicio",
@@ -28,12 +29,16 @@
           "en": "Private chef"
         },
         {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
+        },
+        {
           "es": "Limpieza diaria",
           "en": "Daily housekeeping"
         },
         {
-          "es": "Bote privado",
-          "en": "Private boat"
+          "es": "Bote privado a los cayos",
+          "en": "Private boat to the cays"
         }
       ],
       "destacados": [
@@ -50,8 +55,8 @@
           "en": "Bougainvillea pergola"
         },
         {
-          "es": "Bote privado 24/7",
-          "en": "Private boat 24/7"
+          "es": "Bote privado a los cayos",
+          "en": "Private boat to the cays"
         }
       ],
       "imagen_portada": "img/casas/casa-verde/portada.jpg",
@@ -69,6 +74,7 @@
     {
       "id": "casa-panza",
       "nombre": "Casa Panza",
+      "tipo": "casa",
       "logo": "img/casas/casa-panza/logo.svg",
       "ubicacion": {
         "es": "Frente al mar · Gran Roque",
@@ -83,7 +89,7 @@
         "en": "Casa Panza blends the most refined coastal minimalism with the authentic soul of the Venezuelan Caribbean. It sits on the water in Gran Roque, an island declared a National Park: step through its turquoise arch and the Caribbean opens up ahead. Placeholder: the rest of the description comes in the content phase."
       },
       "capacidad": 10,
-      "habitaciones": 4,
+      "habitaciones": 3,
       "incluye": [
         {
           "es": "Staff de servicio",
@@ -92,6 +98,10 @@
         {
           "es": "Chef privado",
           "en": "Private chef"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
         },
         {
           "es": "Limpieza diaria",
@@ -130,76 +140,162 @@
     {
       "id": "casa-9",
       "nombre": "Casa 9",
+      "tipo": "casa",
       "logo": "",
       "ubicacion": {
-        "es": "Gran Roque, Los Roques",
-        "en": "Gran Roque, Los Roques"
+        "es": "Isla Madrizquí · Los Roques",
+        "en": "Madrizquí Island · Los Roques"
       },
       "descripcion_corta": {
-        "es": "Placeholder: descripción corta de Casa 9.",
-        "en": "Placeholder: short description of Casa 9."
+        "es": "Casa privada en la isla Madrizquí, con 5 habitaciones y un staff de 3 personas que incluye chef.",
+        "en": "Private house on Madrizquí Island, with 5 bedrooms and a staff of 3 including a chef."
       },
       "descripcion": {
-        "es": "Placeholder: descripción larga de Casa 9. Texto definitivo en la fase de contenido.",
-        "en": "Placeholder: long description of Casa 9. Final copy in the content phase."
+        "es": "Casa 9 está en la isla Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef. Placeholder: el resto de la descripción llega en la fase de contenido.",
+        "en": "Casa 9 is on Madrizquí Island, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef. Placeholder: the rest of the description comes in the content phase."
       },
-      "capacidad": 6,
-      "habitaciones": 3,
-      "incluye": [
+      "capacidad": 12,
+      "habitaciones": 5,
+      "distribucion": [
         {
-          "es": "Staff de servicio",
-          "en": "Service staff"
+          "es": "4 habitaciones con cama king (10 personas)",
+          "en": "4 bedrooms with king bed (10 guests)"
         },
         {
-          "es": "Chef privado",
-          "en": "Private chef"
+          "es": "1 habitación con literas (2 personas)",
+          "en": "1 bedroom with bunk beds (2 guests)"
+        }
+      ],
+      "incluye": [
+        {
+          "es": "Staff de 3 personas",
+          "en": "Staff of 3"
+        },
+        {
+          "es": "Chef",
+          "en": "Chef"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
         },
         {
           "es": "Limpieza diaria",
           "en": "Daily housekeeping"
         }
       ],
-      "destacados": [
+      "no_incluye": [
         {
-          "es": "Destacado 1",
-          "en": "Highlight 1"
+          "es": "Comidas",
+          "en": "Meals"
         },
         {
-          "es": "Destacado 2",
-          "en": "Highlight 2"
+          "es": "Bebidas",
+          "en": "Beverages"
+        },
+        {
+          "es": "Propinas",
+          "en": "Tips"
         }
       ],
-      "imagen_portada": "img/casas/casa-9/portada.jpg",
-      "galeria": [
-        "img/casas/casa-9/01.jpg",
-        "img/casas/casa-9/02.jpg",
-        "img/casas/casa-9/03.jpg",
-        "img/casas/casa-9/04.jpg"
+      "nota": {
+        "es": "Se sugiere un menú según el número de personas y de días, con la lista de ingredientes necesarios.",
+        "en": "A menu is suggested according to the number of guests and days, with the list of required ingredients."
+      },
+      "destacados": [
+        {
+          "es": "En la isla Madrizquí",
+          "en": "On Madrizquí Island"
+        },
+        {
+          "es": "5 habitaciones",
+          "en": "5 bedrooms"
+        },
+        {
+          "es": "Staff de 3 personas con chef",
+          "en": "Staff of 3 with chef"
+        }
       ],
+      "imagen_portada": "",
+      "galeria": [],
       "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar Casa 9 en Los Roques.",
-        "en": "Hi, I'd like information to book Casa 9 in Los Roques."
+        "es": "Hola, quiero información para reservar Casa 9 en Madrizquí, Los Roques.",
+        "en": "Hi, I'd like information to book Casa 9 on Madrizquí, Los Roques."
       },
       "sitio_propio": ""
     },
     {
       "id": "macanao-lodge",
       "nombre": "Macanao Lodge",
+      "tipo": "posada",
       "logo": "",
       "ubicacion": {
-        "es": "Los Roques",
-        "en": "Los Roques"
+        "es": "Posada · Los Roques",
+        "en": "Guesthouse · Los Roques"
       },
       "descripcion_corta": {
-        "es": "Placeholder: descripción corta de Macanao Lodge.",
-        "en": "Placeholder: short description of Macanao Lodge."
+        "es": "Posada en Los Roques: aquí se reserva por habitación, con gastronomía excelente y bote privado a los cayos.",
+        "en": "Guesthouse in Los Roques: book by the room, with excellent cuisine and a private boat to the cays."
       },
       "descripcion": {
-        "es": "Placeholder: descripción larga de Macanao Lodge. Texto definitivo en la fase de contenido.",
-        "en": "Placeholder: long description of Macanao Lodge. Final copy in the content phase."
+        "es": "Macanao Lodge es la única de nuestras propiedades que no es una casa completa: es una posada y se alquila por habitación. Placeholder: el resto de la descripción llega en la fase de contenido.",
+        "en": "Macanao Lodge is the only one of our properties that isn't a whole house: it's a guesthouse and you book by the room. Placeholder: the rest of the description comes in the content phase."
       },
-      "capacidad": 12,
-      "habitaciones": 6,
+      "capacidad": null,
+      "habitaciones": null,
+      "tipos_habitacion": [
+        {
+          "grupo": {
+            "es": "Vista al jardín",
+            "en": "Garden view"
+          },
+          "items": [
+            {
+              "nombre": "Superior King",
+              "detalle": {
+                "es": "Cama king",
+                "en": "King size bed"
+              }
+            },
+            {
+              "nombre": "Superior Double",
+              "detalle": {
+                "es": "Dos camas full",
+                "en": "Two full size beds"
+              }
+            },
+            {
+              "nombre": "Superior Triple",
+              "detalle": {
+                "es": "Cama queen + cama individual",
+                "en": "Queen size bed + single bed"
+              }
+            },
+            {
+              "nombre": "Superior King Full",
+              "detalle": {
+                "es": "Cama king + cama queen",
+                "en": "King size bed + queen size bed"
+              }
+            }
+          ]
+        },
+        {
+          "grupo": {
+            "es": "Vista al mar",
+            "en": "Ocean view"
+          },
+          "items": [
+            {
+              "nombre": "Deluxe King Terrace",
+              "detalle": {
+                "es": "Cama king + balcón privado",
+                "en": "King size bed + private balcony"
+              }
+            }
+          ]
+        }
+      ],
       "incluye": [
         {
           "es": "Staff de servicio",
@@ -210,34 +306,41 @@
           "en": "Private chef"
         },
         {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
+        },
+        {
           "es": "Limpieza diaria",
           "en": "Daily housekeeping"
         },
         {
-          "es": "Bote privado",
-          "en": "Private boat"
+          "es": "Bote privado a los cayos",
+          "en": "Private boat to the cays"
         }
       ],
       "destacados": [
         {
-          "es": "Destacado 1",
-          "en": "Highlight 1"
+          "es": "Se reserva por habitación",
+          "en": "Book by the room"
         },
         {
-          "es": "Destacado 2",
-          "en": "Highlight 2"
+          "es": "Habitaciones con vista al jardín o al mar",
+          "en": "Garden or ocean view rooms"
+        },
+        {
+          "es": "Bote privado a los cayos",
+          "en": "Private boat to the cays"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
         }
       ],
-      "imagen_portada": "img/casas/macanao-lodge/portada.jpg",
-      "galeria": [
-        "img/casas/macanao-lodge/01.jpg",
-        "img/casas/macanao-lodge/02.jpg",
-        "img/casas/macanao-lodge/03.jpg",
-        "img/casas/macanao-lodge/04.jpg"
-      ],
+      "imagen_portada": "",
+      "galeria": [],
       "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar Macanao Lodge en Los Roques.",
-        "en": "Hi, I'd like information to book Macanao Lodge in Los Roques."
+        "es": "Hola, quiero información para reservar una habitación en Macanao Lodge, Los Roques.",
+        "en": "Hi, I'd like information to book a room at Macanao Lodge, Los Roques."
       },
       "sitio_propio": ""
     }

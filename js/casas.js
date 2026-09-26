@@ -14,7 +14,7 @@
 
   function getCasas() {
     if (!casasPromise) {
-      casasPromise = fetch(DATA_URL)
+      casasPromise = fetch(DATA_URL, { cache: 'no-cache' })
         .then(function (r) { return r.json(); })
         .then(function (json) { return json.casas || []; })
         .catch(function (err) {
@@ -49,6 +49,15 @@
       '<span>' + esc(label) + '</span></div>';
   }
 
+  /* Huéspedes y habitaciones: solo se muestran si están en el JSON (null = no mostrar) */
+  function has(v) { return v !== null && v !== undefined && v !== ''; }
+  function metaHTML(c) {
+    var items = [];
+    if (has(c.capacidad)) items.push('<li>' + esc(c.capacidad) + ' ' + esc(I18n.t('common.huespedes')) + '</li>');
+    if (has(c.habitaciones)) items.push('<li>' + esc(c.habitaciones) + ' ' + esc(I18n.t('common.habitaciones')) + '</li>');
+    return items.length ? '<ul class="meta-list">' + items.join('') + '</ul>' : '';
+  }
+
   /* ---------- Tarjetas ---------- */
   function cardHTML(c) {
     return '' +
@@ -60,10 +69,7 @@
           '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
           '<h3 class="card-title">' + esc(c.nombre) + '</h3>' +
           '<p class="card-text">' + esc(I18n.pick(c.descripcion_corta)) + '</p>' +
-          '<ul class="meta-list">' +
-            '<li>' + esc(c.capacidad) + ' ' + esc(I18n.t('common.huespedes')) + '</li>' +
-            '<li>' + esc(c.habitaciones) + ' ' + esc(I18n.t('common.habitaciones')) + '</li>' +
-          '</ul>' +
+          metaHTML(c) +
           '<div class="card-actions">' +
             '<a class="btn btn-outline btn-sm" href="casa.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.ver_casa')) + '</a>' +
             '<a class="btn btn-primary btn-sm" data-wa data-wa-text="' + esc(I18n.pick(c.whatsapp_mensaje)) + '" target="_blank" rel="noopener">' + esc(I18n.t('nav.reservar')) + '</a>' +
@@ -110,7 +116,8 @@
     var li = function (arr) {
       return (arr || []).map(function (x) { return '<li>' + esc(I18n.pick(x)) + '</li>'; }).join('');
     };
-    var gallery = (c.galeria || []).map(function (src, i) {
+    var fotos = (c.galeria && c.galeria.length) ? c.galeria : ['', '', ''];
+    var gallery = fotos.map(function (src, i) {
       return media(src, c.nombre + ' · ' + I18n.t('common.imagen') + ' ' + (i + 1), 'ph-4x5');
     }).join('');
     var sitio = c.sitio_propio
@@ -139,18 +146,33 @@
         '</div>' +
         '<aside class="facts" aria-label="' + esc(I18n.t('casa.datos')) + '">' +
           '<h2 class="h3">' + esc(I18n.t('casa.datos')) + '</h2>' +
-          '<dl class="facts-list">' +
-            '<div><dt>' + esc(I18n.t('common.capacidad')) + '</dt><dd>' + esc(c.capacidad) + ' ' + esc(I18n.t('common.huespedes')) + '</dd></div>' +
-            '<div><dt>' + esc(I18n.t('common.habitaciones')) + '</dt><dd>' + esc(c.habitaciones) + '</dd></div>' +
-          '</dl>' +
+          ((has(c.capacidad) || has(c.habitaciones)) ? '<dl class="facts-list">' +
+            (has(c.capacidad) ? '<div><dt>' + esc(I18n.t('common.capacidad')) + '</dt><dd>' + esc(c.capacidad) + ' ' + esc(I18n.t('common.huespedes')) + '</dd></div>' : '') +
+            (has(c.habitaciones) ? '<div><dt>' + esc(I18n.t('common.habitaciones')) + '</dt><dd>' + esc(c.habitaciones) + '</dd></div>' : '') +
+          '</dl>' : '') +
+          ((c.distribucion && c.distribucion.length) ? '<div><h3 class="facts-sub">' + esc(I18n.t('casa.distribucion')) + '</h3><ul class="check-list">' + li(c.distribucion) + '</ul></div>' : '') +
           '<div class="stack">' + waBtn + sitio + '</div>' +
         '</aside>' +
       '</div></section>' +
+
+      /* Tipos de habitación (posadas como Macanao Lodge) */
+      ((c.tipos_habitacion && c.tipos_habitacion.length) ?
+        '<section class="section"><div class="container">' +
+          '<h2 class="h2">' + esc(I18n.t('casa.tipos')) + '</h2>' +
+          '<div class="room-groups">' + c.tipos_habitacion.map(function (g) {
+            return '<div class="room-group"><h3 class="h3">' + esc(I18n.pick(g.grupo)) + '</h3><ul class="room-list">' +
+              (g.items || []).map(function (r) {
+                return '<li><span class="room-name">' + esc(r.nombre) + '</span><span class="room-detail">' + esc(I18n.pick(r.detalle)) + '</span></li>';
+              }).join('') + '</ul></div>';
+          }).join('') + '</div>' +
+        '</div></section>' : '') +
 
       /* Qué incluye */
       '<section class="section section--alt"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.incluye')) + '</h2>' +
         '<ul class="pill-list">' + li(c.incluye) + '</ul>' +
+        ((c.no_incluye && c.no_incluye.length) ? '<h3 class="h3 incluye-sub">' + esc(I18n.t('casa.no_incluye')) + '</h3><ul class="pill-list pill-list--muted">' + li(c.no_incluye) + '</ul>' : '') +
+        (c.nota ? '<p class="casa-nota">' + esc(I18n.pick(c.nota)) + '</p>' : '') +
       '</div></section>' +
 
       /* Galería */

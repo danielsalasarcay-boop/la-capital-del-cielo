@@ -1,0 +1,85 @@
+{
+  "moneda": "USD",
+  "productos": [
+    {
+      "id": "lionfish",
+      "nombre": "Lionfish",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/lionfish.jpg"
+    },
+    {
+      "id": "mango",
+      "nombre": "Mango",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/mango.jpg"
+    },
+    {
+      "id": "langosta",
+      "nombre": "Langosta",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/langosta.jpg"
+    },
+    {
+      "id": "estrella",
+      "nombre": "Estrella",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/estrella.jpg"
+    },
+    {
+      "id": "tortuga",
+      "nombre": "Tortuga",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/tortuga.jpg"
+    },
+    {
+      "id": "kitesurfer",
+      "nombre": "Kitesurfer",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/kitesurfer.jpg"
+    },
+    {
+      "id": "rider",
+      "nombre": "Rider",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/rider.jpg"
+    },
+    {
+      "id": "red-manta",
+      "nombre": "Red Manta",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/red-manta.jpg"
+    }
+  ]
+}
