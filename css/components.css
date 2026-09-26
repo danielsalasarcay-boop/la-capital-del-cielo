@@ -528,3 +528,13 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 }
 .casa-hero--sin-foto > .ph > span { display: none; }
 .casa-hero--sin-foto { text-shadow: 0 1px 12px rgba(0, 40, 60, 0.25); }
+/* Subtítulo de la portada */
+.hero-tagline {
+  font-size: clamp(1.15rem, 0.9rem + 1.3vw, 1.6rem);
+  line-height: 1.35; max-width: 34ch;
+  color: var(--color-white);
+  text-shadow: 0 2px 16px rgba(0, 30, 60, 0.45);
+}
+.hero-brand > .hero-tagline { animation-delay: 2.75s; }
+.hero-brand > .kicker { animation-delay: 2.95s; margin-top: var(--space-2); }
+.hero-brand > p:last-child { animation-delay: 3.15s; }
