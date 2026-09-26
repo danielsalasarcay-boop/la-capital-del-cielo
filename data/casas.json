@@ -214,16 +214,16 @@
       "tipo": "casa",
       "logo": "",
       "ubicacion": {
-        "es": "Isla Madrizquí · Los Roques",
-        "en": "Madrizquí Island · Los Roques"
+        "es": "Cacho Madrizquí · Los Roques",
+        "en": "Cacho Madrizquí · Los Roques"
       },
       "descripcion_corta": {
-        "es": "Casa privada en la isla Madrizquí, con 5 habitaciones y un staff de 3 personas que incluye chef.",
-        "en": "Private house on Madrizquí Island, with 5 bedrooms and a staff of 3 including a chef."
+        "es": "Casa privada en el Cacho Madrizquí, con 5 habitaciones y un staff de 3 personas que incluye chef.",
+        "en": "Private house in Cacho Madrizquí, with 5 bedrooms and a staff of 3 including a chef."
       },
       "descripcion": {
-        "es": "Casa 9 está en la isla Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef. Placeholder: el resto de la descripción llega en la fase de contenido.",
-        "en": "Casa 9 is on Madrizquí Island, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef. Placeholder: the rest of the description comes in the content phase."
+        "es": "Casa 9 está en el Cacho Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef. Placeholder: el resto de la descripción llega en la fase de contenido.",
+        "en": "Casa 9 is in Cacho Madrizquí, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef. Placeholder: the rest of the description comes in the content phase."
       },
       "capacidad": 12,
       "habitaciones": 5,
@@ -275,8 +275,8 @@
       },
       "destacados": [
         {
-          "es": "En la isla Madrizquí",
-          "en": "On Madrizquí Island"
+          "es": "En el Cacho Madrizquí",
+          "en": "In Cacho Madrizquí"
         },
         {
           "es": "5 habitaciones",
@@ -290,16 +290,16 @@
       "imagen_portada": "",
       "galeria": [],
       "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar Casa 9 en Madrizquí, Los Roques.",
-        "en": "Hi, I'd like information to book Casa 9 on Madrizquí, Los Roques."
+        "es": "Hola, quiero información para reservar Casa 9 en el Cacho Madrizquí, Los Roques.",
+        "en": "Hi, I'd like information to book Casa 9 in Cacho Madrizquí, Los Roques."
       },
       "sitio_propio": "",
       "amenidades": [
         {
           "icono": "isla",
           "texto": {
-            "es": "En la isla Madrizquí",
-            "en": "On Madrizquí Island"
+            "es": "En el Cacho Madrizquí",
+            "en": "In Cacho Madrizquí"
           }
         },
         {
