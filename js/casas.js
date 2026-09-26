@@ -222,7 +222,10 @@
       /* Mapa */
       '<section class="section section--alt"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.mapa')) + '</h2>' +
-        '<div class="ph ph-map" role="img" aria-label="' + esc(I18n.t('casa.mapa_ph')) + '"><span>' + esc(I18n.t('casa.mapa_ph')) + '</span></div>' +
+        (c.mapa_embed
+          ? '<div class="map-frame"><iframe src="' + esc(c.mapa_embed + '&hl=' + I18n.lang) + '" title="' + esc(I18n.t('casa.mapa') + ' · ' + c.nombre) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>' +
+            (c.mapa_link ? '<p class="map-link"><a class="btn btn-outline btn-sm" href="' + esc(c.mapa_link) + '" target="_blank" rel="noopener">' + esc(I18n.t('casa.abrir_mapa')) + '</a></p>' : '')
+          : '<div class="ph ph-map" role="img" aria-label="' + esc(I18n.t('casa.mapa_ph')) + '"><span>' + esc(I18n.t('casa.mapa_ph')) + '</span></div>') +
       '</div></section>' +
 
       /* CTA */

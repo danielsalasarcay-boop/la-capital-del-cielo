@@ -106,7 +106,9 @@
             "en": "Daily housekeeping"
           }
         }
-      ]
+      ],
+      "mapa_embed": "https://maps.google.com/maps?q=11.945813,-66.676766&z=18&output=embed",
+      "mapa_link": "https://maps.app.goo.gl/oZi7Z5DEkzjafH2z6"
     },
     {
       "id": "casa-panza",
@@ -202,7 +204,9 @@
             "en": "Daily housekeeping"
           }
         }
-      ]
+      ],
+      "mapa_embed": "https://maps.google.com/maps?cid=10655322288920728829&z=16&output=embed",
+      "mapa_link": "https://maps.google.com/?cid=10655322288920728829"
     },
     {
       "id": "casa-9",

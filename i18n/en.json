@@ -70,7 +70,8 @@
     "distribucion": "Room layout",
     "no_incluye": "Not included",
     "tipos": "Rooms to choose from",
-    "comodidades": "Amenities"
+    "comodidades": "Amenities",
+    "abrir_mapa": "Open in Google Maps"
   },
   "roques": {
     "page_title": "Los Roques page title",
