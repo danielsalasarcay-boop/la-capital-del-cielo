@@ -203,3 +203,35 @@
   .bg-media--parallax img { animation: bg-drift linear both; animation-timeline: view(); height: 116%; }
   @keyframes bg-drift { from { transform: translateY(-8%); } to { transform: translateY(0); } }
 }
+
+/* ==========================================================================
+   Instagram + WhatsApp
+   ========================================================================== */
+/* Ícono de Instagram en el header */
+.icon-link { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; color: var(--color-brand-deep); border-radius: 50%; transition: background .2s var(--ease); }
+.icon-link:hover { background: var(--color-brand-soft); }
+@media (max-width: 400px) { .header-actions .icon-link { display: none; } } /* en móvil muy angosto queda el botón flotante */
+
+/* Botones sociales en el footer */
+.social-row { display: flex; gap: var(--space-1); margin-top: var(--space-2); }
+.social-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); color: var(--color-white); transition: background .2s var(--ease), border-color .2s var(--ease); }
+.social-btn:hover { background: rgba(255,255,255,.12); border-color: var(--color-brand); text-decoration: none; }
+
+/* Botones flotantes (todas las páginas) */
+.float-actions {
+  position: fixed; z-index: 90;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.float-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; color: var(--color-white);
+  box-shadow: 0 8px 24px rgba(8, 28, 54, .25);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.float-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(8, 28, 54, .3); text-decoration: none; }
+.float-btn--wa { width: 56px; height: 56px; background: var(--color-wa); }
+.float-btn--wa svg { width: 28px; height: 28px; }
+.float-btn--ig { width: 44px; height: 44px; background: var(--color-white); color: var(--color-brand-deep); }
+.footer-bottom { padding-right: 84px; } /* espacio para los botones flotantes */
