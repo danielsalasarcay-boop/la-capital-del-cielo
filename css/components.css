@@ -600,28 +600,67 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 .sky-lane { position: relative; width: 100vw; margin-inline: calc(50% - 50vw); height: clamp(90px, 12vw, 160px); margin-block: var(--space-3); }
 .sky-content { align-items: stretch; }
 .sky-content > .h2, .sky-content > .btn { align-self: center; }
-.plane {
+.sky-cta::before { /* brillo de sol muy sutil arriba a la derecha */
+  content: ""; position: absolute; top: -20%; right: -10%; width: 60vw; height: 60vw; max-width: 760px; max-height: 760px; z-index: 0;
+  background: radial-gradient(circle, rgba(255, 252, 236, 0.75) 0%, rgba(255, 252, 236, 0.25) 35%, rgba(255, 252, 236, 0) 65%);
+  animation: sun-breathe 9s ease-in-out infinite;
+}
+@keyframes sun-breathe { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
+
+/* Avión: cruza en ~8 s, con una pausa fuera de cuadro entre pasadas */
+.plane-wrap {
   position: absolute; top: 50%; left: 0;
-  width: clamp(170px, 22vw, 320px); height: auto;
-  filter: drop-shadow(0 14px 18px rgba(40, 90, 140, 0.18));
-  animation: plane-fly 13s linear infinite;
+  width: clamp(180px, 22vw, 320px);
+  animation: plane-fly 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+}
+.plane {
+  display: block; width: 100%; height: auto;
+  filter: drop-shadow(0 16px 16px rgba(40, 90, 140, 0.16));
+  transform-origin: 60% 50%;
+  animation: plane-bank 3.2s ease-in-out infinite;
 }
 @keyframes plane-fly {
-  0%   { transform: translate(-110%, -50%) translateY(0); }
-  25%  { transform: translate(calc(25vw - 50%), -50%) translateY(-6px); }
-  50%  { transform: translate(calc(50vw - 50%), -50%) translateY(4px); }
-  75%  { transform: translate(calc(75vw - 50%), -50%) translateY(-5px); }
-  100% { transform: translate(100vw, -50%) translateY(0); }
+  0%   { transform: translate(-115%, -50%); }
+  80%  { transform: translate(100vw, -50%); }
+  100% { transform: translate(100vw, -50%); }
 }
+@keyframes plane-bank { /* sube, baja y se inclina apenas, como si flotara en el aire */
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  30%      { transform: translateY(-7px) rotate(-1.2deg); }
+  65%      { transform: translateY(5px) rotate(0.8deg); }
+}
+/* Estelas finas que salen detrás de los motores y se desvanecen */
+.trail {
+  position: absolute; top: 47%; right: 55%; width: 42vw; height: 2px; border-radius: 2px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+  box-shadow: 0 7px 0 rgba(255, 255, 255, 0.55);
+  filter: blur(0.6px);
+  animation: plane-bank 3.2s ease-in-out infinite;
+}
+
+/* Nubes con profundidad: derivan despacio y flotan apenas */
 .sky-clouds { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.cloud { position: absolute; height: auto; opacity: 0.9; animation: cloud-drift linear infinite; }
-.c1 { width: clamp(150px, 20vw, 300px); top: 6%;  left: 4%;  animation-duration: 70s; }
-.c2 { width: clamp(160px, 22vw, 340px); top: 22%; left: 58%; animation-duration: 90s; opacity: 0.75; }
-.c3 { width: clamp(110px, 13vw, 200px); top: 62%; left: 78%; animation-duration: 60s; }
-.c4 { width: clamp(130px, 16vw, 260px); top: 74%; left: 12%; animation-duration: 80s; opacity: 0.7; }
-.c5 { width: clamp(90px, 10vw, 160px);  top: 40%; left: 32%; animation-duration: 100s; opacity: 0.55; }
-@keyframes cloud-drift { from { transform: translateX(0); } 50% { transform: translateX(-6vw); } to { transform: translateX(0); } }
+.cloud { position: absolute; height: auto; opacity: 0.9; }
+.c1 { width: clamp(150px, 20vw, 300px); top: 6%;  left: 4%; }
+.c2 { width: clamp(160px, 22vw, 340px); top: 22%; left: 58%; opacity: 0.75; }
+.c3 { width: clamp(110px, 13vw, 200px); top: 62%; left: 78%; }
+.c4 { width: clamp(130px, 16vw, 260px); top: 74%; left: 12%; opacity: 0.7; }
+.c5 { width: clamp(90px, 10vw, 160px);  top: 40%; left: 32%; opacity: 0.55; }
+.cloud { animation: cloud-drift ease-in-out infinite alternate, cloud-float ease-in-out infinite; }
+.c1 { animation-duration: 26s, 7s; }
+.c2 { animation-duration: 34s, 9s; }
+.c3 { animation-duration: 22s, 6s; }
+.c4 { animation-duration: 30s, 8s; }
+.c5 { animation-duration: 40s, 10s; filter: blur(1.5px); }
+.c6 { width: clamp(80px, 9vw, 140px); top: 12%; left: 34%; opacity: 0.45; filter: blur(2px); animation-duration: 46s, 11s; }
+@keyframes cloud-drift { from { translate: 0 0; } to { translate: -4vw 0; } }
+@keyframes cloud-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.c2, .c4 { animation-direction: alternate-reverse, normal; }
+
 @media (prefers-reduced-motion: reduce) {
-  .plane { animation: none; left: 50%; transform: translate(-50%, -50%); }
-  .cloud { animation: none; }
+  .plane-wrap { animation: none; left: 50%; transform: translate(-50%, -50%); }
+  .plane, .trail, .cloud, .sky-cta::before { animation: none; }
+  .trail { display: none; }
 }
+
