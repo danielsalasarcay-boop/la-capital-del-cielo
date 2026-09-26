@@ -69,20 +69,20 @@
     {
       "id": "casa-panza",
       "nombre": "Casa Panza",
-      "logo": "",
+      "logo": "img/casas/casa-panza/logo.svg",
       "ubicacion": {
-        "es": "Gran Roque, Los Roques",
-        "en": "Gran Roque, Los Roques"
+        "es": "Frente al mar · Gran Roque",
+        "en": "Beachfront · Gran Roque"
       },
       "descripcion_corta": {
-        "es": "Placeholder: descripción corta de Casa Panza.",
-        "en": "Placeholder: short description of Casa Panza."
+        "es": "Casa privada frente al mar en Gran Roque, con acceso directo al Caribe y staff incluido.",
+        "en": "Private beachfront house in Gran Roque, with direct access to the Caribbean and staff included."
       },
       "descripcion": {
-        "es": "Placeholder: descripción larga de Casa Panza. Texto definitivo en la fase de contenido.",
-        "en": "Placeholder: long description of Casa Panza. Final copy in the content phase."
+        "es": "Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Está frente al mar en Gran Roque, isla declarada Parque Nacional: al cruzar su arco turquesa, el Caribe aparece al fondo. Placeholder: el resto de la descripción llega en la fase de contenido.",
+        "en": "Casa Panza blends the most refined coastal minimalism with the authentic soul of the Venezuelan Caribbean. It sits on the water in Gran Roque, an island declared a National Park: step through its turquoise arch and the Caribbean opens up ahead. Placeholder: the rest of the description comes in the content phase."
       },
-      "capacidad": 8,
+      "capacidad": 10,
       "habitaciones": 4,
       "incluye": [
         {
@@ -100,20 +100,26 @@
       ],
       "destacados": [
         {
-          "es": "Destacado 1",
-          "en": "Highlight 1"
+          "es": "Frente al mar en Gran Roque",
+          "en": "Beachfront in Gran Roque"
         },
         {
-          "es": "Destacado 2",
-          "en": "Highlight 2"
+          "es": "Acceso directo al Caribe",
+          "en": "Direct access to the Caribbean"
+        },
+        {
+          "es": "Arquitectura colonial con arcos turquesa",
+          "en": "Colonial architecture with turquoise arches"
+        },
+        {
+          "es": "A 45 minutos en avión desde Caracas",
+          "en": "45 minutes by plane from Caracas"
         }
       ],
       "imagen_portada": "img/casas/casa-panza/portada.jpg",
       "galeria": [
-        "img/casas/casa-panza/01.jpg",
-        "img/casas/casa-panza/02.jpg",
-        "img/casas/casa-panza/03.jpg",
-        "img/casas/casa-panza/04.jpg"
+        "img/casas/casa-panza/entrada-arco.jpg",
+        "img/casas/casa-panza/portada.jpg"
       ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa Panza en Los Roques.",
