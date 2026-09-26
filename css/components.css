@@ -138,3 +138,68 @@
 
 /* Desktop: ocultar hamburguesa (va aquí porque este archivo carga después de layout.css) */
 @media (min-width: 960px) { .menu-toggle { display: none; } }
+
+/* ==========================================================================
+   Fondos fotográficos (fotos aéreas de Los Roques)
+   .bg-media envuelve un <img> con srcset: carga la versión adecuada al
+   ancho de pantalla y se recorta con object-fit como un background.
+   ========================================================================== */
+.bg-media { position: absolute; inset: 0; z-index: -2; overflow: hidden; background: var(--color-brand-deep); }
+.bg-media img { width: 100%; height: 100%; object-fit: cover; }
+.bg-media::after { content: ""; position: absolute; inset: 0; } /* overlay por sección */
+.photo-section { position: relative; isolation: isolate; overflow: hidden; }
+
+/* --- Hero: arrecife que cae al azul profundo --- */
+.hero--photo { place-items: end start; text-align: left; color: var(--color-white); }
+.hero--photo .bg-media img { object-position: 60% 50%; animation: hero-zoom 20s var(--ease) both; }
+.hero--photo .bg-media::after {
+  background:
+    linear-gradient(to top, rgba(8, 28, 54, 0.82) 0%, rgba(8, 28, 54, 0.38) 45%, rgba(8, 28, 54, 0.12) 100%),
+    linear-gradient(to right, rgba(8, 28, 54, 0.35), rgba(8, 28, 54, 0) 60%);
+}
+.hero--photo .hero-content { max-width: 680px; margin-inline: 0; padding-bottom: clamp(3rem, 8vh, 6rem); }
+.hero--photo .h1 { color: var(--color-white); }
+.hero--photo .kicker { color: var(--color-brand); }
+.hero--photo .lead { color: rgba(255, 255, 255, 0.86); }
+@media (min-width: 960px) {
+  .hero--photo .hero-content { margin-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); padding-inline: 0; }
+}
+@keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+/* Botón claro para usar sobre foto */
+.btn-light { background: var(--color-white); color: var(--color-brand-deep); }
+.btn-light:hover { background: var(--color-brand-soft); }
+
+/* --- Teaser Los Roques: bote con bañistas + panel translúcido --- */
+.photo-section--roques { min-height: 88svh; display: flex; align-items: flex-end; }
+.photo-section--roques .container { width: 100%; }
+.photo-section--roques .bg-media img { object-position: 55% 45%; }
+.photo-section--roques .bg-media::after { background: linear-gradient(to top, rgba(8, 28, 54, 0.28), rgba(8, 28, 54, 0) 50%); }
+.glass-panel {
+  max-width: 520px;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 50px rgba(8, 28, 54, 0.18);
+}
+.glass-panel .h2 { margin-top: var(--space-1); }
+.glass-panel .lead { margin-top: var(--space-2); }
+@media (min-width: 960px) { .photo-section--roques { align-items: center; } .glass-panel { max-width: 440px; } }
+
+/* --- CTA final: banco de arena turquesa, texto arriba sobre el agua clara --- */
+.photo-section--cta { min-height: 78svh; display: flex; align-items: flex-start; }
+.photo-section--cta .bg-media img { object-position: 50% 78%; }
+.photo-section--cta .bg-media::after {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.2) 45%, rgba(255, 255, 255, 0) 70%);
+}
+.photo-section--cta .h2 { color: var(--color-brand-deep); }
+.photo-section--cta p { color: var(--color-brand-deep); font-size: var(--fs-lg); }
+
+/* Parallax suave solo en navegadores con animaciones ligadas al scroll */
+@supports (animation-timeline: view()) {
+  .bg-media--parallax img { animation: bg-drift linear both; animation-timeline: view(); height: 116%; }
+  @keyframes bg-drift { from { transform: translateY(-8%); } to { transform: translateY(0); } }
+}

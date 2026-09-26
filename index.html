@@ -35,13 +35,17 @@
   <main id="contenido">
 
     <!-- 2. Hero a pantalla completa -->
-    <section class="hero" id="inicio">
-      <div class="ph" role="img" aria-label="Hero" data-src="img/general/hero.jpg"><span>Hero · imagen/video</span></div>
+    <section class="hero hero--photo" id="inicio">
+      <div class="bg-media" aria-hidden="true">
+        <img src="img/general/arrecife-1600.jpg"
+             srcset="img/general/arrecife-900.jpg 900w, img/general/arrecife-1600.jpg 1600w"
+             sizes="100vw" alt="" width="1600" height="1200" fetchpriority="high" decoding="async">
+      </div>
       <div class="container hero-content">
         <p class="kicker" data-i18n="home.hero_kicker"></p>
         <h1 class="h1" data-i18n="home.hero_title"></h1>
         <p class="lead" data-i18n="home.hero_sub"></p>
-        <p><a class="btn btn-primary" href="#casas" data-i18n="home.hero_cta"></a></p>
+        <p><a class="btn btn-light" href="#casas" data-i18n="home.hero_cta"></a></p>
       </div>
     </section>
 
@@ -105,14 +109,18 @@
     </section>
 
     <!-- 6. Los Roques (teaser) -->
-    <section class="section section--alt" id="los-roques">
-      <div class="container split">
-        <div class="ph ph-4x3" role="img" aria-label="Los Roques" data-src="img/general/los-roques.jpg" data-reveal><span>Imagen</span></div>
-        <div data-reveal>
+    <section class="section photo-section photo-section--roques" id="los-roques">
+      <div class="bg-media bg-media--parallax" aria-hidden="true">
+        <img src="img/general/bote-cayo-1600.jpg"
+             srcset="img/general/bote-cayo-900.jpg 900w, img/general/bote-cayo-1600.jpg 1600w"
+             sizes="100vw" alt="" width="1600" height="1200" loading="lazy" decoding="async">
+      </div>
+      <div class="container">
+        <div class="glass-panel" data-reveal>
           <p class="kicker" data-i18n="home.roques_kicker"></p>
           <h2 class="h2" data-i18n="home.roques_title"></h2>
           <p class="lead" data-i18n="home.roques_text"></p>
-          <p style="margin-top: var(--space-3)"><a class="btn btn-outline" href="los-roques.html" data-i18n="home.roques_cta"></a></p>
+          <p style="margin-top: var(--space-3)"><a class="btn btn-primary" href="los-roques.html" data-i18n="home.roques_cta"></a></p>
         </div>
       </div>
     </section>
@@ -142,8 +150,13 @@
     </section>
 
     <!-- 8. CTA final de reserva -->
-    <section class="section cta-band" id="reservar">
-      <div class="container narrow text-center stack stack--center">
+    <section class="section photo-section photo-section--cta" id="reservar">
+      <div class="bg-media" aria-hidden="true">
+        <img src="img/general/banco-arena-1600.jpg"
+             srcset="img/general/banco-arena-900.jpg 900w, img/general/banco-arena-1600.jpg 1600w"
+             sizes="100vw" alt="" width="1600" height="1200" loading="lazy" decoding="async">
+      </div>
+      <div class="container narrow text-center stack stack--center" data-reveal>
         <h2 class="h2" data-i18n="home.cta_title"></h2>
         <p data-i18n="home.cta_text"></p>
         <a class="btn btn-primary" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener" data-i18n="common.reservar_wa"></a>
