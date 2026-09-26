@@ -583,3 +583,6 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 .section--brand > .container > p > .btn-primary { background: var(--color-white); color: var(--color-brand-deep); }
 .section--brand > .container > p > .btn-primary:hover { background: var(--color-brand-soft); }
 .section--brand .section-head p:not(.kicker) { color: rgba(26, 26, 26, 0.72); }
+
+/* Fondo gris muy claro (La experiencia en el home) */
+.section--gray { background: #F5F6F7; }
