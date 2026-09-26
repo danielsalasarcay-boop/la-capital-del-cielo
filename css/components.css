@@ -578,3 +578,8 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 .section--brand .btn-outline { border-color: var(--color-brand-deep); color: var(--color-brand-deep); }
 .section--brand .btn-outline:hover { background: rgba(255, 255, 255, 0.35); }
 .section--brand .ph { background: rgba(255, 255, 255, 0.45); color: rgba(26, 26, 26, 0.55); }
+/* Botón principal sobre fondo azul: blanco para que resalte (las tarjetas conservan su botón azul) */
+.section--brand .section-head + .grid + p .btn-primary,
+.section--brand > .container > p > .btn-primary { background: var(--color-white); color: var(--color-brand-deep); }
+.section--brand > .container > p > .btn-primary:hover { background: var(--color-brand-soft); }
+.section--brand .section-head p:not(.kicker) { color: rgba(26, 26, 26, 0.72); }
