@@ -92,9 +92,15 @@ window.waLink = waLink;
 
     el.className = 'site-footer';
     el.innerHTML =
+      '<div class="footer-sky" aria-hidden="true">' +
+        '<picture>' +
+          '<source media="(max-width: 699px)" srcset="img/general/cielo-footer-movil.jpg">' +
+          '<img src="img/general/cielo-footer-2400.jpg" srcset="img/general/cielo-footer-1200.jpg 1200w, img/general/cielo-footer-2400.jpg 2400w" sizes="100vw" alt="" loading="lazy" decoding="async">' +
+        '</picture>' +
+      '</div>' +
       '<div class="container footer-grid">' +
         '<div class="footer-col">' +
-          '<img class="footer-logo" src="img/general/logo.png" alt="' + SITE.nombre + '" width="956" height="462" loading="lazy">' +
+          '<img class="footer-logo" src="img/general/logo-white.png" alt="' + SITE.nombre + '" width="956" height="462" loading="lazy">' +
         '</div>' +
         '<div class="footer-col">' +
           '<h3 class="footer-title" data-i18n="footer.contacto"></h3>' +
