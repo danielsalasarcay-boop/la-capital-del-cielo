@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contacto y reservas — La Capital del Cielo · Los Roques</title>
+  <meta name="description" content="Reserva tu casa privada en Los Roques por WhatsApp. Teléfono +58 412 7398347, email lacapitaldelcielocorp@gmail.com.">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="La Capital del Cielo">
+  <meta property="og:locale" content="es_VE">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="Contacto — La Capital del Cielo">
+  <meta property="og:description" content="Reserva tu casa privada en Los Roques por WhatsApp.">
+  <meta property="og:url" content="https://danielsalasarcay-boop.github.io/la-capital-del-cielo/contacto.html">
+  <meta property="og:image" content="https://danielsalasarcay-boop.github.io/la-capital-del-cielo/img/general/logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="img/general/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header id="site-header"></header>
+
+  <main id="contenido">
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="h1" data-i18n="contacto.page_title"></h1>
+        <p class="lead" data-i18n="contacto.page_sub"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <!-- Formulario: arma el mensaje y abre WhatsApp (no requiere servidor) -->
+        <form class="form" id="contact-form" novalidate>
+          <h2 class="h3" data-i18n="contacto.form_t"></h2>
+          <div class="field">
+            <label for="f-nombre" data-i18n="contacto.nombre"></label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="casa-select" data-i18n="contacto.casa"></label>
+            <select id="casa-select" name="casa"></select>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-llegada" data-i18n="contacto.llegada"></label>
+              <input id="f-llegada" name="llegada" type="date">
+            </div>
+            <div class="field">
+              <label for="f-salida" data-i18n="contacto.salida"></label>
+              <input id="f-salida" name="salida" type="date">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-personas" data-i18n="contacto.personas"></label>
+            <input id="f-personas" name="personas" type="number" min="1" max="30" inputmode="numeric">
+          </div>
+          <p><button class="btn btn-primary" type="submit" data-i18n="contacto.enviar"></button></p>
+        </form>
+
+        <!-- Datos de contacto directos -->
+        <aside class="facts">
+          <dl class="contact-list">
+            <div>
+              <dt>WhatsApp · <span data-i18n="contacto.telefono"></span></dt>
+              <dd><a data-wa data-wa-msg="wa.general" target="_blank" rel="noopener">+58 412 7398347</a></dd>
+            </div>
+            <div>
+              <dt data-i18n="contacto.email"></dt>
+              <dd><a href="mailto:lacapitaldelcielocorp@gmail.com">lacapitaldelcielocorp@gmail.com</a></dd>
+            </div>
+            <div>
+              <dt data-i18n="contacto.instagram"></dt>
+              <dd><a href="https://instagram.com/lacapitaldelcielo" target="_blank" rel="noopener">@lacapitaldelcielo</a></dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/casas.js"></script>
+</body>
+</html>

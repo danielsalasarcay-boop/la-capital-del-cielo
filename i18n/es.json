@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "casas": "Casas",
+    "experiencia": "Experiencia",
+    "roques": "Los Roques",
+    "contacto": "Contacto",
+    "reservar": "Reservar",
+    "menu": "Menú"
+  },
+  "wa": {
+    "general": "Hola, quiero información para reservar una casa en Los Roques con La Capital del Cielo."
+  },
+  "common": {
+    "ver_casa": "Ver casa",
+    "ver_todas": "Ver todas las casas",
+    "reservar_wa": "Reservar por WhatsApp",
+    "saber_mas": "Saber más",
+    "huespedes": "huéspedes",
+    "habitaciones": "habitaciones",
+    "capacidad": "Capacidad",
+    "cargando": "Cargando…",
+    "imagen": "Imagen"
+  },
+  "home": {
+    "hero_kicker": "Los Roques · Venezuela",
+    "hero_title": "Titular del hero (placeholder)",
+    "hero_sub": "Subtítulo corto del hero. Casas privadas con staff incluido.",
+    "hero_cta": "Ver las casas",
+    "about_kicker": "Quiénes somos",
+    "about_title": "Título quiénes somos",
+    "about_text": "Placeholder: breve texto sobre La Capital del Cielo.",
+    "casas_kicker": "Nuestras casas",
+    "casas_title": "Título nuestras casas",
+    "exp_kicker": "La experiencia",
+    "exp_title": "Título la experiencia",
+    "roques_kicker": "El destino",
+    "roques_title": "Título Los Roques",
+    "roques_text": "Placeholder: teaser del archipiélago.",
+    "roques_cta": "Descubrir Los Roques",
+    "testi_kicker": "Testimonios",
+    "testi_title": "Título testimonios",
+    "testi_1": "Placeholder: testimonio de huésped 1.",
+    "testi_2": "Placeholder: testimonio de huésped 2.",
+    "testi_3": "Placeholder: testimonio de huésped 3.",
+    "testi_author": "Nombre, país",
+    "cta_title": "Título CTA final de reserva",
+    "cta_text": "Placeholder: texto corto invitando a reservar."
+  },
+  "exp": {
+    "staff_t": "Staff de servicio",
+    "staff_d": "Placeholder: descripción del staff.",
+    "chef_t": "Chef privado",
+    "chef_d": "Placeholder: descripción del chef.",
+    "limpieza_t": "Limpieza diaria",
+    "limpieza_d": "Placeholder: descripción de limpieza.",
+    "bote_t": "Bote privado",
+    "bote_d": "Placeholder: descripción del bote (según la casa).",
+    "page_title": "Título página experiencia",
+    "page_sub": "Placeholder: qué incluye cada estadía.",
+    "servicios_t": "Servicios adicionales",
+    "servicios_d": "Placeholder: traslados, excursiones, pesca, etc."
+  },
+  "casas_page": {
+    "title": "Título página casas",
+    "sub": "Placeholder: todas nuestras propiedades en Los Roques."
+  },
+  "casa": {
+    "datos": "Datos rápidos",
+    "incluye": "Qué incluye",
+    "destacados": "Destacados",
+    "galeria": "Galería",
+    "mapa": "Ubicación",
+    "mapa_ph": "Mapa (placeholder)",
+    "sitio_propio": "Visitar el sitio de la casa",
+    "no_encontrada": "No encontramos esta casa.",
+    "volver": "Volver a las casas"
+  },
+  "roques": {
+    "page_title": "Título página Los Roques",
+    "page_sub": "Placeholder: el archipiélago.",
+    "llegar_t": "Cómo llegar",
+    "llegar_d": "Placeholder: vuelos desde Caracas / Maiquetía.",
+    "cayos_t": "Cayos",
+    "cayos_d": "Placeholder: cayos principales.",
+    "hacer_t": "Qué hacer",
+    "hacer_d": "Placeholder: actividades."
+  },
+  "contacto": {
+    "page_title": "Contacto",
+    "page_sub": "Placeholder: escríbenos y te respondemos rápido.",
+    "form_t": "Solicitar reserva",
+    "nombre": "Nombre",
+    "casa": "Casa",
+    "cualquiera": "Cualquiera / no sé",
+    "llegada": "Llegada",
+    "salida": "Salida",
+    "personas": "Personas",
+    "enviar": "Enviar por WhatsApp",
+    "telefono": "Teléfono",
+    "email": "Email",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "contacto": "Contacto",
+    "enlaces": "Enlaces",
+    "siguenos": "Síguenos",
+    "rights": "Todos los derechos reservados."
+  }
+}

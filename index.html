@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>La Capital del Cielo — Casas privadas de lujo en Los Roques</title>
+  <meta name="description" content="Alquiler de casas privadas de lujo en Los Roques, Venezuela. Casa completa por noche con staff, chef privado y limpieza incluidos.">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="La Capital del Cielo">
+  <meta property="og:locale" content="es_VE">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="La Capital del Cielo — Casas privadas de lujo en Los Roques">
+  <meta property="og:description" content="Casa completa por noche con staff, chef privado y limpieza incluidos.">
+  <meta property="og:url" content="https://danielsalasarcay-boop.github.io/la-capital-del-cielo/">
+  <meta property="og:image" content="https://danielsalasarcay-boop.github.io/la-capital-del-cielo/img/general/logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="img/general/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- 1. Header fijo (lo genera js/main.js) -->
+  <header id="site-header"></header>
+
+  <main id="contenido">
+
+    <!-- 2. Hero a pantalla completa -->
+    <section class="hero" id="inicio">
+      <div class="ph" role="img" aria-label="Hero" data-src="img/general/hero.jpg"><span>Hero · imagen/video</span></div>
+      <div class="container hero-content">
+        <p class="kicker" data-i18n="home.hero_kicker"></p>
+        <h1 class="h1" data-i18n="home.hero_title"></h1>
+        <p class="lead" data-i18n="home.hero_sub"></p>
+        <p><a class="btn btn-primary" href="#casas" data-i18n="home.hero_cta"></a></p>
+      </div>
+    </section>
+
+    <!-- 3. Quiénes somos -->
+    <section class="section" id="nosotros">
+      <div class="container split">
+        <div data-reveal>
+          <p class="kicker" data-i18n="home.about_kicker"></p>
+          <h2 class="h2" data-i18n="home.about_title"></h2>
+          <p class="lead" data-i18n="home.about_text"></p>
+        </div>
+        <div class="ph ph-4x3" role="img" aria-label="Quiénes somos" data-src="img/general/nosotros.jpg" data-reveal><span>Imagen</span></div>
+      </div>
+    </section>
+
+    <!-- 4. Nuestras casas (generado desde data/casas.json) -->
+    <section class="section section--alt" id="casas">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker" data-i18n="home.casas_kicker"></p>
+          <h2 class="h2" data-i18n="home.casas_title"></h2>
+        </div>
+        <div class="grid grid-cards" id="casas-grid" aria-live="polite"></div>
+        <p class="text-center" style="margin-top: var(--space-5)">
+          <a class="btn btn-outline" href="casas.html" data-i18n="common.ver_todas"></a>
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. La experiencia -->
+    <section class="section" id="experiencia">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker" data-i18n="home.exp_kicker"></p>
+          <h2 class="h2" data-i18n="home.exp_title"></h2>
+        </div>
+        <div class="grid grid-features">
+          <article class="feature" data-reveal>
+            <div class="ph ph-square" role="img" aria-label="Staff"><span>Imagen</span></div>
+            <h3 class="h3" data-i18n="exp.staff_t"></h3>
+            <p data-i18n="exp.staff_d"></p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="ph ph-square" role="img" aria-label="Chef"><span>Imagen</span></div>
+            <h3 class="h3" data-i18n="exp.chef_t"></h3>
+            <p data-i18n="exp.chef_d"></p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="ph ph-square" role="img" aria-label="Limpieza"><span>Imagen</span></div>
+            <h3 class="h3" data-i18n="exp.limpieza_t"></h3>
+            <p data-i18n="exp.limpieza_d"></p>
+          </article>
+          <article class="feature" data-reveal>
+            <div class="ph ph-square" role="img" aria-label="Bote"><span>Imagen</span></div>
+            <h3 class="h3" data-i18n="exp.bote_t"></h3>
+            <p data-i18n="exp.bote_d"></p>
+          </article>
+        </div>
+        <p style="margin-top: var(--space-4)"><a class="btn btn-outline" href="experiencia.html" data-i18n="common.saber_mas"></a></p>
+      </div>
+    </section>
+
+    <!-- 6. Los Roques (teaser) -->
+    <section class="section section--alt" id="los-roques">
+      <div class="container split">
+        <div class="ph ph-4x3" role="img" aria-label="Los Roques" data-src="img/general/los-roques.jpg" data-reveal><span>Imagen</span></div>
+        <div data-reveal>
+          <p class="kicker" data-i18n="home.roques_kicker"></p>
+          <h2 class="h2" data-i18n="home.roques_title"></h2>
+          <p class="lead" data-i18n="home.roques_text"></p>
+          <p style="margin-top: var(--space-3)"><a class="btn btn-outline" href="los-roques.html" data-i18n="home.roques_cta"></a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Testimonios (placeholder) -->
+    <section class="section" id="testimonios">
+      <div class="container">
+        <div class="section-head text-center">
+          <p class="kicker" data-i18n="home.testi_kicker"></p>
+          <h2 class="h2" data-i18n="home.testi_title"></h2>
+        </div>
+        <div class="grid grid-3">
+          <figure class="quote" data-reveal>
+            <blockquote data-i18n="home.testi_1"></blockquote>
+            <figcaption data-i18n="home.testi_author"></figcaption>
+          </figure>
+          <figure class="quote" data-reveal>
+            <blockquote data-i18n="home.testi_2"></blockquote>
+            <figcaption data-i18n="home.testi_author"></figcaption>
+          </figure>
+          <figure class="quote" data-reveal>
+            <blockquote data-i18n="home.testi_3"></blockquote>
+            <figcaption data-i18n="home.testi_author"></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CTA final de reserva -->
+    <section class="section cta-band" id="reservar">
+      <div class="container narrow text-center stack stack--center">
+        <h2 class="h2" data-i18n="home.cta_title"></h2>
+        <p data-i18n="home.cta_text"></p>
+        <a class="btn btn-primary" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener" data-i18n="common.reservar_wa"></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 9. Footer (lo genera js/main.js) -->
+  <footer id="site-footer"></footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/casas.js"></script>
+</body>
+</html>

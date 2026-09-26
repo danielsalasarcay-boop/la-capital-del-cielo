@@ -1,0 +1,150 @@
+{
+  "casas": [
+    {
+      "id": "casa-verde",
+      "nombre": "Casa Verde",
+      "ubicacion": { "es": "Gran Roque, Los Roques", "en": "Gran Roque, Los Roques" },
+      "descripcion_corta": {
+        "es": "Placeholder: descripción corta de Casa Verde.",
+        "en": "Placeholder: short description of Casa Verde."
+      },
+      "descripcion": {
+        "es": "Placeholder: descripción larga de Casa Verde. Texto definitivo en la fase de contenido.",
+        "en": "Placeholder: long description of Casa Verde. Final copy in the content phase."
+      },
+      "capacidad": 10,
+      "habitaciones": 5,
+      "incluye": [
+        { "es": "Staff de servicio", "en": "Service staff" },
+        { "es": "Chef privado", "en": "Private chef" },
+        { "es": "Limpieza diaria", "en": "Daily housekeeping" },
+        { "es": "Bote privado", "en": "Private boat" }
+      ],
+      "destacados": [
+        { "es": "Destacado 1", "en": "Highlight 1" },
+        { "es": "Destacado 2", "en": "Highlight 2" }
+      ],
+      "imagen_portada": "img/casas/casa-verde/portada.jpg",
+      "galeria": [
+        "img/casas/casa-verde/01.jpg",
+        "img/casas/casa-verde/02.jpg",
+        "img/casas/casa-verde/03.jpg",
+        "img/casas/casa-verde/04.jpg"
+      ],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar Casa Verde en Los Roques.",
+        "en": "Hi, I'd like information to book Casa Verde in Los Roques."
+      },
+      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-verde/index.html"
+    },
+    {
+      "id": "casa-panza",
+      "nombre": "Casa Panza",
+      "ubicacion": { "es": "Gran Roque, Los Roques", "en": "Gran Roque, Los Roques" },
+      "descripcion_corta": {
+        "es": "Placeholder: descripción corta de Casa Panza.",
+        "en": "Placeholder: short description of Casa Panza."
+      },
+      "descripcion": {
+        "es": "Placeholder: descripción larga de Casa Panza. Texto definitivo en la fase de contenido.",
+        "en": "Placeholder: long description of Casa Panza. Final copy in the content phase."
+      },
+      "capacidad": 8,
+      "habitaciones": 4,
+      "incluye": [
+        { "es": "Staff de servicio", "en": "Service staff" },
+        { "es": "Chef privado", "en": "Private chef" },
+        { "es": "Limpieza diaria", "en": "Daily housekeeping" }
+      ],
+      "destacados": [
+        { "es": "Destacado 1", "en": "Highlight 1" },
+        { "es": "Destacado 2", "en": "Highlight 2" }
+      ],
+      "imagen_portada": "img/casas/casa-panza/portada.jpg",
+      "galeria": [
+        "img/casas/casa-panza/01.jpg",
+        "img/casas/casa-panza/02.jpg",
+        "img/casas/casa-panza/03.jpg",
+        "img/casas/casa-panza/04.jpg"
+      ],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar Casa Panza en Los Roques.",
+        "en": "Hi, I'd like information to book Casa Panza in Los Roques."
+      },
+      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-panza/index.html"
+    },
+    {
+      "id": "casa-9",
+      "nombre": "Casa 9",
+      "ubicacion": { "es": "Gran Roque, Los Roques", "en": "Gran Roque, Los Roques" },
+      "descripcion_corta": {
+        "es": "Placeholder: descripción corta de Casa 9.",
+        "en": "Placeholder: short description of Casa 9."
+      },
+      "descripcion": {
+        "es": "Placeholder: descripción larga de Casa 9. Texto definitivo en la fase de contenido.",
+        "en": "Placeholder: long description of Casa 9. Final copy in the content phase."
+      },
+      "capacidad": 6,
+      "habitaciones": 3,
+      "incluye": [
+        { "es": "Staff de servicio", "en": "Service staff" },
+        { "es": "Chef privado", "en": "Private chef" },
+        { "es": "Limpieza diaria", "en": "Daily housekeeping" }
+      ],
+      "destacados": [
+        { "es": "Destacado 1", "en": "Highlight 1" },
+        { "es": "Destacado 2", "en": "Highlight 2" }
+      ],
+      "imagen_portada": "img/casas/casa-9/portada.jpg",
+      "galeria": [
+        "img/casas/casa-9/01.jpg",
+        "img/casas/casa-9/02.jpg",
+        "img/casas/casa-9/03.jpg",
+        "img/casas/casa-9/04.jpg"
+      ],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar Casa 9 en Los Roques.",
+        "en": "Hi, I'd like information to book Casa 9 in Los Roques."
+      },
+      "sitio_propio": ""
+    },
+    {
+      "id": "macanao-lodge",
+      "nombre": "Macanao Lodge",
+      "ubicacion": { "es": "Los Roques", "en": "Los Roques" },
+      "descripcion_corta": {
+        "es": "Placeholder: descripción corta de Macanao Lodge.",
+        "en": "Placeholder: short description of Macanao Lodge."
+      },
+      "descripcion": {
+        "es": "Placeholder: descripción larga de Macanao Lodge. Texto definitivo en la fase de contenido.",
+        "en": "Placeholder: long description of Macanao Lodge. Final copy in the content phase."
+      },
+      "capacidad": 12,
+      "habitaciones": 6,
+      "incluye": [
+        { "es": "Staff de servicio", "en": "Service staff" },
+        { "es": "Chef privado", "en": "Private chef" },
+        { "es": "Limpieza diaria", "en": "Daily housekeeping" },
+        { "es": "Bote privado", "en": "Private boat" }
+      ],
+      "destacados": [
+        { "es": "Destacado 1", "en": "Highlight 1" },
+        { "es": "Destacado 2", "en": "Highlight 2" }
+      ],
+      "imagen_portada": "img/casas/macanao-lodge/portada.jpg",
+      "galeria": [
+        "img/casas/macanao-lodge/01.jpg",
+        "img/casas/macanao-lodge/02.jpg",
+        "img/casas/macanao-lodge/03.jpg",
+        "img/casas/macanao-lodge/04.jpg"
+      ],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar Macanao Lodge en Los Roques.",
+        "en": "Hi, I'd like information to book Macanao Lodge in Los Roques."
+      },
+      "sitio_propio": ""
+    }
+  ]
+}

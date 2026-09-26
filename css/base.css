@@ -1,0 +1,109 @@
+/* ==========================================================================
+   base.css — Variables (paleta, tipografía, espacios), reset y tipografía base
+   Paleta de marca extraída del logo de La Capital del Cielo: #A1CAFE
+   ========================================================================== */
+:root {
+  /* --- Color --- */
+  --color-bg:          #FFFFFF;   /* fondo principal */
+  --color-bg-alt:      #F4F8FE;   /* fondo alterno de secciones (tinte del azul) */
+  --color-brand:       #A1CAFE;   /* azul del logo (exacto) */
+  --color-brand-soft:  #E3EFFF;   /* azul muy claro para fondos y bordes */
+  --color-brand-dark:  #184B8B;   /* variante oscura: botones, links */
+  --color-brand-deep:  #0F2F57;   /* variante más oscura: titulares y texto fuerte */
+  --color-text:        #1C2A3A;   /* texto de cuerpo */
+  --color-muted:       #5B6B7E;   /* texto secundario */
+  --color-line:        #E2E8F0;   /* bordes y separadores */
+  --color-ph:          #D9DDE3;   /* cajas grises placeholder */
+  --color-ph-text:     #7A828C;
+  --color-white:       #FFFFFF;
+  --color-wa:          #25D366;   /* verde WhatsApp (por si se usa) */
+
+  /* --- Tipografía (mismas familias que casa-verde / casa-panza) --- */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-lg:   1.125rem;
+  --fs-h3:   clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
+  --fs-h2:   clamp(1.9rem, 1.4rem + 2.2vw, 3rem);
+  --fs-h1:   clamp(2.5rem, 1.6rem + 4.5vw, 5rem);
+
+  /* --- Espacios y medidas --- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4.5rem;
+  --space-section: clamp(3.5rem, 2rem + 6vw, 7rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --container: 1200px;
+  --header-h: 72px;
+  --radius: 4px;
+  --radius-lg: 10px;
+
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --shadow-sm: 0 1px 3px rgba(15, 47, 87, 0.08);
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body.no-scroll { overflow: hidden; }
+img, svg, video { display: block; max-width: 100%; height: auto; }
+a { color: var(--color-brand-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+ul[class], ol[class] { list-style: none; }
+:focus-visible { outline: 2px solid var(--color-brand-dark); outline-offset: 2px; }
+
+/* --- Tipografía --- */
+h1, h2, h3, .h1, .h2, .h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-brand-deep);
+}
+.h1, h1 { font-size: var(--fs-h1); }
+.h2, h2 { font-size: var(--fs-h2); }
+.h3, h3 { font-size: var(--fs-h3); }
+p + p { margin-top: var(--space-2); }
+.lead { font-size: var(--fs-lg); color: var(--color-muted); }
+.kicker {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-dark);
+  font-weight: 500;
+}
+.text-center { text-align: center; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--color-brand-deep); color: var(--color-white);
+  padding: var(--space-1) var(--space-2); z-index: 1000;
+}
+.skip-link:focus { left: var(--space-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
