@@ -374,3 +374,37 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .casa-hero > .media::after {
   background: linear-gradient(to top, rgba(8, 28, 54, 0.88) 0%, rgba(8, 28, 54, 0.6) 38%, rgba(8, 28, 54, 0.1) 62%, rgba(8, 28, 54, 0) 75%);
 }
+
+/* ==========================================================================
+   Tipografía de marca (letras del logo) en menú, botones y títulos pequeños
+   ========================================================================== */
+.nav-list a, .btn, .lang-btn, .footer-title, .card-title, .facts-list dd {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+.nav-list a { font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-list a[aria-current="page"] { font-weight: 400; color: var(--color-brand-dark); border-bottom-color: currentColor; }
+.btn { font-size: 0.95rem; letter-spacing: 0.06em; }
+.btn-sm { font-size: 0.85rem; }
+.lang-btn { font-size: 0.85rem; letter-spacing: 0.08em; }
+.footer-title { font-size: 0.9rem; letter-spacing: 0.14em; }
+.kicker { font-weight: 400; }
+.card-title { font-size: 1.6rem; }
+@media (min-width: 960px) { .nav-list a { font-size: 0.85rem; } }
+
+/* ==========================================================================
+   Footer más compacto: menos azul oscuro abajo
+   ========================================================================== */
+.site-footer { --sky-h: clamp(15rem, 8rem + 18vw, 25rem); padding-bottom: var(--space-2); padding-top: calc(var(--sky-h) - 4.5rem); }
+.footer-grid { gap: var(--space-3) var(--space-4); }
+.footer-list li + li { margin-top: 0.3rem; }
+.footer-title { margin-bottom: var(--space-1); }
+.footer-logo { width: 160px; }
+.footer-bottom { margin-top: var(--space-3); padding-top: var(--space-2); }
+@media (max-width: 959px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > .footer-col:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 699px) {
+  .site-footer { --sky-h: 20rem; }
+}

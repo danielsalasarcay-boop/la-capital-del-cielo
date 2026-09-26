@@ -18,9 +18,12 @@
   --color-white:       #FFFFFF;
   --color-wa:          #25D366;   /* verde WhatsApp (por si se usa) */
 
-  /* --- Tipografía (mismas familias que casa-verde / casa-panza) --- */
-  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* --- Tipografía ---
+     Display: Macondo, la fuente libre más cercana a las letras del logo
+     (trazo fino y parejo, E redonda uncial, T con travesaño curvo).
+     Texto: Jost Light, sans geométrica de líneas finas para leer cómodo. */
+  --font-display: 'Macondo', 'Palatino Linotype', Georgia, serif;
+  --font-body:    'Jost', 'Futura', 'Century Gothic', system-ui, sans-serif;
 
   --fs-xs:   0.75rem;
   --fs-sm:   0.875rem;
@@ -61,8 +64,9 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-size: var(--fs-base);
-  line-height: 1.6;
+  font-size: 1.0625rem;
+  font-weight: 300;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -78,8 +82,9 @@ ul[class], ol[class] { list-style: none; }
 /* --- Tipografía --- */
 h1, h2, h3, .h1, .h2, .h3 {
   font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.1;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
   color: var(--color-brand-deep);
 }
 .h1, h1 { font-size: var(--fs-h1); }
