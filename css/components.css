@@ -729,3 +729,11 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 .photo-section--cta > .container { display: flex; flex-direction: column; align-items: center; }
 .photo-section--cta .cta-body { margin-block: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-3); max-width: 620px; }
 .photo-section--cta .cta-body p { text-shadow: 0 1px 12px rgba(255, 255, 255, 0.6); }
+/* Centro óptico: la frase y los botones un poco por encima del centro exacto de la sección */
+@media (min-height: 560px) {
+  .photo-section--cta { position: relative; }
+  .photo-section--cta .cta-body {
+    position: absolute; top: 47%; left: 50%; transform: translate(-50%, -50%);
+    width: min(620px, calc(100% - 2 * var(--gutter))); margin: 0;
+  }
+}
