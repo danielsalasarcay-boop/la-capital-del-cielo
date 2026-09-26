@@ -28,7 +28,7 @@
     var msg = I18n.t('merch.wa').replace('{nombre}', p.nombre.toUpperCase()).replace('{precio}', precio);
     return '' +
       '<article class="product" data-reveal>' +
-        '<div class="product-media"><img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" width="1000" height="1000"></div>' +
+        '<div class="product-media"><img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" width="900" height="900"></div>' +
         '<div class="product-body">' +
           '<h3 class="product-name">' + esc(p.nombre) + '</h3>' +
           '<p class="product-type">' + esc(I18n.pick(p.tipo)) + '</p>' +
