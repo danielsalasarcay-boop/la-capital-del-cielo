@@ -29,7 +29,7 @@
     "about_title": "Título quiénes somos",
     "about_text": "Placeholder: breve texto sobre La Capital del Cielo.",
     "casas_kicker": "Nuestras casas",
-    "casas_title": "Título nuestras casas",
+    "casas_title": "Propiedades",
     "exp_kicker": "La experiencia",
     "exp_title": "Título la experiencia",
     "roques_kicker": "El destino",
@@ -55,7 +55,7 @@
     "servicios_d": "Placeholder: traslados, excursiones, pesca, etc."
   },
   "casas_page": {
-    "title": "Título página casas",
+    "title": "Propiedades",
     "sub": "Placeholder: todas nuestras propiedades en Los Roques."
   },
   "casa": {
@@ -75,14 +75,27 @@
     "abrir_mapa": "Abrir en Google Maps"
   },
   "roques": {
-    "page_title": "Título página Los Roques",
-    "page_sub": "Placeholder: el archipiélago.",
+    "page_title": "Los Roques",
+    "page_sub": "Un archipiélago de cayos, arrecifes y agua turquesa en el Caribe venezolano.",
     "llegar_t": "Cómo llegar",
     "llegar_d": "Placeholder: vuelos desde Caracas / Maiquetía.",
     "cayos_t": "Cayos",
     "cayos_d": "Placeholder: cayos principales.",
     "hacer_t": "Qué hacer",
-    "hacer_d": "Placeholder: actividades."
+    "hacer_d": "Placeholder: actividades.",
+    "galeria_t": "Galería",
+    "galeria_d": "Momentos icónicos del archipiélago.",
+    "cerrar": "Cerrar",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "f_arrecife": "El arrecife cae al azul profundo",
+    "f_camino": "Camino de palmeras hacia el mar",
+    "f_banco": "Banco de arena en aguas turquesa",
+    "f_atardecer": "Atardecer sobre el Caribe",
+    "f_bote": "Un baño junto al cayo",
+    "f_pelicano": "Pelícano sobre el cielo de Gran Roque",
+    "f_playa": "Playa entre palmeras",
+    "f_sendero": "Sendero al atardecer"
   },
   "contacto": {
     "page_title": "Contacto",

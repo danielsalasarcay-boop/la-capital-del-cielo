@@ -34,9 +34,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=20260926q">
-  <link rel="stylesheet" href="css/layout.css?v=20260926q">
-  <link rel="stylesheet" href="css/components.css?v=20260926q">
+  <link rel="stylesheet" href="css/base.css?v=20260926s">
+  <link rel="stylesheet" href="css/layout.css?v=20260926s">
+  <link rel="stylesheet" href="css/components.css?v=20260926s">
 </head>
 <body>
   <!-- Pantalla de carga con el logo (la controla js/main.js) -->
@@ -50,8 +50,9 @@
   <header id="site-header"></header>
 
   <main id="contenido">
-    <section class="page-hero page-hero--image">
-      <div class="ph ph-fill" role="img" aria-label="Los Roques" data-src="img/general/los-roques-hero.jpg"><span>Imagen</span></div>
+    <!-- Hero con foto -->
+    <section class="page-hero page-hero--image casa-hero roques-hero">
+      <div class="media ph-fill"><img src="img/roques/bote-cayo.jpg" alt="" fetchpriority="high"></div>
       <div class="container page-hero-content">
         <p class="kicker">Venezuela</p>
         <h1 class="h1" data-i18n="roques.page_title"></h1>
@@ -59,44 +60,73 @@
       </div>
     </section>
 
-    <!-- Cómo llegar -->
-    <section class="section" id="como-llegar">
-      <div class="container split">
-        <div data-reveal>
-          <h2 class="h2" data-i18n="roques.llegar_t"></h2>
-          <p class="lead" data-i18n="roques.llegar_d"></p>
+    <!-- Galería de fotos icónicas (clic = ver en grande) -->
+    <section class="section" id="galeria">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="h2" data-i18n="roques.galeria_t"></h2>
+          <p data-i18n="roques.galeria_d"></p>
         </div>
-        <div class="ph ph-4x3" role="img" aria-label="Mapa" data-reveal><span>Mapa / imagen</span></div>
+        <div class="gallery-masonry">
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/arrecife.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_arrecife">
+              <img src="img/roques/arrecife-800.jpg" srcset="img/roques/arrecife-800.jpg 800w, img/roques/arrecife.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_arrecife">
+            </a>
+            <figcaption data-i18n="roques.f_arrecife"></figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/camino-palmeras.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_camino">
+              <img src="img/roques/camino-palmeras-800.jpg" srcset="img/roques/camino-palmeras-800.jpg 800w, img/roques/camino-palmeras.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1800" height="2400" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_camino">
+            </a>
+            <figcaption data-i18n="roques.f_camino"></figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/banco-arena.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_banco">
+              <img src="img/roques/banco-arena-800.jpg" srcset="img/roques/banco-arena-800.jpg 800w, img/roques/banco-arena.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_banco">
+            </a>
+            <figcaption data-i18n="roques.f_banco"></figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/atardecer.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_atardecer">
+              <img src="img/roques/atardecer-800.jpg" srcset="img/roques/atardecer-800.jpg 800w, img/roques/atardecer.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1266" height="1800" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_atardecer">
+            </a>
+            <figcaption data-i18n="roques.f_atardecer"></figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/bote-cayo.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_bote">
+              <img src="img/roques/bote-cayo-800.jpg" srcset="img/roques/bote-cayo-800.jpg 800w, img/roques/bote-cayo.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_bote">
+            </a>
+            <figcaption data-i18n="roques.f_bote"></figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/pelicano.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_pelicano">
+              <img src="img/roques/pelicano-800.jpg" srcset="img/roques/pelicano-800.jpg 800w, img/roques/pelicano.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="720" height="1280" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_pelicano">
+            </a>
+            <figcaption data-i18n="roques.f_pelicano"></figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/playa-palmeras.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_playa">
+              <img src="img/roques/playa-palmeras-800.jpg" srcset="img/roques/playa-palmeras-800.jpg 800w, img/roques/playa-palmeras.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1350" height="1800" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_playa">
+            </a>
+            <figcaption data-i18n="roques.f_playa"></figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal>
+            <a href="img/roques/sendero-atardecer.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_sendero">
+              <img src="img/roques/sendero-atardecer-800.jpg" srcset="img/roques/sendero-atardecer-800.jpg 800w, img/roques/sendero-atardecer.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1350" height="1800" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_sendero">
+            </a>
+            <figcaption data-i18n="roques.f_sendero"></figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
-    <!-- Cayos -->
-    <section class="section section--alt" id="cayos">
+    <!-- Información práctica -->
+    <section class="section section--alt" id="info">
       <div class="container">
-        <div class="section-head">
-          <h2 class="h2" data-i18n="roques.cayos_t"></h2>
-          <p data-i18n="roques.cayos_d"></p>
-        </div>
-        <div class="grid grid-3">
-          <article class="feature" data-reveal><div class="ph ph-4x3"><span>Cayo 1</span></div><h3 class="h3">Cayo 1</h3><p>Placeholder</p></article>
-          <article class="feature" data-reveal><div class="ph ph-4x3"><span>Cayo 2</span></div><h3 class="h3">Cayo 2</h3><p>Placeholder</p></article>
-          <article class="feature" data-reveal><div class="ph ph-4x3"><span>Cayo 3</span></div><h3 class="h3">Cayo 3</h3><p>Placeholder</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Qué hacer -->
-    <section class="section" id="que-hacer">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="h2" data-i18n="roques.hacer_t"></h2>
-          <p data-i18n="roques.hacer_d"></p>
-        </div>
-        <div class="grid grid-features">
-          <article class="feature" data-reveal><div class="ph ph-square"><span>Actividad</span></div><h3 class="h3">Actividad 1</h3></article>
-          <article class="feature" data-reveal><div class="ph ph-square"><span>Actividad</span></div><h3 class="h3">Actividad 2</h3></article>
-          <article class="feature" data-reveal><div class="ph ph-square"><span>Actividad</span></div><h3 class="h3">Actividad 3</h3></article>
-          <article class="feature" data-reveal><div class="ph ph-square"><span>Actividad</span></div><h3 class="h3">Actividad 4</h3></article>
+        <div class="grid grid-3 roques-info">
+          <div id="como-llegar"><h2 class="h3" data-i18n="roques.llegar_t"></h2><p data-i18n="roques.llegar_d"></p></div>
+          <div id="cayos"><h2 class="h3" data-i18n="roques.cayos_t"></h2><p data-i18n="roques.cayos_d"></p></div>
+          <div id="que-hacer"><h2 class="h3" data-i18n="roques.hacer_t"></h2><p data-i18n="roques.hacer_d"></p></div>
         </div>
       </div>
     </section>
@@ -107,12 +137,21 @@
         <a class="btn btn-primary" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener" data-i18n="common.reservar_wa"></a>
       </div>
     </section>
+
+    <!-- Visor a pantalla completa -->
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true">
+      <button type="button" class="lb-btn lb-close" data-i18n-attr="aria-label:roques.cerrar">&times;</button>
+      <button type="button" class="lb-btn lb-prev" data-i18n-attr="aria-label:roques.anterior">&#8249;</button>
+      <figure class="lb-figure"><img class="lb-img" alt=""><figcaption class="lb-caption"></figcaption></figure>
+      <button type="button" class="lb-btn lb-next" data-i18n-attr="aria-label:roques.siguiente">&#8250;</button>
+    </div>
   </main>
 
   <footer id="site-footer"></footer>
 
-  <script src="js/i18n.js?v=20260926q"></script>
-  <script src="js/main.js?v=20260926q"></script>
-  <script src="js/casas.js?v=20260926q"></script>
+  <script src="js/i18n.js?v=20260926s"></script>
+  <script src="js/main.js?v=20260926s"></script>
+  <script src="js/casas.js?v=20260926s"></script>
+  <script src="js/galeria.js?v=20260926s"></script>
 </body>
 </html>
