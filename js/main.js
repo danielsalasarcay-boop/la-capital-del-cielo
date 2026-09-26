@@ -169,7 +169,12 @@ window.waLink = waLink;
   function initScrollHeader() {
     var header = document.getElementById('site-header');
     if (!header) return;
-    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 20); };
+    var hero = document.querySelector('.hero--photo .hero-logo');
+    var onScroll = function () {
+      header.classList.toggle('is-scrolled', window.scrollY > 20);
+      // Home: el logo del header aparece cuando el logo grande del hero sale de pantalla
+      if (hero) header.classList.toggle('over-hero', hero.getBoundingClientRect().bottom > header.offsetHeight);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
