@@ -38,12 +38,23 @@
       '" data-src="' + esc(src) + '"><span>' + esc(label) + '</span></div>';
   }
 
+  /* Foto real con respaldo: si el archivo no existe todavía, se convierte en caja gris.
+     Así cada casa muestra sus fotos en cuanto se suben a img/casas/<id>/ */
+  function media(src, label, cls, eager) {
+    if (!src) return placeholder(src, label, cls);
+    return '<div class="media ' + (cls || '') + '">' +
+      '<img src="' + esc(src) + '" alt="' + esc(label) + '"' +
+      (eager ? ' fetchpriority="high"' : ' loading="lazy"') + ' decoding="async"' +
+      ' onerror="this.parentNode.classList.add(\'ph\');this.remove()">' +
+      '<span>' + esc(label) + '</span></div>';
+  }
+
   /* ---------- Tarjetas ---------- */
   function cardHTML(c) {
     return '' +
       '<article class="card casa-card" data-reveal>' +
         '<a class="card-media" href="casa.html?id=' + encodeURIComponent(c.id) + '">' +
-          placeholder(c.imagen_portada, c.nombre, 'ph-4x3') +
+          media(c.imagen_portada, c.nombre, 'ph-4x3') +
         '</a>' +
         '<div class="card-body">' +
           '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
@@ -100,7 +111,7 @@
       return (arr || []).map(function (x) { return '<li>' + esc(I18n.pick(x)) + '</li>'; }).join('');
     };
     var gallery = (c.galeria || []).map(function (src, i) {
-      return placeholder(src, I18n.t('common.imagen') + ' ' + (i + 1), 'ph-4x3');
+      return media(src, c.nombre + ' · ' + I18n.t('common.imagen') + ' ' + (i + 1), 'ph-4x5');
     }).join('');
     var sitio = c.sitio_propio
       ? '<a class="btn btn-outline" href="' + esc(c.sitio_propio) + '" target="_blank" rel="noopener">' + esc(I18n.t('casa.sitio_propio')) + '</a>'
@@ -109,11 +120,13 @@
 
     root.innerHTML =
       /* Hero */
-      '<section class="page-hero page-hero--image">' +
-        placeholder(c.imagen_portada, c.nombre, 'ph-fill') +
+      '<section class="page-hero page-hero--image casa-hero">' +
+        media(c.imagen_portada, c.nombre, 'ph-fill', true) +
         '<div class="container page-hero-content">' +
+          (c.logo
+            ? '<h1 class="casa-hero-logo"><img src="' + esc(c.logo) + '" alt="' + esc(c.nombre) + '"></h1>'
+            : '<h1 class="h1">' + esc(c.nombre) + '</h1>') +
           '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
-          '<h1 class="h1">' + esc(c.nombre) + '</h1>' +
           '<p class="lead">' + esc(desc) + '</p>' +
         '</div>' +
       '</section>' +
@@ -143,7 +156,7 @@
       /* Galería */
       '<section class="section"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.galeria')) + '</h2>' +
-        '<div class="grid grid-gallery">' + gallery + '</div>' +
+        '<div class="grid gallery-fit">' + gallery + '</div>' +
       '</div></section>' +
 
       /* Mapa */

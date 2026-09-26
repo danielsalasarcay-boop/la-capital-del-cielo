@@ -3,33 +3,62 @@
     {
       "id": "casa-verde",
       "nombre": "Casa Verde",
-      "ubicacion": { "es": "Gran Roque, Los Roques", "en": "Gran Roque, Los Roques" },
+      "logo": "img/casas/casa-verde/logo.png",
+      "ubicacion": {
+        "es": "Frente al mar · Gran Roque",
+        "en": "Beachfront · Gran Roque"
+      },
       "descripcion_corta": {
-        "es": "Placeholder: descripción corta de Casa Verde.",
-        "en": "Placeholder: short description of Casa Verde."
+        "es": "Casa privada frente al mar en Gran Roque, con terraza sobre el agua y vista directa al arrecife.",
+        "en": "Private beachfront house in Gran Roque, with a terrace over the water and direct views of the reef."
       },
       "descripcion": {
-        "es": "Placeholder: descripción larga de Casa Verde. Texto definitivo en la fase de contenido.",
-        "en": "Placeholder: long description of Casa Verde. Final copy in the content phase."
+        "es": "Casa Verde está ubicada en un lugar privilegiado, justo frente al mar en Gran Roque. Su terraza se asoma al agua turquesa y un pasillo bajo una pérgola de buganvillas lleva directo a la orilla. Placeholder: el resto de la descripción llega en la fase de contenido.",
+        "en": "Casa Verde sits in a privileged spot, right on the water in Gran Roque. Its terrace looks over the turquoise sea and a walkway under a bougainvillea pergola leads straight to the shore. Placeholder: the rest of the description comes in the content phase."
       },
       "capacidad": 10,
       "habitaciones": 5,
       "incluye": [
-        { "es": "Staff de servicio", "en": "Service staff" },
-        { "es": "Chef privado", "en": "Private chef" },
-        { "es": "Limpieza diaria", "en": "Daily housekeeping" },
-        { "es": "Bote privado", "en": "Private boat" }
+        {
+          "es": "Staff de servicio",
+          "en": "Service staff"
+        },
+        {
+          "es": "Chef privado",
+          "en": "Private chef"
+        },
+        {
+          "es": "Limpieza diaria",
+          "en": "Daily housekeeping"
+        },
+        {
+          "es": "Bote privado",
+          "en": "Private boat"
+        }
       ],
       "destacados": [
-        { "es": "Destacado 1", "en": "Highlight 1" },
-        { "es": "Destacado 2", "en": "Highlight 2" }
+        {
+          "es": "Frente al mar en Gran Roque",
+          "en": "Beachfront in Gran Roque"
+        },
+        {
+          "es": "Terraza sobre el agua",
+          "en": "Terrace over the water"
+        },
+        {
+          "es": "Pérgola con buganvillas",
+          "en": "Bougainvillea pergola"
+        },
+        {
+          "es": "Bote privado 24/7",
+          "en": "Private boat 24/7"
+        }
       ],
       "imagen_portada": "img/casas/casa-verde/portada.jpg",
       "galeria": [
-        "img/casas/casa-verde/01.jpg",
-        "img/casas/casa-verde/02.jpg",
-        "img/casas/casa-verde/03.jpg",
-        "img/casas/casa-verde/04.jpg"
+        "img/casas/casa-verde/pasillo-pergola.jpg",
+        "img/casas/casa-verde/vista-al-mar.jpg",
+        "img/casas/casa-verde/portada.jpg"
       ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa Verde en Los Roques.",
@@ -40,7 +69,11 @@
     {
       "id": "casa-panza",
       "nombre": "Casa Panza",
-      "ubicacion": { "es": "Gran Roque, Los Roques", "en": "Gran Roque, Los Roques" },
+      "logo": "",
+      "ubicacion": {
+        "es": "Gran Roque, Los Roques",
+        "en": "Gran Roque, Los Roques"
+      },
       "descripcion_corta": {
         "es": "Placeholder: descripción corta de Casa Panza.",
         "en": "Placeholder: short description of Casa Panza."
@@ -52,13 +85,28 @@
       "capacidad": 8,
       "habitaciones": 4,
       "incluye": [
-        { "es": "Staff de servicio", "en": "Service staff" },
-        { "es": "Chef privado", "en": "Private chef" },
-        { "es": "Limpieza diaria", "en": "Daily housekeeping" }
+        {
+          "es": "Staff de servicio",
+          "en": "Service staff"
+        },
+        {
+          "es": "Chef privado",
+          "en": "Private chef"
+        },
+        {
+          "es": "Limpieza diaria",
+          "en": "Daily housekeeping"
+        }
       ],
       "destacados": [
-        { "es": "Destacado 1", "en": "Highlight 1" },
-        { "es": "Destacado 2", "en": "Highlight 2" }
+        {
+          "es": "Destacado 1",
+          "en": "Highlight 1"
+        },
+        {
+          "es": "Destacado 2",
+          "en": "Highlight 2"
+        }
       ],
       "imagen_portada": "img/casas/casa-panza/portada.jpg",
       "galeria": [
@@ -76,7 +124,11 @@
     {
       "id": "casa-9",
       "nombre": "Casa 9",
-      "ubicacion": { "es": "Gran Roque, Los Roques", "en": "Gran Roque, Los Roques" },
+      "logo": "",
+      "ubicacion": {
+        "es": "Gran Roque, Los Roques",
+        "en": "Gran Roque, Los Roques"
+      },
       "descripcion_corta": {
         "es": "Placeholder: descripción corta de Casa 9.",
         "en": "Placeholder: short description of Casa 9."
@@ -88,13 +140,28 @@
       "capacidad": 6,
       "habitaciones": 3,
       "incluye": [
-        { "es": "Staff de servicio", "en": "Service staff" },
-        { "es": "Chef privado", "en": "Private chef" },
-        { "es": "Limpieza diaria", "en": "Daily housekeeping" }
+        {
+          "es": "Staff de servicio",
+          "en": "Service staff"
+        },
+        {
+          "es": "Chef privado",
+          "en": "Private chef"
+        },
+        {
+          "es": "Limpieza diaria",
+          "en": "Daily housekeeping"
+        }
       ],
       "destacados": [
-        { "es": "Destacado 1", "en": "Highlight 1" },
-        { "es": "Destacado 2", "en": "Highlight 2" }
+        {
+          "es": "Destacado 1",
+          "en": "Highlight 1"
+        },
+        {
+          "es": "Destacado 2",
+          "en": "Highlight 2"
+        }
       ],
       "imagen_portada": "img/casas/casa-9/portada.jpg",
       "galeria": [
@@ -112,7 +179,11 @@
     {
       "id": "macanao-lodge",
       "nombre": "Macanao Lodge",
-      "ubicacion": { "es": "Los Roques", "en": "Los Roques" },
+      "logo": "",
+      "ubicacion": {
+        "es": "Los Roques",
+        "en": "Los Roques"
+      },
       "descripcion_corta": {
         "es": "Placeholder: descripción corta de Macanao Lodge.",
         "en": "Placeholder: short description of Macanao Lodge."
@@ -124,14 +195,32 @@
       "capacidad": 12,
       "habitaciones": 6,
       "incluye": [
-        { "es": "Staff de servicio", "en": "Service staff" },
-        { "es": "Chef privado", "en": "Private chef" },
-        { "es": "Limpieza diaria", "en": "Daily housekeeping" },
-        { "es": "Bote privado", "en": "Private boat" }
+        {
+          "es": "Staff de servicio",
+          "en": "Service staff"
+        },
+        {
+          "es": "Chef privado",
+          "en": "Private chef"
+        },
+        {
+          "es": "Limpieza diaria",
+          "en": "Daily housekeeping"
+        },
+        {
+          "es": "Bote privado",
+          "en": "Private boat"
+        }
       ],
       "destacados": [
-        { "es": "Destacado 1", "en": "Highlight 1" },
-        { "es": "Destacado 2", "en": "Highlight 2" }
+        {
+          "es": "Destacado 1",
+          "en": "Highlight 1"
+        },
+        {
+          "es": "Destacado 2",
+          "en": "Highlight 2"
+        }
       ],
       "imagen_portada": "img/casas/macanao-lodge/portada.jpg",
       "galeria": [
