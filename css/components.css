@@ -495,3 +495,19 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
   .hero-logo img { animation: none; clip-path: none; }
 }
+
+/* ==========================================================================
+   Comodidades de cada propiedad (íconos de línea + texto, entre dos líneas)
+   ========================================================================== */
+.section--tight { padding-block: var(--space-5); }
+.amenities {
+  list-style: none; margin-top: var(--space-4); padding-block: var(--space-3);
+  border-top: 1.5px solid var(--color-brand-deep); border-bottom: 1.5px solid var(--color-brand-deep);
+  display: grid; grid-template-columns: 1fr; gap: var(--space-3) var(--space-5);
+}
+@media (min-width: 700px) { .amenities { grid-template-columns: 1fr 1fr; } }
+.amenities li { display: flex; align-items: center; gap: var(--space-3); }
+.amenity-icon { flex: none; width: 3.25rem; height: 3.25rem; color: var(--color-brand-deep); }
+.amenity-icon svg { width: 100%; height: 100%; }
+.amenity-text { font-size: 1.15rem; line-height: 1.35; color: var(--color-brand-deep); }
+@media (max-width: 420px) { .amenity-icon { width: 2.6rem; height: 2.6rem; } .amenity-text { font-size: 1.05rem; } }

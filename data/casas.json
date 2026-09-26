@@ -69,7 +69,44 @@
         "es": "Hola, quiero información para reservar Casa Verde en Los Roques.",
         "en": "Hi, I'd like information to book Casa Verde in Los Roques."
       },
-      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-verde/index.html"
+      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-verde/index.html",
+      "amenidades": [
+        {
+          "icono": "playa",
+          "texto": {
+            "es": "Frente al mar en Gran Roque",
+            "en": "Beachfront in Gran Roque"
+          }
+        },
+        {
+          "icono": "cama",
+          "texto": {
+            "es": "3 habitaciones",
+            "en": "3 bedrooms"
+          }
+        },
+        {
+          "icono": "personas",
+          "texto": {
+            "es": "Hasta 10 huéspedes",
+            "en": "Up to 10 guests"
+          }
+        },
+        {
+          "icono": "bote",
+          "texto": {
+            "es": "Bote privado a los cayos",
+            "en": "Private boat to the cays"
+          }
+        },
+        {
+          "icono": "limpieza",
+          "texto": {
+            "es": "Limpieza diaria",
+            "en": "Daily housekeeping"
+          }
+        }
+      ]
     },
     {
       "id": "casa-panza",
@@ -135,7 +172,37 @@
         "es": "Hola, quiero información para reservar Casa Panza en Los Roques.",
         "en": "Hi, I'd like information to book Casa Panza in Los Roques."
       },
-      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-panza/index.html"
+      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-panza/index.html",
+      "amenidades": [
+        {
+          "icono": "playa",
+          "texto": {
+            "es": "Frente al mar en Gran Roque",
+            "en": "Beachfront in Gran Roque"
+          }
+        },
+        {
+          "icono": "cama",
+          "texto": {
+            "es": "3 habitaciones",
+            "en": "3 bedrooms"
+          }
+        },
+        {
+          "icono": "personas",
+          "texto": {
+            "es": "Hasta 10 huéspedes",
+            "en": "Up to 10 guests"
+          }
+        },
+        {
+          "icono": "limpieza",
+          "texto": {
+            "es": "Limpieza diaria",
+            "en": "Daily housekeeping"
+          }
+        }
+      ]
     },
     {
       "id": "casa-9",
@@ -222,7 +289,44 @@
         "es": "Hola, quiero información para reservar Casa 9 en Madrizquí, Los Roques.",
         "en": "Hi, I'd like information to book Casa 9 on Madrizquí, Los Roques."
       },
-      "sitio_propio": ""
+      "sitio_propio": "",
+      "amenidades": [
+        {
+          "icono": "isla",
+          "texto": {
+            "es": "En la isla Madrizquí",
+            "en": "On Madrizquí Island"
+          }
+        },
+        {
+          "icono": "cama",
+          "texto": {
+            "es": "5 habitaciones: 4 king y 1 con literas",
+            "en": "5 bedrooms: 4 king and 1 with bunk beds"
+          }
+        },
+        {
+          "icono": "personas",
+          "texto": {
+            "es": "Hasta 12 huéspedes",
+            "en": "Up to 12 guests"
+          }
+        },
+        {
+          "icono": "staff",
+          "texto": {
+            "es": "Staff de 3 personas con chef",
+            "en": "Staff of 3 including a chef"
+          }
+        },
+        {
+          "icono": "limpieza",
+          "texto": {
+            "es": "Limpieza diaria",
+            "en": "Daily housekeeping"
+          }
+        }
+      ]
     },
     {
       "id": "macanao-lodge",
@@ -342,7 +446,67 @@
         "es": "Hola, quiero información para reservar una habitación en Macanao Lodge, Los Roques.",
         "en": "Hi, I'd like information to book a room at Macanao Lodge, Los Roques."
       },
-      "sitio_propio": ""
+      "sitio_propio": "",
+      "amenidades": [
+        {
+          "icono": "llave",
+          "texto": {
+            "es": "Posada: se reserva por habitación",
+            "en": "Guesthouse: book by the room"
+          }
+        },
+        {
+          "icono": "jardin",
+          "texto": {
+            "es": "Habitaciones con vista al jardín",
+            "en": "Garden view rooms"
+          }
+        },
+        {
+          "icono": "ola",
+          "texto": {
+            "es": "Habitación con vista al mar y balcón",
+            "en": "Ocean view room with balcony"
+          }
+        },
+        {
+          "icono": "bote",
+          "texto": {
+            "es": "Bote privado a los cayos",
+            "en": "Private boat to the cays"
+          }
+        }
+      ]
+    }
+  ],
+  "amenidades_comunes": [
+    {
+      "icono": "wifi",
+      "texto": {
+        "es": "Internet satelital Starlink®",
+        "en": "Starlink® satellite internet"
+      }
+    },
+    {
+      "icono": "staff",
+      "texto": {
+        "es": "Staff de servicio incluido",
+        "en": "Service staff included"
+      }
+    },
+    {
+      "icono": "ducha",
+      "texto": {
+        "es": "Agua caliente",
+        "en": "Hot water"
+      }
+    },
+    {
+      "icono": "chef",
+      "texto": {
+        "es": "Gastronomía excelente",
+        "en": "Excellent cuisine"
+      }
     }
   ]
 }

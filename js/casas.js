@@ -16,7 +16,7 @@
     if (!casasPromise) {
       casasPromise = fetch(DATA_URL, { cache: 'no-cache' })
         .then(function (r) { return r.json(); })
-        .then(function (json) { return json.casas || []; })
+        .then(function (json) { window.AMENIDADES_COMUNES = json.amenidades_comunes || []; return json.casas || []; })
         .catch(function (err) {
           console.error('[casas] No se pudo cargar ' + DATA_URL, err);
           return [];
@@ -56,6 +56,41 @@
     if (has(c.capacidad)) items.push('<li>' + esc(c.capacidad) + ' ' + esc(I18n.t('common.huespedes')) + '</li>');
     if (has(c.habitaciones)) items.push('<li>' + esc(c.habitaciones) + ' ' + esc(I18n.t('common.habitaciones')) + '</li>');
     return items.length ? '<ul class="meta-list">' + items.join('') + '</ul>' : '';
+  }
+
+  /* Íconos de línea fina para comodidades (heredan color con currentColor) */
+  var AMEN_ICONS = {
+    wifi: '<path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.5 12.5a9.5 9.5 0 0 1 13 0"/><path d="M8.7 15.8a5 5 0 0 1 6.6 0"/><circle cx="12" cy="19" r="1.1" fill="currentColor"/>',
+    staff: '<circle cx="12" cy="7" r="3.2"/><path d="M5 20.5c.6-3.9 3.3-6.2 7-6.2s6.4 2.3 7 6.2"/><path d="M10.4 14.6 12 17l1.6-2.4"/>',
+    ducha: '<path d="M5 21V6.5A3.5 3.5 0 0 1 8.5 3h0A3.5 3.5 0 0 1 12 6.5"/><path d="M9 6.5h6"/><path d="M10 10v1.2M12 10v1.2M14 10v1.2M11 13.5v1.2M13 13.5v1.2"/><path d="M17.5 13c-1 1.2-1 2.3 0 3.5s1 2.3 0 3.5M20.5 13c-1 1.2-1 2.3 0 3.5s1 2.3 0 3.5"/>',
+    chef: '<path d="M7 3v7a2 2 0 0 0 4 0V3M9 10v11"/><path d="M17 21V3c-2.2 1.2-3 3.6-3 6.5 0 2 1 3 3 3"/>',
+    playa: '<path d="M3 20.5h18"/><path d="M12 20.5 9 8"/><path d="M3.5 9.5a8.8 8.8 0 0 1 16.5-3.8"/><path d="M3.5 9.5 20 5.7"/><path d="M15 16.5c1.5-.8 3-.8 4.5 0"/>',
+    cama: '<path d="M3 18.5v-8h18v8M3 15.5h18M3 18.5v2M21 18.5v2"/><path d="M6 10.5V7.5a1.5 1.5 0 0 1 1.5-1.5h9A1.5 1.5 0 0 1 18 7.5v3"/><path d="M8 10.5v-2h3v2M13 10.5v-2h3v2"/>',
+    personas: '<circle cx="9" cy="8" r="3"/><path d="M3.5 20c.5-3.6 2.7-5.6 5.5-5.6s5 2 5.5 5.6"/><circle cx="16.5" cy="9" r="2.4"/><path d="M15.8 14.5c2.6 0 4.3 1.8 4.7 4.8"/>',
+    bote: '<path d="M3 15.5h18l-2.5 4H5.5z"/><path d="M12 15.5V3.5l6 9h-6"/><path d="M12 6.5 7.5 12.5H12"/><path d="M2.5 21.5c1.5-.8 3-.8 4.5 0s3 .8 4.5 0 3-.8 4.5 0 3 .8 4.5 0"/>',
+    limpieza: '<path d="M12 3.5 13.4 8 18 9.5l-4.6 1.4L12 15.5l-1.4-4.6L6 9.5 10.6 8z"/><path d="M18.5 15v4M16.5 17h4M5.5 16v3M4 17.5h3"/>',
+    isla: '<path d="M2.5 20c1.5-.8 3-.8 4.5 0s3 .8 4.5 0 3-.8 4.5 0 3 .8 4.5 0"/><path d="M5 17c2-2.6 4.4-3.8 7-3.8s5 1.2 7 3.8"/><path d="M12 13.2V6"/><path d="M12 6c-1.5-2.2-4-2.6-6-1.2M12 6c1.5-2.2 4-2.6 6-1.2M12 6c-.6-1.8.2-3.3 1.8-3.8"/>',
+    llave: '<circle cx="7.5" cy="12" r="4"/><path d="M11.5 12H21M18 12v3M15.5 12v2.2"/>',
+    jardin: '<path d="M12 21v-8"/><path d="M12 13c-4 0-6-2.5-6-6.5 4 0 6 2.5 6 6.5z"/><path d="M12 15.5c3.5 0 5.5-2.2 5.5-5.8-3.5 0-5.5 2.2-5.5 5.8z"/><path d="M5 21h14"/>',
+    ola: '<path d="M2.5 9c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 14c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 19c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>'
+  };
+  function amenIcon(k) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (AMEN_ICONS[k] || AMEN_ICONS.limpieza) + '</svg>';
+  }
+  function amenidadesHTML(c) {
+    var propios = c.amenidades || [];
+    var iconos = propios.map(function (a) { return a.icono; });
+    /* las comunes se agregan salvo que la casa ya tenga una con el mismo ícono (ej. staff de Casa 9) */
+    var list = propios.concat((window.AMENIDADES_COMUNES || []).filter(function (a) { return iconos.indexOf(a.icono) === -1; }));
+    var seen = {};
+    list = list.filter(function (a) { var k = I18n.pick(a.texto); if (seen[k]) return false; seen[k] = 1; return true; });
+    if (!list.length) return '';
+    return '<section class="section section--tight"><div class="container">' +
+      '<h2 class="h2">' + esc(I18n.t('casa.comodidades')) + '</h2>' +
+      '<ul class="amenities">' + list.map(function (a) {
+        return '<li><span class="amenity-icon">' + amenIcon(a.icono) + '</span><span class="amenity-text">' + esc(I18n.pick(a.texto)) + '</span></li>';
+      }).join('') + '</ul>' +
+    '</div></section>';
   }
 
   /* ---------- Tarjetas ---------- */
@@ -154,6 +189,9 @@
           '<div class="stack">' + waBtn + sitio + '</div>' +
         '</aside>' +
       '</div></section>' +
+
+      /* Comodidades con íconos */
+      amenidadesHTML(c) +
 
       /* Tipos de habitación (posadas como Macanao Lodge) */
       ((c.tipos_habitacion && c.tipos_habitacion.length) ?
