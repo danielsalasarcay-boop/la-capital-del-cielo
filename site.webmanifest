@@ -1,0 +1,11 @@
+{
+  "name": "La Capital del Cielo",
+  "short_name": "Capital del Cielo",
+  "icons": [
+    { "src": "img/general/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/general/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0F2F57",
+  "background_color": "#FFFFFF",
+  "display": "browser"
+}

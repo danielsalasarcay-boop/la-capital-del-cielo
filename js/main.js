@@ -61,7 +61,7 @@ window.waLink = waLink;
     el.innerHTML =
       '<div class="container header-inner">' +
         '<a class="header-logo" href="index.html" aria-label="' + SITE.nombre + '">' +
-          '<img src="img/general/logo.jpg" alt="' + SITE.nombre + '" width="1024" height="520">' +
+          '<img src="img/general/logo.png" alt="' + SITE.nombre + '" width="956" height="462">' +
         '</a>' +
         '<nav class="header-nav" id="main-nav" aria-label="Principal">' +
           '<ul class="nav-list">' + links + '</ul>' +
@@ -94,7 +94,7 @@ window.waLink = waLink;
     el.innerHTML =
       '<div class="container footer-grid">' +
         '<div class="footer-col">' +
-          '<img class="footer-logo" src="img/general/logo.jpg" alt="' + SITE.nombre + '" width="1024" height="520" loading="lazy">' +
+          '<img class="footer-logo" src="img/general/logo.png" alt="' + SITE.nombre + '" width="956" height="462" loading="lazy">' +
         '</div>' +
         '<div class="footer-col">' +
           '<h3 class="footer-title" data-i18n="footer.contacto"></h3>' +
@@ -196,8 +196,40 @@ window.waLink = waLink;
   }
   window.initReveal = initReveal;
 
+  /* ---------- Pantalla de carga ----------
+     Se muestra solo en la primera página de la visita (sessionStorage).
+     Espera a que termine la animación del logo (mín. 2.4 s) y a que cargue
+     la página; como máximo 5 s para no bloquear nunca el sitio.            */
+  function initLoader() {
+    var loader = document.getElementById('loader');
+    var root = document.documentElement;
+    if (!loader) return;
+    if (root.classList.contains('loader-skip')) { loader.remove(); return; }
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var minTime = reduced ? 400 : 2400;
+    var start = Date.now();
+    var closed = false;
+
+    function close() {
+      if (closed) return;
+      closed = true;
+      try { sessionStorage.setItem('lcdc-intro', '1'); } catch (e) {}
+      loader.classList.add('is-done');
+      root.classList.remove('is-loading');
+      setTimeout(function () { loader.remove(); }, 1000);
+    }
+    function whenReady() {
+      setTimeout(close, Math.max(0, minTime - (Date.now() - start)));
+    }
+    if (document.readyState === 'complete') whenReady();
+    else window.addEventListener('load', whenReady);
+    setTimeout(close, 5000); // failsafe
+  }
+
   /* ---------- Arranque ---------- */
   document.addEventListener('DOMContentLoaded', function () {
+    initLoader();
     renderHeader();
     renderFooter();
     renderFloating();

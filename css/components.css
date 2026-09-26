@@ -94,10 +94,6 @@
 .feature .ph { margin-bottom: var(--space-1); }
 .feature p { color: var(--color-muted); font-size: var(--fs-sm); }
 
-/* Testimonio */
-.quote { padding: var(--space-4); background: var(--color-white); border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
-.quote blockquote { font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-brand-deep); line-height: 1.3; }
-.quote figcaption { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--color-muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* --- Listas --- */
 .check-list { margin-top: var(--space-2); display: grid; gap: var(--space-1); }
@@ -235,3 +231,49 @@
 .float-btn--wa svg { width: 28px; height: 28px; }
 .float-btn--ig { width: 44px; height: 44px; background: var(--color-white); color: var(--color-brand-deep); }
 .footer-bottom { padding-right: 84px; } /* espacio para los botones flotantes */
+
+/* ==========================================================================
+   Pantalla de carga (estilo casa-panza / casa-verde, con el logo de LCDC)
+   1. El globo y las letras se revelan de izquierda a derecha
+   2. Una línea azul de marca se dibuja debajo
+   3. La pantalla sube como un telón y revela el sitio
+   ========================================================================== */
+html.is-loading { overflow: hidden; }
+html.loader-skip #loader { display: none; }
+#loader {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  background: var(--color-white);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+#loader::after { /* velo azul muy suave que sube desde abajo */
+  content: ""; position: absolute; inset: auto 0 0 0; height: 45%;
+  background: linear-gradient(to top, var(--color-brand-soft), rgba(227, 239, 255, 0));
+  pointer-events: none;
+}
+#loader.is-done { transform: translateY(-100%); }
+.loader-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.loader-logo {
+  width: clamp(220px, 42vw, 400px); height: auto;
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  transform: scale(0.97);
+  animation: loader-reveal 1.5s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+.loader-line {
+  display: block; width: 0; height: 1px; margin-top: 28px;
+  background: var(--color-brand-dark);
+  animation: loader-line 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 1.35s forwards;
+}
+@keyframes loader-reveal {
+  0%   { clip-path: inset(0 100% 0 0); opacity: 0; transform: scale(0.97); }
+  15%  { opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; transform: scale(1); }
+}
+@keyframes loader-line { to { width: 140px; } }
+/* El zoom del hero espera a que se levante el telón */
+html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .loader-logo { clip-path: none; opacity: 1; transform: none; }
+  .loader-line { width: 140px; }
+}

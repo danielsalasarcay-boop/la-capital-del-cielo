@@ -17,7 +17,20 @@
   <meta property="og:image" content="https://danielsalasarcay-boop.github.io/la-capital-del-cielo/img/general/logo.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="img/general/logo.jpg">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/general/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/general/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/general/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <!-- Pantalla de carga: solo la primera página de la visita -->
+  <script>
+    (function () {
+      var d = document.documentElement, seen = false;
+      try { seen = sessionStorage.getItem('lcdc-intro') === '1'; } catch (e) {}
+      d.classList.add(seen ? 'loader-skip' : 'is-loading');
+    })();
+  </script>
+  <noscript><style>#loader { display: none; }</style></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,6 +39,13 @@
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
+  <!-- Pantalla de carga con el logo (la controla js/main.js) -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <img class="loader-logo" src="img/general/logo.png" alt="" width="956" height="462" decoding="async" fetchpriority="high">
+      <span class="loader-line"></span>
+    </div>
+  </div>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header id="site-header"></header>
 
