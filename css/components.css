@@ -543,14 +543,12 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
    Los Roques: galería tipo mosaico + visor
    ========================================================================== */
 .roques-hero > .media img { object-position: 55% 45%; }
-.gallery-masonry { --g: var(--space-2); display: flex; flex-wrap: wrap; gap: var(--g); }
-/* Filas completas que se leen de izquierda a derecha (orden por color).
-   --w2 / --w4 = ancho de cada foto en filas de 2 (teléfono) o de 4 (tablet y computadora),
-   calculado según su proporción para que todas las de una fila tengan la misma altura. */
-.gallery-item { margin: 0; min-width: 0; flex: 0 0 calc(var(--w2) - var(--g) / 2); }
-@media (min-width: 600px) { .gallery-item { flex-basis: calc(var(--w4) - var(--g) * 3 / 4); } }
-@media (min-width: 960px) { .gallery-masonry { --g: var(--space-3); } }
-.gallery-item .gallery-link { aspect-ratio: var(--r); }
+.gallery-masonry { columns: 1; column-gap: var(--space-2); }
+@media (min-width: 600px) { .gallery-masonry { columns: 2; } }
+@media (min-width: 960px) { .gallery-masonry { columns: 3; column-gap: var(--space-3); } }
+.gallery-item { break-inside: avoid; margin: 0 0 var(--space-2); }
+@media (min-width: 960px) { .gallery-item { margin-bottom: var(--space-3); } }
+.gallery-link { aspect-ratio: var(--r); }
 .gallery-item .gallery-link img { height: 100%; object-fit: cover; }
 .gallery-link { aspect-ratio: var(--r); }
 .gallery-item .gallery-link img { height: 100%; object-fit: cover; }
