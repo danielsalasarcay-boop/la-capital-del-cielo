@@ -131,5 +131,11 @@
     "title": "Page not found",
     "sub": "The page you're looking for doesn't exist or has moved.",
     "volver": "Back to home"
+  },
+  "canales": {
+    "whatsapp": "WhatsApp",
+    "correo": "Email",
+    "instagram": "Instagram",
+    "asunto": "Booking in Los Roques"
   }
 }

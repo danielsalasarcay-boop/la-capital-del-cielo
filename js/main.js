@@ -126,6 +126,20 @@ window.waLink = waLink;
     document.body.appendChild(wrap);
   }
 
+  /* ---------- Canales de contacto (bloques "Reserva con nosotros") ----------
+     Cualquier elemento con [data-channels] recibe los botones de WhatsApp,
+     correo e Instagram. Se regeneran al cambiar de idioma. */
+  function renderChannels() {
+    document.querySelectorAll('[data-channels]').forEach(function (el) {
+      var mail = 'mailto:' + SITE.email + '?subject=' + encodeURIComponent(I18n.t('canales.asunto')) +
+        '&body=' + encodeURIComponent(I18n.t('wa.general'));
+      el.innerHTML =
+        '<a class="channel channel--wa" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener">' + ICONS.whatsapp + '<span>' + I18n.t('canales.whatsapp') + '</span></a>' +
+        '<a class="channel channel--mail" href="' + mail + '">' + ICONS.mail + '<span>' + I18n.t('canales.correo') + '</span></a>' +
+        '<a class="channel channel--ig" href="' + SITE.instagramUrl + '" target="_blank" rel="noopener">' + ICONS.instagram + '<span>' + I18n.t('canales.instagram') + '</span></a>';
+    });
+  }
+
   /* ---------- Links de WhatsApp ----------
      Cualquier elemento con [data-wa] recibe su href.
      data-wa-msg="clave.i18n"  -> mensaje traducido
@@ -245,7 +259,7 @@ window.waLink = waLink;
     initMenu();
     initScrollHeader();
     initReveal();
-    document.addEventListener('langchange', updateWaLinks);
+    document.addEventListener('langchange', function () { renderChannels(); updateWaLinks(); });
     I18n.init();
   });
 })();

@@ -703,3 +703,24 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 }
 .site-header.over-hero.menu-open .header-logo { opacity: 1; transform: none; pointer-events: auto; }
 .form-error { color: #B42318; font-size: var(--fs-sm); }
+
+/* ==========================================================================
+   Canales de contacto en "Reserva con nosotros"
+   ========================================================================== */
+.channels { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); }
+.channel {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  min-width: 170px; min-height: 50px; padding: 0.75rem 1.5rem;
+  border-radius: 999px; font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--color-white); text-decoration: none;
+  box-shadow: 0 8px 22px rgba(20, 50, 80, 0.14);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), filter 0.25s var(--ease);
+}
+.channel:hover { text-decoration: none; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(20, 50, 80, 0.2); filter: brightness(1.04); }
+.channel svg { width: 20px; height: 20px; flex: none; }
+.channel--wa { background: var(--color-wa); }
+.channel--mail { background: var(--color-white); color: var(--color-brand-deep); }
+.channel--ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+@media (max-width: 599px) {
+  .channels { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin-inline: auto; }
+}
