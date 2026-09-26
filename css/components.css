@@ -571,3 +571,10 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 .lb-btn:hover { background: rgba(255,255,255,.1); }
 .lb-close { position: absolute; top: max(12px, env(safe-area-inset-top)); right: 12px; font-size: 2.2rem; }
 @media (max-width: 599px) { .lb-prev, .lb-next { position: absolute; bottom: max(16px, env(safe-area-inset-bottom)); } .lb-prev { left: 20%; } .lb-next { right: 20%; } .lightbox { grid-template-columns: 1fr; } }
+
+/* Sección con fondo azul del logo (La experiencia en el home) */
+.section--brand { background: var(--color-brand); }
+.section--brand .kicker, .section--brand .feature p { color: rgba(26, 26, 26, 0.72); }
+.section--brand .btn-outline { border-color: var(--color-brand-deep); color: var(--color-brand-deep); }
+.section--brand .btn-outline:hover { background: rgba(255, 255, 255, 0.35); }
+.section--brand .ph { background: rgba(255, 255, 255, 0.45); color: rgba(26, 26, 26, 0.55); }
