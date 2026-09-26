@@ -480,7 +480,9 @@
             "en": "Private boat to the cays"
           }
         }
-      ]
+      ],
+      "mapa_embed": "https://maps.google.com/maps?cid=7405705893632199193&z=17&output=embed",
+      "mapa_link": "https://www.google.com/maps/place/Macanao+Lodge+By+LD/@11.9457232,-66.675721,18z"
     }
   ],
   "amenidades_comunes": [
