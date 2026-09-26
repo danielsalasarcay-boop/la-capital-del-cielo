@@ -34,9 +34,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=20260926z">
-  <link rel="stylesheet" href="css/layout.css?v=20260926z">
-  <link rel="stylesheet" href="css/components.css?v=20260926z">
+  <link rel="stylesheet" href="css/base.css?v=20260927b">
+  <link rel="stylesheet" href="css/layout.css?v=20260927b">
+  <link rel="stylesheet" href="css/components.css?v=20260927b">
 </head>
 <body>
   <!-- Pantalla de carga con el logo (la controla js/main.js) -->
@@ -100,12 +100,6 @@
             <figcaption data-i18n="roques.f_playa"></figcaption>
           </figure>
           <figure class="gallery-item" data-reveal>
-            <a href="img/roques/camino-palmeras.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_camino">
-              <img src="img/roques/camino-palmeras-800.jpg" srcset="img/roques/camino-palmeras-800.jpg 800w, img/roques/camino-palmeras.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1800" height="2400" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_camino">
-            </a>
-            <figcaption data-i18n="roques.f_camino"></figcaption>
-          </figure>
-          <figure class="gallery-item" data-reveal>
             <a href="img/roques/sendero-atardecer.jpg" class="gallery-link" data-lightbox data-i18n-attr="aria-label:roques.f_sendero">
               <img src="img/roques/sendero-atardecer-800.jpg" srcset="img/roques/sendero-atardecer-800.jpg 800w, img/roques/sendero-atardecer.jpg 1800w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw" width="1350" height="1800" alt="" loading="lazy" decoding="async" data-i18n-attr="alt:roques.f_sendero">
             </a>
@@ -121,9 +115,18 @@
       </div>
     </section>
 
-    <section class="section cta-band">
-      <div class="container narrow text-center stack stack--center">
+    <!-- Reserva con nosotros: cielo animado con avión y nubes (imágenes generadas con Nano Banana Pro) -->
+    <section class="sky-cta" id="reservar">
+      <div class="sky-clouds" aria-hidden="true">
+        <img class="cloud c1" src="img/cielo/nube-1.png" alt="">
+        <img class="cloud c2" src="img/cielo/nube-2.png" alt="">
+        <img class="cloud c3" src="img/cielo/nube-1.png" alt="">
+        <img class="cloud c4" src="img/cielo/nube-2.png" alt="">
+        <img class="cloud c5" src="img/cielo/nube-1.png" alt="">
+      </div>
+      <div class="container narrow text-center sky-content">
         <h2 class="h2" data-i18n="home.cta_title"></h2>
+        <div class="sky-lane" aria-hidden="true"><img class="plane" src="img/cielo/avion.png" alt="" width="900" height="252"></div>
         <a class="btn btn-primary" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener" data-i18n="common.reservar_wa"></a>
       </div>
     </section>
@@ -139,9 +142,9 @@
 
   <footer id="site-footer"></footer>
 
-  <script src="js/i18n.js?v=20260926z"></script>
-  <script src="js/main.js?v=20260926z"></script>
-  <script src="js/casas.js?v=20260926z"></script>
-  <script src="js/galeria.js?v=20260926z"></script>
+  <script src="js/i18n.js?v=20260927b"></script>
+  <script src="js/main.js?v=20260927b"></script>
+  <script src="js/casas.js?v=20260927b"></script>
+  <script src="js/galeria.js?v=20260927b"></script>
 </body>
 </html>
