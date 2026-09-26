@@ -476,3 +476,22 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
   .footer-sky img { object-position: 50% 0%; }
   .footer-sky::after { background: linear-gradient(to bottom, rgba(62, 159, 211, 0) 0%, rgba(62, 159, 211, 0) 70%, #3E9FD3 100%); }
 }
+
+/* ==========================================================================
+   Portada: el logo "se escribe" de izquierda a derecha (mismo efecto que LOOPI)
+   Wipe con clip-path sobre la imagen del logo; espera a que suba la pantalla
+   de carga y luego aparecen el kicker y el botón.
+   ========================================================================== */
+.hero-brand > .hero-logo { opacity: 1; transform: none; animation: none; }
+.hero-logo img {
+  clip-path: inset(0 100% 0 0);
+  animation: logo-escribir 2.8s cubic-bezier(0.65, 0, 0.35, 1) 0.35s forwards;
+}
+html.is-loading .hero-logo img { animation-play-state: paused; }
+@keyframes logo-escribir { to { clip-path: inset(0 0 0 0); } }
+.hero-brand > .hero-divider { animation-delay: 2.6s; }
+.hero-brand > .kicker { animation-delay: 2.8s; }
+.hero-brand > p:last-child { animation-delay: 3s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo img { animation: none; clip-path: none; }
+}
