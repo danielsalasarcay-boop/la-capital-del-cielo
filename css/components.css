@@ -737,3 +737,17 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
     width: min(620px, calc(100% - 2 * var(--gutter))); margin: 0;
   }
 }
+
+/* Ajustes para Familjen Grotesk */
+body { font-size: 1.05rem; line-height: 1.65; }
+.nav-list a, .btn, .lang-btn, .channel { font-weight: 500; letter-spacing: 0.08em; }
+.nav-list a { font-size: 0.8rem; }
+@media (max-width: 959px) { .nav-list a { font-size: 1rem; } }
+.btn { font-size: 0.85rem; }
+.btn-sm { font-size: 0.78rem; }
+.channel { font-size: 0.85rem; }
+.kicker { letter-spacing: 0.2em; font-weight: 500; }
+.card-title, .product-name, .room-name { font-weight: 500; letter-spacing: -0.01em; }
+.hero-tagline { font-weight: 400; letter-spacing: 0; }
+.facts-list dd { font-weight: 500; }
+.nav-list .nav-cta .btn { display: flex; justify-content: center; }

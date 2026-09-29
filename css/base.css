@@ -20,11 +20,10 @@
   --color-wa:          #25D366;   /* verde WhatsApp (por si se usa) */
 
   /* --- Tipografía ---
-     Display: Macondo, la fuente libre más cercana a las letras del logo
-     (trazo fino y parejo, E redonda uncial, T con travesaño curvo).
-     Se usa en todo el sitio, también en los párrafos. */
-  --font-display: 'Macondo', 'Palatino Linotype', Georgia, serif;
-  --font-body:    'Macondo', 'Palatino Linotype', Georgia, serif;  /* todo el sitio con la letra del logo */
+     Familjen Grotesk: grotesca moderna y sobria, con carácter propio (a y g con
+     detalles de corte escandinavo). Se usa en todo el sitio. */
+  --font-display: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:    'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
 
   --fs-xs:   0.75rem;
   --fs-sm:   0.875rem;
@@ -90,9 +89,9 @@ ul[class], ol[class] { list-style: none; }
 /* --- Tipografía --- */
 h1, h2, h3, .h1, .h2, .h3 {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: 0.01em;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
   color: var(--color-brand-deep);
 }
 .h1, h1 { font-size: var(--fs-h1); }
