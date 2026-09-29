@@ -129,6 +129,16 @@
       },
       "capacidad": 10,
       "habitaciones": 3,
+      "distribucion": [
+        {
+          "es": "1 habitación principal con cama King",
+          "en": "1 master bedroom with King bed"
+        },
+        {
+          "es": "2 habitaciones anexas con cama King y litera",
+          "en": "2 adjoining bedrooms with King bed and bunk bed"
+        }
+      ],
       "incluye": [
         {
           "es": "Staff de servicio",
@@ -145,6 +155,10 @@
         {
           "es": "Limpieza diaria",
           "en": "Daily housekeeping"
+        },
+        {
+          "es": "Toallas para la playa",
+          "en": "Beach towels"
         }
       ],
       "destacados": [
@@ -184,7 +198,7 @@
         "es": "Hola, quiero información para reservar Casa Panza en Los Roques.",
         "en": "Hi, I'd like information to book Casa Panza in Los Roques."
       },
-      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-panza/index.html",
+      "sitio_propio": "https://danielsalasarcay-boop.github.io/casa-panza/",
       "amenidades": [
         {
           "icono": "playa",
@@ -205,6 +219,34 @@
           "texto": {
             "es": "Hasta 10 huéspedes",
             "en": "Up to 10 guests"
+          }
+        },
+        {
+          "icono": "aire",
+          "texto": {
+            "es": "Aire acondicionado con control individual",
+            "en": "Individually controlled A/C"
+          }
+        },
+        {
+          "icono": "ducha",
+          "texto": {
+            "es": "Baño privado con agua caliente",
+            "en": "Private bathroom with hot water"
+          }
+        },
+        {
+          "icono": "cocina",
+          "texto": {
+            "es": "Cocina completa",
+            "en": "Full kitchen"
+          }
+        },
+        {
+          "icono": "toalla",
+          "texto": {
+            "es": "Toallas para la playa y para la casa",
+            "en": "Beach and house towels"
           }
         },
         {

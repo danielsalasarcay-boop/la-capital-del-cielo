@@ -72,6 +72,9 @@
     isla: '<path d="M2.5 20c1.5-.8 3-.8 4.5 0s3 .8 4.5 0 3-.8 4.5 0 3 .8 4.5 0"/><path d="M5 17c2-2.6 4.4-3.8 7-3.8s5 1.2 7 3.8"/><path d="M12 13.2V6"/><path d="M12 6c-1.5-2.2-4-2.6-6-1.2M12 6c1.5-2.2 4-2.6 6-1.2M12 6c-.6-1.8.2-3.3 1.8-3.8"/>',
     llave: '<circle cx="7.5" cy="12" r="4"/><path d="M11.5 12H21M18 12v3M15.5 12v2.2"/>',
     jardin: '<path d="M12 21v-8"/><path d="M12 13c-4 0-6-2.5-6-6.5 4 0 6 2.5 6 6.5z"/><path d="M12 15.5c3.5 0 5.5-2.2 5.5-5.8-3.5 0-5.5 2.2-5.5 5.8z"/><path d="M5 21h14"/>',
+    aire: '<rect x="2.5" y="5" width="19" height="7.5" rx="1.5"/><path d="M5.5 10h13"/><path d="M8 15.5c0 1.2-1 1.8-1 3M12 15.5c0 1.2-1 1.8-1 3M16 15.5c0 1.2-1 1.8-1 3"/>',
+    cocina: '<rect x="3.5" y="3" width="17" height="18" rx="1.5"/><path d="M3.5 9h17"/><circle cx="8" cy="6" r=".8" fill="currentColor"/><circle cx="12" cy="6" r=".8" fill="currentColor"/><rect x="7" y="12" width="10" height="6" rx="1"/>',
+    toalla: '<path d="M6 3h12v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M6 7h12"/><path d="M9 21v-2M15 21v-2"/><path d="M9 11h6M9 14h6"/>',
     ola: '<path d="M2.5 9c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 14c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 19c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>'
   };
   function amenIcon(k) {
