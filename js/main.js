@@ -37,7 +37,6 @@ window.waLink = waLink;
 
   var NAV = [
     { href: 'casas.html', key: 'nav.casas' },
-    { href: 'experiencia.html', key: 'nav.experiencia' },
     { href: 'los-roques.html', key: 'nav.roques' },
     { href: 'merchandise.html', key: 'nav.merch' },
     { href: 'contacto.html', key: 'nav.contacto' }
