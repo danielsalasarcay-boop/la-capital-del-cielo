@@ -155,7 +155,12 @@
     };
     var fotos = (c.galeria && c.galeria.length) ? c.galeria : ['', '', ''];
     var gallery = fotos.map(function (src, i) {
-      return media(src, c.nombre + ' · ' + I18n.t('common.imagen') + ' ' + (i + 1), 'ph-4x5');
+      if (!src) return media(src, c.nombre + ' · ' + I18n.t('common.imagen') + ' ' + (i + 1), 'ph-4x5');
+      var label = c.nombre + ' · ' + I18n.t('common.imagen') + ' ' + (i + 1);
+      var small = src.replace(/\.jpg$/, '-900.jpg');
+      /* cada foto abre el visor a pantalla completa (js/galeria.js) */
+      return '<a class="media ph-4x5 gallery-link" href="' + esc(src) + '" data-lightbox aria-label="' + esc(label) + '">' +
+        '<img src="' + esc(small) + '" alt="' + esc(label) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + esc(src) + '\'"></a>';
     }).join('');
     var sitio = c.sitio_propio
       ? '<a class="btn btn-outline" href="' + esc(c.sitio_propio) + '" target="_blank" rel="noopener">' + esc(I18n.t('casa.sitio_propio')) + '</a>'
@@ -220,6 +225,14 @@
         '<h2 class="h2">' + esc(I18n.t('casa.galeria')) + '</h2>' +
         '<div class="grid gallery-fit">' + gallery + '</div>' +
       '</div></section>' +
+
+      /* Visor de fotos */
+      '<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true">' +
+        '<button type="button" class="lb-btn lb-close" aria-label="' + esc(I18n.t('roques.cerrar')) + '">&times;</button>' +
+        '<button type="button" class="lb-btn lb-prev" aria-label="' + esc(I18n.t('roques.anterior')) + '">&#8249;</button>' +
+        '<figure class="lb-figure"><img class="lb-img" alt=""><figcaption class="lb-caption"></figcaption></figure>' +
+        '<button type="button" class="lb-btn lb-next" aria-label="' + esc(I18n.t('roques.siguiente')) + '">&#8250;</button>' +
+      '</div>' +
 
       /* Mapa */
       '<section class="section section--alt"><div class="container">' +
@@ -298,6 +311,7 @@
       renderSelect(casas);
       if (window.updateWaLinks) updateWaLinks();
       if (window.initReveal) initReveal();
+      if (window.initLightbox) initLightbox();
     });
   }
 

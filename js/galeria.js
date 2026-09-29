@@ -4,9 +4,11 @@
    ========================================================================== */
 (function () {
   'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
+  var keyBound = false;
+  function initLightbox() {
     var lb = document.getElementById('lightbox');
-    if (!lb) return;
+    if (!lb || lb.dataset.ready) return;
+    lb.dataset.ready = '1';
     var links = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
     var img = lb.querySelector('.lb-img'), cap = lb.querySelector('.lb-caption');
     var idx = 0, startX = null;
@@ -29,7 +31,8 @@
     lb.querySelector('.lb-next').addEventListener('click', function () { show(idx + 1); });
     lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
     document.addEventListener('keydown', function (e) {
-      if (lb.hidden) return;
+      lb = document.getElementById('lightbox');
+      if (!lb || lb.hidden) return;
       if (e.key === 'Escape') close();
       if (e.key === 'ArrowLeft') show(idx - 1);
       if (e.key === 'ArrowRight') show(idx + 1);
@@ -41,5 +44,7 @@
       if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
       startX = null;
     });
-  });
+  }
+  window.initLightbox = initLightbox;
+  document.addEventListener('DOMContentLoaded', initLightbox);
 })();
