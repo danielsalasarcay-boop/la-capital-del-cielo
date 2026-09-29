@@ -738,18 +738,18 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
   }
 }
 
-/* Ajustes para Familjen Grotesk */
-body { font-size: 1.05rem; line-height: 1.65; }
-.nav-list a, .btn, .lang-btn, .channel { font-weight: 500; letter-spacing: 0.08em; }
-.nav-list a { font-size: 0.8rem; }
-@media (max-width: 959px) { .nav-list a { font-size: 1rem; } }
-.btn { font-size: 0.85rem; }
-.btn-sm { font-size: 0.78rem; }
-.channel { font-size: 0.85rem; }
-.kicker { letter-spacing: 0.2em; font-weight: 500; }
-.card-title, .product-name, .room-name { font-weight: 500; letter-spacing: -0.01em; }
-.hero-tagline { font-weight: 400; letter-spacing: 0; }
-.facts-list dd { font-weight: 500; }
+/* Ajustes para Marcellus + Tenor Sans (ambas de un solo peso: sin negritas falsas) */
+body { font-size: 1.02rem; line-height: 1.7; }
+h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list dd { font-weight: 400; letter-spacing: 0.005em; }
+.nav-list a, .btn, .lang-btn, .channel, .kicker, .footer-nav a { font-family: var(--font-body); font-weight: 400; }
+.nav-list a { font-size: 0.8rem; letter-spacing: 0.14em; }
+@media (max-width: 959px) { .nav-list a { font-size: 0.95rem; } }
+.btn { font-size: 0.82rem; letter-spacing: 0.12em; }
+.btn-sm { font-size: 0.74rem; }
+.channel { font-size: 0.82rem; letter-spacing: 0.12em; }
+.kicker { letter-spacing: 0.24em; }
+.hero-tagline { font-family: var(--font-display); letter-spacing: 0.01em; }
+.card-title, .product-name { letter-spacing: 0.01em; }
 .nav-list .nav-cta .btn { display: flex; justify-content: center; }
 /* Galería de la ficha: fotos con proporción vertical, clic para ampliar */
 .gallery-fit .gallery-link { display: block; border-radius: var(--radius); }

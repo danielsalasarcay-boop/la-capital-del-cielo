@@ -20,10 +20,11 @@
   --color-wa:          #25D366;   /* verde WhatsApp (por si se usa) */
 
   /* --- Tipografía ---
-     Familjen Grotesk: grotesca moderna y sobria, con carácter propio (a y g con
-     detalles de corte escandinavo). Se usa en todo el sitio. */
-  --font-display: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  --font-body:    'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
+     Marcellus (títulos): romana con remates abiertos, de inscripción, emparentada
+     con las letras del logo. Tenor Sans (texto, menú y botones): humanista elegante,
+     de contraste suave y proporciones clásicas. */
+  --font-display: 'Marcellus', 'Palatino Linotype', Georgia, serif;
+  --font-body:    'Tenor Sans', 'Gill Sans', 'Optima', sans-serif;
 
   --fs-xs:   0.75rem;
   --fs-sm:   0.875rem;
