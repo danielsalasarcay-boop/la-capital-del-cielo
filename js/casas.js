@@ -75,6 +75,8 @@
     aire: '<rect x="2.5" y="5" width="19" height="7.5" rx="1.5"/><path d="M5.5 10h13"/><path d="M8 15.5c0 1.2-1 1.8-1 3M12 15.5c0 1.2-1 1.8-1 3M16 15.5c0 1.2-1 1.8-1 3"/>',
     cocina: '<rect x="3.5" y="3" width="17" height="18" rx="1.5"/><path d="M3.5 9h17"/><circle cx="8" cy="6" r=".8" fill="currentColor"/><circle cx="12" cy="6" r=".8" fill="currentColor"/><rect x="7" y="12" width="10" height="6" rx="1"/>',
     toalla: '<path d="M6 3h12v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M6 7h12"/><path d="M9 21v-2M15 21v-2"/><path d="M9 11h6M9 14h6"/>',
+    energia: '<path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/>',
+    agua: '<path d="M12 3c3.5 4.5 6 7.8 6 10.8a6 6 0 0 1-12 0C6 10.8 8.5 7.5 12 3z"/><path d="M9 14.5a3 3 0 0 0 3 3"/>',
     ola: '<path d="M2.5 9c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 14c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 19c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>'
   };
   function amenIcon(k) {

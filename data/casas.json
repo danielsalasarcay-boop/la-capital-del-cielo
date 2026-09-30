@@ -414,6 +414,269 @@
       ]
     },
     {
+      "id": "casa-bleu",
+      "nombre": "Casa Bleu",
+      "tipo": "casa",
+      "logo": "",
+      "ubicacion": {
+        "es": "Los Roques",
+        "en": "Los Roques"
+      },
+      "descripcion_corta": {
+        "es": "Casa privada de 4 habitaciones con staff de 3 personas, incluido chef.",
+        "en": "Private 4-bedroom house with a staff of 3, including a chef."
+      },
+      "descripcion": {
+        "es": "Casa Bleu tiene 4 habitaciones con cama King y un staff de 3 personas en la casa, incluido un chef.",
+        "en": "Casa Bleu has 4 bedrooms with King beds and a staff of 3 in the house, including a chef."
+      },
+      "capacidad": 11,
+      "habitaciones": 4,
+      "distribucion": [
+        {
+          "es": "Habitación principal: cama King y litera doble (4 personas)",
+          "en": "Master bedroom: King bed and double bunk bed (4 guests)"
+        },
+        {
+          "es": "Habitación con cama King y litera individual (3 personas)",
+          "en": "Bedroom with King bed and single bunk bed (3 guests)"
+        },
+        {
+          "es": "Habitación con cama King (2 personas)",
+          "en": "Bedroom with King bed (2 guests)"
+        },
+        {
+          "es": "Habitación con cama King (2 personas)",
+          "en": "Bedroom with King bed (2 guests)"
+        }
+      ],
+      "incluye": [
+        {
+          "es": "Staff de 3 personas",
+          "en": "Staff of 3"
+        },
+        {
+          "es": "Chef",
+          "en": "Chef"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
+        },
+        {
+          "es": "Limpieza diaria",
+          "en": "Daily housekeeping"
+        }
+      ],
+      "no_incluye": [
+        {
+          "es": "Comidas",
+          "en": "Meals"
+        },
+        {
+          "es": "Propinas",
+          "en": "Tips"
+        },
+        {
+          "es": "Bote",
+          "en": "Boat"
+        }
+      ],
+      "destacados": [
+        {
+          "es": "4 habitaciones con cama King",
+          "en": "4 bedrooms with King beds"
+        },
+        {
+          "es": "Staff de 3 personas con chef",
+          "en": "Staff of 3 with chef"
+        }
+      ],
+      "amenidades": [
+        {
+          "icono": "cama",
+          "texto": {
+            "es": "4 habitaciones con cama King",
+            "en": "4 bedrooms with King beds"
+          }
+        },
+        {
+          "icono": "personas",
+          "texto": {
+            "es": "Hasta 11 huéspedes",
+            "en": "Up to 11 guests"
+          }
+        },
+        {
+          "icono": "staff",
+          "texto": {
+            "es": "Staff de 3 personas con chef",
+            "en": "Staff of 3 including a chef"
+          }
+        },
+        {
+          "icono": "limpieza",
+          "texto": {
+            "es": "Limpieza diaria",
+            "en": "Daily housekeeping"
+          }
+        }
+      ],
+      "imagen_portada": "img/casas/casa-bleu/portada.jpg",
+      "galeria": [
+        "img/casas/casa-bleu/portada.jpg",
+        "img/casas/casa-bleu/habitacion.jpg",
+        "img/casas/casa-bleu/cojines.jpg",
+        "img/casas/casa-bleu/bano.jpg"
+      ],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar Casa Bleu en Los Roques.",
+        "en": "Hi, I'd like information to book Casa Bleu in Los Roques."
+      },
+      "sitio_propio": ""
+    },
+    {
+      "id": "casa-coro-coro",
+      "nombre": "Casa Coro Coro",
+      "tipo": "casa",
+      "logo": "",
+      "ubicacion": {
+        "es": "Gran Roque, Los Roques",
+        "en": "Gran Roque, Los Roques"
+      },
+      "descripcion_corta": {
+        "es": "Casa amplia en Gran Roque con 5 habitaciones con baño privado y aire acondicionado, y staff dedicado.",
+        "en": "Spacious house in Gran Roque with 5 bedrooms, each with private bathroom and A/C, and dedicated staff."
+      },
+      "descripcion": {
+        "es": "Casa Coro Coro está en Gran Roque. Todas sus habitaciones tienen baño privado y aire acondicionado, y cuenta con un encargado que cocina y dos personas más para el servicio y la limpieza.",
+        "en": "Casa Coro Coro is in Gran Roque. Every bedroom has a private bathroom and A/C, and it has a dedicated manager who cooks plus two more staff for service and housekeeping."
+      },
+      "capacidad": null,
+      "habitaciones": 5,
+      "distribucion": [
+        {
+          "es": "2 habitaciones con literas (4 personas)",
+          "en": "2 bedrooms with bunk beds (4 guests)"
+        },
+        {
+          "es": "1 habitación con cama King",
+          "en": "1 bedroom with King bed"
+        },
+        {
+          "es": "1 habitación con cama Queen",
+          "en": "1 bedroom with Queen bed"
+        },
+        {
+          "es": "1 habitación con dos camas matrimoniales",
+          "en": "1 bedroom with two full beds"
+        },
+        {
+          "es": "Sala de TV y baño de visitas",
+          "en": "TV lounge and guest bathroom"
+        }
+      ],
+      "incluye": [
+        {
+          "es": "Encargado que cocina",
+          "en": "Manager who cooks"
+        },
+        {
+          "es": "2 personas de servicio y limpieza",
+          "en": "2 staff for service and housekeeping"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
+        },
+        {
+          "es": "Lencería completa",
+          "en": "Complete linens"
+        }
+      ],
+      "destacados": [
+        {
+          "es": "Todas las habitaciones con baño privado y A/C",
+          "en": "All bedrooms with private bathroom and A/C"
+        },
+        {
+          "es": "Planta eléctrica de 40 kW",
+          "en": "40 kW power generator"
+        },
+        {
+          "es": "Tanque de agua de 12.000 litros",
+          "en": "12,000-liter water tank"
+        }
+      ],
+      "amenidades": [
+        {
+          "icono": "cama",
+          "texto": {
+            "es": "5 habitaciones con baño privado",
+            "en": "5 bedrooms with private bathroom"
+          }
+        },
+        {
+          "icono": "aire",
+          "texto": {
+            "es": "Aire acondicionado en todas las habitaciones",
+            "en": "A/C in every bedroom"
+          }
+        },
+        {
+          "icono": "cocina",
+          "texto": {
+            "es": "Cocina totalmente equipada",
+            "en": "Fully equipped kitchen"
+          }
+        },
+        {
+          "icono": "energia",
+          "texto": {
+            "es": "Planta eléctrica de 40 kW",
+            "en": "40 kW power generator"
+          }
+        },
+        {
+          "icono": "agua",
+          "texto": {
+            "es": "Tanque de agua de 12.000 litros",
+            "en": "12,000-liter water tank"
+          }
+        },
+        {
+          "icono": "toalla",
+          "texto": {
+            "es": "Lencería completa",
+            "en": "Complete linens"
+          }
+        },
+        {
+          "icono": "limpieza",
+          "texto": {
+            "es": "Limpieza diaria",
+            "en": "Daily housekeeping"
+          }
+        }
+      ],
+      "imagen_portada": "img/casas/casa-coro-coro/portada.jpg",
+      "galeria": [
+        "img/casas/casa-coro-coro/portada.jpg",
+        "img/casas/casa-coro-coro/terraza.jpg",
+        "img/casas/casa-coro-coro/sala-jardin.jpg",
+        "img/casas/casa-coro-coro/comedor.jpg",
+        "img/casas/casa-coro-coro/sala-tv.jpg",
+        "img/casas/casa-coro-coro/patio.jpg",
+        "img/casas/casa-coro-coro/pasillo.jpg",
+        "img/casas/casa-coro-coro/terraza-noche.jpg"
+      ],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar Casa Coro Coro en Gran Roque, Los Roques.",
+        "en": "Hi, I'd like information to book Casa Coro Coro in Gran Roque, Los Roques."
+      },
+      "sitio_propio": ""
+    },
+    {
       "id": "macanao-lodge",
       "nombre": "Macanao Lodge",
       "tipo": "posada",
