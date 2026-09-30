@@ -62,7 +62,7 @@ window.waLink = waLink;
     el.innerHTML =
       '<div class="container header-inner">' +
         '<a class="header-logo" href="index.html" aria-label="' + SITE.nombre + '">' +
-          '<img src="img/general/logo.png" alt="' + SITE.nombre + '" width="956" height="462">' +
+          '<img src="img/general/logo-sm.png" alt="' + SITE.nombre + '" width="500" height="294">' +
         '</a>' +
         '<nav class="header-nav" id="main-nav" aria-label="Principal">' +
           '<ul class="nav-list">' + links +
@@ -103,7 +103,7 @@ window.waLink = waLink;
       '</div>' +
       '<div class="container footer-inner">' +
         '<a href="index.html" class="footer-brand" aria-label="' + SITE.nombre + '">' +
-          '<img class="footer-logo" src="img/general/logo-white.png" alt="' + SITE.nombre + '" width="956" height="462" loading="lazy">' +
+          '<img class="footer-logo" src="img/general/logo-white.png" alt="' + SITE.nombre + '" width="1200" height="642" loading="lazy">' +
         '</a>' +
         '<nav class="footer-nav" aria-label="Footer"><ul>' + links + '</ul></nav>' +
         '<ul class="footer-contact">' +
@@ -229,7 +229,7 @@ window.waLink = waLink;
     if (root.classList.contains('loader-skip')) { loader.remove(); return; }
 
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var minTime = reduced ? 400 : 2400;
+    var minTime = reduced ? 400 : 3300;
     var start = Date.now();
     var closed = false;
 
@@ -246,7 +246,7 @@ window.waLink = waLink;
     }
     if (document.readyState === 'complete') whenReady();
     else window.addEventListener('load', whenReady);
-    setTimeout(close, 5000); // failsafe
+    setTimeout(close, 6000); // failsafe
   }
 
   /* ---------- Arranque ---------- */

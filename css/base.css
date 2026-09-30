@@ -5,11 +5,11 @@
 :root {
   /* --- Color --- */
   --color-bg:          #FFFFFF;   /* fondo principal */
-  --color-bg-alt:      #F4F8FE;   /* fondo alterno de secciones (tinte del azul) */
-  --color-brand:       #A1CAFE;   /* azul del logo (exacto) */
-  --color-brand-soft:  #E3EFFF;   /* azul muy claro para fondos y bordes */
-  --color-brand-dark:  #A1CAFE;   /* acento = azul del logo (botones, líneas, subrayados) */
-  --color-brand-hover: #8DBDF8;   /* azul del logo un poco más intenso para hover */
+  --color-bg-alt:      #F3F8FD;   /* fondo alterno de secciones (tinte del azul) */
+  --color-brand:       #6AAAE4;   /* azul del logo oficial (globo) */
+  --color-brand-soft:  #E6F1FB;   /* azul muy claro para fondos y bordes */
+  --color-brand-dark:  #6AAAE4;   /* acento = azul del logo (botones, líneas, subrayados) */
+  --color-brand-hover: #5698D6;   /* azul del logo un poco más intenso para hover */
   --color-brand-deep:  #1A1A1A;   /* tinta = negro de las letras del logo (títulos, texto fuerte) */
   --color-text:        #222222;   /* texto de cuerpo */
   --color-muted:       #5E6670;   /* texto secundario */
