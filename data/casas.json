@@ -14,11 +14,29 @@
         "en": "Private beachfront house in Gran Roque, with a terrace over the water and direct views of the reef."
       },
       "descripcion": {
-        "es": "Casa Verde está ubicada en un lugar privilegiado, justo frente al mar en Gran Roque. Su terraza se asoma al agua turquesa y un pasillo bajo una pérgola de buganvillas lleva directo a la orilla. Placeholder: el resto de la descripción llega en la fase de contenido.",
-        "en": "Casa Verde sits in a privileged spot, right on the water in Gran Roque. Its terrace looks over the turquoise sea and a walkway under a bougainvillea pergola leads straight to the shore. Placeholder: the rest of the description comes in the content phase."
+        "es": "Casa Verde está ubicada en un lugar privilegiado, justo frente al mar en Gran Roque. Su terraza se asoma al agua turquesa y un pasillo bajo una pérgola de buganvillas lleva directo a la orilla.",
+        "en": "Casa Verde sits in a privileged spot, right on the water in Gran Roque. Its terrace looks over the turquoise sea and a walkway under a bougainvillea pergola leads straight to the shore."
       },
       "capacidad": 10,
       "habitaciones": 3,
+      "distribucion": [
+        {
+          "es": "Suite principal: cama King y una litera",
+          "en": "Master suite: King bed and a bunk bed"
+        },
+        {
+          "es": "Segunda habitación: cama King y litera",
+          "en": "Second bedroom: King bed and bunk bed"
+        },
+        {
+          "es": "Tercera habitación: cama King",
+          "en": "Third bedroom: King bed"
+        },
+        {
+          "es": "Sala de estar, rooftop, comedor y cocina",
+          "en": "Living room, rooftop, dining room and kitchen"
+        }
+      ],
       "incluye": [
         {
           "es": "Staff de servicio",

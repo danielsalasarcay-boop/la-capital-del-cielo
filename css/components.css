@@ -757,3 +757,4 @@ h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list d
 @media (min-width: 960px) { .gallery-fit { grid-template-columns: repeat(4, 1fr); } }
 .feature-photo { border-radius: var(--radius); } .feature-photo img { object-position: 62% 55%; }
 .feature .media { margin-bottom: var(--space-1); }
+.split > div > .h3 { margin-top: var(--space-4); }
