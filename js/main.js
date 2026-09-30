@@ -229,7 +229,7 @@ window.waLink = waLink;
     if (root.classList.contains('loader-skip')) { loader.remove(); return; }
 
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var minTime = reduced ? 400 : 3300;
+    var minTime = reduced ? 400 : 2400;
     var start = Date.now();
     var closed = false;
 

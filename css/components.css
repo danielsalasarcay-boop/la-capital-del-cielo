@@ -1011,9 +1011,8 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 @media (min-width: 1600px) { .hero-logo-anim { width: clamp(620px, 36vw, 720px); } }
 @media (max-height: 520px) and (orientation: landscape) { .hero-logo-anim { width: clamp(200px, 30vw, 300px); } }
 
-/* Pantalla de carga */
-.loader-logo { width: clamp(240px, 40vw, 420px); clip-path: none !important; opacity: 1 !important; transform: none !important; animation: none !important; }
-.loader-line { animation-delay: 2.6s; }
+/* Pantalla de carga (mismo efecto original, logo nuevo) */
+.loader-logo { width: clamp(240px, 40vw, 420px); }
 
 /* Header y footer */
 .header-logo img { height: 46px; width: auto; }
