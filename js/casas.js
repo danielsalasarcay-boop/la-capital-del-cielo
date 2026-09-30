@@ -232,6 +232,15 @@
           }).join('') + '</div>' +
         '</div></section>' : '') +
 
+      /* Recorrido en video (vertical, grabado con teléfono) */
+      (c.video ?
+        '<section class="section section--alt"><div class="container casa-video">' +
+          '<h2 class="h2">' + esc(I18n.t('casa.video')) + '</h2>' +
+          '<div class="casa-video-frame"><video src="' + esc(c.video.src) + '"' +
+            (c.video.poster ? ' poster="' + esc(c.video.poster) + '"' : '') +
+            ' controls playsinline preload="metadata"></video></div>' +
+        '</div></section>' : '') +
+
       /* Galería */
       '<section class="section"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.galeria')) + '</h2>' +

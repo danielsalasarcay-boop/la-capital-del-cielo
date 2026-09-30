@@ -443,6 +443,10 @@
       "galeria": [
         "img/casas/casa-9/portada.jpg"
       ],
+      "video": {
+        "src": "img/casas/casa-9/recorrido.mp4",
+        "poster": "img/casas/casa-9/recorrido-poster.jpg"
+      },
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa 9 en Madrizquí, Los Roques.",
         "en": "Hi, I'd like information to book Casa 9 on Madrizquí, Los Roques."
