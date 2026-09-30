@@ -784,3 +784,66 @@ h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list d
       linear-gradient(to top, rgba(8, 28, 54, 0.35) 0%, rgba(8, 28, 54, 0) 40%);
   }
 }
+
+/* ==========================================================================
+   Qué incluye / No incluye — píldoras premium azul de marca
+   ========================================================================== */
+.incluye-section { padding-block: clamp(2.75rem, 2rem + 4vw, 5.25rem); }
+.incluye-layout { display: grid; gap: var(--space-3) var(--space-6); align-items: start; }
+@media (min-width: 900px) { .incluye-layout { grid-template-columns: minmax(220px, 0.8fr) 2fr; } }
+.incluye-sub { margin-top: 0.5rem; color: var(--color-muted); font-size: var(--fs-sm); }
+.chip-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 0; padding: 0; }
+.chip {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; align-items: center;
+  padding: 0.85rem 1.4rem; border-radius: 999px;
+  font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.2;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.chip--yes {
+  color: #10233A;
+  background: linear-gradient(180deg, #D3E7FF 0%, var(--color-brand) 55%, #8FBDF6 100%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(40, 100, 180, 0.15),
+    0 10px 24px -10px rgba(50, 120, 210, 0.55),
+    0 2px 6px rgba(50, 120, 210, 0.12);
+}
+.chip--yes::after { /* reflejo que recorre el botón */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.65) 48%, transparent 66%);
+  transform: translateX(-120%);
+  transition: transform 0.9s var(--ease);
+}
+@media (hover: hover) {
+  .chip--yes:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(40,100,180,.15), 0 16px 30px -12px rgba(50,120,210,.6), 0 3px 8px rgba(50,120,210,.14); }
+  .chip--yes:hover::after { transform: translateX(120%); }
+}
+.no-incluye { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid rgba(161, 202, 254, 0.5); }
+.incluye-label { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+.chip--no { color: var(--color-muted); background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(26, 26, 26, 0.12); }
+.casa-nota {
+  margin-top: var(--space-3); padding: 0 0 0 1rem; max-width: 640px;
+  border-left: 2px solid var(--color-brand); background: none;
+  color: var(--color-muted); font-size: var(--fs-sm); font-style: italic;
+}
+@media (max-width: 899px) {
+  .chip-list { gap: 0.5rem; }
+  .chip { padding: 0.7rem 1.1rem; font-size: 0.72rem; letter-spacing: 0.12em; }
+  .no-incluye { margin-top: var(--space-2); padding-top: var(--space-2); }
+}
+
+/* Comodidades compactas: mismo alto que el footer */
+.section--tight:has(.amenities) { padding-block: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem); }
+.amenities { margin-top: var(--space-3); padding-block: var(--space-2); gap: var(--space-2) var(--space-4); }
+@media (min-width: 960px) { .amenities { grid-template-columns: repeat(3, 1fr); } }
+.amenities li { gap: var(--space-2); }
+.amenity-icon { width: 2.5rem; height: 2.5rem; }
+.amenity-text { font-size: 1.02rem; }
+@media (max-width: 699px) {
+  .amenities { grid-template-columns: 1fr 1fr; gap: 0.9rem 0.75rem; }
+  .amenities li { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+  .amenity-icon { width: 2rem; height: 2rem; }
+  .amenity-text { font-size: 0.9rem; line-height: 1.3; }
+}

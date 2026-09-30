@@ -224,11 +224,26 @@
         '</div></section>' : '') +
 
       /* Qué incluye */
-      '<section class="section section--alt"><div class="container">' +
-        '<h2 class="h2">' + esc(I18n.t('casa.incluye')) + '</h2>' +
-        '<ul class="pill-list">' + li(c.incluye) + '</ul>' +
-        ((c.no_incluye && c.no_incluye.length) ? '<h3 class="h3 incluye-sub">' + esc(I18n.t('casa.no_incluye')) + '</h3><ul class="pill-list pill-list--muted">' + li(c.no_incluye) + '</ul>' : '') +
-        (c.nota ? '<p class="casa-nota">' + esc(I18n.pick(c.nota)) + '</p>' : '') +
+      '<section class="section section--alt incluye-section"><div class="container">' +
+        '<div class="incluye-layout">' +
+          '<div class="incluye-head">' +
+            '<h2 class="h2">' + esc(I18n.t('casa.incluye')) + '</h2>' +
+            '<p class="incluye-sub">' + esc(I18n.t('casa.incluye_sub')) + '</p>' +
+          '</div>' +
+          '<div class="incluye-body">' +
+            '<ul class="chip-list">' + (c.incluye || []).map(function (x) {
+              return '<li class="chip chip--yes">' + esc(I18n.pick(x)) + '</li>';
+            }).join('') + '</ul>' +
+            ((c.no_incluye && c.no_incluye.length) ?
+              '<div class="no-incluye">' +
+                '<p class="incluye-label">' + esc(I18n.t('casa.no_incluye')) + '</p>' +
+                '<ul class="chip-list">' + c.no_incluye.map(function (x) {
+                  return '<li class="chip chip--no">' + esc(I18n.pick(x)) + '</li>';
+                }).join('') + '</ul>' +
+              '</div>' : '') +
+            (c.nota ? '<p class="casa-nota">' + esc(I18n.pick(c.nota)) + '</p>' : '') +
+          '</div>' +
+        '</div>' +
       '</div></section>' +
 
       /* Galería */
