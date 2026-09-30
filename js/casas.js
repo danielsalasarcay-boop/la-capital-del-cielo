@@ -175,7 +175,13 @@
     root.innerHTML =
       /* Hero */
       '<section class="page-hero page-hero--image casa-hero' + (c.imagen_portada ? '' : ' casa-hero--sin-foto') + '"' + (c.color ? ' style="--casa-color:' + esc(c.color) + '"' : '') + '>' +
-        media(c.imagen_portada, c.nombre, 'ph-fill', true) +
+        (c.imagen_portada
+          ? '<div class="media ph-fill"><img src="' + esc(c.imagen_hero || c.imagen_portada) + '"' +
+              (c.imagen_hero ? ' srcset="' + esc(c.imagen_portada) + ' 1600w, ' + esc(c.imagen_hero) + ' ' + (c.hero_ancho || 2800) + 'w"' +
+                /* la foto cubre el alto en pantallas verticales: se pide un ancho mayor que la pantalla */
+                ' sizes="(max-aspect-ratio: 1/1) 180vh, 100vw"' : '') +
+              ' alt="' + esc(c.nombre) + '" fetchpriority="high" decoding="async"></div>'
+          : media('', c.nombre, 'ph-fill', true)) +
         '<div class="container page-hero-content">' +
           (c.logo
             ? '<h1 class="casa-hero-logo"><img src="' + esc(c.logo) + '" alt="' + esc(c.nombre) + '"></h1>'

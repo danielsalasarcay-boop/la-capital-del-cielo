@@ -758,3 +758,29 @@ h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list d
 .feature-photo { border-radius: var(--radius); } .feature-photo img { object-position: 62% 55%; }
 .feature .media { margin-bottom: var(--space-1); }
 .split > div > .h3 { margin-top: var(--space-4); }
+
+/* Portada de cada ficha: foto nítida, degradado solo detrás del texto */
+.casa-hero > .media img { image-rendering: auto; transform: none; }
+.casa-hero > .media::after,
+.casa-hero > .media.ph-fill::after {
+  background: linear-gradient(to top, rgba(8, 28, 54, 0.62) 0%, rgba(8, 28, 54, 0.28) 26%, rgba(8, 28, 54, 0) 45%);
+}
+.casa-hero .page-hero-content { text-shadow: 0 1px 14px rgba(0, 25, 50, 0.55); }
+.casa-hero-logo img { filter: invert(1) drop-shadow(0 2px 10px rgba(0, 25, 50, 0.55)); }
+.casa-hero-logo img[src$=".svg"] { filter: invert(1) drop-shadow(0 2px 10px rgba(0, 25, 50, 0.55)); }
+@media (max-width: 699px) {
+  .casa-hero > .media::after { background: linear-gradient(to top, rgba(8, 28, 54, 0.72) 0%, rgba(8, 28, 54, 0.35) 32%, rgba(8, 28, 54, 0) 55%); }
+}
+/* Sombra suave solo detrás del texto (abajo a la izquierda); el resto de la foto queda limpio */
+.casa-hero > .media::after {
+  background:
+    radial-gradient(ellipse 60% 55% at 22% 88%, rgba(8, 28, 54, 0.55) 0%, rgba(8, 28, 54, 0.25) 50%, rgba(8, 28, 54, 0) 75%),
+    linear-gradient(to top, rgba(8, 28, 54, 0.35) 0%, rgba(8, 28, 54, 0) 35%);
+}
+@media (max-width: 699px) {
+  .casa-hero > .media::after {
+    background:
+      radial-gradient(ellipse 110% 50% at 30% 88%, rgba(8, 28, 54, 0.6) 0%, rgba(8, 28, 54, 0.25) 55%, rgba(8, 28, 54, 0) 80%),
+      linear-gradient(to top, rgba(8, 28, 54, 0.35) 0%, rgba(8, 28, 54, 0) 40%);
+  }
+}

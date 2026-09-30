@@ -78,6 +78,8 @@
         }
       ],
       "imagen_portada": "img/casas/casa-verde/portada.jpg",
+      "imagen_hero": "img/casas/casa-verde/portada-hero.jpg",
+      "hero_ancho": 2600,
       "galeria": [
         "img/casas/casa-verde/portada.jpg",
         "img/casas/casa-verde/entrada.jpg",
@@ -209,6 +211,8 @@
         }
       ],
       "imagen_portada": "img/casas/casa-panza/portada.jpg",
+      "imagen_hero": "img/casas/casa-panza/portada-hero.jpg",
+      "hero_ancho": 1920,
       "galeria": [
         "img/casas/casa-panza/vista-al-mar.jpg",
         "img/casas/casa-panza/entrada-arco-mar.jpg",
@@ -369,6 +373,8 @@
         }
       ],
       "imagen_portada": "img/casas/casa-9/portada.jpg",
+      "imagen_hero": "img/casas/casa-9/portada-hero.jpg",
+      "hero_ancho": 2800,
       "galeria": [
         "img/casas/casa-9/portada.jpg"
       ],
@@ -685,6 +691,8 @@
         }
       ],
       "imagen_portada": "img/casas/casa-bleu/portada.jpg",
+      "imagen_hero": "img/casas/casa-bleu/portada-hero.jpg",
+      "hero_ancho": 2800,
       "galeria": [
         "img/casas/casa-bleu/portada.jpg"
       ],
@@ -863,6 +871,13 @@
       "texto": {
         "es": "Gastronomía excelente",
         "en": "Excellent cuisine"
+      }
+    },
+    {
+      "icono": "energia",
+      "texto": {
+        "es": "Planta eléctrica",
+        "en": "Power generator"
       }
     }
   ]
