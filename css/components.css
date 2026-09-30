@@ -878,3 +878,29 @@ h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list d
   .cta-actions { gap: 0.4rem; }
   .cta-actions .btn { font-size: 0.6rem; letter-spacing: 0.04em; padding: 0.55rem 0.65rem; }
 }
+
+/* ==========================================================================
+   Carta náutica de Casa Verde: rutas verdes que se dibujan poco a poco
+   ========================================================================== */
+.cta-band--carta { padding-block: clamp(2rem, 1.5rem + 2.2vw, 3.25rem); background: linear-gradient(180deg, #F7F4EE 0%, #EEF7F3 100%); }
+.cta-band--carta .stack { gap: var(--space-2); }
+.cta-band--carta .h2 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); }
+.carta {
+  position: relative; margin: 0; width: min(1000px, 100%); aspect-ratio: 2000 / 1116;
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 24px 50px -24px rgba(20, 70, 60, .35), 0 2px 8px rgba(20, 70, 60, .08);
+  opacity: 0; transform: translateY(14px) scale(.985);
+  transition: opacity 1s var(--ease), transform 1.2s var(--ease);
+}
+.carta.is-drawn { opacity: 1; transform: none; }
+.carta img, .carta svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.carta-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.carta.is-drawn .carta-draw { stroke-dashoffset: 0; transition: stroke-dashoffset 2.4s cubic-bezier(.45,.05,.3,1); transition-delay: calc(.6s + var(--i) * .9s); }
+.carta-dest, .carta-label { opacity: 0; transition: opacity .8s var(--ease); }
+.carta.is-drawn .carta-dest, .carta.is-drawn .carta-label { opacity: 1; transition-delay: calc(2.6s + var(--i) * .9s); }
+.carta-label { font-family: var(--font-display); font-size: 30px; letter-spacing: 3px; fill: #1F4F45; paint-order: stroke; stroke: rgba(250, 247, 240, .9); stroke-width: 8px; }
+.carta-origin { font-family: var(--font-display); font-size: 34px; letter-spacing: 3px; fill: #1F6B5B; paint-order: stroke; stroke: rgba(250, 247, 240, .95); stroke-width: 9px; }
+.carta-pulse { transform-box: fill-box; transform-origin: center; animation: carta-pulse 2.6s ease-out infinite; }
+@keyframes carta-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(4); opacity: 0; } }
+@media (max-width: 599px) { .carta { border-radius: 12px; } .carta-label { font-size: 40px; } .carta-origin { font-size: 44px; } }
+@media (prefers-reduced-motion: reduce) { .carta, .carta-draw, .carta-dest, .carta-label { transition: none !important; } .carta-pulse { animation: none; } }

@@ -256,12 +256,45 @@
       '</div></section>' +
 
       /* CTA */
-      '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + '"><div class="container text-center stack stack--center">' +
+      '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '"><div class="container text-center stack stack--center">' +
+        (c.carta ? cartaHTML(c) : '') +
         (c.brujula ? '<div class="cta-compass" aria-hidden="true"><span class="compass-ring"></span><span class="compass-ring compass-ring--2"></span><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
         '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
         '<div class="cta-actions">' + waBtn + sitio + '</div>' +
       '</div></section>';
     initCompass();
+    initCarta();
+  }
+
+  /* Carta náutica con rutas que se dibujan (estilo carta de navegación) */
+  function cartaHTML(c) {
+    var k = c.carta, o = k.origen, col = esc(k.color || '#2BA88C');
+    var routes = '', masks = '', dots = '', labels = '';
+    (k.destinos || []).forEach(function (dd, i) {
+      var d = 'M ' + o[0] + ' ' + o[1] + ' Q ' + dd.curva[0] + ' ' + dd.curva[1] + ' ' + dd.x + ' ' + dd.y;
+      masks += '<mask id="cm' + i + '" maskUnits="userSpaceOnUse"><path class="carta-draw" style="--i:' + i + '" d="' + d + '" pathLength="1" stroke="#fff" stroke-width="14" fill="none"/></mask>';
+      routes += '<path d="' + d + '" mask="url(#cm' + i + ')" stroke="' + col + '" stroke-width="5" stroke-dasharray="3 11" stroke-linecap="round" fill="none"/>';
+      dots += '<circle class="carta-dest" style="--i:' + i + '" cx="' + dd.x + '" cy="' + dd.y + '" r="7" fill="' + col + '"/>';
+      labels += '<text class="carta-label" style="--i:' + i + '" x="' + dd.x + '" y="' + (dd.y - 22) + '" text-anchor="middle">' + esc(dd.nombre) + '</text>';
+    });
+    return '<figure class="carta" aria-label="' + esc(c.nombre) + '">' +
+      '<img src="' + esc(k.img_small) + '" srcset="' + esc(k.img_small) + ' 1200w, ' + esc(k.img) + ' 2400w" sizes="(min-width: 1100px) 1000px, 92vw" alt="" loading="lazy" decoding="async">' +
+      '<svg viewBox="0 0 2000 1116" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+        '<defs>' + masks + '</defs>' +
+        '<g>' + routes + '</g>' + dots + labels +
+        '<circle class="carta-pulse" cx="' + o[0] + '" cy="' + o[1] + '" r="10" fill="none" stroke="' + col + '" stroke-width="3"/>' +
+        '<circle cx="' + o[0] + '" cy="' + o[1] + '" r="11" fill="' + col + '" stroke="#fff" stroke-width="4"/>' +
+        '<text class="carta-origin" x="' + o[0] + '" y="' + (o[1] + 48) + '" text-anchor="middle">' + esc(k.origen_nombre) + '</text>' +
+      '</svg></figure>';
+  }
+  function initCarta() {
+    var el = document.querySelector('.carta');
+    if (!el) return;
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.classList.add('is-drawn'); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { el.classList.add('is-drawn'); io.disconnect(); } });
+    }, { threshold: 0.35 });
+    io.observe(el);
   }
 
   /* Brújula de la casa: gira al ritmo del scroll mientras se ve la sección de reserva */

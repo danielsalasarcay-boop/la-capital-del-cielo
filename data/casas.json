@@ -149,7 +149,64 @@
         }
       ],
       "mapa_embed": "https://maps.google.com/maps?q=11.945813,-66.676766&z=18&output=embed",
-      "mapa_link": "https://maps.app.goo.gl/oZi7Z5DEkzjafH2z6"
+      "mapa_link": "https://maps.app.goo.gl/oZi7Z5DEkzjafH2z6",
+      "carta": {
+        "img": "img/casas/casa-verde/carta-nautica.jpg",
+        "img_small": "img/casas/casa-verde/carta-nautica-1200.jpg",
+        "color": "#2BA88C",
+        "origen": [
+          768,
+          598
+        ],
+        "origen_nombre": "Casa Verde",
+        "destinos": [
+          {
+            "nombre": "Francisquí",
+            "x": 892,
+            "y": 466,
+            "curva": [
+              860,
+              560
+            ]
+          },
+          {
+            "nombre": "Madrizquí",
+            "x": 1165,
+            "y": 560,
+            "curva": [
+              980,
+              680
+            ]
+          },
+          {
+            "nombre": "Crasquí",
+            "x": 1386,
+            "y": 514,
+            "curva": [
+              1120,
+              440
+            ]
+          },
+          {
+            "nombre": "Noronquí",
+            "x": 1742,
+            "y": 584,
+            "curva": [
+              1340,
+              700
+            ]
+          },
+          {
+            "nombre": "Cayo de Agua",
+            "x": 328,
+            "y": 432,
+            "curva": [
+              520,
+              640
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "casa-panza",
