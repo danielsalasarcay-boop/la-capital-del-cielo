@@ -1022,3 +1022,52 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
   .logo-anim img { animation: none !important; clip-path: none !important; transform: none !important; }
 }
 .header-logo img { height: 50px; }
+
+/* ==========================================================================
+   El mundo de La Capital del Cielo — collage de los diseños de la marca
+   ========================================================================== */
+.mundo { background: #FFFFFF; overflow: hidden; }
+.mundo .section-head { margin-bottom: var(--space-3); }
+.mundo-canvas { position: relative; width: 100%; aspect-ratio: 1600 / 1000; }
+.mundo-bg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mundo-bg--m { display: none; }
+.m-sun { fill: none; stroke: #F2B25C; stroke-width: 2; opacity: .55; }
+.m-sun--ring { stroke-dasharray: 3 9; opacity: .4; animation: m-spin 60s linear infinite; transform-box: fill-box; transform-origin: center; }
+.m-path { fill: none; stroke: var(--color-brand); stroke-width: 2; stroke-dasharray: 2 10; stroke-linecap: round; opacity: .55; }
+.m-wave { fill: none; stroke: var(--color-brand); stroke-width: 2.2; opacity: .45; animation: m-wave 9s ease-in-out infinite alternate; }
+.m-wave--2 { opacity: .25; animation-duration: 12s; animation-direction: alternate-reverse; }
+.m-sand { fill: none; stroke: #E4C99A; stroke-width: 3; opacity: .7; }
+.m-sea { fill: none; stroke: var(--color-brand); stroke-width: 1.5; opacity: .2; }
+.m-bubbles circle { fill: none; stroke: var(--color-brand); stroke-width: 1.8; opacity: .5; animation: m-bubble 6s ease-in-out infinite; transform-box: fill-box; }
+.m-bubbles circle:nth-child(2n) { animation-delay: 2s; } .m-bubbles circle:nth-child(3n) { animation-delay: 3.5s; }
+@keyframes m-spin { to { transform: rotate(360deg); } }
+@keyframes m-wave { from { transform: translateX(-30px); } to { transform: translateX(30px); } }
+@keyframes m-bubble { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .5; } 100% { transform: translateY(-60px); opacity: 0; } }
+
+.mundo-fig {
+  position: absolute; margin: 0; left: var(--x); top: var(--y); width: var(--w);
+  opacity: 0; transform: translateY(24px) scale(.94);
+  transition: opacity .9s var(--ease), transform 1s cubic-bezier(.2,.9,.25,1.15);
+  transition-delay: calc(var(--i) * .09s);
+}
+.mundo-fig img { width: 100%; height: auto; display: block; animation: m-float var(--f) ease-in-out infinite alternate; animation-delay: calc(var(--i) * -.7s); transition: transform .5s cubic-bezier(.2,.9,.25,1.3), filter .5s var(--ease); }
+.mundo-canvas.is-visible .mundo-fig { opacity: 1; transform: none; }
+@keyframes m-float { from { translate: 0 -5px; rotate: -.8deg; } to { translate: 0 6px; rotate: .8deg; } }
+@media (hover: hover) {
+  .mundo-fig:hover { z-index: 5; }
+  .mundo-fig:hover img { transform: scale(1.07) rotate(-1.5deg); filter: drop-shadow(0 14px 22px rgba(20, 60, 100, .18)); }
+}
+@media (max-width: 699px) {
+  .mundo-canvas { aspect-ratio: 1000 / 1620; }
+  .mundo-bg--d { display: none; } .mundo-bg--m { display: block; }
+  .mundo-fig { left: var(--mx); top: var(--my); width: var(--mw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mundo-fig { opacity: 1; transform: none; transition: none; }
+  .mundo-fig img, .m-wave, .m-bubbles circle, .m-sun--ring { animation: none; }
+}
+.mundo .section-head { max-width: 760px; }
+.mundo-canvas { max-width: 1320px; margin-inline: auto; }
+.mundo-fig { rotate: var(--r, 0deg); }
+@media (max-width: 699px) { .mundo-canvas { aspect-ratio: 1000 / 2080; } .mundo-fig { rotate: var(--mr, 0deg); } }
+.mundo-bg { -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%); }

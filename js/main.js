@@ -249,6 +249,17 @@ window.waLink = waLink;
     setTimeout(close, 6000); // failsafe
   }
 
+  /* ---------- Mundo de diseños: aparece al entrar en pantalla ---------- */
+  function initMundo() {
+    var c = document.querySelector('[data-mundo]');
+    if (!c) return;
+    if (!('IntersectionObserver' in window)) { c.classList.add('is-visible'); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { c.classList.add('is-visible'); io.disconnect(); } });
+    }, { threshold: 0.18 });
+    io.observe(c);
+  }
+
   /* ---------- Arranque ---------- */
   document.addEventListener('DOMContentLoaded', function () {
     initLoader();
@@ -258,6 +269,7 @@ window.waLink = waLink;
     initMenu();
     initScrollHeader();
     initReveal();
+    initMundo();
     document.addEventListener('langchange', function () { renderChannels(); updateWaLinks(); });
     I18n.init();
   });
