@@ -256,15 +256,72 @@
       '</div></section>' +
 
       /* CTA */
+      (c.pez ? pezHTML(c, waBtn, sitio) :
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
         '<div class="container text-center stack stack--center">' +
         (c.brujula ? '<div class="cta-compass" aria-hidden="true"><span class="compass-ring"></span><span class="compass-ring compass-ring--2"></span><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
         '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
         '<div class="cta-actions">' + waBtn + sitio + '</div>' +
-      '</div></section>';
+      '</div></section>');
     initCompass();
+    initPez();
     initCarta();
+  }
+
+  /* Pez león de Casa 9: espinas que se alargan con el scroll y se mecen como bajo el agua */
+  function pezHTML(c, waBtn, sitio) {
+    var z = c.pez, parts = '';
+    for (var i = 0; i < 16; i++) parts += '<span style="--x:' + ((i * 37) % 100) + '%;--d:' + (6 + (i % 5) * 1.7) + 's;--s:' + (2 + (i % 3)) + 'px;--dl:-' + (i * 0.9).toFixed(1) + 's"></span>';
+    return '<section class="cta-band--pez">' +
+      '<div class="pez-bg"><img src="' + esc(z.fondo_small) + '" srcset="' + esc(z.fondo_small) + ' 1200w, ' + esc(z.fondo) + ' 2400w" sizes="100vw" alt="" loading="lazy" decoding="async"></div>' +
+      '<div class="pez-rays" aria-hidden="true"></div>' +
+      '<div class="pez-particles" aria-hidden="true">' + parts + '</div>' +
+      '<div class="container pez-layout">' +
+        '<div class="pez-stage" aria-hidden="true">' +
+          '<svg viewBox="0 0 ' + z.w + ' ' + z.h + '" preserveAspectRatio="xMidYMid meet">' +
+            '<defs><filter id="pezFx" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">' +
+              '<feImage href="' + esc(z.mapa) + '" x="0" y="0" width="' + z.w + '" height="' + z.h + '" preserveAspectRatio="none" result="map"/>' +
+              '<feDisplacementMap class="pez-stretch" in="SourceGraphic" in2="map" scale="0" xChannelSelector="R" yChannelSelector="G" result="st"/>' +
+              '<feTurbulence type="fractalNoise" baseFrequency="0.006 0.011" numOctaves="2" seed="4" result="n">' +
+                '<animate attributeName="baseFrequency" dur="16s" values="0.006 0.011;0.0085 0.014;0.006 0.011" repeatCount="indefinite"/></feTurbulence>' +
+              '<feDisplacementMap in="st" in2="n" scale="10" xChannelSelector="R" yChannelSelector="G"/>' +
+            '</filter></defs>' +
+            '<image href="' + esc(z.img) + '" width="' + z.w + '" height="' + z.h + '" filter="url(#pezFx)"/>' +
+          '</svg>' +
+        '</div>' +
+        '<div class="pez-copy">' +
+          '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
+          '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
+          '<div class="cta-actions">' + waBtn + sitio + '</div>' +
+        '</div>' +
+      '</div></section>';
+  }
+  var pezBound = false;
+  function initPez() {
+    var sec = document.querySelector('.cta-band--pez');
+    if (!sec) return;
+    var fe = sec.querySelector('.pez-stretch'), stage = sec.querySelector('.pez-stage');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { fe.setAttribute('scale', '90'); return; }
+    var cur = 0, t0 = performance.now(), visible = false;
+    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) requestAnimationFrame(tick); }, { threshold: 0 });
+    io.observe(sec);
+    function progress() {
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      return Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.75)));      /* 0 al entrar → 1 bien adentro */
+    }
+    function tick(now) {
+      if (!visible) return;
+      var p = progress(), t = (now - t0) / 1000;
+      var ease = p * p * (3 - 2 * p);
+      var breath = Math.sin(t * 0.9) * 10 + Math.sin(t * 0.37) * 6;     /* respiración lenta, como flotando */
+      var target = 10 + ease * 115 + breath * ease;                          /* las espinas se alargan al hacer scroll */
+      cur += (target - cur) * 0.07;
+      fe.setAttribute('scale', cur.toFixed(1));
+      stage.style.transform = 'translate3d(' + (-(1 - ease) * 40).toFixed(1) + 'px,' + (Math.sin(t * 0.6) * 6).toFixed(1) + 'px,0) rotate(' + (Math.sin(t * 0.45) * 1.2 - (1 - ease) * 4).toFixed(2) + 'deg)';
+      stage.style.opacity = (0.15 + ease * 0.85).toFixed(3);
+      requestAnimationFrame(tick);
+    }
   }
 
   /* Carta náutica con rutas que se dibujan (estilo carta de navegación) */

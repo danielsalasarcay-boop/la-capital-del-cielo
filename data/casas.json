@@ -484,7 +484,15 @@
             "en": "Daily housekeeping"
           }
         }
-      ]
+      ],
+      "pez": {
+        "img": "img/casas/casa-9/pez/pez.webp",
+        "mapa": "img/casas/casa-9/pez/mapa.png",
+        "w": 1200,
+        "h": 877,
+        "fondo": "img/casas/casa-9/pez/fondo-2400.jpg",
+        "fondo_small": "img/casas/casa-9/pez/fondo-1200.jpg"
+      }
     },
     {
       "id": "macanao-lodge",
