@@ -572,16 +572,16 @@
       "tipo": "casa",
       "logo": "",
       "ubicacion": {
-        "es": "Los Roques",
-        "en": "Los Roques"
+        "es": "Gran Roque, Los Roques",
+        "en": "Gran Roque, Los Roques"
       },
       "descripcion_corta": {
-        "es": "Casa privada de 4 habitaciones con staff de 3 personas, incluido chef.",
-        "en": "Private 4-bedroom house with a staff of 3, including a chef."
+        "es": "Casa privada en Gran Roque de 4 habitaciones con staff de 3 personas, incluido chef.",
+        "en": "Private 4-bedroom house in Gran Roque with a staff of 3, including a chef."
       },
       "descripcion": {
-        "es": "Casa Bleu tiene 4 habitaciones con cama King y un staff de 3 personas en la casa, incluido un chef.",
-        "en": "Casa Bleu has 4 bedrooms with King beds and a staff of 3 in the house, including a chef."
+        "es": "Casa Bleu está en Gran Roque. Tiene 4 habitaciones con cama King y un staff de 3 personas en la casa, incluido un chef.",
+        "en": "Casa Bleu is in Gran Roque. It has 4 bedrooms with King beds and a staff of 3 in the house, including a chef."
       },
       "capacidad": 11,
       "habitaciones": 4,
@@ -647,6 +647,13 @@
       ],
       "amenidades": [
         {
+          "icono": "isla",
+          "texto": {
+            "es": "En Gran Roque",
+            "en": "In Gran Roque"
+          }
+        },
+        {
           "icono": "cama",
           "texto": {
             "es": "4 habitaciones con cama King",
@@ -683,8 +690,8 @@
         "img/casas/casa-bleu/bano.jpg"
       ],
       "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar Casa Bleu en Los Roques.",
-        "en": "Hi, I'd like information to book Casa Bleu in Los Roques."
+        "es": "Hola, quiero información para reservar Casa Bleu en Gran Roque, Los Roques.",
+        "en": "Hi, I'd like information to book Casa Bleu in Gran Roque, Los Roques."
       },
       "sitio_propio": ""
     },
