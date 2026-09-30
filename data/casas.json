@@ -79,9 +79,10 @@
       ],
       "imagen_portada": "img/casas/casa-verde/portada.jpg",
       "galeria": [
+        "img/casas/casa-verde/portada.jpg",
+        "img/casas/casa-verde/entrada.jpg",
         "img/casas/casa-verde/pasillo-pergola.jpg",
         "img/casas/casa-verde/vista-al-mar.jpg",
-        "img/casas/casa-verde/portada.jpg",
         "img/casas/casa-verde/terraza-mar.jpg",
         "img/casas/casa-verde/sala-vista-botes.jpg",
         "img/casas/casa-verde/sala.jpg",
@@ -90,7 +91,6 @@
         "img/casas/casa-verde/habitacion-verde.jpg",
         "img/casas/casa-verde/habitacion-azul.jpg",
         "img/casas/casa-verde/habitacion-literas.jpg",
-        "img/casas/casa-verde/entrada.jpg",
         "img/casas/casa-verde/bote-atardecer.jpg",
         "img/casas/casa-verde/bote-motores.jpg"
       ],
