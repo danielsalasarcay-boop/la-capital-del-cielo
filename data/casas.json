@@ -414,6 +414,159 @@
       ]
     },
     {
+      "id": "macanao-lodge",
+      "nombre": "Macanao Lodge",
+      "tipo": "posada",
+      "logo": "img/casas/macanao-lodge/logo.png",
+      "ubicacion": {
+        "es": "Posada · Los Roques",
+        "en": "Guesthouse · Los Roques"
+      },
+      "descripcion_corta": {
+        "es": "Posada en Los Roques: aquí se reserva por habitación, con gastronomía excelente y bote privado a los cayos.",
+        "en": "Guesthouse in Los Roques: book by the room, with excellent cuisine and a private boat to the cays."
+      },
+      "descripcion": {
+        "es": "Macanao Lodge es la única de nuestras propiedades que no es una casa completa: es una posada y se alquila por habitación. Placeholder: el resto de la descripción llega en la fase de contenido.",
+        "en": "Macanao Lodge is the only one of our properties that isn't a whole house: it's a guesthouse and you book by the room. Placeholder: the rest of the description comes in the content phase."
+      },
+      "capacidad": null,
+      "habitaciones": null,
+      "tipos_habitacion": [
+        {
+          "grupo": {
+            "es": "Vista al jardín",
+            "en": "Garden view"
+          },
+          "items": [
+            {
+              "nombre": "Superior King",
+              "detalle": {
+                "es": "Cama king",
+                "en": "King size bed"
+              }
+            },
+            {
+              "nombre": "Superior Double",
+              "detalle": {
+                "es": "Dos camas full",
+                "en": "Two full size beds"
+              }
+            },
+            {
+              "nombre": "Superior Triple",
+              "detalle": {
+                "es": "Cama queen + cama individual",
+                "en": "Queen size bed + single bed"
+              }
+            },
+            {
+              "nombre": "Superior King Full",
+              "detalle": {
+                "es": "Cama king + cama queen",
+                "en": "King size bed + queen size bed"
+              }
+            }
+          ]
+        },
+        {
+          "grupo": {
+            "es": "Vista al mar",
+            "en": "Ocean view"
+          },
+          "items": [
+            {
+              "nombre": "Deluxe King Terrace",
+              "detalle": {
+                "es": "Cama king + balcón privado",
+                "en": "King size bed + private balcony"
+              }
+            }
+          ]
+        }
+      ],
+      "incluye": [
+        {
+          "es": "Staff de servicio",
+          "en": "Service staff"
+        },
+        {
+          "es": "Chef privado",
+          "en": "Private chef"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
+        },
+        {
+          "es": "Limpieza diaria",
+          "en": "Daily housekeeping"
+        },
+        {
+          "es": "Bote privado a los cayos",
+          "en": "Private boat to the cays"
+        }
+      ],
+      "destacados": [
+        {
+          "es": "Se reserva por habitación",
+          "en": "Book by the room"
+        },
+        {
+          "es": "Habitaciones con vista al jardín o al mar",
+          "en": "Garden or ocean view rooms"
+        },
+        {
+          "es": "Bote privado a los cayos",
+          "en": "Private boat to the cays"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
+        }
+      ],
+      "imagen_portada": "",
+      "galeria": [],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar una habitación en Macanao Lodge, Los Roques.",
+        "en": "Hi, I'd like information to book a room at Macanao Lodge, Los Roques."
+      },
+      "sitio_propio": "",
+      "amenidades": [
+        {
+          "icono": "llave",
+          "texto": {
+            "es": "Posada: se reserva por habitación",
+            "en": "Guesthouse: book by the room"
+          }
+        },
+        {
+          "icono": "jardin",
+          "texto": {
+            "es": "Habitaciones con vista al jardín",
+            "en": "Garden view rooms"
+          }
+        },
+        {
+          "icono": "ola",
+          "texto": {
+            "es": "Habitación con vista al mar y balcón",
+            "en": "Ocean view room with balcony"
+          }
+        },
+        {
+          "icono": "bote",
+          "texto": {
+            "es": "Bote privado a los cayos",
+            "en": "Private boat to the cays"
+          }
+        }
+      ],
+      "mapa_embed": "https://maps.google.com/maps?cid=7405705893632199193&z=17&output=embed",
+      "mapa_link": "https://www.google.com/maps/place/Macanao+Lodge+By+LD/@11.9457232,-66.675721,18z",
+      "color": "#6EB2AE"
+    },
+    {
       "id": "casa-bleu",
       "nombre": "Casa Bleu",
       "tipo": "casa",
@@ -675,159 +828,6 @@
         "en": "Hi, I'd like information to book Casa Coro Coro in Gran Roque, Los Roques."
       },
       "sitio_propio": ""
-    },
-    {
-      "id": "macanao-lodge",
-      "nombre": "Macanao Lodge",
-      "tipo": "posada",
-      "logo": "img/casas/macanao-lodge/logo.png",
-      "ubicacion": {
-        "es": "Posada · Los Roques",
-        "en": "Guesthouse · Los Roques"
-      },
-      "descripcion_corta": {
-        "es": "Posada en Los Roques: aquí se reserva por habitación, con gastronomía excelente y bote privado a los cayos.",
-        "en": "Guesthouse in Los Roques: book by the room, with excellent cuisine and a private boat to the cays."
-      },
-      "descripcion": {
-        "es": "Macanao Lodge es la única de nuestras propiedades que no es una casa completa: es una posada y se alquila por habitación. Placeholder: el resto de la descripción llega en la fase de contenido.",
-        "en": "Macanao Lodge is the only one of our properties that isn't a whole house: it's a guesthouse and you book by the room. Placeholder: the rest of the description comes in the content phase."
-      },
-      "capacidad": null,
-      "habitaciones": null,
-      "tipos_habitacion": [
-        {
-          "grupo": {
-            "es": "Vista al jardín",
-            "en": "Garden view"
-          },
-          "items": [
-            {
-              "nombre": "Superior King",
-              "detalle": {
-                "es": "Cama king",
-                "en": "King size bed"
-              }
-            },
-            {
-              "nombre": "Superior Double",
-              "detalle": {
-                "es": "Dos camas full",
-                "en": "Two full size beds"
-              }
-            },
-            {
-              "nombre": "Superior Triple",
-              "detalle": {
-                "es": "Cama queen + cama individual",
-                "en": "Queen size bed + single bed"
-              }
-            },
-            {
-              "nombre": "Superior King Full",
-              "detalle": {
-                "es": "Cama king + cama queen",
-                "en": "King size bed + queen size bed"
-              }
-            }
-          ]
-        },
-        {
-          "grupo": {
-            "es": "Vista al mar",
-            "en": "Ocean view"
-          },
-          "items": [
-            {
-              "nombre": "Deluxe King Terrace",
-              "detalle": {
-                "es": "Cama king + balcón privado",
-                "en": "King size bed + private balcony"
-              }
-            }
-          ]
-        }
-      ],
-      "incluye": [
-        {
-          "es": "Staff de servicio",
-          "en": "Service staff"
-        },
-        {
-          "es": "Chef privado",
-          "en": "Private chef"
-        },
-        {
-          "es": "Gastronomía excelente",
-          "en": "Excellent cuisine"
-        },
-        {
-          "es": "Limpieza diaria",
-          "en": "Daily housekeeping"
-        },
-        {
-          "es": "Bote privado a los cayos",
-          "en": "Private boat to the cays"
-        }
-      ],
-      "destacados": [
-        {
-          "es": "Se reserva por habitación",
-          "en": "Book by the room"
-        },
-        {
-          "es": "Habitaciones con vista al jardín o al mar",
-          "en": "Garden or ocean view rooms"
-        },
-        {
-          "es": "Bote privado a los cayos",
-          "en": "Private boat to the cays"
-        },
-        {
-          "es": "Gastronomía excelente",
-          "en": "Excellent cuisine"
-        }
-      ],
-      "imagen_portada": "",
-      "galeria": [],
-      "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar una habitación en Macanao Lodge, Los Roques.",
-        "en": "Hi, I'd like information to book a room at Macanao Lodge, Los Roques."
-      },
-      "sitio_propio": "",
-      "amenidades": [
-        {
-          "icono": "llave",
-          "texto": {
-            "es": "Posada: se reserva por habitación",
-            "en": "Guesthouse: book by the room"
-          }
-        },
-        {
-          "icono": "jardin",
-          "texto": {
-            "es": "Habitaciones con vista al jardín",
-            "en": "Garden view rooms"
-          }
-        },
-        {
-          "icono": "ola",
-          "texto": {
-            "es": "Habitación con vista al mar y balcón",
-            "en": "Ocean view room with balcony"
-          }
-        },
-        {
-          "icono": "bote",
-          "texto": {
-            "es": "Bote privado a los cayos",
-            "en": "Private boat to the cays"
-          }
-        }
-      ],
-      "mapa_embed": "https://maps.google.com/maps?cid=7405705893632199193&z=17&output=embed",
-      "mapa_link": "https://www.google.com/maps/place/Macanao+Lodge+By+LD/@11.9457232,-66.675721,18z",
-      "color": "#6EB2AE"
     }
   ],
   "amenidades_comunes": [
