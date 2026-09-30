@@ -257,7 +257,7 @@
 
       /* CTA */
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + '"><div class="container text-center stack stack--center">' +
-        (c.brujula ? '<div class="cta-compass" aria-hidden="true"><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
+        (c.brujula ? '<div class="cta-compass" aria-hidden="true"><span class="compass-ring"></span><span class="compass-ring compass-ring--2"></span><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
         '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
         '<div class="cta-actions">' + waBtn + sitio + '</div>' +
       '</div></section>';
@@ -269,18 +269,28 @@
   function initCompass() {
     var rose = document.querySelector('.compass-rose');
     if (!rose || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    function update() {
+    var target = -120, current = -120, raf = null;
+    function measure() {
       var sec = rose.closest('section'); if (!sec) return;
       var r = sec.getBoundingClientRect(), vh = window.innerHeight;
       var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      rose.style.transform = 'rotate(' + (-90 + p * 180).toFixed(1) + 'deg) scale(' + (0.88 + Math.min(p * 2, 1) * 0.12).toFixed(3) + ')';
-      rose.style.opacity = Math.min(1, p * 2.2).toFixed(2);
+      target = -120 + p * 240;                       /* gira con el scroll */
+      rose.parentNode.style.setProperty('--p', p.toFixed(3));
+      if (!raf) raf = requestAnimationFrame(tick);
     }
-    update();
+    function tick() {
+      /* inercia: la aguja se acomoda suavemente y con un leve rebote */
+      current += (target - current) * 0.08;
+      var wobble = Math.sin(Date.now() / 900) * 1.5;  /* balanceo mínimo, como una brújula real */
+      rose.style.transform = 'rotate(' + (current + wobble).toFixed(2) + 'deg)';
+      if (Math.abs(target - current) > 0.05 || rose.getBoundingClientRect().top < window.innerHeight) raf = requestAnimationFrame(tick);
+      else raf = null;
+    }
+    measure();
     if (!compassBound) {
       compassBound = true;
-      window.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
-      window.addEventListener('resize', update);
+      window.addEventListener('scroll', measure, { passive: true });
+      window.addEventListener('resize', measure);
     }
   }
 

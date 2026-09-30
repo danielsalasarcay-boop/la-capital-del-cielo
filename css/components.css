@@ -848,12 +848,33 @@ h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list d
   .amenity-text { font-size: 0.9rem; line-height: 1.3; }
 }
 
-/* Brújula de la casa en el bloque de reserva */
-.cta-compass { width: clamp(150px, 20vw, 230px); aspect-ratio: 645 / 700; margin-bottom: var(--space-1); }
-.compass-rose { width: 100%; height: auto; transform: rotate(-90deg) scale(.88); opacity: 0; transition: transform .15s linear; filter: drop-shadow(0 12px 24px rgba(30, 80, 140, .12)); }
-.cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); }
-.cta-band--compass { background: radial-gradient(ellipse at 50% 30%, #FFFFFF 0%, var(--color-brand-soft) 70%); }
+/* Brújula de la casa en el bloque de reserva: la brújula es la protagonista */
+.cta-band--compass { padding-block: clamp(2.5rem, 1.8rem + 3vw, 4rem); background: radial-gradient(ellipse at 50% 38%, #FFFFFF 0%, var(--color-brand-soft) 72%); overflow: hidden; }
+.cta-band--compass .stack { gap: var(--space-2); }
+.cta-compass {
+  --p: 0; position: relative; display: grid; place-items: center;
+  width: clamp(240px, 34vw, 420px); aspect-ratio: 1;
+  opacity: calc(0.25 + var(--p) * 1.6); transform: scale(calc(0.9 + min(var(--p) * 0.3, 0.1)));
+  transition: opacity .3s linear;
+}
+.compass-rose { position: relative; z-index: 1; width: 92%; height: auto; will-change: transform; filter: drop-shadow(0 18px 30px rgba(30, 80, 140, .16)); }
+.compass-ring { position: absolute; inset: 8%; border-radius: 50%; border: 1px solid rgba(161, 202, 254, .9); animation: compass-ring 4.5s ease-out infinite; }
+.compass-ring--2 { animation-delay: 2.25s; }
+@keyframes compass-ring { 0% { transform: scale(.85); opacity: 0; } 20% { opacity: .9; } 100% { transform: scale(1.25); opacity: 0; } }
+.cta-band--compass .h2 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); margin-top: calc(var(--space-1) * -1); }
+.cta-actions { display: flex; flex-wrap: nowrap; justify-content: center; gap: 0.6rem; }
+@media (max-width: 480px) {
+  .cta-actions .btn { font-size: 0.66rem; letter-spacing: 0.08em; padding: 0.6rem 0.8rem; min-height: 42px; }
+}
+@media (prefers-reduced-motion: reduce) { .compass-ring { animation: none; opacity: 0; } .cta-compass { opacity: 1; transform: none; } }
 
 /* Menos espacio vacío entre Destacados y Comodidades */
 #casa-detail .section:has(> .split) { padding-bottom: var(--space-3); }
 #casa-detail .section:has(> .split) + .section--tight { padding-top: var(--space-3); }
+.cta-band--compass { padding-block: clamp(2rem, 1.5rem + 2.2vw, 3.25rem); }
+.cta-compass { width: clamp(230px, 27vw, 360px); }
+.cta-actions .btn { white-space: nowrap; }
+@media (max-width: 480px) {
+  .cta-actions { gap: 0.4rem; }
+  .cta-actions .btn { font-size: 0.6rem; letter-spacing: 0.04em; padding: 0.55rem 0.65rem; }
+}
