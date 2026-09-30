@@ -77,6 +77,7 @@
     toalla: '<path d="M6 3h12v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M6 7h12"/><path d="M9 21v-2M15 21v-2"/><path d="M9 11h6M9 14h6"/>',
     energia: '<path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/>',
     agua: '<path d="M12 3c3.5 4.5 6 7.8 6 10.8a6 6 0 0 1-12 0C6 10.8 8.5 7.5 12 3z"/><path d="M9 14.5a3 3 0 0 0 3 3"/>',
+    plato: '<circle cx="12" cy="12.5" r="6.5"/><circle cx="12" cy="12.5" r="3.6"/><path d="M3 4v5.5a1.5 1.5 0 0 0 3 0V4M4.5 9.5V20M21 4c-1.5.8-2.2 2.4-2.2 4.4 0 1.4.6 2.1 2.2 2.1V20"/>',
     ola: '<path d="M2.5 9c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 14c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/><path d="M2.5 19c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>'
   };
   function amenIcon(k) {
@@ -95,6 +96,14 @@
       '<ul class="amenities">' + list.map(function (a) {
         return '<li><span class="amenity-icon">' + amenIcon(a.icono) + '</span><span class="amenity-text">' + esc(I18n.pick(a.texto)) + '</span></li>';
       }).join('') + '</ul>' +
+      ((c.no_incluye && c.no_incluye.length) ?
+        '<div class="no-incluye">' +
+          '<p class="incluye-label">' + esc(I18n.t('casa.no_incluye')) + '</p>' +
+          '<ul class="chip-list">' + c.no_incluye.map(function (x) {
+            return '<li class="chip chip--no">' + esc(I18n.pick(x)) + '</li>';
+          }).join('') + '</ul>' +
+        '</div>' : '') +
+      (c.nota ? '<p class="casa-nota">' + esc(I18n.pick(c.nota)) + '</p>' : '') +
     '</div></section>';
   }
 
@@ -223,29 +232,6 @@
           }).join('') + '</div>' +
         '</div></section>' : '') +
 
-      /* Qué incluye */
-      '<section class="section section--alt incluye-section"><div class="container">' +
-        '<div class="incluye-layout">' +
-          '<div class="incluye-head">' +
-            '<h2 class="h2">' + esc(I18n.t('casa.incluye')) + '</h2>' +
-            '<p class="incluye-sub">' + esc(I18n.t('casa.incluye_sub')) + '</p>' +
-          '</div>' +
-          '<div class="incluye-body">' +
-            '<ul class="chip-list">' + (c.incluye || []).map(function (x) {
-              return '<li class="chip chip--yes">' + esc(I18n.pick(x)) + '</li>';
-            }).join('') + '</ul>' +
-            ((c.no_incluye && c.no_incluye.length) ?
-              '<div class="no-incluye">' +
-                '<p class="incluye-label">' + esc(I18n.t('casa.no_incluye')) + '</p>' +
-                '<ul class="chip-list">' + c.no_incluye.map(function (x) {
-                  return '<li class="chip chip--no">' + esc(I18n.pick(x)) + '</li>';
-                }).join('') + '</ul>' +
-              '</div>' : '') +
-            (c.nota ? '<p class="casa-nota">' + esc(I18n.pick(c.nota)) + '</p>' : '') +
-          '</div>' +
-        '</div>' +
-      '</div></section>' +
-
       /* Galería */
       '<section class="section"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.galeria')) + '</h2>' +
@@ -270,10 +256,32 @@
       '</div></section>' +
 
       /* CTA */
-      '<section class="section cta-band"><div class="container text-center stack stack--center">' +
+      '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + '"><div class="container text-center stack stack--center">' +
+        (c.brujula ? '<div class="cta-compass" aria-hidden="true"><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
         '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
-        waBtn + sitio +
+        '<div class="cta-actions">' + waBtn + sitio + '</div>' +
       '</div></section>';
+    initCompass();
+  }
+
+  /* Brújula de la casa: gira al ritmo del scroll mientras se ve la sección de reserva */
+  var compassBound = false;
+  function initCompass() {
+    var rose = document.querySelector('.compass-rose');
+    if (!rose || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function update() {
+      var sec = rose.closest('section'); if (!sec) return;
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      rose.style.transform = 'rotate(' + (-90 + p * 180).toFixed(1) + 'deg) scale(' + (0.88 + Math.min(p * 2, 1) * 0.12).toFixed(3) + ')';
+      rose.style.opacity = Math.min(1, p * 2.2).toFixed(2);
+    }
+    update();
+    if (!compassBound) {
+      compassBound = true;
+      window.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
+      window.addEventListener('resize', update);
+    }
   }
 
   /* ---------- Formulario de contacto -> WhatsApp ---------- */

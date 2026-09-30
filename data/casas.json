@@ -85,10 +85,8 @@
         "img/casas/casa-verde/entrada.jpg",
         "img/casas/casa-verde/fachada-anochecer.jpg",
         "img/casas/casa-verde/pasillo-pergola.jpg",
-        "img/casas/casa-verde/vista-al-mar.jpg",
         "img/casas/casa-verde/terraza-mar.jpg",
         "img/casas/casa-verde/terraza-botes.jpg",
-        "img/casas/casa-verde/atardecer-terraza.jpg",
         "img/casas/casa-verde/sala-vista-botes.jpg",
         "img/casas/casa-verde/sala.jpg",
         "img/casas/casa-verde/sala-panoramica.jpg",
@@ -97,7 +95,9 @@
         "img/casas/casa-verde/habitacion-azul.jpg",
         "img/casas/casa-verde/habitacion-literas.jpg",
         "img/casas/casa-verde/bote-atardecer.jpg",
-        "img/casas/casa-verde/bote-motores.jpg"
+        "img/casas/casa-verde/bote-motores.jpg",
+        "img/casas/casa-verde/vista-al-mar.jpg",
+        "img/casas/casa-verde/atardecer-terraza.jpg"
       ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa Verde en Los Roques.",
@@ -139,6 +139,13 @@
             "es": "Limpieza diaria",
             "en": "Daily housekeeping"
           }
+        },
+        {
+          "icono": "chef",
+          "texto": {
+            "es": "Chef privado",
+            "en": "Private chef"
+          }
         }
       ],
       "mapa_embed": "https://maps.google.com/maps?q=11.945813,-66.676766&z=18&output=embed",
@@ -158,8 +165,8 @@
         "en": "Private beachfront house in Gran Roque, with direct access to the Caribbean and staff included."
       },
       "descripcion": {
-        "es": "Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Está frente al mar en Gran Roque, isla declarada Parque Nacional: al cruzar su arco turquesa, el Caribe aparece al fondo. Placeholder: el resto de la descripción llega en la fase de contenido.",
-        "en": "Casa Panza blends the most refined coastal minimalism with the authentic soul of the Venezuelan Caribbean. It sits on the water in Gran Roque, an island declared a National Park: step through its turquoise arch and the Caribbean opens up ahead. Placeholder: the rest of the description comes in the content phase."
+        "es": "Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Está frente al mar en Gran Roque, isla declarada Parque Nacional: al cruzar su arco turquesa, el Caribe aparece al fondo.",
+        "en": "Casa Panza blends the most refined coastal minimalism with the authentic soul of the Venezuelan Caribbean. It sits on the water in Gran Roque, an island declared a National Park: step through its turquoise arch and the Caribbean opens up ahead."
       },
       "capacidad": 10,
       "habitaciones": 3,
@@ -299,10 +306,18 @@
             "es": "Limpieza diaria",
             "en": "Daily housekeeping"
           }
+        },
+        {
+          "icono": "chef",
+          "texto": {
+            "es": "Chef privado",
+            "en": "Private chef"
+          }
         }
       ],
       "mapa_embed": "https://maps.google.com/maps?cid=10655322288920728829&z=16&output=embed",
-      "mapa_link": "https://maps.google.com/?cid=10655322288920728829"
+      "mapa_link": "https://maps.google.com/?cid=10655322288920728829",
+      "brujula": "img/casas/casa-panza/brujula.png"
     },
     {
       "id": "casa-9",
@@ -318,8 +333,8 @@
         "en": "Private house in Cacho Madrizquí, with 5 bedrooms and a staff of 3 including a chef."
       },
       "descripcion": {
-        "es": "Casa 9 está en el Cacho Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef. Placeholder: el resto de la descripción llega en la fase de contenido.",
-        "en": "Casa 9 is in Cacho Madrizquí, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef. Placeholder: the rest of the description comes in the content phase."
+        "es": "Casa 9 está en el Cacho Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef.",
+        "en": "Casa 9 is in Cacho Madrizquí, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef."
       },
       "capacidad": 12,
       "habitaciones": 5,
@@ -446,8 +461,8 @@
         "en": "Guesthouse in Los Roques: book by the room, with excellent cuisine and a private boat to the cays."
       },
       "descripcion": {
-        "es": "Macanao Lodge es la única de nuestras propiedades que no es una casa completa: es una posada y se alquila por habitación. Placeholder: el resto de la descripción llega en la fase de contenido.",
-        "en": "Macanao Lodge is the only one of our properties that isn't a whole house: it's a guesthouse and you book by the room. Placeholder: the rest of the description comes in the content phase."
+        "es": "Macanao Lodge es la única de nuestras propiedades que no es una casa completa: es una posada y se alquila por habitación.",
+        "en": "Macanao Lodge is the only one of our properties that isn't a whole house: it's a guesthouse and you book by the room."
       },
       "capacidad": null,
       "habitaciones": null,
@@ -578,6 +593,13 @@
           "texto": {
             "es": "Bote privado a los cayos",
             "en": "Private boat to the cays"
+          }
+        },
+        {
+          "icono": "chef",
+          "texto": {
+            "es": "Chef privado",
+            "en": "Private chef"
           }
         }
       ],
@@ -788,6 +810,13 @@
       ],
       "amenidades": [
         {
+          "icono": "staff",
+          "texto": {
+            "es": "Encargado que cocina y 2 personas de servicio",
+            "en": "Manager who cooks and 2 service staff"
+          }
+        },
+        {
           "icono": "cama",
           "texto": {
             "es": "5 habitaciones con baño privado",
@@ -878,7 +907,7 @@
       }
     },
     {
-      "icono": "chef",
+      "icono": "plato",
       "texto": {
         "es": "Gastronomía excelente",
         "en": "Excellent cuisine"
