@@ -423,24 +423,6 @@
           "en": "Daily housekeeping"
         }
       ],
-      "no_incluye": [
-        {
-          "es": "Comidas",
-          "en": "Meals"
-        },
-        {
-          "es": "Bebidas",
-          "en": "Beverages"
-        },
-        {
-          "es": "Propinas",
-          "en": "Tips"
-        }
-      ],
-      "nota": {
-        "es": "Se sugiere un menú según el número de personas y de días, con la lista de ingredientes necesarios.",
-        "en": "A menu is suggested according to the number of guests and days, with the list of required ingredients."
-      },
       "destacados": [
         {
           "es": "En el Cacho Madrizquí",
@@ -717,20 +699,6 @@
         {
           "es": "Limpieza diaria",
           "en": "Daily housekeeping"
-        }
-      ],
-      "no_incluye": [
-        {
-          "es": "Comidas",
-          "en": "Meals"
-        },
-        {
-          "es": "Propinas",
-          "en": "Tips"
-        },
-        {
-          "es": "Bote",
-          "en": "Boat"
         }
       ],
       "destacados": [

@@ -22,6 +22,26 @@
       "imagen": "img/merch/mango.jpg"
     },
     {
+      "id": "red-manta",
+      "nombre": "Red Manta",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/red-manta.jpg"
+    },
+    {
+      "id": "rider",
+      "nombre": "Rider",
+      "tipo": {
+        "es": "Camisa manga larga",
+        "en": "Long-sleeve shirt"
+      },
+      "precio": "30,00",
+      "imagen": "img/merch/rider.jpg"
+    },
+    {
       "id": "langosta",
       "nombre": "Langosta",
       "tipo": {
@@ -60,26 +80,6 @@
       },
       "precio": "30,00",
       "imagen": "img/merch/kitesurfer.jpg"
-    },
-    {
-      "id": "rider",
-      "nombre": "Rider",
-      "tipo": {
-        "es": "Camisa manga larga",
-        "en": "Long-sleeve shirt"
-      },
-      "precio": "30,00",
-      "imagen": "img/merch/rider.jpg"
-    },
-    {
-      "id": "red-manta",
-      "nombre": "Red Manta",
-      "tipo": {
-        "es": "Camisa manga larga",
-        "en": "Long-sleeve shirt"
-      },
-      "precio": "30,00",
-      "imagen": "img/merch/red-manta.jpg"
     }
   ]
 }

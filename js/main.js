@@ -253,11 +253,43 @@ window.waLink = waLink;
   function initMundo() {
     var c = document.querySelector('[data-mundo]');
     if (!c) return;
-    if (!('IntersectionObserver' in window)) { c.classList.add('is-visible'); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { c.classList.add('is-visible'); io.disconnect(); } });
-    }, { threshold: 0.18 });
-    io.observe(c);
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { c.classList.add('is-visible'); io.disconnect(); } });
+      }, { threshold: 0.2 });
+      io.observe(c);
+    } else { c.classList.add('is-visible'); }
+    if (reduced) return;
+    /* Parallax por profundidad: cada figura se mueve distinto según el scroll
+       (y un poco hacia el mouse), con interpolación suave. */
+    var items = Array.prototype.map.call(c.querySelectorAll('[data-depth]'), function (el) {
+      return { el: el, d: parseFloat(el.getAttribute('data-depth')) || 0.5, dir: parseFloat(el.getAttribute('data-dir')) || 0, x: 0, y: 0, r: 0 };
+    });
+    var mx = 0, my = 0, running = false;
+    c.addEventListener('pointermove', function (e) {
+      var b = c.getBoundingClientRect(); mx = (e.clientX - b.left) / b.width - .5; my = (e.clientY - b.top) / b.height - .5; kick();
+    });
+    c.addEventListener('pointerleave', function () { mx = 0; my = 0; kick(); });
+    function frame() {
+      var b = c.getBoundingClientRect(), vh = window.innerHeight;
+      var p = ((b.top + b.height / 2) - vh / 2) / (vh / 2 + b.height / 2);
+      p = Math.max(-1.2, Math.min(1.2, p));
+      var moving = false;
+      items.forEach(function (it) {
+        var tx = -p * it.dir * 34 * it.d + mx * 16 * it.d;
+        var ty = p * 42 * it.d + my * 10 * it.d;
+        var tr = -p * it.dir * 3 * it.d;
+        it.x += (tx - it.x) * 0.09; it.y += (ty - it.y) * 0.09; it.r += (tr - it.r) * 0.09;
+        if (Math.abs(tx - it.x) + Math.abs(ty - it.y) > 0.05) moving = true;
+        it.el.style.transform = 'translate3d(' + it.x.toFixed(2) + 'px,' + it.y.toFixed(2) + 'px,0) rotate(' + it.r.toFixed(2) + 'deg)';
+      });
+      if (moving) requestAnimationFrame(frame); else running = false;
+    }
+    function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', kick);
+    kick();
   }
 
   /* ---------- Arranque ---------- */
