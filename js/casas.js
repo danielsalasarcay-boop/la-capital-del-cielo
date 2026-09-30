@@ -256,8 +256,9 @@
       '</div></section>' +
 
       /* CTA */
-      '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '"><div class="container text-center stack stack--center">' +
+      '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
+        '<div class="container text-center stack stack--center">' +
         (c.brujula ? '<div class="cta-compass" aria-hidden="true"><span class="compass-ring"></span><span class="compass-ring compass-ring--2"></span><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
         '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
         '<div class="cta-actions">' + waBtn + sitio + '</div>' +
@@ -277,15 +278,15 @@
       dots += '<circle class="carta-dest" style="--i:' + i + '" cx="' + dd.x + '" cy="' + dd.y + '" r="7" fill="' + col + '"/>';
       labels += '<text class="carta-label" style="--i:' + i + '" x="' + dd.x + '" y="' + (dd.y - 22) + '" text-anchor="middle">' + esc(dd.nombre) + '</text>';
     });
-    return '<figure class="carta" aria-label="' + esc(c.nombre) + '">' +
-      '<img src="' + esc(k.img_small) + '" srcset="' + esc(k.img_small) + ' 1200w, ' + esc(k.img) + ' 2400w" sizes="(min-width: 1100px) 1000px, 92vw" alt="" loading="lazy" decoding="async">' +
+    return '<div class="carta" aria-hidden="true">' +
+      '<img src="' + esc(k.img_small) + '" srcset="' + esc(k.img_small) + ' 1200w, ' + esc(k.img) + ' 2400w" sizes="100vw" alt="" loading="lazy" decoding="async">' +
       '<svg viewBox="0 0 2000 1116" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
         '<defs>' + masks + '</defs>' +
         '<g>' + routes + '</g>' + dots + labels +
         '<circle class="carta-pulse" cx="' + o[0] + '" cy="' + o[1] + '" r="10" fill="none" stroke="' + col + '" stroke-width="3"/>' +
         '<circle cx="' + o[0] + '" cy="' + o[1] + '" r="11" fill="' + col + '" stroke="#fff" stroke-width="4"/>' +
         '<text class="carta-origin" x="' + o[0] + '" y="' + (o[1] + 48) + '" text-anchor="middle">' + esc(k.origen_nombre) + '</text>' +
-      '</svg></figure>';
+      '</svg></div>';
   }
   function initCarta() {
     var el = document.querySelector('.carta');
@@ -302,29 +303,68 @@
   function initCompass() {
     var rose = document.querySelector('.compass-rose');
     if (!rose || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var target = -120, current = -120, raf = null;
-    function measure() {
+    /* Aguja con "magnetismo" al norte: el scroll la empuja un poco, un resorte la
+       devuelve a 0° con un vaivén amortiguado, como una brújula real. */
+    var angle = 0, vel = 0, lastY = window.scrollY, raf = null, idle = 0;
+    function kick() {
+      var y = window.scrollY, dy = y - lastY; lastY = y;
+      vel += Math.max(-1.6, Math.min(1.6, dy * 0.025));   /* empujón leve según la velocidad del scroll */
+      idle = 0;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+    function tick(t) {
+      vel += -angle * 0.05;                          /* resorte hacia el norte */
+      vel *= 0.86;                                     /* amortiguación */
+      angle += vel;
+      angle = Math.max(-12, Math.min(12, angle));      /* nunca se aleja demasiado del norte */
+      var tremble = Math.sin((t || 0) / 900) * 0.4;   /* temblor mínimo de aguja */
+      rose.style.transform = 'rotate(' + (angle + tremble).toFixed(2) + 'deg)';
+      idle++;
+      raf = requestAnimationFrame(tick);
+    }
+    function reveal() {
       var sec = rose.closest('section'); if (!sec) return;
       var r = sec.getBoundingClientRect(), vh = window.innerHeight;
       var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      target = -120 + p * 240;                       /* gira con el scroll */
       rose.parentNode.style.setProperty('--p', p.toFixed(3));
-      if (!raf) raf = requestAnimationFrame(tick);
     }
-    function tick() {
-      /* inercia: la aguja se acomoda suavemente y con un leve rebote */
-      current += (target - current) * 0.08;
-      var wobble = Math.sin(Date.now() / 900) * 1.5;  /* balanceo mínimo, como una brújula real */
-      rose.style.transform = 'rotate(' + (current + wobble).toFixed(2) + 'deg)';
-      if (Math.abs(target - current) > 0.05 || rose.getBoundingClientRect().top < window.innerHeight) raf = requestAnimationFrame(tick);
-      else raf = null;
-    }
-    measure();
+    reveal(); raf = requestAnimationFrame(tick);
     if (!compassBound) {
       compassBound = true;
-      window.addEventListener('scroll', measure, { passive: true });
-      window.addEventListener('resize', measure);
+      window.addEventListener('scroll', function () { kick(); reveal(); }, { passive: true });
+      window.addEventListener('resize', reveal);
     }
+  }
+
+  /* Carta náutica con rutas que se dibujan (estilo carta de navegación) */
+  function cartaHTML(c) {
+    var k = c.carta, o = k.origen, col = esc(k.color || '#2BA88C');
+    var routes = '', masks = '', dots = '', labels = '';
+    (k.destinos || []).forEach(function (dd, i) {
+      var d = 'M ' + o[0] + ' ' + o[1] + ' Q ' + dd.curva[0] + ' ' + dd.curva[1] + ' ' + dd.x + ' ' + dd.y;
+      masks += '<mask id="cm' + i + '" maskUnits="userSpaceOnUse"><path class="carta-draw" style="--i:' + i + '" d="' + d + '" pathLength="1" stroke="#fff" stroke-width="14" fill="none"/></mask>';
+      routes += '<path d="' + d + '" mask="url(#cm' + i + ')" stroke="' + col + '" stroke-width="5" stroke-dasharray="3 11" stroke-linecap="round" fill="none"/>';
+      dots += '<circle class="carta-dest" style="--i:' + i + '" cx="' + dd.x + '" cy="' + dd.y + '" r="7" fill="' + col + '"/>';
+      labels += '<text class="carta-label" style="--i:' + i + '" x="' + dd.x + '" y="' + (dd.y - 22) + '" text-anchor="middle">' + esc(dd.nombre) + '</text>';
+    });
+    return '<div class="carta" aria-hidden="true">' +
+      '<img src="' + esc(k.img_small) + '" srcset="' + esc(k.img_small) + ' 1200w, ' + esc(k.img) + ' 2400w" sizes="100vw" alt="" loading="lazy" decoding="async">' +
+      '<svg viewBox="0 0 2000 1116" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+        '<defs>' + masks + '</defs>' +
+        '<g>' + routes + '</g>' + dots + labels +
+        '<circle class="carta-pulse" cx="' + o[0] + '" cy="' + o[1] + '" r="10" fill="none" stroke="' + col + '" stroke-width="3"/>' +
+        '<circle cx="' + o[0] + '" cy="' + o[1] + '" r="11" fill="' + col + '" stroke="#fff" stroke-width="4"/>' +
+        '<text class="carta-origin" x="' + o[0] + '" y="' + (o[1] + 48) + '" text-anchor="middle">' + esc(k.origen_nombre) + '</text>' +
+      '</svg></div>';
+  }
+  function initCarta() {
+    var el = document.querySelector('.carta');
+    if (!el) return;
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.classList.add('is-drawn'); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { el.classList.add('is-drawn'); io.disconnect(); } });
+    }, { threshold: 0.35 });
+    io.observe(el);
   }
 
   /* ---------- Formulario de contacto -> WhatsApp ---------- */

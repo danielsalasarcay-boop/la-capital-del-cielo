@@ -904,3 +904,73 @@ h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list d
 @keyframes carta-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(4); opacity: 0; } }
 @media (max-width: 599px) { .carta { border-radius: 12px; } .carta-label { font-size: 40px; } .carta-origin { font-size: 44px; } }
 @media (prefers-reduced-motion: reduce) { .carta, .carta-draw, .carta-dest, .carta-label { transition: none !important; } .carta-pulse { animation: none; } }
+
+/* Carta como FONDO de la sección (no tarjeta), sección compacta */
+.cta-band--carta {
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: clamp(340px, 34vw, 460px);
+  padding-block: var(--space-4);
+  display: flex; align-items: flex-end;
+  background: #F7F2E8;
+}
+.cta-band--carta > .container { position: relative; z-index: 2; }
+.cta-band--carta .carta {
+  position: absolute; inset: 0; z-index: 0; width: auto; aspect-ratio: auto;
+  border-radius: 0; box-shadow: none; transform: none;
+}
+.cta-band--carta .carta.is-drawn { transform: none; }
+.cta-band--carta::after { /* velo crema solo abajo, detrás del nombre y los botones */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(247, 242, 232, .92) 0%, rgba(247, 242, 232, .6) 26%, rgba(247, 242, 232, 0) 46%);
+}
+.cta-band--carta .stack { gap: 0.75rem; }
+.cta-band--carta .h2 { margin: 0; }
+@media (max-width: 599px) {
+  .cta-band--carta { min-height: 360px; padding-block: var(--space-3); }
+  .cta-band--carta .carta-label { font-size: 34px; }
+}
+.cta-band--carta > .container { width: 100%; }
+/* Casa Verde: nombre + botones en una sola fila sobre la carta */
+.cta-band--carta .stack { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.75rem 1.5rem; }
+.cta-band--carta .h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.cta-band--carta .cta-actions { flex-wrap: nowrap; }
+@media (max-width: 599px) {
+  .cta-band--carta .stack { flex-direction: column; gap: 0.6rem; }
+}
+
+/* ==========================================================================
+   Botones de reserva (WhatsApp / Visitar sitio) — hover interactivo
+   ========================================================================== */
+.cta-actions .btn {
+  position: relative; overflow: hidden; isolation: isolate;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), letter-spacing .35s var(--ease);
+}
+.cta-actions .btn::before { /* relleno que sube desde abajo */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  transform: translateY(101%); transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.cta-actions .btn::after { /* flecha que entra desde la izquierda */
+  content: "→"; display: inline-block; width: 0; opacity: 0; margin-left: 0;
+  transform: translateX(-8px); transition: width .35s var(--ease), opacity .35s var(--ease), transform .35s var(--ease), margin .35s var(--ease);
+}
+.cta-actions .btn-primary::before { background: linear-gradient(135deg, #7FB6FA 0%, #A1CAFE 100%); }
+.cta-actions .btn-outline { background: rgba(255, 255, 255, .7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.cta-actions .btn-outline::before { background: var(--color-brand-soft); }
+@media (hover: hover) {
+  .cta-actions .btn:hover { transform: translateY(-3px); text-decoration: none; }
+  .cta-actions .btn:hover::before { transform: translateY(0); }
+  .cta-actions .btn:hover::after { width: 1em; opacity: 1; margin-left: .5em; transform: none; }
+  .cta-actions .btn-primary:hover { box-shadow: 0 14px 28px -10px rgba(60, 130, 220, .6), 0 0 0 4px rgba(161, 202, 254, .35); }
+  .cta-actions .btn-outline:hover { border-color: var(--color-brand); box-shadow: 0 12px 24px -12px rgba(60, 130, 220, .45); }
+}
+.cta-actions .btn:active { transform: translateY(0) scale(.97); transition-duration: .12s; }
+.cta-actions .btn:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(161, 202, 254, .7); }
+/* la flecha aparece sin empujar al otro botón */
+.cta-actions .btn::after { position: absolute; right: 1.1rem; width: auto; margin: 0; }
+@media (hover: hover) { .cta-actions .btn:hover { padding-right: 2.6rem; padding-left: 1.2rem; } .cta-actions .btn:hover::after { width: auto; margin: 0; } }
+.cta-actions .btn { transition-property: transform, box-shadow, color, border-color, padding; }
+/* ancho constante: la flecha se acomoda dentro del espacio reservado */
+.cta-actions .btn { padding-left: 1.5rem; padding-right: 2.4rem; }
+@media (hover: hover) { .cta-actions .btn:hover { padding-left: 1.5rem; padding-right: 2.4rem; } }
+.cta-actions .btn::after { right: 0.95rem; }
+@media (max-width: 480px) { .cta-actions .btn { padding-left: 0.65rem; padding-right: 0.65rem; } .cta-actions .btn::after { display: none; } }
