@@ -213,7 +213,7 @@
             (has(c.habitaciones) ? '<div><dt>' + esc(I18n.t('common.habitaciones')) + '</dt><dd>' + esc(c.habitaciones) + '</dd></div>' : '') +
           '</dl>' : '') +
           ((c.distribucion && c.distribucion.length) ? '<div><h3 class="facts-sub">' + esc(I18n.t('casa.distribucion')) + '</h3><ul class="check-list">' + li(c.distribucion) + '</ul></div>' : '') +
-          '<div class="stack">' + waBtn + sitio + '</div>' +
+          '<div class="stack cta-actions cta-actions--facts">' + waBtn + sitio + '</div>' +
         '</aside>' +
       '</div></section>' +
 

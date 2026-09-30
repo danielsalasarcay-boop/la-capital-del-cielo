@@ -974,3 +974,7 @@ h1, h2, h3, .h1, .h2, .h3, .card-title, .product-name, .room-name, .facts-list d
 @media (hover: hover) { .cta-actions .btn:hover { padding-left: 1.5rem; padding-right: 2.4rem; } }
 .cta-actions .btn::after { right: 0.95rem; }
 @media (max-width: 480px) { .cta-actions .btn { padding-left: 0.65rem; padding-right: 0.65rem; } .cta-actions .btn::after { display: none; } }
+/* Botones de "Datos rápidos": mismo efecto interactivo, apilados a lo ancho */
+.cta-actions--facts { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 0.6rem; }
+.cta-actions--facts .btn { width: 100%; justify-content: center; }
+@media (max-width: 480px) { .cta-actions--facts .btn { font-size: 0.72rem; padding-block: 0.7rem; } }
