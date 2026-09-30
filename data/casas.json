@@ -368,8 +368,10 @@
           "en": "Staff of 3 with chef"
         }
       ],
-      "imagen_portada": "",
-      "galeria": [],
+      "imagen_portada": "img/casas/casa-9/portada.jpg",
+      "galeria": [
+        "img/casas/casa-9/portada.jpg"
+      ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa 9 en el Cacho Madrizquí, Los Roques.",
         "en": "Hi, I'd like information to book Casa 9 in Cacho Madrizquí, Los Roques."
@@ -682,8 +684,10 @@
           }
         }
       ],
-      "imagen_portada": "",
-      "galeria": [],
+      "imagen_portada": "img/casas/casa-bleu/portada.jpg",
+      "galeria": [
+        "img/casas/casa-bleu/portada.jpg"
+      ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa Bleu en Gran Roque, Los Roques.",
         "en": "Hi, I'd like information to book Casa Bleu in Gran Roque, Los Roques."
