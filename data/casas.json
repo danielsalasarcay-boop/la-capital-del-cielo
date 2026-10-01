@@ -441,7 +441,30 @@
       "imagen_hero": "img/casas/casa-9/portada-hero.jpg",
       "hero_ancho": 2800,
       "galeria": [
-        "img/casas/casa-9/portada.jpg"
+        "img/casas/casa-9/portada.jpg",
+        "img/casas/casa-9/sala-comedor-vista-al-mar.jpg",
+        "img/casas/casa-9/vista-a-la-playa.jpg",
+        "img/casas/casa-9/sala.jpg",
+        "img/casas/casa-9/sofa-cojines.jpg",
+        "img/casas/casa-9/staff.jpg",
+        "img/casas/casa-9/habitacion-rosada.jpg",
+        "img/casas/casa-9/habitacion-azul.jpg",
+        "img/casas/casa-9/habitacion-amarilla.jpg",
+        "img/casas/casa-9/habitacion-literas.jpg",
+        "img/casas/casa-9/lamparas.jpg",
+        "img/casas/casa-9/sillas-sala.jpg",
+        "img/casas/casa-9/mesa-comedor.jpg",
+        "img/casas/casa-9/mesa-detalle.jpg",
+        "img/casas/casa-9/bano-espejo.jpg",
+        "img/casas/casa-9/bano-verde.jpg",
+        "img/casas/casa-9/bano-amarillo.jpg",
+        "img/casas/casa-9/bano-pasillo.jpg",
+        "img/casas/casa-9/bano-ventana.jpg",
+        "img/casas/casa-9/cojin-colorido.jpg",
+        "img/casas/casa-9/toallas.jpg",
+        "img/casas/casa-9/toallas-cojin.jpg",
+        "img/casas/casa-9/detalle-mesa.jpg",
+        "img/casas/casa-9/espejo.jpg"
       ],
       "video": {
         "src": "img/casas/casa-9/recorrido.mp4",
@@ -614,7 +637,24 @@
         }
       ],
       "imagen_portada": "img/casas/macanao-lodge/portada.jpg",
-      "galeria": [],
+      "galeria": [
+        "img/casas/macanao-lodge/portada.jpg",
+        "img/casas/macanao-lodge/playa-sombrilla.jpg",
+        "img/casas/macanao-lodge/tumbonas.jpg",
+        "img/casas/macanao-lodge/bar.jpg",
+        "img/casas/macanao-lodge/restaurante.jpg",
+        "img/casas/macanao-lodge/lobby.jpg",
+        "img/casas/macanao-lodge/terraza.jpg",
+        "img/casas/macanao-lodge/terraza-vista.jpg",
+        "img/casas/macanao-lodge/habitacion.jpg",
+        "img/casas/macanao-lodge/habitacion-balcon.jpg",
+        "img/casas/macanao-lodge/bano-ducha.jpg",
+        "img/casas/macanao-lodge/bano.jpg",
+        "img/casas/macanao-lodge/fachada-escaleras.jpg",
+        "img/casas/macanao-lodge/fachada-posada.jpg",
+        "img/casas/macanao-lodge/bote.jpg",
+        "img/casas/macanao-lodge/coco.jpg"
+      ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar una habitación en Macanao Lodge, Los Roques.",
         "en": "Hi, I'd like information to book a room at Macanao Lodge, Los Roques."
@@ -767,7 +807,20 @@
       "imagen_hero": "img/casas/casa-bleu/portada-hero.jpg",
       "hero_ancho": 2800,
       "galeria": [
-        "img/casas/casa-bleu/portada.jpg"
+        "img/casas/casa-bleu/portada.jpg",
+        "img/casas/casa-bleu/sala-azul.jpg",
+        "img/casas/casa-bleu/cocina.jpg",
+        "img/casas/casa-bleu/staff.jpg",
+        "img/casas/casa-bleu/mesa-servida.jpg",
+        "img/casas/casa-bleu/cojines-estrellas.jpg",
+        "img/casas/casa-bleu/habitacion-principal.jpg",
+        "img/casas/casa-bleu/habitacion-blanca.jpg",
+        "img/casas/casa-bleu/habitacion-cojines-azules.jpg",
+        "img/casas/casa-bleu/habitacion-literas.jpg",
+        "img/casas/casa-bleu/remos.jpg",
+        "img/casas/casa-bleu/bano.jpg",
+        "img/casas/casa-bleu/bano-2.jpg",
+        "img/casas/casa-bleu/bano-ducha.jpg"
       ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa Bleu en Gran Roque, Los Roques.",
