@@ -1363,3 +1363,16 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 .site-header.over-hero:not(.menu-open) .lang-switch { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.4); }
 .site-header.over-hero:not(.menu-open) .lang-switch .lang-btn:not(.is-active) { color: rgba(255,255,255,.85); }
 .site-header.over-hero:not(.menu-open) .lang-switch .lang-btn.is-active { background: none !important; }
+
+/* Home más compacto: menos aire entre secciones */
+#casas { padding-bottom: var(--space-4); }
+#casas > .container > p.text-center { margin-top: var(--space-3) !important; }
+#experiencia { padding-top: var(--space-4); padding-bottom: var(--space-5); }
+#experiencia .section-head { margin-bottom: var(--space-3); }
+#merchandise { padding-block: var(--space-5); }
+#merchandise > .container > p { margin-top: var(--space-3) !important; }
+@media (max-width: 699px) {
+  #casas { padding-bottom: var(--space-3); }
+  #experiencia { padding-top: var(--space-3); padding-bottom: var(--space-4); }
+  #merchandise { padding-block: var(--space-4); }
+}
