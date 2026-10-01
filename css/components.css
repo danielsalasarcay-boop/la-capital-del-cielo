@@ -1646,3 +1646,7 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .cart-line .qty--sm .qty-val { min-width: 18px; font-size: .82rem; }
 .cart-send { white-space: nowrap; letter-spacing: .06em; font-size: .7rem; }
 .cart-line__info .qty--sm { justify-self: start; }
+/* Galería grande (fotos amplias, formato horizontal) */
+.gallery-fit--big { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-2); }
+.gallery-fit--big .media { aspect-ratio: 3 / 2 !important; border-radius: 10px; }
+@media (max-width: 599px) { .gallery-fit--big { grid-template-columns: 1fr !important; } }

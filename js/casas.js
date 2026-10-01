@@ -244,7 +244,7 @@
       /* Galería */
       '<section class="section"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.galeria')) + '</h2>' +
-        '<div class="grid gallery-fit">' + gallery + '</div>' +
+        '<div class="grid gallery-fit' + (c.galeria_grande ? ' gallery-fit--big' : '') + '">' + gallery + '</div>' +
       '</div></section>' +
 
       /* Visor de fotos */
