@@ -296,6 +296,12 @@ window.waLink = waLink;
         if (Math.abs(tx - it.x) + Math.abs(ty - it.y) > 0.05) moving = true;
         it.el.style.transform = 'translate3d(' + it.x.toFixed(2) + 'px,' + it.y.toFixed(2) + 'px,0) rotate(' + it.r.toFixed(2) + 'deg)';
       });
+      var beam = c.querySelector('.faro-beam');
+      if (beam) {                                   /* el faro alumbra según el scroll */
+        var lp = Math.max(0, Math.min(1, 1 - Math.abs(p)));
+        beam.style.opacity = (lp * 0.85).toFixed(3);
+        beam.style.transform = 'rotate(' + (-22 + p * 30).toFixed(2) + 'deg)';
+      }
       if (moving) requestAnimationFrame(frame); else running = false;
     }
     function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }

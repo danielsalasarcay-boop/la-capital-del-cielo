@@ -265,7 +265,7 @@
       '</div></section>' +
 
       /* CTA */
-      (c.pez ? pezHTML(c, waBtn, sitio) : c.kiter ? kiterHTML(c, waBtn, sitio) : c.coro ? coroHTML(c, waBtn, sitio) :
+      (c.pez ? pezHTML(c, waBtn, sitio) : c.kiter ? kiterHTML(c, waBtn, sitio) : c.coro ? coroHTML(c, waBtn, sitio) : c.manta ? mantaHTML(c, waBtn, sitio) :
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
         '<div class="container text-center stack stack--center">' +
@@ -277,6 +277,7 @@
     initPez();
     initKiter();
     initCoro();
+    initManta();
     initCarta();
   }
 
@@ -299,7 +300,7 @@
   /* Pez león: un shader WebGL estira las espinas desde el cuerpo (cálculo exacto por píxel,
      sobre la imagen original en alta resolución: sin costuras ni pérdida de nitidez). */
   function initPez() {
-    var sec = document.querySelector('.cta-band--pez:not(.cta-band--kiter)');
+    var sec = document.querySelector('.cta-band--pez:not(.cta-band--kiter):not(.cta-band--manta)');
     if (!sec) return;
     var data = (window.__casa9pez || null);
     var stage = sec.querySelector('.pez-stage'), canvas = sec.querySelector('.pez-gl'), img = sec.querySelector('.pez-fallback');
@@ -407,6 +408,48 @@
       var t = p * p * (3 - 2 * p);
       cur += (t - cur) * 0.1;
       apply(cur);
+      requestAnimationFrame(tick);
+    }
+  }
+
+  /* Macanao: mantarraya (diseño original) que aletea y planea con el scroll */
+  function mantaHTML(c, waBtn, sitio) {
+    var z = c.manta;
+    return '<section class="cta-band--pez cta-band--manta">' +
+      '<div class="container pez-layout">' +
+        '<div class="pez-copy">' +
+          '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
+          '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
+          '<div class="cta-actions">' + waBtn + sitio + '</div>' +
+        '</div>' +
+        '<div class="manta-stage" aria-hidden="true">' +
+          '<span class="manta-ripple"></span><span class="manta-ripple manta-ripple--2"></span>' +
+          '<div class="manta-body"><img class="manta-img" src="' + esc(z.img) + '" alt="" width="' + z.w + '" height="' + z.h + '" decoding="async"></div>' +
+          '<span class="manta-shadow"></span>' +
+        '</div>' +
+      '</div></section>';
+  }
+  function initManta() {
+    var sec = document.querySelector('.cta-band--manta');
+    if (!sec) return;
+    var body = sec.querySelector('.manta-body'), img = sec.querySelector('.manta-img'), sh = sec.querySelector('.manta-shadow');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cur = 0, t0 = performance.now(), visible = false, running = false;
+    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && !running) { running = true; requestAnimationFrame(tick); } }, { threshold: 0 });
+    io.observe(sec);
+    function tick(now) {
+      if (!visible) { running = false; return; }
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      var span = Math.max(1, Math.min(vh, r.height) * 0.95);
+      var p = Math.min(1, Math.max(0, (vh - r.top) / span));
+      cur += (p - cur) * 0.08;
+      var e = cur * cur * (3 - 2 * cur), t = (now - t0) / 1000;
+      var flap = Math.sin(t * 2.2);                                  /* aleteo */
+      var x = (0.22 - e * 0.28) * sec.clientWidth * 0.35;           /* planea hacia la izquierda, hacia donde mira */
+      var y = Math.sin(t * 1.1) * 6 - e * 8;
+      body.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (-6 + e * 6 + Math.sin(t * .9) * 1.2).toFixed(2) + 'deg)';
+      img.style.transform = 'scaleY(' + (1 - Math.abs(flap) * 0.06).toFixed(3) + ') skewX(' + (flap * 2).toFixed(2) + 'deg)';
+      sh.style.transform = 'translateX(' + (x * .8).toFixed(1) + 'px) scale(' + (1 - Math.abs(flap) * 0.08).toFixed(3) + ')';
       requestAnimationFrame(tick);
     }
   }
