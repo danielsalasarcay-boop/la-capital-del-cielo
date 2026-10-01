@@ -1004,7 +1004,7 @@
       "id": "casa-panda",
       "nombre": "Casa Panda",
       "tipo": "casa",
-      "logo": "",
+      "logo": "img/casas/casa-panda/logo.png",
       "ubicacion": {
         "es": "Madrizquí · Los Roques",
         "en": "Madrizquí · Los Roques"
