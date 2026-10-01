@@ -1645,3 +1645,4 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .cart-line .qty--sm .qty-btn { width: 26px; height: 26px; }
 .cart-line .qty--sm .qty-val { min-width: 18px; font-size: .82rem; }
 .cart-send { white-space: nowrap; letter-spacing: .06em; font-size: .7rem; }
+.cart-line__info .qty--sm { justify-self: start; }
