@@ -132,7 +132,22 @@
     "ver_todo": "Ver las otras camisas",
     "wa": "Hola, quiero comprar la camisa {nombre} ({precio}). Mi talla es: ",
     "ver": "Ver",
-    "volver": "Volver"
+    "volver": "Volver",
+    "talla": "Talla",
+    "cantidad": "Cantidad",
+    "agregar": "Agregar al carrito",
+    "agregado": "¡Agregado!",
+    "carrito": "Mi pedido",
+    "vacio": "Tu carrito está vacío. Agrega camisas desde la tienda.",
+    "total": "Total",
+    "enviar": "Enviar pedido por WhatsApp",
+    "vaciar": "Vaciar carrito",
+    "elige_talla": "Elige una talla",
+    "ver_carrito": "Ver carrito",
+    "quitar": "Quitar",
+    "wa_pedido": "Hola, quiero hacer este pedido de camisas de La Capital del Cielo:",
+    "wa_total": "Total",
+    "cerrar": "Cerrar"
   },
   "error404": {
     "title": "Página no encontrada",

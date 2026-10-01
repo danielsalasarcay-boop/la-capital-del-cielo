@@ -81,5 +81,11 @@
       "precio": "30,00",
       "imagen": "img/merch/kitesurfer.jpg"
     }
+  ],
+  "tallas": [
+    "S",
+    "M",
+    "L",
+    "XL"
   ]
 }

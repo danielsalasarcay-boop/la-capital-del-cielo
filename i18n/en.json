@@ -132,7 +132,22 @@
     "ver_todo": "See the other shirts",
     "wa": "Hi, I'd like to buy the {nombre} shirt ({precio}). My size is: ",
     "ver": "View",
-    "volver": "Back"
+    "volver": "Back",
+    "talla": "Size",
+    "cantidad": "Quantity",
+    "agregar": "Add to cart",
+    "agregado": "Added!",
+    "carrito": "My order",
+    "vacio": "Your cart is empty. Add shirts from the shop.",
+    "total": "Total",
+    "enviar": "Send order on WhatsApp",
+    "vaciar": "Empty cart",
+    "elige_talla": "Choose a size",
+    "ver_carrito": "View cart",
+    "quitar": "Remove",
+    "wa_pedido": "Hi, I'd like to place this La Capital del Cielo shirt order:",
+    "wa_total": "Total",
+    "cerrar": "Close"
   },
   "error404": {
     "title": "Page not found",
