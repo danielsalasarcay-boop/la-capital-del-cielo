@@ -338,6 +338,7 @@ window.waLink = waLink;
     initScrollHeader();
     initReveal();
     initMundo();
+    var cl = document.querySelector('.contacto-logo'); if (cl) setTimeout(function () { cl.classList.add('is-on'); }, 250);
     document.addEventListener('langchange', function () { renderChannels(); updateWaLinks(); });
     I18n.init();
   });

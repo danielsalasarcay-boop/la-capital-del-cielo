@@ -1490,3 +1490,9 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .form-card .form-row { gap: .85rem; }
 .fi-wrap input, .fi-wrap select { min-height: 44px; }
 .cc-ico--wa svg { width: 24px; height: 24px; }
+/* Contacto: logo animado a la derecha del encabezado (no cambia el alto) */
+.contacto-head { position: relative; }
+.contacto-logo { position: absolute; right: var(--gutter); top: 50%; width: clamp(220px, 26vw, 360px); transform: translateY(-50%); pointer-events: none; }
+.contacto-logo img { animation-play-state: paused; }
+.contacto-logo.is-on img { animation-play-state: running; }
+@media (max-width: 899px) { .contacto-logo { display: none; } }
