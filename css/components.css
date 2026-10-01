@@ -1218,3 +1218,34 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 @media (max-width: 699px) { .cta-title-logo .cta-logo { top: auto; bottom: calc(100% + .25rem); height: 46px; } }
 .photo-section--cta .cta-title-logo { margin-top: clamp(48px, 7vw, 96px); } @media (max-width: 699px) { .photo-section--cta .cta-title-logo { margin-top: 50px; } }
 @media (min-height: 560px) and (min-width: 700px) { .photo-section--cta .cta-body { top: 54%; } }
+
+/* ==========================================================================
+   Casa Coro Coro — del ojo al pez (estilo cinematográfico), alto del footer
+   ========================================================================== */
+.cta-band--coro { position: relative; overflow: hidden; isolation: isolate; background: #000; color: #fff; min-height: clamp(420px, 32vw, 460px); display: flex; align-items: center; }
+.coro-stage { position: absolute; inset: 0; z-index: -1; }
+.coro-fish { position: absolute; left: 63%; top: 50%; width: min(62vw, 900px); aspect-ratio: var(--ar); transform-origin: var(--ex) var(--ey); will-change: transform; }
+.coro-fish img { width: 100%; height: 100%; display: block; }
+.coro-eye { position: absolute; left: calc(63% - min(62vw, 900px) * (.5 - .1775)); top: 50%; width: min(58vw, 560px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; will-change: transform, opacity;
+  -webkit-mask-image: radial-gradient(circle, #000 52%, transparent 71%); mask-image: radial-gradient(circle, #000 52%, transparent 71%); }
+.coro-eye img { width: 100%; height: 100%; object-fit: cover; }
+.coro-glint { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(ellipse 40% 60% at calc(30% + var(--g, 0) * 50%) 40%, rgba(255, 236, 190, .14), transparent 70%); }
+.cta-band--coro::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.35) 32%, rgba(0,0,0,0) 48%); }
+.coro-copy { position: relative; max-width: 1200px; opacity: 0; }
+.coro-copy .kicker { color: #D9B76A; }
+.coro-copy .h2 { color: #fff; font-size: clamp(2.4rem, 1.6rem + 3vw, 4rem); margin: .2rem 0 .25rem; }
+.coro-loc { color: rgba(255,255,255,.7); margin-bottom: var(--space-2); letter-spacing: .08em; }
+.cta-band--coro .cta-actions { justify-content: flex-start; }
+.cta-band--coro .btn-outline { background: rgba(255,255,255,.08); color: #fff; border-color: rgba(255,255,255,.5); }
+@media (max-width: 759px) {
+  .cta-band--coro { align-items: flex-end; padding-bottom: var(--space-3); }
+  .coro-fish { left: 50%; top: 38%; width: 118vw; }
+  .coro-eye { left: calc(50% - 118vw * (.5 - .1775)); top: 38%; width: 82vw; }
+  .cta-band--coro::after { background: linear-gradient(0deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 38%, rgba(0,0,0,0) 60%); }
+  .coro-copy { text-align: center; } .cta-band--coro .cta-actions { justify-content: center; }
+}
+@media (min-width: 760px) {
+  .coro-fish { left: 68%; width: min(54vw, 820px); }
+  .coro-eye { left: calc(68% - min(54vw, 820px) * (.5 - .1775)); width: min(46vw, 520px); }
+}

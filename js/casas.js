@@ -256,7 +256,7 @@
       '</div></section>' +
 
       /* CTA */
-      (c.pez ? pezHTML(c, waBtn, sitio) : c.kiter ? kiterHTML(c, waBtn, sitio) :
+      (c.pez ? pezHTML(c, waBtn, sitio) : c.kiter ? kiterHTML(c, waBtn, sitio) : c.coro ? coroHTML(c, waBtn, sitio) :
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
         '<div class="container text-center stack stack--center">' +
@@ -267,6 +267,7 @@
     initCompass();
     initPez();
     initKiter();
+    initCoro();
     initCarta();
   }
 
@@ -347,6 +348,55 @@
       gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       stage.style.transform = 'translate3d(' + curX.toFixed(1) + 'px,' + (reduced ? 0 : Math.sin(t * 0.8) * 5).toFixed(1) + 'px,0)';
       if (visible && !reduced) raf = requestAnimationFrame(tick);
+    }
+  }
+
+  /* Casa Coro Coro: del ojo al pez completo (zoom-out cinematográfico con el scroll) */
+  function coroHTML(c, waBtn, sitio) {
+    var z = c.coro;
+    return '<section class="cta-band--coro">' +
+      '<div class="coro-stage" aria-hidden="true">' +
+        '<div class="coro-fish" style="--ex:' + z.ex + '%;--ey:' + z.ey + '%;--ar:' + z.ar + '">' +
+          '<img src="' + esc(z.img_small) + '" srcset="' + esc(z.img_small) + ' 1600w, ' + esc(z.img) + ' 3200w" sizes="(min-width: 900px) 62vw, 120vw" alt="" decoding="async" loading="lazy">' +
+        '</div>' +
+        '<div class="coro-eye"><img src="' + esc(z.ojo_small) + '" srcset="' + esc(z.ojo_small) + ' 900w, ' + esc(z.ojo) + ' 1800w" sizes="60vw" alt="" decoding="async"></div>' +
+        '<span class="coro-glint"></span>' +
+      '</div>' +
+      '<div class="container coro-copy">' +
+        '<p class="kicker">' + esc(I18n.t('casa.coro_k')) + '</p>' +
+        '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
+        '<p class="coro-loc">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
+        '<div class="cta-actions">' + waBtn + sitio + '</div>' +
+      '</div></section>';
+  }
+  function initCoro() {
+    var sec = document.querySelector('.cta-band--coro');
+    if (!sec) return;
+    var fish = sec.querySelector('.coro-fish'), eye = sec.querySelector('.coro-eye'), copy = sec.querySelector('.coro-copy'), glint = sec.querySelector('.coro-glint');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cur = reduced ? 1 : 0, visible = false, running = false;
+    function apply(e) {
+      /* 0 → ojo gigante; 1 → pez completo */
+      var z = 1 + (1 - e) * 5.2;                                       /* zoom centrado en el ojo */
+      fish.style.transform = 'translate(-50%,-50%) scale(' + z.toFixed(3) + ')';
+      var eo = Math.max(0, 1 - e * 2.6);                               /* el ojo macro se funde al alejarse */
+      eye.style.opacity = eo.toFixed(3); eye.style.transform = 'translate(-50%,-50%) scale(' + (1 + e * 0.6).toFixed(3) + ')';
+      var co = Math.max(0, Math.min(1, (e - 0.55) / 0.35));
+      copy.style.opacity = co.toFixed(3); copy.style.transform = 'translateY(' + ((1 - co) * 18).toFixed(1) + 'px)';
+      glint.style.setProperty('--g', e.toFixed(3));
+    }
+    apply(cur);
+    if (reduced) return;
+    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && !running) { running = true; requestAnimationFrame(tick); } }, { threshold: 0 });
+    io.observe(sec);
+    function tick() {
+      if (!visible) { running = false; return; }
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.95)));
+      var t = p * p * (3 - 2 * p);
+      cur += (t - cur) * 0.085;
+      apply(cur);
+      requestAnimationFrame(tick);
     }
   }
 

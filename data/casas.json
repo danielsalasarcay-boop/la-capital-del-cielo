@@ -926,7 +926,16 @@
       },
       "sitio_propio": "",
       "mapa_embed": "https://maps.google.com/maps?q=11.9457835,-66.6753867&z=18&output=embed",
-      "mapa_link": "https://maps.app.goo.gl/eSvo7J86vBRAjHx67"
+      "mapa_link": "https://maps.app.goo.gl/eSvo7J86vBRAjHx67",
+      "coro": {
+        "img": "img/casas/casa-coro-coro/fish/coro-3200.jpg",
+        "img_small": "img/casas/casa-coro-coro/fish/coro-1600.jpg",
+        "ojo": "img/casas/casa-coro-coro/fish/ojo-1800.jpg",
+        "ojo_small": "img/casas/casa-coro-coro/fish/ojo-900.jpg",
+        "ex": 17.75,
+        "ey": 49.46,
+        "ar": 1.7917
+      }
     }
   ],
   "amenidades_comunes": [
