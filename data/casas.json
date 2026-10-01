@@ -493,7 +493,9 @@
         "cy": 0.5382,
         "r0": 0.1516,
         "r1": 0.4699
-      }
+      },
+      "mapa_embed": "https://maps.google.com/maps?cid=6207103615456366267&z=16&output=embed",
+      "mapa_link": "https://maps.app.goo.gl/PoWs2PusiboBBGa19"
     },
     {
       "id": "macanao-lodge",

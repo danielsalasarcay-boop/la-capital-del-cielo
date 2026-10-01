@@ -28,7 +28,7 @@
     var msg = I18n.t('merch.wa').replace('{nombre}', p.nombre.toUpperCase()).replace('{precio}', precio);
     return '' +
       '<article class="product" data-reveal>' +
-        '<div class="product-media"><img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" width="900" height="900"></div>' +
+        '<button type="button" class="product-media" data-zoom="' + esc(p.imagen) + '" data-name="' + esc(p.nombre) + '" aria-label="' + esc(I18n.t('merch.ver')) + ' ' + esc(p.nombre) + '"><img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" width="900" height="900"></button>' +
         '<div class="product-body">' +
           '<h3 class="product-name">' + esc(p.nombre) + '</h3>' +
           '<p class="product-type">' + esc(I18n.pick(p.tipo)) + '</p>' +
@@ -50,6 +50,35 @@
       if (window.initReveal) initReveal();
     });
   }
+
+  /* Visor de camisa: se abre a pantalla completa con botón para volver */
+  function openShirt(src, name, buyHref) {
+    var box = document.getElementById('shirt-viewer');
+    if (!box) {
+      box = document.createElement('div'); box.id = 'shirt-viewer'; box.className = 'shirt-viewer'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true');
+      box.innerHTML = '<div class="sv-panel"><button type="button" class="sv-back">← <span></span></button>' +
+        '<figure class="sv-figure"><img alt=""><figcaption></figcaption></figure>' +
+        '<a class="btn btn-primary sv-buy" target="_blank" rel="noopener"></a></div>';
+      document.body.appendChild(box);
+      box.addEventListener('click', function (e) { if (e.target === box || e.target.closest('.sv-back')) closeShirt(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && box.classList.contains('is-open')) closeShirt(); });
+    }
+    box.querySelector('.sv-back span').textContent = I18n.t('merch.volver');
+    var im = box.querySelector('img'); im.src = src; im.alt = name;
+    box.querySelector('figcaption').textContent = name;
+    var buy = box.querySelector('.sv-buy'); buy.href = buyHref; buy.textContent = I18n.t('merch.comprar');
+    box.classList.add('is-open'); document.body.classList.add('no-scroll');
+    box.querySelector('.sv-back').focus();
+  }
+  function closeShirt() {
+    var box = document.getElementById('shirt-viewer'); if (!box) return;
+    box.classList.remove('is-open'); document.body.classList.remove('no-scroll');
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-zoom]'); if (!b) return;
+    var card = b.closest('.product'); var buy = card && card.querySelector('.product-buy');
+    openShirt(b.getAttribute('data-zoom'), b.getAttribute('data-name'), buy ? buy.href : '#');
+  });
 
   document.addEventListener('langchange', render);
 })();

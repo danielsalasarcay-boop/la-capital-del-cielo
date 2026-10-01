@@ -1121,3 +1121,41 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 .section--brand .kicker, .section--brand .section-head p:not(.kicker) { color: rgba(26, 26, 26, .65); }
 .section--brand > .container > p > .btn-primary { background: var(--color-brand); color: var(--color-white); }
 .section--brand > .container > p > .btn-primary:hover { background: var(--color-brand-hover); }
+
+/* ==========================================================================
+   Visor de camisas (Merchandise)
+   ========================================================================== */
+.product-media { display: block; width: 100%; padding: 0; border: 0; background: var(--color-white); cursor: zoom-in; }
+.shirt-viewer { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  background: rgba(244, 248, 253, .96); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
+.shirt-viewer.is-open { opacity: 1; visibility: visible; }
+.sv-panel { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-2); width: min(760px, 100%); max-height: 100%; }
+.sv-back { align-self: flex-start; display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1.1rem; border-radius: 999px;
+  background: var(--color-white); border: 1px solid var(--color-line); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-brand-deep);
+  box-shadow: 0 4px 14px rgba(20, 60, 100, .08); transition: transform .25s var(--ease), border-color .25s; }
+.sv-back:hover { transform: translateX(-3px); border-color: var(--color-brand); }
+.sv-figure { margin: 0; text-align: center; }
+.sv-figure img { width: auto; max-width: 100%; max-height: calc(100svh - 220px); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 20px 50px rgba(20, 60, 100, .12);
+  transform: scale(.96); transition: transform .45s cubic-bezier(.2,.9,.25,1.1); }
+.shirt-viewer.is-open .sv-figure img { transform: none; }
+.sv-figure figcaption { margin-top: .75rem; font-family: var(--font-display); font-size: 1.5rem; color: var(--color-brand-deep); }
+
+/* ==========================================================================
+   Submenú de Casas en el header
+   ========================================================================== */
+.nav-list .has-sub { position: relative; }
+.sub-menu { list-style: none; margin: 0; padding: .5rem 0; }
+@media (min-width: 960px) {
+  .sub-menu { position: absolute; top: calc(100% + 14px); left: 50%; min-width: 220px; transform: translate(-50%, 6px);
+    background: rgba(255, 255, 255, .98); border: 1px solid var(--color-line); border-radius: 12px; box-shadow: 0 18px 40px rgba(20, 60, 100, .12);
+    opacity: 0; visibility: hidden; transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s; }
+  .sub-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; } /* puente para no perder el hover */
+  .has-sub:hover > .sub-menu, .has-sub:focus-within > .sub-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+  .sub-menu a { display: block; padding: .6rem 1.4rem !important; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-brand-deep) !important; text-shadow: none !important; text-align: center; white-space: nowrap; box-shadow: none !important; }
+  .sub-menu a:hover { background: var(--color-brand-soft); text-decoration: none; }
+}
+@media (max-width: 959px) {
+  .sub-menu { padding: 0 0 .25rem 1rem; }
+  .sub-menu a { font-size: .9rem !important; padding-block: .6rem !important; border-bottom: 0 !important; color: var(--color-muted) !important; }
+}

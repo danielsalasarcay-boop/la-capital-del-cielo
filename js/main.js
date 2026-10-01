@@ -54,8 +54,9 @@ window.waLink = waLink;
     var page = currentPage();
     var links = NAV.map(function (n) {
       var active = page === n.href || (page === 'casa.html' && n.href === 'casas.html');
-      return '<li><a href="' + n.href + '"' + (active ? ' aria-current="page"' : '') +
-        ' data-i18n="' + n.key + '"></a></li>';
+      var a = '<a href="' + n.href + '"' + (active ? ' aria-current="page"' : '') + ' data-i18n="' + n.key + '"></a>';
+      if (n.href === 'casas.html') return '<li class="has-sub">' + a + '<ul class="sub-menu" id="sub-casas"></ul></li>';
+      return '<li>' + a + '</li>';
     }).join('');
 
     el.className = 'site-header';
@@ -82,6 +83,17 @@ window.waLink = waLink;
           '</button>' +
         '</div>' +
       '</div>';
+  }
+
+  /* Lista de casas en el submenú (se llena desde data/casas.json) */
+  function fillCasasMenu() {
+    var ul = document.getElementById('sub-casas');
+    if (!ul) return;
+    fetch('data/casas.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
+      ul.innerHTML = (d.casas || []).map(function (c) {
+        return '<li><a href="casa.html?id=' + encodeURIComponent(c.id) + '">' + c.nombre + '</a></li>';
+      }).join('');
+    }).catch(function () {});
   }
 
   /* ---------- Footer (compartido) ---------- */
@@ -296,6 +308,7 @@ window.waLink = waLink;
   document.addEventListener('DOMContentLoaded', function () {
     initLoader();
     renderHeader();
+    fillCasasMenu();
     renderFooter();
     renderFloating();
     initMenu();

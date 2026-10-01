@@ -126,7 +126,9 @@
     "sub": "Camisas de manga larga con diseños inspirados en Los Roques.",
     "comprar": "Comprar",
     "ver_todo": "Ver las otras camisas",
-    "wa": "Hola, quiero comprar la camisa {nombre} ({precio}). Mi talla es: "
+    "wa": "Hola, quiero comprar la camisa {nombre} ({precio}). Mi talla es: ",
+    "ver": "Ver",
+    "volver": "Volver"
   },
   "error404": {
     "title": "Página no encontrada",
