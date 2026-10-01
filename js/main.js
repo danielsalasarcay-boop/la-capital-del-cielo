@@ -310,6 +310,22 @@ window.waLink = waLink;
     kick();
   }
 
+  /* ---------- Portada: parallax suave del fondo ---------- */
+  function initHeroParallax() {
+    var bg = document.querySelector('.hero--photo .bg-media');
+    if (!bg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var target = 0, cur = 0, raf = null;
+    function tick() {
+      cur += (target - cur) * 0.12;
+      bg.style.setProperty('--hero-y', cur.toFixed(2) + 'px');
+      raf = Math.abs(target - cur) > 0.1 ? requestAnimationFrame(tick) : null;
+    }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY; if (y > window.innerHeight * 1.2) return;
+      target = y * 0.35; if (!raf) raf = requestAnimationFrame(tick);
+    }, { passive: true });
+  }
+
   /* ---------- Arranque ---------- */
   document.addEventListener('DOMContentLoaded', function () {
     initLoader();
@@ -321,6 +337,7 @@ window.waLink = waLink;
     initScrollHeader();
     initReveal();
     initMundo();
+    initHeroParallax();
     document.addEventListener('langchange', function () { renderChannels(); updateWaLinks(); });
     I18n.init();
   });
