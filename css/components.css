@@ -1324,3 +1324,22 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
   .header-logo img { height: 44px; }
 }
 @media (max-width: 599px) { .merch-head-logo { width: 46px; top: -16px; } }
+/* Teléfono: "Reserva con nosotros" en flujo normal (logo → título → texto → botones), sin superponerse */
+@media (max-width: 699px) {
+  .photo-section--cta { min-height: 0; padding-block: var(--space-4) calc(var(--space-6) + 40px); align-items: flex-start; }
+  .photo-section--cta .cta-body { position: static !important; transform: none !important; width: 100%; margin: var(--space-2) 0 0; top: auto; left: auto; }
+  .photo-section--cta .cta-title-logo { margin-top: 56px; }
+  .photo-section--cta .cta-body p { font-size: 1rem; }
+  .photo-section--cta .channels { gap: .6rem; }
+  .channel { min-height: 46px; padding-block: .6rem; }
+}
+/* Teléfono: galerías de las fichas en 2 columnas (menos scroll, fotos igual de nítidas en el visor) */
+@media (max-width: 599px) {
+  .gallery-fit { grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .gallery-fit .media { aspect-ratio: 4 / 5; border-radius: 6px; }
+  /* Los Roques: cielo animado compacto, el avión cruza por el medio */
+  .sky-cta { padding-block: var(--space-4); }
+  .sky-lane { height: 96px; margin-block: var(--space-1); }
+  .plane-wrap { width: 150px; }
+  .sky-content .channels { margin-top: var(--space-1); }
+}
