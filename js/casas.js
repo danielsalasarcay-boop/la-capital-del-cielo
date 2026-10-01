@@ -279,17 +279,76 @@
           '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
           '<div class="cta-actions">' + waBtn + sitio + '</div>' +
         '</div>' +
-        '<div class="pez-stage" aria-hidden="true">' +
-          '<svg viewBox="0 0 ' + z.w + ' ' + z.h + '" preserveAspectRatio="xMidYMid meet">' +
-            '<defs><filter id="pezFx" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">' +
-              '<feImage href="' + esc(z.mapa) + '" x="0" y="0" width="' + z.w + '" height="' + z.h + '" preserveAspectRatio="none" result="map"/>' +
-              '<feDisplacementMap class="pez-stretch" in="SourceGraphic" in2="map" scale="0" xChannelSelector="R" yChannelSelector="G"/>' +
-            '</filter></defs>' +
-            '<image href="' + esc(z.img) + '" x="0" y="0" width="' + z.w + '" height="' + z.h + '" filter="url(#pezFx)"/>' +
-          '</svg>' +
+        '<div class="pez-stage" aria-hidden="true" data-z="' + esc(JSON.stringify(z)) + '" style="aspect-ratio:' + z.w + '/' + z.h + '">' +
+          '<img class="pez-fallback" src="' + esc(z.img) + '" alt="" width="' + z.w + '" height="' + z.h + '" decoding="async">' +
+          '<canvas class="pez-gl"></canvas>' +
         '</div>' +
       '</div></section>';
   }
+  /* Pez león: un shader WebGL estira las espinas desde el cuerpo (cálculo exacto por píxel,
+     sobre la imagen original en alta resolución: sin costuras ni pérdida de nitidez). */
+  function initPez() {
+    var sec = document.querySelector('.cta-band--pez');
+    if (!sec) return;
+    var data = (window.__casa9pez || null);
+    var stage = sec.querySelector('.pez-stage'), canvas = sec.querySelector('.pez-gl'), img = sec.querySelector('.pez-fallback');
+    var z = JSON.parse(stage.getAttribute('data-z') || 'null');
+    var gl = canvas.getContext('webgl', { premultipliedAlpha: true, antialias: true, alpha: true });
+    if (!gl || !z) return;
+    var vs = 'attribute vec2 p; varying vec2 uv; void main(){ uv = p * 0.5 + 0.5; uv.y = 1.0 - uv.y; gl_Position = vec4(p, 0.0, 1.0); }';
+    var fs = 'precision highp float; varying vec2 uv; uniform sampler2D t; uniform vec2 c; uniform float k; uniform float r0; uniform float r1; uniform float aspect; uniform float tw;' +
+      'void main(){ vec2 d = uv - c; d.x *= aspect; float r = length(d); float s = smoothstep(r0, r1, r);' +
+      ' float g = 1.0 + k * s * s; float ang = atan(d.y, d.x) + tw * s * s * sin(r * 18.0);' +
+      ' vec2 src = vec2(cos(ang), sin(ang)) * (r / g); src.x /= aspect; src += c;' +
+      ' if (src.x < 0.0 || src.y < 0.0 || src.x > 1.0 || src.y > 1.0) { gl_FragColor = vec4(0.0); } else { gl_FragColor = texture2D(t, src); } }';
+    function sh(type, src) { var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return o; }
+    var pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+    gl.useProgram(pr);
+    var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var U = function (n) { return gl.getUniformLocation(pr, n); };
+    var tex = gl.createTexture(); var ready = false;
+    var source = new Image(); source.decoding = 'async';
+    source.onload = function () {
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      ready = true; stage.classList.add('is-gl'); kick();
+    };
+    source.src = img.getAttribute('src');
+    gl.uniform2f(U('c'), z.cx, z.cy); gl.uniform1f(U('r0'), z.r0); gl.uniform1f(U('r1'), z.r1); gl.uniform1f(U('aspect'), z.w / z.h);
+    gl.clearColor(0, 0, 0, 0); gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    function size() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2.5), b = stage.getBoundingClientRect();
+      var w = Math.round(b.width * dpr), h = Math.round(b.height * dpr);
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+    }
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cur = 0, curX = 0, t0 = performance.now(), visible = false, raf = null;
+    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; kick(); }, { threshold: 0 });
+    io.observe(sec);
+    window.addEventListener('resize', function () { size(); kick(); });
+    function kick() { if (!raf && ready && visible) raf = requestAnimationFrame(tick); }
+    function tick(now) {
+      raf = null; size();
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height * 0.4)));
+      var e = reduced ? 0.6 : p * p * (3 - 2 * p), t = (now - t0) / 1000;
+      var target = e * (1 + (reduced ? 0 : (Math.sin(t * 1.2) * 0.5 + 0.5) * 0.12));
+      cur += (target - cur) * 0.08;
+      var tx = reduced ? 0 : (-0.10 + e * 0.22) * sec.clientWidth * 0.5; curX += (tx - curX) * 0.08;
+      gl.uniform1f(U('k'), cur * 0.34);                         /* cuánto se alargan las puntas */
+      gl.uniform1f(U('tw'), cur * 0.035 * Math.sin(t * 0.9));   /* leve ondulación de las espinas */
+      gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      stage.style.transform = 'translate3d(' + curX.toFixed(1) + 'px,' + (reduced ? 0 : Math.sin(t * 0.8) * 5).toFixed(1) + 'px,0)';
+      if (visible && !reduced) raf = requestAnimationFrame(tick);
+    }
+  }
+
   /* Casa Bleu: fondo submarino animado (rayos de sol, partículas, oleaje de luz) */
   function aguaHTML(c, waBtn, sitio) {
     var z = c.agua, parts = '';
@@ -305,29 +364,7 @@
         '<div class="cta-actions">' + waBtn + sitio + '</div>' +
       '</div></section>';
   }
-  var pezBound = false;
-  function initPez() {
-    var sec = document.querySelector('.cta-band--pez');
-    if (!sec) return;
-    var fe = sec.querySelector('.pez-stretch'), stage = sec.querySelector('.pez-stage');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { fe.setAttribute('scale', '120'); return; }
-    var cur = 0, curX = 0, t0 = performance.now(), visible = false;
-    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) requestAnimationFrame(tick); }, { threshold: 0 });
-    io.observe(sec);
-    function tick(now) {
-      if (!visible) return;
-      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
-      var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height * 0.4)));   /* 0 al entrar → 1 al avanzar */
-      var e = p * p * (3 - 2 * p), t = (now - t0) / 1000;
-      var breath = (Math.sin(t * 1.1) * 0.5 + 0.5) * 18 * e;                     /* las espinas "respiran" */
-      var target = 10 + e * 340 + breath;                                          /* más scroll = espinas más largas */
-      var tx = (-0.10 + e * 0.22) * sec.clientWidth * 0.5;                        /* nada hacia la derecha */
-      cur += (target - cur) * 0.08; curX += (tx - curX) * 0.08;
-      fe.setAttribute('scale', cur.toFixed(1));
-      stage.style.transform = 'translate3d(' + curX.toFixed(1) + 'px,' + (Math.sin(t * 0.8) * 5).toFixed(1) + 'px,0) rotate(' + (Math.sin(t * 0.55) * 1.2).toFixed(2) + 'deg)';
-      requestAnimationFrame(tick);
-    }
-  }
+
 
   /* Carta náutica con rutas que se dibujan (estilo carta de navegación) */
   function cartaHTML(c) {

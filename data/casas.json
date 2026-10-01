@@ -486,10 +486,13 @@
         }
       ],
       "pez": {
-        "img": "img/casas/casa-9/pez/pez-original.webp",
-        "mapa": "img/casas/casa-9/pez/mapa.png",
-        "w": 1768,
-        "h": 1588
+        "img": "img/casas/casa-9/pez/pez.png",
+        "w": 2016,
+        "h": 1784,
+        "cx": 0.7238,
+        "cy": 0.5382,
+        "r0": 0.1516,
+        "r1": 0.4699
       }
     },
     {

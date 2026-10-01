@@ -1108,3 +1108,10 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 .pez-particles span { position: absolute; bottom: -10px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; background: rgba(220, 245, 255, .7); animation: pez-up var(--d) linear infinite; animation-delay: var(--dl); }
 @keyframes pez-up { from { transform: translate(0, 0); opacity: 0; } 15% { opacity: .8; } to { transform: translate(24px, -520px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .agua-bg img, .pez-rays, .pez-particles span { animation: none; } }
+/* Pez león por anillos (calidad original, sin filtros) */
+.pez-stage { position: relative; width: 100%; max-height: 420px; margin-inline: auto; max-width: 560px; }
+.pez-ring { position: absolute; inset: 0; width: 100%; height: 100%; will-change: transform; image-rendering: auto; backface-visibility: hidden; }
+@media (max-width: 759px) { .pez-stage { max-width: 330px; } }
+.pez-stage { position: relative; max-width: 600px; }
+.pez-fallback, .pez-gl { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pez-stage.is-gl .pez-fallback { visibility: hidden; }
