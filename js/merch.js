@@ -36,7 +36,7 @@
     var precio = moneda + ' ' + p.precio;
     return '' +
       '<article class="product" data-reveal data-id="' + esc(p.id) + '">' +
-        '<button type="button" class="product-media" data-zoom="' + esc(p.imagen) + '" data-name="' + esc(p.nombre) + '" data-id="' + esc(p.id) + '" aria-label="' + esc(I18n.t('merch.ver')) + ' ' + esc(p.nombre) + '"><img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" width="900" height="900"><img class="lcc-badge" src="img/general/logo-badge.png" alt="" aria-hidden="true"></button>' +
+        '<button type="button" class="product-media" data-zoom="' + esc(p.imagen) + '" data-name="' + esc(p.nombre) + '" data-id="' + esc(p.id) + '" aria-label="' + esc(I18n.t('merch.ver')) + ' ' + esc(p.nombre) + '"><img src="' + esc(p.imagen_card || p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" decoding="async" width="800" height="800"><img class="lcc-badge" src="img/general/logo-badge.png" alt="" aria-hidden="true"></button>' +
         '<div class="product-body">' +
           '<h3 class="product-name">' + esc(p.nombre) + '</h3>' +
           '<p class="product-type">' + esc(I18n.pick(p.tipo)) + '</p>' +
@@ -118,7 +118,7 @@
     panel.querySelector('.cart-empty').textContent = I18n.t('merch.vacio');
     panel.querySelector('.cart-empty').hidden = units > 0; panel.querySelector('.cart-body').hidden = units === 0;
     panel.querySelector('.cart-list').innerHTML = ls.map(function (x, i) {
-      return '<div class="cart-line"><img src="' + esc(x.p.imagen) + '" alt="" loading="lazy">' +
+      return '<div class="cart-line"><img src="' + esc(x.p.imagen_card || x.p.imagen) + '" alt="" loading="lazy">' +
         '<div class="cart-line__info"><strong>' + esc(x.p.nombre) + '</strong><span>' + esc(I18n.t('merch.talla')) + ' ' + esc(x.l.talla) + '</span>' +
           '<div class="qty qty--sm"><button type="button" class="qty-btn" data-line="' + i + '" data-act="dec" aria-label="-">−</button><span class="qty-val">' + x.l.qty + '</span><button type="button" class="qty-btn" data-line="' + i + '" data-act="inc" aria-label="+">+</button></div></div>' +
         '<div class="cart-line__end"><strong>' + esc(money(x.sub, mon)) + '</strong><button type="button" class="cart-del" data-line="' + i + '" data-act="del" aria-label="' + esc(I18n.t('merch.quitar')) + '">' + TRASH_ICON + '</button></div></div>';

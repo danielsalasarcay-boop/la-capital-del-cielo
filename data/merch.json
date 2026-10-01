@@ -9,7 +9,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/lionfish.jpg"
+      "imagen": "img/merch/lionfish.jpg",
+      "imagen_card": "img/merch/lionfish-800.webp"
     },
     {
       "id": "mango",
@@ -19,7 +20,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/mango.jpg"
+      "imagen": "img/merch/mango.jpg",
+      "imagen_card": "img/merch/mango-800.webp"
     },
     {
       "id": "red-manta",
@@ -29,7 +31,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/red-manta.jpg"
+      "imagen": "img/merch/red-manta.jpg",
+      "imagen_card": "img/merch/red-manta-800.webp"
     },
     {
       "id": "rider",
@@ -39,7 +42,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/rider.jpg"
+      "imagen": "img/merch/rider.jpg",
+      "imagen_card": "img/merch/rider-800.webp"
     },
     {
       "id": "langosta",
@@ -49,7 +53,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/langosta.jpg"
+      "imagen": "img/merch/langosta.jpg",
+      "imagen_card": "img/merch/langosta-800.webp"
     },
     {
       "id": "estrella",
@@ -59,7 +64,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/estrella.jpg"
+      "imagen": "img/merch/estrella.jpg",
+      "imagen_card": "img/merch/estrella-800.webp"
     },
     {
       "id": "tortuga",
@@ -69,7 +75,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/tortuga.jpg"
+      "imagen": "img/merch/tortuga.jpg",
+      "imagen_card": "img/merch/tortuga-800.webp"
     },
     {
       "id": "kitesurfer",
@@ -79,7 +86,8 @@
         "en": "Long-sleeve shirt"
       },
       "precio": "30,00",
-      "imagen": "img/merch/kitesurfer.jpg"
+      "imagen": "img/merch/kitesurfer.jpg",
+      "imagen_card": "img/merch/kitesurfer-800.webp"
     }
   ],
   "tallas": [

@@ -112,7 +112,7 @@
     return '' +
       '<article class="card casa-card" data-reveal>' +
         '<a class="card-media" href="casa.html?id=' + encodeURIComponent(c.id) + '">' +
-          media(c.imagen_portada, c.nombre, 'ph-4x3') +
+          media(c.imagen_portada ? c.imagen_portada.replace(/\.jpg$/, '-900.jpg') : '', c.nombre, 'ph-4x3') +
         '</a>' +
         '<div class="card-body">' +
           '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
@@ -238,7 +238,7 @@
           '<h2 class="h2">' + esc(I18n.t('casa.video')) + '</h2>' +
           '<div class="casa-video-frame"><video src="' + esc(c.video.src) + '"' +
             (c.video.poster ? ' poster="' + esc(c.video.poster) + '"' : '') +
-            ' controls playsinline preload="metadata"></video></div>' +
+            ' controls playsinline preload="none"></video></div>' +
         '</div></section>' : '') +
 
       /* Galería */
