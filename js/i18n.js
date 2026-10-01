@@ -77,6 +77,7 @@
         btn.classList.toggle('is-active', active);
         btn.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
+      document.querySelectorAll('.lang-switch').forEach(function (sw) { sw.setAttribute('data-lang', I18n.lang); });
     },
 
     setLang: function (lang) {

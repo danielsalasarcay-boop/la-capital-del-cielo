@@ -73,8 +73,8 @@ window.waLink = waLink;
         '<div class="header-actions">' +
           '<a class="icon-link" href="' + SITE.instagramUrl + '" target="_blank" rel="noopener" aria-label="Instagram @' + SITE.instagram + '">' + ICONS.instagram + '</a>' +
           '<div class="lang-switch" role="group" aria-label="Idioma / Language">' +
+            '<span class="lang-thumb" aria-hidden="true"></span>' +
             '<button type="button" class="lang-btn" data-lang-btn="es">ES</button>' +
-            '<span class="lang-sep" aria-hidden="true">|</span>' +
             '<button type="button" class="lang-btn" data-lang-btn="en">EN</button>' +
           '</div>' +
           '<a class="btn btn-primary btn-sm" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener" data-i18n="nav.reservar"></a>' +

@@ -1343,3 +1343,23 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
   .plane-wrap { width: 150px; }
   .sky-content .channels { margin-top: var(--space-1); }
 }
+
+/* ==========================================================================
+   Selector ES | EN — píldora con indicador que se desliza
+   ========================================================================== */
+.lang-switch { position: relative; display: inline-flex; align-items: center; gap: 0; padding: 3px; border-radius: 999px;
+  background: rgba(106, 170, 228, .12); border: 1px solid rgba(106, 170, 228, .35); }
+.lang-switch .lang-sep { display: none; }
+.lang-thumb { position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: 999px;
+  background: var(--color-brand); box-shadow: 0 4px 12px -4px rgba(60, 130, 220, .6), inset 0 1px 0 rgba(255,255,255,.35);
+  transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), width .3s; }
+.lang-switch[data-lang="en"] .lang-thumb { transform: translateX(100%); }
+.lang-switch .lang-btn { position: relative; z-index: 1; min-width: 34px; min-height: 30px; padding: 0 .55rem; border-radius: 999px; background: none !important;
+  font-size: .78rem; letter-spacing: .1em; color: var(--color-muted); transition: color .3s, transform .2s; }
+.lang-switch .lang-btn.is-active { color: #fff !important; }
+.lang-switch .lang-btn:not(.is-active):hover { color: var(--color-brand-deep); }
+.lang-switch .lang-btn:active { transform: scale(.9); }
+.lang-switch:active .lang-thumb { width: calc(50% + 4px); }
+.site-header.over-hero:not(.menu-open) .lang-switch { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.4); }
+.site-header.over-hero:not(.menu-open) .lang-switch .lang-btn:not(.is-active) { color: rgba(255,255,255,.85); }
+.site-header.over-hero:not(.menu-open) .lang-switch .lang-btn.is-active { background: none !important; }
