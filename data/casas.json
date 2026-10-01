@@ -382,16 +382,16 @@
       "tipo": "casa",
       "logo": "",
       "ubicacion": {
-        "es": "Cacho Madrizquí · Los Roques",
-        "en": "Cacho Madrizquí · Los Roques"
+        "es": "Madrizquí · Los Roques",
+        "en": "Madrizquí · Los Roques"
       },
       "descripcion_corta": {
-        "es": "Casa privada en el Cacho Madrizquí, con 5 habitaciones y un staff de 3 personas que incluye chef.",
-        "en": "Private house in Cacho Madrizquí, with 5 bedrooms and a staff of 3 including a chef."
+        "es": "Casa privada en Madrizquí, con 5 habitaciones y un staff de 3 personas que incluye chef.",
+        "en": "Private house on Madrizquí, with 5 bedrooms and a staff of 3 including a chef."
       },
       "descripcion": {
-        "es": "Casa 9 está en el Cacho Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef.",
-        "en": "Casa 9 is in Cacho Madrizquí, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef."
+        "es": "Casa 9 está en Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef.",
+        "en": "Casa 9 is on Madrizquí, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef."
       },
       "capacidad": 12,
       "habitaciones": 5,
@@ -425,8 +425,8 @@
       ],
       "destacados": [
         {
-          "es": "En el Cacho Madrizquí",
-          "en": "In Cacho Madrizquí"
+          "es": "En Madrizquí",
+          "en": "On Madrizquí"
         },
         {
           "es": "5 habitaciones",
@@ -444,16 +444,16 @@
         "img/casas/casa-9/portada.jpg"
       ],
       "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar Casa 9 en el Cacho Madrizquí, Los Roques.",
-        "en": "Hi, I'd like information to book Casa 9 in Cacho Madrizquí, Los Roques."
+        "es": "Hola, quiero información para reservar Casa 9 en Madrizquí, Los Roques.",
+        "en": "Hi, I'd like information to book Casa 9 on Madrizquí, Los Roques."
       },
       "sitio_propio": "",
       "amenidades": [
         {
           "icono": "isla",
           "texto": {
-            "es": "En el Cacho Madrizquí",
-            "en": "In Cacho Madrizquí"
+            "es": "En Madrizquí",
+            "en": "On Madrizquí"
           }
         },
         {
@@ -486,12 +486,10 @@
         }
       ],
       "pez": {
-        "img": "img/casas/casa-9/pez/pez.webp",
+        "img": "img/casas/casa-9/pez/pez-original.webp",
         "mapa": "img/casas/casa-9/pez/mapa.png",
-        "w": 1200,
-        "h": 877,
-        "fondo": "img/casas/casa-9/pez/fondo-2400.jpg",
-        "fondo_small": "img/casas/casa-9/pez/fondo-1200.jpg"
+        "w": 1768,
+        "h": 1588
       }
     },
     {
