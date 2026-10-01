@@ -260,7 +260,7 @@
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
         '<div class="container text-center stack stack--center">' +
-        (c.brujula ? '<div class="cta-compass" aria-hidden="true"><span class="compass-ring"></span><span class="compass-ring compass-ring--2"></span><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" loading="lazy" decoding="async"></div>' : '') +
+        (c.brujula ? '<div class="cta-compass" aria-hidden="true"><span class="compass-ring"></span><span class="compass-ring compass-ring--2"></span><img class="compass-rose" src="' + esc(c.brujula) + '" alt="" decoding="async"></div>' : '') +
         '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
         '<div class="cta-actions">' + waBtn + sitio + '</div>' +
       '</div></section>');
@@ -488,7 +488,7 @@
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.classList.add('is-drawn'); return; }
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { el.classList.add('is-drawn'); io.disconnect(); } });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.12 });
     io.observe(el);
   }
 
@@ -555,15 +555,7 @@
         '<text class="carta-origin" x="' + o[0] + '" y="' + (o[1] + 48) + '" text-anchor="middle">' + esc(k.origen_nombre) + '</text>' +
       '</svg></div>';
   }
-  function initCarta() {
-    var el = document.querySelector('.carta');
-    if (!el) return;
-    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.classList.add('is-drawn'); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { el.classList.add('is-drawn'); io.disconnect(); } });
-    }, { threshold: 0.35 });
-    io.observe(el);
-  }
+
 
   /* ---------- Formulario de contacto -> WhatsApp ---------- */
   function renderSelect(casas) {

@@ -1081,7 +1081,7 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
   .pez-copy { text-align: center; order: 2; } .pez-copy .cta-actions { justify-content: center; }
   .pez-stage { order: 1; } .pez-stage svg { max-height: 300px; }
 }
-.pez-stage svg { max-height: 430px; } .pez-layout { grid-template-columns: .8fr 1.5fr; } .cta-band--pez { padding-block: var(--space-2); }
+.pez-stage svg { max-height: 430px; } @media (min-width: 760px) { .pez-layout { grid-template-columns: .8fr 1.5fr; } } .cta-band--pez { padding-block: var(--space-2); }
 
 /* ==========================================================================
    Casa Bleu — fondo submarino animado (alto del footer)
@@ -1248,4 +1248,66 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 @media (min-width: 760px) {
   .coro-fish { left: 68%; width: min(54vw, 820px); }
   .coro-eye { left: calc(68% - min(54vw, 820px) * (.5 - .1775)); width: min(46vw, 520px); }
+}
+
+
+/* ==========================================================================
+   OPTIMIZACIÓN MÓVIL de las secciones animadas de las fichas
+   ========================================================================== */
+@media (max-width: 759px) {
+  /* Casa 9 (pez) y Casa Bleu (kiter): una columna, figura grande arriba, texto centrado abajo */
+  .cta-band--pez { min-height: 0; padding-block: var(--space-4) var(--space-4); display: block; }
+  .pez-layout { display: flex !important; flex-direction: column; align-items: center; gap: var(--space-2); }
+  .pez-stage { order: 1; width: 100%; max-width: 440px; margin: 0 auto; }
+  .kiter-stage { order: 1; width: 100%; max-width: 440px; }
+  .pez-copy { order: 2; text-align: center; width: 100%; }
+  .pez-copy .kicker { font-size: .68rem; letter-spacing: .2em; }
+  .pez-copy .h2 { font-size: 2.3rem; margin: .1rem 0 var(--space-2); }
+  .pez-copy .cta-actions { justify-content: center; }
+
+  /* Casa Verde (carta): se ve la zona de las islas sin recortar las rutas */
+  .cta-band--carta { min-height: 520px; align-items: flex-end; padding-block: var(--space-3); }
+  .cta-band--carta .carta { inset: 0 auto 0 auto; height: 100%; width: auto; aspect-ratio: 2000 / 1116; left: 50%; transform: translateX(-40%) !important; opacity: 1; }
+  .cta-band--carta .carta img, .cta-band--carta .carta svg { object-fit: fill; }
+  .cta-band--carta .carta svg { overflow: visible; }
+  .cta-band--carta .carta-label { font-size: 36px; }
+  .cta-band--carta .carta-origin { font-size: 40px; }
+  .cta-band--carta::after { background: linear-gradient(to top, rgba(247, 242, 232, .97) 0%, rgba(247, 242, 232, .85) 24%, rgba(247, 242, 232, 0) 46%); }
+  .cta-band--carta .stack { flex-direction: column; gap: .6rem; }
+  .cta-band--carta .h2 { font-size: 2rem; }
+
+  /* Botones de reserva: siempre lado a lado y legibles */
+  .cta-actions { flex-wrap: nowrap; gap: .45rem; width: 100%; justify-content: center; }
+  .cta-actions .btn { flex: 1 1 0; min-width: 0; white-space: normal; text-align: center; line-height: 1.25; font-size: .66rem; letter-spacing: .06em; padding: .7rem .55rem; min-height: 46px; }
+  .cta-actions .btn::after { display: none; }
+  .cta-actions:has(> .btn:only-child) .btn { flex: 0 1 auto; padding-inline: 1.4rem; }
+}
+@media (max-width: 759px) {
+  /* Brújula de Casa Panza bien visible en teléfono */
+  .cta-compass { opacity: calc(.6 + var(--p) * 1.2); }
+  /* Coro Coro: el pez completo arriba, texto debajo sin taparlo */
+  .cta-band--coro { min-height: 560px; }
+  .coro-fish { top: 30%; width: 104vw; left: 52%; }
+  .coro-eye { top: 30%; left: calc(52% - 104vw * (.5 - .1775)); width: 74vw; }
+  .coro-copy .h2 { font-size: 2.3rem; }
+  .coro-copy .kicker { font-size: .62rem; }
+}
+/* Tablet (760–1023): figuras y textos sin encimarse */
+@media (min-width: 760px) and (max-width: 1023px) {
+  .pez-layout { grid-template-columns: 1fr 1.2fr !important; }
+  .pez-stage, .kiter-stage { max-width: 100%; overflow: visible; }
+  .pez-stage svg { max-height: 330px; }
+  .cta-band--pez { min-height: 400px; }
+  .coro-fish { left: 72%; width: 50vw; }
+  .coro-eye { left: calc(72% - 50vw * (.5 - .1775)); width: 40vw; }
+  .coro-copy { max-width: 46%; margin-left: var(--gutter); }
+}
+@media (min-width: 760px) and (max-width: 1023px) { .pez-stage { max-width: 380px; } .kiter-stage { max-width: 400px; } }
+@media (max-width: 759px) { .cta-band--carta .carta { transform: translateX(-45%) !important; } }
+/* Tablet: pez y kiter apilados como en teléfono para que nunca se corten */
+@media (min-width: 760px) and (max-width: 1023px) {
+  .cta-band--pez { min-height: 0; padding-block: var(--space-4); display: block; }
+  .pez-layout { display: flex !important; flex-direction: column; align-items: center; gap: var(--space-2); }
+  .pez-stage, .kiter-stage { order: 1; max-width: 460px; width: 100%; }
+  .pez-copy { order: 2; text-align: center; } .pez-copy .cta-actions { justify-content: center; }
 }
