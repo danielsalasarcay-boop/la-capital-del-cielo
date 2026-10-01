@@ -337,7 +337,6 @@ window.waLink = waLink;
     initScrollHeader();
     initReveal();
     initMundo();
-    initHeroParallax();
     document.addEventListener('langchange', function () { renderChannels(); updateWaLinks(); });
     I18n.init();
   });
