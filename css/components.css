@@ -1590,3 +1590,23 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .cart-fab { width: 56px; height: 56px; padding: 0; justify-content: center; border-radius: 50%; }
 .cart-fab svg { width: 24px; height: 24px; }
 .cart-badge { position: absolute; top: -4px; right: -4px; border: 2px solid #fff; }
+
+/* ==========================================================================
+   Casa Panda — bosque de bambú + panda (fondo blanco, alto del footer)
+   ========================================================================== */
+.cta-band--panda { position: relative; overflow: hidden; isolation: isolate; }
+.pb-forest { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.pb-bamboo { position: absolute; bottom: -6%; left: var(--l); height: calc(118% * var(--h)); width: auto; transform-origin: 50% 100%; will-change: transform, opacity; opacity: .25;
+  filter: drop-shadow(0 6px 10px rgba(20, 80, 60, .08)); }
+.pb-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 18%; background: linear-gradient(to top, rgba(120, 200, 140, .14), rgba(120, 200, 140, 0)); }
+.pb-stage { position: relative; width: 100%; max-width: 340px; margin-inline: auto; }
+.pb-panda { display: block; width: 100%; height: auto; transform-origin: 50% 85%; will-change: transform, opacity; filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .12)); }
+.pb-leaf { position: absolute; width: 18px; height: 7px; border-radius: 100% 0; background: #2BBF7A; opacity: 0; }
+.cta-band--panda .pb-leaf { animation: pb-leaf 5s ease-in-out infinite; }
+.pb-leaf.l1 { left: 20%; top: 10%; animation-delay: .4s; } .pb-leaf.l2 { left: 72%; top: 4%; animation-delay: 2.1s; background: #1F9E8B; } .pb-leaf.l3 { left: 48%; top: 0; animation-delay: 3.6s; }
+@keyframes pb-leaf { 0% { transform: translate(0, -10px) rotate(0); opacity: 0; } 15% { opacity: calc(var(--pg, 0) * .9); } 100% { transform: translate(30px, 180px) rotate(320deg); opacity: 0; } }
+.cta-band--panda .pez-copy { position: relative; z-index: 1; }
+.cta-band--panda .pez-copy::before { content: ""; position: absolute; inset: -18px -24px; z-index: -1; border-radius: 24px; background: radial-gradient(ellipse at center, rgba(255,255,255,.92) 40%, rgba(255,255,255,0) 75%); }
+@media (min-width: 760px) { .cta-band--panda .pez-layout { grid-template-columns: 1fr 1fr !important; } }
+@media (max-width: 759px) { .pb-stage { max-width: 260px; } .pb-bamboo { height: calc(70% * var(--h)); } }
+@media (prefers-reduced-motion: reduce) { .pb-leaf { animation: none; } }

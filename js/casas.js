@@ -265,7 +265,7 @@
       '</div></section>' +
 
       /* CTA */
-      (c.pez ? pezHTML(c, waBtn, sitio) : c.kiter ? kiterHTML(c, waBtn, sitio) : c.coro ? coroHTML(c, waBtn, sitio) : c.manta ? mantaHTML(c, waBtn, sitio) :
+      (c.pez ? pezHTML(c, waBtn, sitio) : c.kiter ? kiterHTML(c, waBtn, sitio) : c.coro ? coroHTML(c, waBtn, sitio) : c.manta ? mantaHTML(c, waBtn, sitio) : c.panda ? pandaHTML(c, waBtn, sitio) :
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
         '<div class="container text-center stack stack--center">' +
@@ -278,6 +278,7 @@
     initKiter();
     initCoro();
     initManta();
+    initPanda();
     initCarta();
   }
 
@@ -300,7 +301,7 @@
   /* Pez león: un shader WebGL estira las espinas desde el cuerpo (cálculo exacto por píxel,
      sobre la imagen original en alta resolución: sin costuras ni pérdida de nitidez). */
   function initPez() {
-    var sec = document.querySelector('.cta-band--pez:not(.cta-band--kiter):not(.cta-band--manta)');
+    var sec = document.querySelector('.cta-band--pez:not(.cta-band--kiter):not(.cta-band--manta):not(.cta-band--panda)');
     if (!sec) return;
     var data = (window.__casa9pez || null);
     var stage = sec.querySelector('.pez-stage'), canvas = sec.querySelector('.pez-gl'), img = sec.querySelector('.pez-fallback');
@@ -450,6 +451,63 @@
       body.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (-6 + e * 6 + Math.sin(t * .9) * 1.2).toFixed(2) + 'deg)';
       img.style.transform = 'scaleY(' + (1 - Math.abs(flap) * 0.06).toFixed(3) + ') skewX(' + (flap * 2).toFixed(2) + 'deg)';
       sh.style.transform = 'translateX(' + (x * .8).toFixed(1) + 'px) scale(' + (1 - Math.abs(flap) * 0.08).toFixed(3) + ')';
+      requestAnimationFrame(tick);
+    }
+  }
+
+  /* Casa Panda: bosque de bambú que crece y se mece con el scroll; el panda aparece a comer */
+  function pandaHTML(c, waBtn, sitio) {
+    var z = c.panda, stalks = '';
+    var cfg = [[2, 0.62, -4, .35], [14, 0.86, 3, .55], [70, 0.78, -2, .45], [84, 1, 4, .7], [94, 0.7, -3, .4]];
+    cfg.forEach(function (s, i) {
+      stalks += '<img class="pb-bamboo" src="' + esc(z.bambu) + '" alt="" style="--l:' + s[0] + '%;--h:' + s[1] + ';--r:' + s[2] + 'deg;--d:' + s[3] + ';--i:' + i + '" loading="lazy" decoding="async">';
+    });
+    return '<section class="cta-band--pez cta-band--panda">' +
+      '<div class="pb-forest" aria-hidden="true">' + stalks + '<span class="pb-ground"></span></div>' +
+      '<div class="container pez-layout">' +
+        '<div class="pez-copy">' +
+          '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
+          '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
+          '<div class="cta-actions">' + waBtn + sitio + '</div>' +
+        '</div>' +
+        '<div class="pb-stage" aria-hidden="true">' +
+          '<img class="pb-panda" src="' + esc(z.panda) + '" alt="" width="' + z.pw + '" height="' + z.ph + '" decoding="async">' +
+          '<span class="pb-leaf l1"></span><span class="pb-leaf l2"></span><span class="pb-leaf l3"></span>' +
+        '</div>' +
+      '</div></section>';
+  }
+  function initPanda() {
+    var sec = document.querySelector('.cta-band--panda');
+    if (!sec) return;
+    var stalks = sec.querySelectorAll('.pb-bamboo'), panda = sec.querySelector('.pb-panda');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cur = reduced ? 1 : 0, t0 = performance.now(), visible = false, running = false;
+    function apply(e, t) {
+      stalks.forEach(function (s) {
+        var d = parseFloat(s.style.getPropertyValue('--d')) || .5, i = +s.style.getPropertyValue('--i') || 0;
+        var grow = Math.min(1, Math.max(0, (e - i * 0.06) / 0.7));                 /* crecen uno tras otro */
+        var g = grow * grow * (3 - 2 * grow);
+        var sway = reduced ? 0 : Math.sin(t * 0.9 + i * 1.3) * (2 + d * 2.5);          /* se mecen con la brisa */
+        s.style.transform = 'translateX(-50%) rotate(' + (parseFloat(s.style.getPropertyValue('--r')) + sway * g).toFixed(2) + 'deg) scaleY(' + (0.15 + g * 0.85).toFixed(3) + ')';
+        s.style.opacity = (0.25 + g * 0.75).toFixed(3);
+      });
+      var pe = Math.min(1, Math.max(0, (e - 0.25) / 0.6)), pg = pe * pe * (3 - 2 * pe);
+      var chew = reduced ? 0 : Math.sin(t * 3.2) * 1.2 * pg;                         /* masticando */
+      panda.style.transform = 'translate3d(0,' + ((1 - pg) * 60).toFixed(1) + 'px,0) rotate(' + (chew - (1 - pg) * 6).toFixed(2) + 'deg) scale(' + (0.86 + pg * 0.14).toFixed(3) + ')';
+      panda.style.opacity = (0.1 + pg * 0.9).toFixed(3);
+      sec.style.setProperty('--pg', pg.toFixed(3));
+    }
+    apply(cur, 0);
+    if (reduced) return;
+    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && !running) { running = true; requestAnimationFrame(tick); } }, { threshold: 0 });
+    io.observe(sec);
+    function tick(now) {
+      if (!visible) { running = false; return; }
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      var span = Math.max(1, Math.min(vh, r.height) * 0.95);
+      var p = Math.min(1, Math.max(0, (vh - r.top) / span));
+      cur += (p - cur) * 0.08;
+      apply(cur * cur * (3 - 2 * cur), (now - t0) / 1000);
       requestAnimationFrame(tick);
     }
   }

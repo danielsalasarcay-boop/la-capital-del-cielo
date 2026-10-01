@@ -170,7 +170,7 @@
             ]
           },
           {
-            "nombre": "Madrizquí",
+            "nombre": "Madrisqui",
             "x": 1165,
             "y": 560,
             "curva": [
@@ -382,16 +382,16 @@
       "tipo": "casa",
       "logo": "",
       "ubicacion": {
-        "es": "Madrizquí · Los Roques",
-        "en": "Madrizquí · Los Roques"
+        "es": "Madrisqui · Los Roques",
+        "en": "Madrisqui · Los Roques"
       },
       "descripcion_corta": {
-        "es": "Casa privada en Madrizquí, con 5 habitaciones y un staff de 3 personas que incluye chef.",
-        "en": "Private house on Madrizquí, with 5 bedrooms and a staff of 3 including a chef."
+        "es": "Casa privada en Madrisqui, con 5 habitaciones y un staff de 3 personas que incluye chef.",
+        "en": "Private house on Madrisqui, with 5 bedrooms and a staff of 3 including a chef."
       },
       "descripcion": {
-        "es": "Casa 9 está en Madrizquí, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef.",
-        "en": "Casa 9 is on Madrizquí, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef."
+        "es": "Casa 9 está en Madrisqui, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef.",
+        "en": "Casa 9 is on Madrisqui, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef."
       },
       "capacidad": 12,
       "habitaciones": 5,
@@ -425,8 +425,8 @@
       ],
       "destacados": [
         {
-          "es": "En Madrizquí",
-          "en": "On Madrizquí"
+          "es": "En Madrisqui",
+          "en": "On Madrisqui"
         },
         {
           "es": "5 habitaciones",
@@ -469,16 +469,16 @@
         "poster": "img/casas/casa-9/recorrido-poster.jpg"
       },
       "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar Casa 9 en Madrizquí, Los Roques.",
-        "en": "Hi, I'd like information to book Casa 9 on Madrizquí, Los Roques."
+        "es": "Hola, quiero información para reservar Casa 9 en Madrisqui, Los Roques.",
+        "en": "Hi, I'd like information to book Casa 9 on Madrisqui, Los Roques."
       },
       "sitio_propio": "",
       "amenidades": [
         {
           "icono": "isla",
           "texto": {
-            "es": "En Madrizquí",
-            "en": "On Madrizquí"
+            "es": "En Madrisqui",
+            "en": "On Madrisqui"
           }
         },
         {
@@ -1006,16 +1006,16 @@
       "tipo": "casa",
       "logo": "img/casas/casa-panda/logo.png",
       "ubicacion": {
-        "es": "Madrizquí · Los Roques",
-        "en": "Madrizquí · Los Roques"
+        "es": "Madrisqui · Los Roques",
+        "en": "Madrisqui · Los Roques"
       },
       "descripcion_corta": {
-        "es": "Casa privada en Madrizquí con 4 habitaciones y un staff de 3 personas que incluye chef.",
-        "en": "Private house on Madrizquí with 4 bedrooms and a staff of 3 including a chef."
+        "es": "Casa privada en Madrisqui con 4 habitaciones y un staff de 3 personas que incluye chef.",
+        "en": "Private house on Madrisqui with 4 bedrooms and a staff of 3 including a chef."
       },
       "descripcion": {
-        "es": "Casa Panda está en Madrizquí, en el archipiélago de Los Roques. Tiene 4 habitaciones y un staff de 3 personas, incluido un chef.",
-        "en": "Casa Panda is on Madrizquí, in the Los Roques archipelago. It has 4 bedrooms and a staff of 3, including a chef."
+        "es": "Casa Panda está en Madrisqui, en el archipiélago de Los Roques. Tiene 4 habitaciones y un staff de 3 personas, incluido un chef.",
+        "en": "Casa Panda is on Madrisqui, in the Los Roques archipelago. It has 4 bedrooms and a staff of 3, including a chef."
       },
       "capacidad": 11,
       "habitaciones": 4,
@@ -1049,8 +1049,8 @@
       ],
       "destacados": [
         {
-          "es": "En Madrizquí",
-          "en": "On Madrizquí"
+          "es": "En Madrisqui",
+          "en": "On Madrisqui"
         },
         {
           "es": "4 habitaciones",
@@ -1065,8 +1065,8 @@
         {
           "icono": "isla",
           "texto": {
-            "es": "En Madrizquí",
-            "en": "On Madrizquí"
+            "es": "En Madrisqui",
+            "en": "On Madrisqui"
           }
         },
         {
@@ -1103,10 +1103,20 @@
         "img/casas/casa-panda/portada.jpg"
       ],
       "whatsapp_mensaje": {
-        "es": "Hola, quiero información para reservar Casa Panda en Madrizquí, Los Roques.",
-        "en": "Hi, I'd like information to book Casa Panda on Madrizquí, Los Roques."
+        "es": "Hola, quiero información para reservar Casa Panda en Madrisqui, Los Roques.",
+        "en": "Hi, I'd like information to book Casa Panda on Madrisqui, Los Roques."
       },
-      "sitio_propio": ""
+      "sitio_propio": "",
+      "panda": {
+        "panda": "img/casas/casa-panda/anim/panda.webp",
+        "bambu": "img/casas/casa-panda/anim/bambu.webp",
+        "pw": 1009,
+        "ph": 1100,
+        "bw": 700,
+        "bh": 1784
+      },
+      "mapa_embed": "https://maps.google.com/maps?q=11.9352179,-66.6624916&z=17&output=embed",
+      "mapa_link": "https://maps.app.goo.gl/1vd9kfAdcHStFvfP9"
     }
   ],
   "amenidades_comunes": [
