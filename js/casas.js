@@ -256,7 +256,7 @@
       '</div></section>' +
 
       /* CTA */
-      (c.pez ? pezHTML(c, waBtn, sitio) :
+      (c.pez ? pezHTML(c, waBtn, sitio) : c.agua ? aguaHTML(c, waBtn, sitio) :
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
         '<div class="container text-center stack stack--center">' +
@@ -288,6 +288,21 @@
             '<image href="' + esc(z.img) + '" x="0" y="0" width="' + z.w + '" height="' + z.h + '" filter="url(#pezFx)"/>' +
           '</svg>' +
         '</div>' +
+      '</div></section>';
+  }
+  /* Casa Bleu: fondo submarino animado (rayos de sol, partículas, oleaje de luz) */
+  function aguaHTML(c, waBtn, sitio) {
+    var z = c.agua, parts = '';
+    for (var i = 0; i < 22; i++) parts += '<span style="--x:' + ((i * 41) % 100) + '%;--d:' + (7 + (i % 6) * 1.6) + 's;--s:' + (2 + (i % 4)) + 'px;--dl:-' + (i * 0.8).toFixed(1) + 's"></span>';
+    return '<section class="cta-band--agua">' +
+      '<div class="agua-bg"><img src="' + esc(z.fondo_small) + '" srcset="' + esc(z.fondo_small) + ' 1200w, ' + esc(z.fondo) + ' 2400w" sizes="100vw" alt="" loading="lazy" decoding="async"></div>' +
+      '<svg class="agua-caustics" aria-hidden="true"><filter id="aguaFx"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="2" seed="7"><animate attributeName="baseFrequency" dur="18s" values="0.012 0.03;0.016 0.036;0.012 0.03" repeatCount="indefinite"/></feTurbulence><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.75"/></filter><rect width="100%" height="100%" filter="url(#aguaFx)"/></svg>' +
+      '<div class="pez-rays" aria-hidden="true"></div>' +
+      '<div class="pez-particles" aria-hidden="true">' + parts + '</div>' +
+      '<div class="container agua-copy">' +
+        '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
+        '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
+        '<div class="cta-actions">' + waBtn + sitio + '</div>' +
       '</div></section>';
   }
   var pezBound = false;

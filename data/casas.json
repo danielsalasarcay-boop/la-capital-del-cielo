@@ -764,7 +764,11 @@
         "es": "Hola, quiero información para reservar Casa Bleu en Gran Roque, Los Roques.",
         "en": "Hi, I'd like information to book Casa Bleu in Gran Roque, Los Roques."
       },
-      "sitio_propio": ""
+      "sitio_propio": "",
+      "agua": {
+        "fondo": "img/casas/casa-bleu/agua/fondo-2400.jpg",
+        "fondo_small": "img/casas/casa-bleu/agua/fondo-1200.jpg"
+      }
     },
     {
       "id": "casa-coro-coro",
