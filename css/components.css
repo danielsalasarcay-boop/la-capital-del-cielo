@@ -1311,3 +1311,11 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
   .pez-stage, .kiter-stage { order: 1; max-width: 460px; width: 100%; }
   .pez-copy { order: 2; text-align: center; } .pez-copy .cta-actions { justify-content: center; }
 }
+/* Teléfono: sin mini-logos en cada tarjeta (se leen mal); logo del encabezado limpio */
+@media (max-width: 599px) {
+  .product .lcc-badge { display: none; }
+  .merch-head-logo { width: 54px; top: 2px; right: var(--gutter); }
+  .page-hero--merch .kicker { padding-right: 70px; }
+  .header-logo img { height: 44px; }
+}
+@media (max-width: 599px) { .merch-head-logo { width: 46px; top: -16px; } }

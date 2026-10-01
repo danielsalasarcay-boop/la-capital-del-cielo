@@ -392,9 +392,11 @@
     function tick() {
       if (!visible) { running = false; return; }
       var r = sec.getBoundingClientRect(), vh = window.innerHeight;
-      var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.95)));
+      /* 0 cuando la sección asoma → 1 cuando ya se ve completa (sin scroll de más en teléfono) */
+      var span = Math.max(1, Math.min(vh, r.height) * 0.92);
+      var p = Math.min(1, Math.max(0, (vh - r.top) / span));
       var t = p * p * (3 - 2 * p);
-      cur += (t - cur) * 0.085;
+      cur += (t - cur) * 0.1;
       apply(cur);
       requestAnimationFrame(tick);
     }
