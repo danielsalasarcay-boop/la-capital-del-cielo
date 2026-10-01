@@ -802,21 +802,19 @@
           }
         }
       ],
-      "imagen_portada": "img/casas/casa-bleu/portada.jpg",
-      "imagen_hero": "img/casas/casa-bleu/portada-hero.jpg",
-      "hero_ancho": 2800,
+      "imagen_portada": "img/casas/casa-bleu/sala-azul.jpg",
       "galeria": [
-        "img/casas/casa-bleu/portada.jpg",
         "img/casas/casa-bleu/sala-azul.jpg",
         "img/casas/casa-bleu/cocina.jpg",
         "img/casas/casa-bleu/staff.jpg",
         "img/casas/casa-bleu/mesa-servida.jpg",
-        "img/casas/casa-bleu/cojines-estrellas.jpg",
         "img/casas/casa-bleu/habitacion-principal.jpg",
         "img/casas/casa-bleu/habitacion-blanca.jpg",
         "img/casas/casa-bleu/habitacion-cojines-azules.jpg",
         "img/casas/casa-bleu/habitacion-literas.jpg",
         "img/casas/casa-bleu/remos.jpg",
+        "img/casas/casa-bleu/portada.jpg",
+        "img/casas/casa-bleu/cojines-estrellas.jpg",
         "img/casas/casa-bleu/bano.jpg",
         "img/casas/casa-bleu/bano-2.jpg",
         "img/casas/casa-bleu/bano-ducha.jpg"
