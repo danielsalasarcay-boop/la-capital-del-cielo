@@ -147,7 +147,8 @@
     "quitar": "Quitar",
     "wa_pedido": "Hola, quiero hacer este pedido de camisas de La Capital del Cielo:",
     "wa_total": "Total",
-    "cerrar": "Cerrar"
+    "cerrar": "Cerrar",
+    "agregar_corto": "Agregar"
   },
   "error404": {
     "title": "Página no encontrada",

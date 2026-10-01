@@ -147,7 +147,8 @@
     "quitar": "Remove",
     "wa_pedido": "Hi, I'd like to place this La Capital del Cielo shirt order:",
     "wa_total": "Total",
-    "cerrar": "Close"
+    "cerrar": "Close",
+    "agregar_corto": "Add"
   },
   "error404": {
     "title": "Page not found",

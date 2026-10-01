@@ -1650,3 +1650,11 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .gallery-fit--big { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-2); }
 .gallery-fit--big .media { aspect-ratio: 3 / 2 !important; border-radius: 10px; }
 @media (max-width: 599px) { .gallery-fit--big { grid-template-columns: 1fr !important; } }
+/* Botón Agregar: texto corto en tarjetas angostas, siempre dentro del botón */
+.product-add .lbl-short { display: none; }
+.product-add { overflow: hidden; padding-inline: .6rem; }
+@media (max-width: 599px) {
+  .product-add .lbl-long { display: none; }
+  .product-add .lbl-short { display: inline; }
+  .product-add { font-size: .74rem; letter-spacing: .08em; }
+}

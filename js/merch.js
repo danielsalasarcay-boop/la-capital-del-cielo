@@ -44,7 +44,7 @@
           sizesHTML(p.id, tallas) +
           '<div class="buy-row">' +
             '<div class="qty" aria-label="' + esc(I18n.t('merch.cantidad')) + '"><button type="button" class="qty-btn" data-qty="-1" aria-label="-">−</button><span class="qty-val">1</span><button type="button" class="qty-btn" data-qty="1" aria-label="+">+</button></div>' +
-            '<button type="button" class="btn btn-primary btn-sm product-add" data-add="' + esc(p.id) + '">' + CART_ICON + '<span>' + esc(I18n.t('merch.agregar')) + '</span></button>' +
+            '<button type="button" class="btn btn-primary btn-sm product-add" data-add="' + esc(p.id) + '" aria-label="' + esc(I18n.t('merch.agregar')) + '">' + CART_ICON + '<span class="lbl-long">' + esc(I18n.t('merch.agregar')) + '</span><span class="lbl-short">' + esc(I18n.t('merch.agregar_corto')) + '</span></button>' +
           '</div>' +
           '<p class="size-hint" hidden>' + esc(I18n.t('merch.elige_talla')) + '</p>' +
         '</div>' +
@@ -153,8 +153,10 @@
       if (!sel) { var h = scope.querySelector('.size-hint'); h.hidden = false; h.classList.remove('shake'); void h.offsetWidth; h.classList.add('shake'); return; }
       var qty = +(scope.querySelector('.qty-val') || { textContent: 1 }).textContent || 1;
       add(addBtn.getAttribute('data-add'), sel.getAttribute('data-size'), qty);
-      var label = addBtn.querySelector('span'); label.textContent = I18n.t('merch.agregado'); addBtn.classList.add('is-done');
-      setTimeout(function () { label.textContent = I18n.t('merch.agregar'); addBtn.classList.remove('is-done'); }, 1400);
+      var spans = addBtn.querySelectorAll('span'), prev = [];
+      spans.forEach(function (sp) { prev.push(sp.textContent); sp.textContent = I18n.t('merch.agregado'); });
+      addBtn.classList.add('is-done');
+      setTimeout(function () { spans.forEach(function (sp, k) { sp.textContent = prev[k]; }); addBtn.classList.remove('is-done'); }, 1400);
     }
   });
 
