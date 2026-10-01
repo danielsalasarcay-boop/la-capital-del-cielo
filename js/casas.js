@@ -373,18 +373,19 @@
     var img = sec.querySelector('.kiter-img'), sh = sec.querySelector('.kiter-shadow'), wind = sec.querySelector('.kiter-wind');
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var cur = 0, t0 = performance.now(), visible = false;
-    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) requestAnimationFrame(tick); }, { threshold: 0 });
+    var running = false;
+    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && !running) { running = true; requestAnimationFrame(tick); } }, { threshold: 0 });
     io.observe(sec);
     function tick(now) {
-      if (!visible) return;
+      if (!visible) { running = false; return; }
       var r = sec.getBoundingClientRect(), vh = window.innerHeight;
       var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height * 0.4)));
       cur += (p - cur) * 0.08;
       var e = cur * cur * (3 - 2 * cur), t = (now - t0) / 1000, w = sec.clientWidth;
       var jump = Math.sin(Math.min(1, e) * Math.PI);                  /* arco del salto */
-      var x = (-0.12 + e * 0.24) * w * 0.45;                           /* avanza hacia la derecha */
-      var y = -jump * 46 + Math.sin(t * 1.3) * 4;                      /* sube y "flota" con el viento */
-      var rot = -8 + e * 12 + Math.sin(t * 1.1) * 1.2;                 /* se inclina al saltar */
+      var x = (-0.05 + e * 0.10) * w * 0.45;                           /* avanza hacia la derecha */
+      var y = -jump * 18 + Math.sin(t * 1.1) * 2.5;                      /* sube y "flota" con el viento */
+      var rot = -3 + e * 5 + Math.sin(t * 0.9) * 0.6;                 /* se inclina al saltar */
       img.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
       sh.style.transform = 'translateX(' + (x * 0.9).toFixed(1) + 'px) scale(' + (1 - jump * 0.35).toFixed(3) + ')';
       sh.style.opacity = (0.35 - jump * 0.2).toFixed(3);
@@ -463,13 +464,17 @@
       var tremble = Math.sin((t || 0) / 900) * 0.4;   /* temblor mínimo de aguja */
       rose.style.transform = 'rotate(' + (angle + tremble).toFixed(2) + 'deg)';
       idle++;
-      raf = requestAnimationFrame(tick);
+      raf = onScreen ? requestAnimationFrame(tick) : null;
     }
     function reveal() {
       var sec = rose.closest('section'); if (!sec) return;
       var r = sec.getBoundingClientRect(), vh = window.innerHeight;
       var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
       rose.parentNode.style.setProperty('--p', p.toFixed(3));
+    }
+    var onScreen = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; if (onScreen && !raf) raf = requestAnimationFrame(tick); }).observe(rose);
     }
     reveal(); raf = requestAnimationFrame(tick);
     if (!compassBound) {

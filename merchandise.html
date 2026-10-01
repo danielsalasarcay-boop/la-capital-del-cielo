@@ -35,9 +35,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Tenor+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=20261001u">
-  <link rel="stylesheet" href="css/layout.css?v=20261001u">
-  <link rel="stylesheet" href="css/components.css?v=20261001u">
+  <link rel="stylesheet" href="css/base.css?v=20261002b">
+  <link rel="stylesheet" href="css/layout.css?v=20261002b">
+  <link rel="stylesheet" href="css/components.css?v=20261002b">
 </head>
 <body>
   <!-- Pantalla de carga con el logo (la controla js/main.js) -->
@@ -62,7 +62,7 @@
     <section class="section">
       <div class="container">
         <!-- Generado desde data/merch.json por js/merch.js -->
-        <div class="grid merch-grid" id="merch-grid" aria-live="polite"></div>
+        <div class="merch-wrap"><img class="merch-corner-logo" src="img/general/logo-badge.png" alt="" aria-hidden="true"><div class="grid merch-grid" id="merch-grid" aria-live="polite"></div></div>
       </div>
     </section>
     <!-- El mundo de La Capital del Cielo: diseños de la marca, parallax suave al hacer scroll -->
@@ -87,25 +87,25 @@
           <circle class="m-sun" cx="620" cy="150" r="42"/><circle class="m-sun m-sun--ring" cx="620" cy="150" r="64"/>
           <g class="m-waves" data-depth="0.25"><path class="m-wave" d="M-40 660 q 40 -12 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0"/><path class="m-wave m-wave--2" d="M-40 684 q 40 -10 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0 t 80 0"/></g>
         </svg>
-        <figure class="mundo-fig" data-depth="0.9" data-dir="-1" style="--x:20.625%;--y:4.091%;--w:15.625%;--mx:3.000%;--my:2.239%;--mw:42.000%;--i:0"><img src="img/mundo2/rider.png" alt="Kitesurfista" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="0.35" data-dir="0" style="--x:40.000%;--y:8.636%;--w:20.625%;--mx:44.000%;--my:24.627%;--mw:42.000%;--i:1"><img src="img/mundo2/gaviota.png" alt="Gaviota — la capital del cielo" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="0.45" data-dir="0" style="--x:63.125%;--y:13.182%;--w:6.250%;--mx:9.000%;--my:30.597%;--mw:12.000%;--i:2"><img src="img/mundo2/faro.png" alt="Faro" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="1.1" data-dir="1" style="--x:88.750%;--y:1.818%;--w:7.625%;--mx:80.000%;--my:1.493%;--mw:16.000%;--i:3"><img src="img/mundo2/kite.png" alt="Kite" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="1.2" data-dir="-1" style="--x:3.750%;--y:29.091%;--w:9.375%;--mx:4.000%;--my:41.791%;--mw:19.000%;--i:4"><img src="img/mundo2/manta.png" alt="Mantarraya" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="0.8" data-dir="1" style="--x:15.625%;--y:55.455%;--w:13.250%;--mx:28.000%;--my:52.239%;--mw:34.000%;--i:5"><img src="img/mundo2/pezleon.png" alt="Pez león" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="0.6" data-dir="-1" style="--x:32.500%;--y:59.545%;--w:10.125%;--mx:6.000%;--my:76.119%;--mw:26.000%;--i:6"><img src="img/mundo2/tortuga.png" alt="Tortuga" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="0.4" data-dir="1" style="--x:45.625%;--y:68.182%;--w:10.750%;--mx:37.000%;--my:82.090%;--mw:27.000%;--i:7"><img src="img/mundo2/cangrejo.png" alt="Cangrejo" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="0.5" data-dir="-1" style="--x:59.500%;--y:66.364%;--w:11.875%;--mx:68.000%;--my:80.597%;--mw:29.000%;--i:8"><img src="img/mundo2/langosta.png" alt="Langosta" loading="lazy" decoding="async"></figure>
-        <figure class="mundo-fig" data-depth="1.0" data-dir="1" style="--x:74.375%;--y:48.182%;--w:13.250%;--mx:66.000%;--my:50.746%;--mw:30.000%;--i:9"><img src="img/mundo2/shark.png" alt="Tiburón" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="0.9" data-dir="-1" style="--x:20.625%;--y:4.091%;--w:15.625%;--mx:3.000%;--my:2.239%;--mw:42.000%;--i:0"><img src="img/mundo2/rider.webp" alt="Kitesurfista" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="0.35" data-dir="0" style="--x:40.000%;--y:8.636%;--w:20.625%;--mx:44.000%;--my:24.627%;--mw:42.000%;--i:1"><img src="img/mundo2/gaviota.webp" alt="Gaviota — la capital del cielo" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="0.45" data-dir="0" style="--x:63.125%;--y:13.182%;--w:6.250%;--mx:9.000%;--my:30.597%;--mw:12.000%;--i:2"><img src="img/mundo2/faro.webp" alt="Faro" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="1.1" data-dir="1" style="--x:88.750%;--y:1.818%;--w:7.625%;--mx:80.000%;--my:1.493%;--mw:16.000%;--i:3"><img src="img/mundo2/kite.webp" alt="Kite" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="1.2" data-dir="-1" style="--x:3.750%;--y:29.091%;--w:9.375%;--mx:4.000%;--my:41.791%;--mw:19.000%;--i:4"><img src="img/mundo2/manta.webp" alt="Mantarraya" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="0.8" data-dir="1" style="--x:15.625%;--y:55.455%;--w:13.250%;--mx:28.000%;--my:52.239%;--mw:34.000%;--i:5"><img src="img/mundo2/pezleon.webp" alt="Pez león" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="0.6" data-dir="-1" style="--x:32.500%;--y:59.545%;--w:10.125%;--mx:6.000%;--my:76.119%;--mw:26.000%;--i:6"><img src="img/mundo2/tortuga.webp" alt="Tortuga" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="0.4" data-dir="1" style="--x:45.625%;--y:68.182%;--w:10.750%;--mx:37.000%;--my:82.090%;--mw:27.000%;--i:7"><img src="img/mundo2/cangrejo.webp" alt="Cangrejo" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="0.5" data-dir="-1" style="--x:59.500%;--y:66.364%;--w:11.875%;--mx:68.000%;--my:80.597%;--mw:29.000%;--i:8"><img src="img/mundo2/langosta.webp" alt="Langosta" loading="lazy" decoding="async"></figure>
+        <figure class="mundo-fig" data-depth="1.0" data-dir="1" style="--x:74.375%;--y:48.182%;--w:13.250%;--mx:66.000%;--my:50.746%;--mw:30.000%;--i:9"><img src="img/mundo2/shark.webp" alt="Tiburón" loading="lazy" decoding="async"></figure>
       </div>
     </section>
   </main>
 
   <footer id="site-footer"></footer>
 
-  <script src="js/i18n.js?v=20261001u"></script>
-  <script src="js/main.js?v=20261001u"></script>
-  <script src="js/casas.js?v=20261001u"></script>
-  <script src="js/merch.js?v=20261001u"></script>
+  <script src="js/i18n.js?v=20261002b"></script>
+  <script src="js/main.js?v=20261002b"></script>
+  <script src="js/casas.js?v=20261002b"></script>
+  <script src="js/merch.js?v=20261002b"></script>
 </body>
 </html>

@@ -374,7 +374,7 @@
       ],
       "mapa_embed": "https://maps.google.com/maps?cid=10655322288920728829&z=16&output=embed",
       "mapa_link": "https://maps.google.com/?cid=10655322288920728829",
-      "brujula": "img/casas/casa-panza/brujula.png"
+      "brujula": "img/casas/casa-panza/brujula.webp"
     },
     {
       "id": "casa-9",
@@ -486,7 +486,7 @@
         }
       ],
       "pez": {
-        "img": "img/casas/casa-9/pez/pez.png",
+        "img": "img/casas/casa-9/pez/pez.webp",
         "w": 2016,
         "h": 1784,
         "cx": 0.7238,
@@ -774,7 +774,9 @@
         "img": "img/casas/casa-bleu/kiter/kiter.webp",
         "w": 2971,
         "h": 1581
-      }
+      },
+      "mapa_embed": "https://maps.google.com/maps?q=11.9464517,-66.6766778&z=18&output=embed",
+      "mapa_link": "https://maps.app.goo.gl/iyRhtYeQLpmJCqFn8"
     },
     {
       "id": "casa-coro-coro",
@@ -922,7 +924,9 @@
         "es": "Hola, quiero información para reservar Casa Coro Coro en Gran Roque, Los Roques.",
         "en": "Hi, I'd like information to book Casa Coro Coro in Gran Roque, Los Roques."
       },
-      "sitio_propio": ""
+      "sitio_propio": "",
+      "mapa_embed": "https://maps.google.com/maps?q=11.9457835,-66.6753867&z=18&output=embed",
+      "mapa_link": "https://maps.app.goo.gl/eSvo7J86vBRAjHx67"
     }
   ],
   "amenidades_comunes": [

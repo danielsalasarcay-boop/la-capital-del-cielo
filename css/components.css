@@ -1175,3 +1175,33 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
     background: rgba(255, 255, 255, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
   .site-header.over-hero .sub-menu a { padding: .45rem .9rem !important; border-radius: 999px; font-size: .7rem; }
 }
+/* Submenú sobre portada más corto de lado y centrado bajo "Casas" */
+@media (min-width: 960px) {
+  .site-header.over-hero .sub-menu { left: 50%; transform: translate(-50%, 6px); padding: .2rem; }
+  .site-header.over-hero .has-sub:hover > .sub-menu, .site-header.over-hero .has-sub:focus-within > .sub-menu { transform: translate(-50%, 0); }
+  .site-header.over-hero .sub-menu a { padding: .38rem .55rem !important; font-size: .64rem; letter-spacing: .08em; }
+}
+/* Logo LCC pequeño en la esquina superior derecha de cada camisa (sin cambiar espacios) */
+.product-media { position: relative; }
+.lcc-badge { position: absolute; top: 8px; right: 8px; width: clamp(38px, 18%, 64px) !important; height: auto !important; object-fit: contain; pointer-events: none; opacity: .9; transform: none !important; }
+.sv-imgwrap { position: relative; display: inline-block; }
+.sv-imgwrap .lcc-badge { top: 14px; right: 14px; width: clamp(56px, 12%, 96px) !important; }
+/* Logo pequeño en "Reserva con nosotros" del home, en el hueco bajo el título (no agrega espacio) */
+.photo-section--cta > .container { position: static; }
+.cta-logo { position: absolute; left: 50%; top: 31%; transform: translate(-50%, -50%); width: clamp(84px, 9vw, 120px); height: auto; opacity: .9; pointer-events: none; }
+@media (max-height: 559px) { .cta-logo { display: none; } }
+.cta-logo { top: 29.5%; width: clamp(70px, 7vw, 96px); }
+/* Logo pequeño colgando bajo "Reserva con nosotros" (no ocupa espacio) */
+.cta-title-logo { position: relative; }
+.cta-title-logo .cta-logo { position: absolute; left: 50%; top: calc(100% + .5rem); transform: translateX(-50%); width: auto; height: clamp(26px, 4.6vw, 62px); opacity: .9; }
+@media (max-width: 699px) { .cta-title-logo .cta-logo { top: calc(100% + .35rem); height: 30px; } .photo-section--cta .cta-body { top: 50%; } }
+/* Badge en alta resolución, sin recortes */
+.lcc-badge { object-fit: contain; overflow: visible; }
+.sv-imgwrap { overflow: visible; }
+.sv-imgwrap .lcc-badge { top: 16px; right: 18px; width: clamp(64px, 13%, 108px) !important; }
+/* Logo LCC en la esquina superior derecha de la sección de camisas (no ocupa espacio) */
+.merch-wrap { position: relative; }
+.merch-corner-logo { position: absolute; right: 0; bottom: calc(100% + .75rem); width: clamp(64px, 7vw, 104px); height: auto; opacity: .95; pointer-events: none; }
+@media (max-width: 599px) { .merch-corner-logo { width: 56px; bottom: calc(100% + .4rem); } }
+.merch-wrap--home { max-width: 760px; margin-inline: auto; }
+.sv-figure .lcc-badge { background: none !important; box-shadow: none !important; border-radius: 0 !important; max-height: none !important; }
