@@ -1115,3 +1115,9 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 .pez-stage { position: relative; max-width: 600px; }
 .pez-fallback, .pez-gl { position: absolute; inset: 0; width: 100%; height: 100%; }
 .pez-stage.is-gl .pez-fallback { visibility: hidden; }
+/* Azul LCC clarito: cabecera de Merchandise y sección Merchandise del home */
+.page-hero--merch { background: #D9EAF8; }
+.section--brand { background: #DCEBF9; }
+.section--brand .kicker, .section--brand .section-head p:not(.kicker) { color: rgba(26, 26, 26, .65); }
+.section--brand > .container > p > .btn-primary { background: var(--color-brand); color: var(--color-white); }
+.section--brand > .container > p > .btn-primary:hover { background: var(--color-brand-hover); }
