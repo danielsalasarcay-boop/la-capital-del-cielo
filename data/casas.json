@@ -999,6 +999,114 @@
         "ey": 49.46,
         "ar": 1.7917
       }
+    },
+    {
+      "id": "casa-panda",
+      "nombre": "Casa Panda",
+      "tipo": "casa",
+      "logo": "",
+      "ubicacion": {
+        "es": "Madrizquí · Los Roques",
+        "en": "Madrizquí · Los Roques"
+      },
+      "descripcion_corta": {
+        "es": "Casa privada en Madrizquí con 4 habitaciones y un staff de 3 personas que incluye chef.",
+        "en": "Private house on Madrizquí with 4 bedrooms and a staff of 3 including a chef."
+      },
+      "descripcion": {
+        "es": "Casa Panda está en Madrizquí, en el archipiélago de Los Roques. Tiene 4 habitaciones y un staff de 3 personas, incluido un chef.",
+        "en": "Casa Panda is on Madrizquí, in the Los Roques archipelago. It has 4 bedrooms and a staff of 3, including a chef."
+      },
+      "capacidad": 11,
+      "habitaciones": 4,
+      "distribucion": [
+        {
+          "es": "3 habitaciones con cama King (6 personas)",
+          "en": "3 bedrooms with King bed (6 guests)"
+        },
+        {
+          "es": "1 habitación con 5 camas individuales (5 personas)",
+          "en": "1 bedroom with 5 single beds (5 guests)"
+        }
+      ],
+      "incluye": [
+        {
+          "es": "Staff de 3 personas",
+          "en": "Staff of 3"
+        },
+        {
+          "es": "Chef",
+          "en": "Chef"
+        },
+        {
+          "es": "Gastronomía excelente",
+          "en": "Excellent cuisine"
+        },
+        {
+          "es": "Limpieza diaria",
+          "en": "Daily housekeeping"
+        }
+      ],
+      "destacados": [
+        {
+          "es": "En Madrizquí",
+          "en": "On Madrizquí"
+        },
+        {
+          "es": "4 habitaciones",
+          "en": "4 bedrooms"
+        },
+        {
+          "es": "Staff de 3 personas con chef",
+          "en": "Staff of 3 with chef"
+        }
+      ],
+      "amenidades": [
+        {
+          "icono": "isla",
+          "texto": {
+            "es": "En Madrizquí",
+            "en": "On Madrizquí"
+          }
+        },
+        {
+          "icono": "cama",
+          "texto": {
+            "es": "4 habitaciones: 3 King y 1 con 5 camas",
+            "en": "4 bedrooms: 3 King and 1 with 5 beds"
+          }
+        },
+        {
+          "icono": "personas",
+          "texto": {
+            "es": "Hasta 11 huéspedes",
+            "en": "Up to 11 guests"
+          }
+        },
+        {
+          "icono": "staff",
+          "texto": {
+            "es": "Staff de 3 personas con chef",
+            "en": "Staff of 3 including a chef"
+          }
+        },
+        {
+          "icono": "limpieza",
+          "texto": {
+            "es": "Limpieza diaria",
+            "en": "Daily housekeeping"
+          }
+        }
+      ],
+      "imagen_portada": "img/casas/casa-panda/portada.jpg",
+      "galeria": [
+        "img/casas/casa-panda/portada.jpg"
+      ],
+      "whatsapp_mensaje": {
+        "es": "Hola, quiero información para reservar Casa Panda en Madrizquí, Los Roques.",
+        "en": "Hi, I'd like information to book Casa Panda on Madrizquí, Los Roques."
+      },
+      "sitio_propio": ""
     }
   ],
   "amenidades_comunes": [
