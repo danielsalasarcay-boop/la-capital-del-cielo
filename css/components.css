@@ -1205,3 +1205,16 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 @media (max-width: 599px) { .merch-corner-logo { width: 56px; bottom: calc(100% + .4rem); } }
 .merch-wrap--home { max-width: 760px; margin-inline: auto; }
 .sv-figure .lcc-badge { background: none !important; box-shadow: none !important; border-radius: 0 !important; max-height: none !important; }
+/* Logo LCC a la derecha del encabezado "Nuestras camisas" (no ocupa espacio) */
+.merch-corner-logo { display: none; }
+.merch-head { position: relative; }
+.merch-head-logo { position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%); width: clamp(84px, 10vw, 150px); height: auto; pointer-events: none; }
+#merchandise .section-head.merch-head { max-width: none; }
+#merchandise .merch-head-logo { right: 0; }
+@media (max-width: 599px) { .merch-head-logo { width: 64px; top: 0; transform: none; } }
+@media (max-width: 599px) { .merch-head-logo { width: 46px; top: -4px; } }
+/* Logo LCC pegado ARRIBA de "Reserva con nosotros", más grande; la sección no cambia de tamaño */
+.cta-title-logo .cta-logo { top: auto; bottom: calc(100% + .35rem); height: clamp(48px, 7vw, 96px); opacity: 1; }
+@media (max-width: 699px) { .cta-title-logo .cta-logo { top: auto; bottom: calc(100% + .25rem); height: 46px; } }
+.photo-section--cta .cta-title-logo { margin-top: clamp(48px, 7vw, 96px); } @media (max-width: 699px) { .photo-section--cta .cta-title-logo { margin-top: 50px; } }
+@media (min-height: 560px) and (min-width: 700px) { .photo-section--cta .cta-body { top: 54%; } }
