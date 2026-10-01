@@ -115,7 +115,8 @@
     "telefono": "Teléfono",
     "email": "Email",
     "instagram": "Instagram",
-    "error_fechas": "La fecha de salida debe ser posterior a la de llegada."
+    "error_fechas": "La fecha de salida debe ser posterior a la de llegada.",
+    "nota": "Respondemos en minutos por WhatsApp, todos los días."
   },
   "footer": {
     "contacto": "Contacto",

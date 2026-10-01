@@ -115,7 +115,8 @@
     "telefono": "Phone",
     "email": "Email",
     "instagram": "Instagram",
-    "error_fechas": "The departure date must be after the arrival date."
+    "error_fechas": "The departure date must be after the arrival date.",
+    "nota": "We reply within minutes on WhatsApp, every day."
   },
   "footer": {
     "contacto": "Contact",

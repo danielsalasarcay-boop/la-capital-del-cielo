@@ -333,6 +333,7 @@ window.waLink = waLink;
     fillCasasMenu();
     renderFooter();
     renderFloating();
+    document.querySelectorAll('[data-icon]').forEach(function (el) { if (ICONS[el.getAttribute('data-icon')]) el.innerHTML = ICONS[el.getAttribute('data-icon')]; });
     initMenu();
     initScrollHeader();
     initReveal();

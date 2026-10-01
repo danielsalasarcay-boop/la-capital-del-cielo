@@ -643,6 +643,15 @@
     });
     f.salida.addEventListener('change', function () { if (err) err.hidden = true; });
 
+    /* contador de personas */
+    form.querySelectorAll('[data-step]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var n = parseInt(f.personas.value, 10) || 0;
+        n = Math.max(1, Math.min(30, n + parseInt(b.getAttribute('data-step'), 10)));
+        f.personas.value = n;
+        f.personas.classList.remove('bump'); void f.personas.offsetWidth; f.personas.classList.add('bump');
+      });
+    });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (f.llegada.value && f.salida.value && f.salida.value <= f.llegada.value) {

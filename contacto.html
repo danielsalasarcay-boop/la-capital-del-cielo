@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Contacto y reservas — La Capital del Cielo · Los Roques</title>
-  <meta name="description" content="Reserva tu casa privada en Los Roques por WhatsApp. Teléfono +58 412 7398347, email lacapitaldelcielocorp@gmail.com.">
+  <meta name="description" content="Reserva tu casa privada en Los Roques por WhatsApp. Teléfono +58 412 7398347, email info@lacapitaldelcielo.com.">
   <meta name="theme-color" content="#FFFFFF">
 
   <link rel="canonical" href="https://danielsalasarcay-boop.github.io/la-capital-del-cielo/contacto.html">
@@ -35,9 +35,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Tenor+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=20261003q">
-  <link rel="stylesheet" href="css/layout.css?v=20261003q">
-  <link rel="stylesheet" href="css/components.css?v=20261003q">
+  <link rel="stylesheet" href="css/base.css?v=20261003s">
+  <link rel="stylesheet" href="css/layout.css?v=20261003s">
+  <link rel="stylesheet" href="css/components.css?v=20261003s">
 </head>
 <body>
   <!-- Pantalla de carga con el logo (la controla js/main.js) -->
@@ -61,50 +61,59 @@
     <section class="section">
       <div class="container split">
         <!-- Formulario: arma el mensaje y abre WhatsApp (no requiere servidor) -->
-        <form class="form" id="contact-form" novalidate>
+        <!-- Formulario: arma el mensaje y abre WhatsApp (no requiere servidor) -->
+        <form class="form form-card" id="contact-form" novalidate>
           <h2 class="h3" data-i18n="contacto.form_t"></h2>
-          <div class="field">
+          <div class="field fi">
             <label for="f-nombre" data-i18n="contacto.nombre"></label>
-            <input id="f-nombre" name="nombre" type="text" autocomplete="name">
+            <div class="fi-wrap"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4.5 20.5c.7-3.6 3.7-6 7.5-6s6.8 2.4 7.5 6"/></svg><input id="f-nombre" name="nombre" type="text" autocomplete="name"></div>
           </div>
-          <div class="field">
+          <div class="field fi">
             <label for="casa-select" data-i18n="contacto.casa"></label>
-            <select id="casa-select" name="casa"></select>
+            <div class="fi-wrap fi-select"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7M5.5 9.5v10h13v-10M10 19.5v-5h4v5"/></svg><select id="casa-select" name="casa"></select></div>
           </div>
           <div class="form-row">
-            <div class="field">
+            <div class="field fi">
               <label for="f-llegada" data-i18n="contacto.llegada"></label>
-              <input id="f-llegada" name="llegada" type="date">
+              <div class="fi-wrap"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M9 14.5l2 2 4-4"/></svg><input id="f-llegada" name="llegada" type="date"></div>
             </div>
-            <div class="field">
+            <div class="field fi">
               <label for="f-salida" data-i18n="contacto.salida"></label>
-              <input id="f-salida" name="salida" type="date">
+              <div class="fi-wrap"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M9.5 13l5 4M14.5 13l-5 4"/></svg><input id="f-salida" name="salida" type="date"></div>
             </div>
           </div>
-          <div class="field">
+          <div class="field fi">
             <label for="f-personas" data-i18n="contacto.personas"></label>
-            <input id="f-personas" name="personas" type="number" min="1" max="30" inputmode="numeric">
+            <div class="fi-wrap fi-stepper"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5c.5-3.4 2.7-5.3 5.5-5.3s5 1.9 5.5 5.3"/><circle cx="16.5" cy="9" r="2.4"/><path d="M15.8 14.4c2.5 0 4.2 1.8 4.7 5"/></svg>
+              <button type="button" class="step-btn" data-step="-1" aria-label="-">−</button>
+              <input id="f-personas" name="personas" type="number" min="1" max="30" value="2" inputmode="numeric">
+              <button type="button" class="step-btn" data-step="1" aria-label="+">+</button>
+            </div>
           </div>
           <p class="form-error" id="form-error" role="alert" hidden data-i18n="contacto.error_fechas"></p>
-          <p><button class="btn btn-primary" type="submit" data-i18n="contacto.enviar"></button></p>
+          <p class="form-submit"><button class="btn btn-primary btn-send" type="submit">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12.05 2A9.94 9.94 0 0 0 3.5 17.07L2 22l5.07-1.47A9.95 9.95 0 1 0 12.05 2zm5.3 13.97c-.22.62-1.3 1.2-1.8 1.27-.46.07-1.04.1-1.68-.1-.39-.12-.88-.29-1.52-.56-2.67-1.15-4.42-3.84-4.55-4.02-.13-.18-1.08-1.44-1.08-2.75s.69-1.95.93-2.22c.24-.27.53-.33.71-.33h.51c.16 0 .38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.45l-.4.47c-.13.13-.27.28-.12.55.15.27.68 1.12 1.46 1.81 1 .89 1.84 1.17 2.11 1.3.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.36-.22.6-.13.24.09 1.55.73 1.82.86.27.13.44.2.51.31.07.11.07.64-.15 1.26z"/></svg>
+            <span data-i18n="contacto.enviar"></span></button></p>
         </form>
 
         <!-- Datos de contacto directos -->
-        <aside class="facts">
-          <dl class="contact-list">
-            <div>
-              <dt>WhatsApp · <span data-i18n="contacto.telefono"></span></dt>
-              <dd><a data-wa data-wa-msg="wa.general" target="_blank" rel="noopener">+58 412 7398347</a></dd>
-            </div>
-            <div>
-              <dt data-i18n="contacto.email"></dt>
-              <dd><a href="mailto:lacapitaldelcielocorp@gmail.com">lacapitaldelcielocorp@gmail.com</a></dd>
-            </div>
-            <div>
-              <dt data-i18n="contacto.instagram"></dt>
-              <dd><a href="https://www.instagram.com/lacapitaldelcielo" target="_blank" rel="noopener">@lacapitaldelcielo</a></dd>
-            </div>
-          </dl>
+        <aside class="contact-card">
+          <a class="cc-item" data-wa data-wa-msg="wa.general" target="_blank" rel="noopener">
+            <span class="cc-ico cc-ico--wa" data-icon="whatsapp"></span>
+            <span class="cc-txt"><small>WhatsApp · <span data-i18n="contacto.telefono"></span></small><strong>+58 412 7398347</strong></span>
+            <span class="cc-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="cc-item" href="mailto:info@lacapitaldelcielo.com">
+            <span class="cc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span>
+            <span class="cc-txt"><small data-i18n="contacto.email"></small><strong>info@lacapitaldelcielo.com</strong></span>
+            <span class="cc-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="cc-item" href="https://www.instagram.com/lacapitaldelcielo" target="_blank" rel="noopener">
+            <span class="cc-ico cc-ico--ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg></span>
+            <span class="cc-txt"><small data-i18n="contacto.instagram"></small><strong>@lacapitaldelcielo</strong></span>
+            <span class="cc-arrow" aria-hidden="true">→</span>
+          </a>
+          <p class="cc-note" data-i18n="contacto.nota"></p>
         </aside>
       </div>
     </section>
@@ -112,8 +121,8 @@
 
   <footer id="site-footer"></footer>
 
-  <script src="js/i18n.js?v=20261003q"></script>
-  <script src="js/main.js?v=20261003q"></script>
-  <script src="js/casas.js?v=20261003q"></script>
+  <script src="js/i18n.js?v=20261003s"></script>
+  <script src="js/main.js?v=20261003s"></script>
+  <script src="js/casas.js?v=20261003s"></script>
 </body>
 </html>
