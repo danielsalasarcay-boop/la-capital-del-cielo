@@ -256,7 +256,7 @@
       '</div></section>' +
 
       /* CTA */
-      (c.pez ? pezHTML(c, waBtn, sitio) : c.agua ? aguaHTML(c, waBtn, sitio) :
+      (c.pez ? pezHTML(c, waBtn, sitio) : c.kiter ? kiterHTML(c, waBtn, sitio) :
       '<section class="section cta-band' + (c.brujula ? ' cta-band--compass' : '') + (c.carta ? ' cta-band--carta' : '') + '">' +
         (c.carta ? cartaHTML(c) : '') +
         '<div class="container text-center stack stack--center">' +
@@ -266,6 +266,7 @@
       '</div></section>');
     initCompass();
     initPez();
+    initKiter();
     initCarta();
   }
 
@@ -288,7 +289,7 @@
   /* Pez león: un shader WebGL estira las espinas desde el cuerpo (cálculo exacto por píxel,
      sobre la imagen original en alta resolución: sin costuras ni pérdida de nitidez). */
   function initPez() {
-    var sec = document.querySelector('.cta-band--pez');
+    var sec = document.querySelector('.cta-band--pez:not(.cta-band--kiter)');
     if (!sec) return;
     var data = (window.__casa9pez || null);
     var stage = sec.querySelector('.pez-stage'), canvas = sec.querySelector('.pez-gl'), img = sec.querySelector('.pez-fallback');
@@ -346,6 +347,49 @@
       gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       stage.style.transform = 'translate3d(' + curX.toFixed(1) + 'px,' + (reduced ? 0 : Math.sin(t * 0.8) * 5).toFixed(1) + 'px,0)';
       if (visible && !reduced) raf = requestAnimationFrame(tick);
+    }
+  }
+
+  /* Casa Bleu: kitesurfista (diseño original) que salta y vuela hacia la derecha con el scroll */
+  function kiterHTML(c, waBtn, sitio) {
+    var z = c.kiter;
+    return '<section class="cta-band--pez cta-band--kiter">' +
+      '<div class="container pez-layout">' +
+        '<div class="pez-copy">' +
+          '<p class="kicker">' + esc(I18n.pick(c.ubicacion)) + '</p>' +
+          '<h2 class="h2">' + esc(c.nombre) + '</h2>' +
+          '<div class="cta-actions">' + waBtn + sitio + '</div>' +
+        '</div>' +
+        '<div class="kiter-stage" aria-hidden="true">' +
+          '<svg class="kiter-wind" viewBox="0 0 600 300" preserveAspectRatio="none"><path d="M10 210 C 140 190 220 230 340 200"/><path d="M60 250 C 190 232 280 262 420 238"/><path d="M120 120 C 230 104 300 128 400 112"/></svg>' +
+          '<img class="kiter-img" src="' + esc(z.img) + '" alt="" width="' + z.w + '" height="' + z.h + '" decoding="async">' +
+          '<span class="kiter-shadow"></span>' +
+        '</div>' +
+      '</div></section>';
+  }
+  function initKiter() {
+    var sec = document.querySelector('.cta-band--kiter');
+    if (!sec) return;
+    var img = sec.querySelector('.kiter-img'), sh = sec.querySelector('.kiter-shadow'), wind = sec.querySelector('.kiter-wind');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cur = 0, t0 = performance.now(), visible = false;
+    var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) requestAnimationFrame(tick); }, { threshold: 0 });
+    io.observe(sec);
+    function tick(now) {
+      if (!visible) return;
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height * 0.4)));
+      cur += (p - cur) * 0.08;
+      var e = cur * cur * (3 - 2 * cur), t = (now - t0) / 1000, w = sec.clientWidth;
+      var jump = Math.sin(Math.min(1, e) * Math.PI);                  /* arco del salto */
+      var x = (-0.12 + e * 0.24) * w * 0.45;                           /* avanza hacia la derecha */
+      var y = -jump * 46 + Math.sin(t * 1.3) * 4;                      /* sube y "flota" con el viento */
+      var rot = -8 + e * 12 + Math.sin(t * 1.1) * 1.2;                 /* se inclina al saltar */
+      img.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
+      sh.style.transform = 'translateX(' + (x * 0.9).toFixed(1) + 'px) scale(' + (1 - jump * 0.35).toFixed(3) + ')';
+      sh.style.opacity = (0.35 - jump * 0.2).toFixed(3);
+      wind.style.setProperty('--wp', e.toFixed(3));
+      requestAnimationFrame(tick);
     }
   }
 

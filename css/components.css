@@ -1159,3 +1159,19 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
   .sub-menu { padding: 0 0 .25rem 1rem; }
   .sub-menu a { font-size: .9rem !important; padding-block: .6rem !important; border-bottom: 0 !important; color: var(--color-muted) !important; }
 }
+
+/* Casa Bleu — kitesurfista sobre blanco */
+.kiter-stage { position: relative; width: 100%; max-width: 620px; margin-inline: auto; aspect-ratio: 2971 / 1700; }
+.kiter-img { position: absolute; left: 0; top: 4%; width: 100%; height: auto; will-change: transform; transform-origin: 70% 40%; }
+.kiter-shadow { position: absolute; left: 18%; right: 30%; bottom: 0; height: 14px; border-radius: 50%; background: radial-gradient(ellipse, rgba(34, 47, 88, .22), rgba(34, 47, 88, 0) 70%); opacity: .3; }
+.kiter-wind { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.kiter-wind path { fill: none; stroke: var(--color-brand); stroke-width: 2; stroke-linecap: round; opacity: .45;
+  stroke-dasharray: 420; stroke-dashoffset: calc(420 - var(--wp, 0) * 420); }
+.kiter-wind path:nth-child(2) { opacity: .3; } .kiter-wind path:nth-child(3) { opacity: .25; }
+
+/* Submenú de Casas sobre la portada: barra horizontal fina, nunca tapa el logo */
+@media (min-width: 960px) {
+  .site-header.over-hero .sub-menu { display: flex; gap: 0; top: calc(100% + 10px); padding: .25rem; border-radius: 999px; white-space: nowrap;
+    background: rgba(255, 255, 255, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .site-header.over-hero .sub-menu a { padding: .45rem .9rem !important; border-radius: 999px; font-size: .7rem; }
+}
