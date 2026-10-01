@@ -189,7 +189,7 @@
               (c.imagen_hero ? ' srcset="' + esc(c.imagen_portada) + ' 1600w, ' + esc(c.imagen_hero) + ' ' + (c.hero_ancho || 2800) + 'w"' +
                 /* la foto cubre el alto en pantallas verticales: se pide un ancho mayor que la pantalla */
                 ' sizes="(max-aspect-ratio: 1/1) 180vh, 100vw"' : '') +
-              ' alt="' + esc(c.nombre) + '" fetchpriority="high" decoding="async"></div>'
+              ' alt="' + esc(c.nombre) + '" fetchpriority="high" decoding="async"' + (c.hero_pos ? ' style="object-position:' + esc(c.hero_pos) + '"' : '') + '></div>'
           : media('', c.nombre, 'ph-fill', true)) +
         '<div class="container page-hero-content">' +
           (c.logo

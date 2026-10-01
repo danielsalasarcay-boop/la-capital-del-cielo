@@ -437,33 +437,31 @@
           "en": "Staff of 3 with chef"
         }
       ],
-      "imagen_portada": "img/casas/casa-9/portada.jpg",
-      "imagen_hero": "img/casas/casa-9/portada-hero.jpg",
-      "hero_ancho": 2800,
+      "imagen_portada": "img/casas/casa-9/staff.jpg",
       "galeria": [
-        "img/casas/casa-9/portada.jpg",
+        "img/casas/casa-9/staff.jpg",
         "img/casas/casa-9/sala-comedor-vista-al-mar.jpg",
-        "img/casas/casa-9/vista-a-la-playa.jpg",
         "img/casas/casa-9/sala.jpg",
         "img/casas/casa-9/sofa-cojines.jpg",
-        "img/casas/casa-9/staff.jpg",
+        "img/casas/casa-9/sillas-sala.jpg",
+        "img/casas/casa-9/lamparas.jpg",
         "img/casas/casa-9/habitacion-rosada.jpg",
         "img/casas/casa-9/habitacion-azul.jpg",
         "img/casas/casa-9/habitacion-amarilla.jpg",
         "img/casas/casa-9/habitacion-literas.jpg",
-        "img/casas/casa-9/lamparas.jpg",
-        "img/casas/casa-9/sillas-sala.jpg",
+        "img/casas/casa-9/portada.jpg",
+        "img/casas/casa-9/cojin-colorido.jpg",
+        "img/casas/casa-9/toallas.jpg",
+        "img/casas/casa-9/toallas-cojin.jpg",
+        "img/casas/casa-9/vista-a-la-playa.jpg",
         "img/casas/casa-9/mesa-comedor.jpg",
         "img/casas/casa-9/mesa-detalle.jpg",
+        "img/casas/casa-9/detalle-mesa.jpg",
         "img/casas/casa-9/bano-espejo.jpg",
         "img/casas/casa-9/bano-verde.jpg",
         "img/casas/casa-9/bano-amarillo.jpg",
         "img/casas/casa-9/bano-pasillo.jpg",
         "img/casas/casa-9/bano-ventana.jpg",
-        "img/casas/casa-9/cojin-colorido.jpg",
-        "img/casas/casa-9/toallas.jpg",
-        "img/casas/casa-9/toallas-cojin.jpg",
-        "img/casas/casa-9/detalle-mesa.jpg",
         "img/casas/casa-9/espejo.jpg"
       ],
       "video": {
@@ -522,7 +520,8 @@
         "r1": 0.4699
       },
       "mapa_embed": "https://maps.google.com/maps?cid=6207103615456366267&z=16&output=embed",
-      "mapa_link": "https://maps.app.goo.gl/PoWs2PusiboBBGa19"
+      "mapa_link": "https://maps.app.goo.gl/PoWs2PusiboBBGa19",
+      "hero_pos": "38% 55%"
     },
     {
       "id": "macanao-lodge",
