@@ -1100,7 +1100,14 @@
       ],
       "imagen_portada": "img/casas/casa-panda/portada.jpg",
       "galeria": [
-        "img/casas/casa-panda/portada.jpg"
+        "img/casas/casa-panda/portada.jpg",
+        "img/casas/casa-panda/sala-mesa.jpg",
+        "img/casas/casa-panda/habitacion-azul.jpg",
+        "img/casas/casa-panda/habitacion-tv.jpg",
+        "img/casas/casa-panda/habitacion-literas.jpg",
+        "img/casas/casa-panda/panda-peluche.jpg",
+        "img/casas/casa-panda/cojines-azules.jpg",
+        "img/casas/casa-panda/cojines-lampara.jpg"
       ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar Casa Panda en Madrisqui, Los Roques.",
