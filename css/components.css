@@ -1610,3 +1610,13 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 @media (min-width: 760px) { .cta-band--panda .pez-layout { grid-template-columns: 1fr 1fr !important; } }
 @media (max-width: 759px) { .pb-stage { max-width: 260px; } .pb-bamboo { height: calc(70% * var(--h)); } }
 @media (prefers-reduced-motion: reduce) { .pb-leaf { animation: none; } }
+
+/* Casa Panda: panda a la derecha (como estaba); título y botón centrados en su columna */
+.cta-band--panda .pez-copy { text-align: center; }
+.cta-band--panda .pez-copy .cta-actions { justify-content: center; }
+/* "Casa Panda" + botón en el centro de la sección; el panda queda a la derecha */
+@media (min-width: 760px) {
+  .cta-band--panda .pez-layout { position: relative; grid-template-columns: 1fr !important; justify-items: end; }
+  .cta-band--panda .pb-stage { margin: 0; margin-right: 2%; }
+  .cta-band--panda .pez-copy { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: max-content; z-index: 2; }
+}
