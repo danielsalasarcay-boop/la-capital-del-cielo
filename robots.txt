@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://danielsalasarcay-boop.github.io/la-capital-del-cielo/sitemap.xml
+Sitemap: https://la-capital-del-cielo.vercel.app/sitemap.xml
