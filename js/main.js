@@ -10,7 +10,7 @@
 var SITE = {
   whatsapp: '584127398347',                       // formato wa.me, sin + ni espacios
   telefonoVisible: '+58 412 7398347',
-  email: 'info@lacapitaldelcielo.com',
+  email: 'lacapitaldelcielocorp@gmail.com',
   instagram: 'lacapitaldelcielo',
   instagramUrl: 'https://www.instagram.com/lacapitaldelcielo',
   nombre: 'La Capital del Cielo'
