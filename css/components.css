@@ -1368,6 +1368,9 @@ html.is-loading .hero-logo-anim img { animation-play-state: paused; }
 #casas { padding-bottom: var(--space-4); }
 #casas > .container > p.text-center { margin-top: var(--space-3) !important; }
 #experiencia { padding-top: var(--space-4); padding-bottom: var(--space-5); }
+/* Teléfono: todas las casas en el home y sin "Ver todas"; computadora: solo las del límite + botón */
+@media (min-width: 640px) { #casas-grid .is-extra { display: none; } }
+@media (max-width: 639px) { #casas .casas-more { display: none; } }
 #experiencia .section-head { margin-bottom: var(--space-3); }
 #merchandise { padding-block: var(--space-5); }
 #merchandise > .container > p { margin-top: var(--space-3) !important; }
