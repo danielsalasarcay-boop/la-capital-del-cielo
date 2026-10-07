@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.lacapitaldelcielo.com" }],
-      "destination": "https://lacapitaldelcielo.com/$1",
+      "has": [{ "type": "host", "value": "lacapitaldelcielo.com" }],
+      "destination": "https://www.lacapitaldelcielo.com/$1",
       "permanent": true
     }
   ]
