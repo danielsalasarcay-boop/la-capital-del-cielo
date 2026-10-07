@@ -131,11 +131,8 @@
     var grid = document.getElementById('casas-grid');
     if (!grid) return;
     var limit = parseInt(grid.getAttribute('data-limit'), 10);
-    /* home: se pintan todas; las que pasan del límite solo se ven en teléfono (css: .is-extra) */
-    grid.innerHTML = casas.map(function (c, i) {
-      var html = cardHTML(c);
-      return (limit && i >= limit) ? html.replace('<article class="', '<article class="is-extra ') : html;
-    }).join('');
+    var list = limit ? casas.slice(0, limit) : casas;
+    grid.innerHTML = list.map(cardHTML).join('');
   }
 
   /* ---------- Ficha de casa ---------- */
