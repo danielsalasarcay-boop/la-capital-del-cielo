@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://la-capital-del-cielo.vercel.app/sitemap.xml
+Sitemap: https://lacapitaldelcielo.com/sitemap.xml
