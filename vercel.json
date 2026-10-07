@@ -2,8 +2,98 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "lacapitaldelcielo.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "lacapitaldelcielo.com"
+        }
+      ],
       "destination": "https://www.lacapitaldelcielo.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/los-roques.html",
+      "permanent": true
+    },
+    {
+      "source": "/book-now",
+      "destination": "/casas.html",
+      "permanent": true
+    },
+    {
+      "source": "/copia-de-book-now",
+      "destination": "/casas.html",
+      "permanent": true
+    },
+    {
+      "source": "/casa-verde",
+      "destination": "/casa.html?id=casa-verde",
+      "permanent": true
+    },
+    {
+      "source": "/casa-panza",
+      "destination": "/casa.html?id=casa-panza",
+      "permanent": true
+    },
+    {
+      "source": "/casa9",
+      "destination": "/casa.html?id=casa-9",
+      "permanent": true
+    },
+    {
+      "source": "/casa-bleu",
+      "destination": "/casa.html?id=casa-bleu",
+      "permanent": true
+    },
+    {
+      "source": "/casa-panda",
+      "destination": "/casa.html?id=casa-panda",
+      "permanent": true
+    },
+    {
+      "source": "/macanao-lodge",
+      "destination": "/casa.html?id=macanao-lodge",
+      "permanent": true
+    },
+    {
+      "source": "/copia-de-casa-panza",
+      "destination": "/casa.html?id=casa-coro-coro",
+      "permanent": true
+    },
+    {
+      "source": "/casa-219",
+      "destination": "/casas.html",
+      "permanent": true
+    },
+    {
+      "source": "/copia-de-casa-coro-coro",
+      "destination": "/casas.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact-8",
+      "destination": "/contacto.html",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/merchandise.html",
+      "permanent": true
+    },
+    {
+      "source": "/product-page/:slug",
+      "destination": "/merchandise.html",
+      "permanent": true
+    },
+    {
+      "source": "/pol%C3%ADtica-de-privacidad",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/política-de-privacidad",
+      "destination": "/",
       "permanent": true
     }
   ]
