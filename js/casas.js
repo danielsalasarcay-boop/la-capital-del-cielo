@@ -121,7 +121,7 @@
           metaHTML(c) +
           '<div class="card-actions">' +
             '<a class="btn btn-outline btn-sm" href="casa.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.ver_casa')) + '</a>' +
-            '<a class="btn btn-primary btn-sm" data-wa data-wa-text="' + esc(I18n.pick(c.whatsapp_mensaje)) + '" target="_blank" rel="noopener">' + esc(I18n.t('nav.reservar')) + '</a>' +
+            '<a class="btn btn-primary btn-sm" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('nav.reservar')) + '</a>' +
           '</div>' +
         '</div>' +
       '</article>';
@@ -179,7 +179,8 @@
     var sitio = c.sitio_propio
       ? '<a class="btn btn-outline" href="' + esc(c.sitio_propio) + '" target="_blank" rel="noopener">' + esc(I18n.t('casa.sitio_propio')) + '</a>'
       : '';
-    var waBtn = '<a class="btn btn-primary" data-wa data-wa-text="' + esc(I18n.pick(c.whatsapp_mensaje)) + '" target="_blank" rel="noopener">' + esc(I18n.t('common.reservar_wa')) + '</a>';
+    /* reservar lleva al calendario de la casa (reservar.html, js/reserva.js) */
+    var waBtn = '<a class="btn btn-primary" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.reservar_wa')) + '</a>';
 
     root.innerHTML =
       /* Hero */
@@ -255,9 +256,6 @@
         '<button type="button" class="lb-btn lb-next" aria-label="' + esc(I18n.t('roques.siguiente')) + '">&#8250;</button>' +
       '</div>' +
 
-      /* Calendario de disponibilidad + formulario a WhatsApp (lo rellena js/reserva.js) */
-      '<section class="section reserva" id="reservar"></section>' +
-
       /* Mapa */
       '<section class="section section--alt"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.mapa')) + '</h2>' +
@@ -283,7 +281,6 @@
     initManta();
     initPanda();
     initCarta();
-    document.dispatchEvent(new CustomEvent('casarender', { detail: c }));
   }
 
   /* Pez león de Casa 9: espinas que se alargan con el scroll y se mecen como bajo el agua */

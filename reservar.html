@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Nuestras casas — La Capital del Cielo · Los Roques</title>
-  <meta name="description" content="Todas las casas privadas de lujo de La Capital del Cielo en Los Roques. Casa completa con staff, chef y limpieza incluidos.">
+  <!-- title se actualiza con la casa elegida (?id=slug) desde js/reserva.js -->
+  <title>Reservar — La Capital del Cielo · Los Roques</title>
+  <meta name="description" content="Revisa la disponibilidad de la casa y envía tu solicitud de reserva por WhatsApp.">
   <meta name="theme-color" content="#FFFFFF">
 
-  <link rel="canonical" href="https://www.lacapitaldelcielo.com/casas.html">
+  <link rel="canonical" href="https://www.lacapitaldelcielo.com/reservar.html">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.lacapitaldelcielo.com/reservar.html">
   <meta property="og:site_name" content="La Capital del Cielo">
   <meta property="og:locale" content="es_VE">
   <meta property="og:locale:alternate" content="en_US">
-  <meta property="og:title" content="Nuestras casas — La Capital del Cielo">
-  <meta property="og:description" content="Casas privadas de lujo en Los Roques con staff incluido.">
+  <meta property="og:title" content="Casa — La Capital del Cielo">
+  <meta property="og:description" content="Casa privada de lujo en Los Roques con staff incluido.">
   <meta property="og:image" content="https://www.lacapitaldelcielo.com/img/general/og-mar.jpg">
   <meta property="og:image:secure_url" content="https://www.lacapitaldelcielo.com/img/general/og-mar.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -21,10 +23,9 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="La Capital del Cielo — Los Roques, Venezuela">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nuestras casas — La Capital del Cielo">
-  <meta name="twitter:description" content="Casas privadas de lujo en Los Roques con staff incluido.">
+  <meta name="twitter:title" content="Casa — La Capital del Cielo">
+  <meta name="twitter:description" content="Casa privada de lujo en Los Roques con staff incluido.">
   <meta name="twitter:image" content="https://www.lacapitaldelcielo.com/img/general/og-mar.jpg">
-  <meta property="og:url" content="https://www.lacapitaldelcielo.com/casas.html">
 
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="192x192" href="img/general/icon-192.png">
@@ -46,7 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Tenor+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css?v=20261006a">
   <link rel="stylesheet" href="css/layout.css?v=20261006a">
-  <link rel="stylesheet" href="css/components.css?v=20261006a">
+  <link rel="stylesheet" href="css/components.css?v=20261007s">
 </head>
 <body>
   <!-- Pantalla de carga con el logo (la controla js/main.js) -->
@@ -60,36 +61,10 @@
   <header id="site-header"></header>
 
   <main id="contenido">
-    <section class="page-hero">
-      <div class="container contacto-head">
-        <span class="logo-anim logo-anim--o contacto-logo" aria-hidden="true"><img class="la-globe" src="img/general/logo/globe-o.png" alt="" width="1400" height="820" decoding="async"><img class="la-la" src="img/general/logo/la-o.png" alt="" width="1400" height="820" decoding="async"><img class="la-capital" src="img/general/logo/capital-o.png" alt="" width="1400" height="820" decoding="async"><img class="la-cielo" src="img/general/logo/cielo-o.png" alt="" width="1400" height="820" decoding="async"></span>
-        <p class="kicker">Los Roques</p>
-        <h1 class="h1" data-i18n="casas_page.title"></h1>
-        <p class="lead" data-i18n="casas_page.sub"></p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <!-- Generado desde data/casas.json por js/casas.js -->
-        <div class="grid grid-cards" id="casas-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <section class="section photo-section photo-section--cta" id="reservar">
-      <div class="bg-media" aria-hidden="true">
-        <img src="img/general/banco-arena-1600.jpg"
-             srcset="img/general/banco-arena-900.jpg 900w, img/general/banco-arena-1600.jpg 1600w"
-             sizes="100vw" alt="" width="1600" height="1200" loading="lazy" decoding="async">
-      </div>
-      <div class="container narrow text-center stack stack--center" data-reveal>
-        <h2 class="h2 cta-title-logo"><span data-i18n="home.cta_title"></span><img class="cta-logo" src="img/general/logo-sm.png" alt="" aria-hidden="true" width="500" height="294"></h2>
-        <div class="cta-body">
-          <p data-i18n="home.cta_text"></p>
-          <div class="channels" data-channels></div>
-        </div>
-      </div>
-    </section>
+    <!-- js/reserva.js rellena el calendario de la casa (?id=slug) y el formulario a WhatsApp -->
+    <div id="reserva-page" aria-live="polite">
+      <section class="section"><div class="container"><p data-i18n="common.cargando"></p></div></section>
+    </div>
   </main>
 
   <footer id="site-footer"></footer>
@@ -97,5 +72,6 @@
   <script src="js/i18n.js?v=20261006a"></script>
   <script src="js/main.js?v=20261006a"></script>
   <script src="js/casas.js?v=20261007s"></script>
+  <script src="js/reserva.js?v=20261007s"></script>
 </body>
 </html>

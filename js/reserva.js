@@ -1,6 +1,6 @@
 /* ==========================================================================
    reserva.js — Calendario de disponibilidad y solicitud de reserva por WhatsApp
-   - Rellena <section id="reservar"> de casa.html cuando js/casas.js emite "casarender"
+   - Página propia: reservar.html?id=slug (los botones de reservar de cada casa llevan aquí)
    - Las fechas ocupadas salen de data/disponibilidad.json (tools/disponibilidad.py)
    - Rango ocupado [entrada, salida): la noche de salida queda libre para otro huésped
    - No cobra nada: arma el mensaje con todo lo que eligió el cliente y abre WhatsApp
@@ -9,7 +9,6 @@
   'use strict';
 
   var DATA_URL = 'data/disponibilidad.json';
-  var COMIDA_USD = 150;
   var MESES_ADELANTE = 12;
   var dispPromise = null;
   var estado = {};   /* por casa: lo elegido sobrevive al cambio de idioma */
@@ -48,7 +47,6 @@
   function largo(s) {
     return fecha(s).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
   }
-  function usd(n) { return '$' + n.toLocaleString(I18n.lang === 'en' ? 'en-US' : 'de-DE'); }
 
   /* noches ocupadas de la casa, como diccionario { 'YYYY-MM-DD': true } */
   function nochesOcupadas(rangos) {
@@ -101,7 +99,8 @@
 
     sec.innerHTML = '<div class="container reserva-layout">' +
       '<div class="reserva-cal">' +
-        '<h2 class="h2">' + esc(t('titulo')) + '</h2>' +
+        '<p class="kicker reserva-casa"><a href="casa.html?id=' + encodeURIComponent(c.id) + '">&#8249; ' + esc(c.nombre) + '</a></p>' +
+        '<h1 class="h2">' + esc(t('titulo')) + '</h1>' +
         '<p class="reserva-sub">' + esc(st.conDatos ? t('sub') : t('sin_datos')) + '</p>' +
         '<div class="cal">' +
           '<div class="cal-nav">' +
@@ -143,7 +142,6 @@
           '<span class="reserva-comida-txt"><strong>' + esc(t('comida_t')) + '</strong>' +
             '<span class="reserva-comida-precio">' + esc(t('comida_precio')) + '</span>' +
             '<span>' + esc(t('comida_d')) + '</span>' +
-            (st.comida && n ? '<span class="reserva-comida-total">' + esc(detalleComida(st, n)) + '</span>' : '') +
           '</span>' +
         '</label>' +
         '<div class="field fi">' +
@@ -159,10 +157,6 @@
     '</div>';
   }
 
-  function detalleComida(st, n) {
-    return t('comida_total', { dias: n, personas: st.personas, total: usd(n * st.personas * COMIDA_USD) });
-  }
-
   function mensaje(c, st) {
     var n = noches(st.ini, st.fin);
     return [
@@ -171,7 +165,7 @@
       t('llegada') + ': ' + largo(st.ini),
       t('salida') + ': ' + largo(st.fin) + ' (' + n + ' ' + t(n === 1 ? 'noche' : 'noches') + ')',
       t('personas') + ': ' + st.personas,
-      st.comida ? t('wa_comida_si', { detalle: detalleComida(st, n) }) : t('wa_comida_no'),
+      st.comida ? t('wa_comida_si') : t('wa_comida_no'),
       st.comentarios ? t('wa_comentarios') + ': ' + st.comentarios : ''
     ].filter(Boolean).join('\n');
   }
@@ -239,8 +233,24 @@
     render();
   }
 
-  document.addEventListener('casarender', function (e) {
-    var c = e.detail;
-    getDisp().then(function (disp) { montar(c, disp); });
-  });
+  function renderPage() {
+    var root = document.getElementById('reserva-page');
+    if (!root) return;
+    Promise.all([getCasas(), getDisp()]).then(function (res) {
+      var id = new URLSearchParams(location.search).get('id');
+      var c = res[0].find(function (x) { return x.id === id; });
+      if (!c) {
+        root.innerHTML = '<section class="section"><div class="container narrow text-center">' +
+          '<h1 class="h2">' + esc(I18n.t('casa.no_encontrada')) + '</h1>' +
+          '<p><a class="btn btn-outline" href="casas.html">' + esc(I18n.t('casa.volver')) + '</a></p>' +
+        '</div></section>';
+        return;
+      }
+      document.title = t('titulo') + ' · ' + c.nombre + ' — ' + SITE.nombre;
+      root.innerHTML = '<section class="section reserva" id="reservar"></section>';
+      montar(c, res[1]);
+    });
+  }
+
+  document.addEventListener('langchange', renderPage);
 })();

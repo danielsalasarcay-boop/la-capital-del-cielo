@@ -188,7 +188,6 @@
     "comida_t": "Add meals",
     "comida_precio": "Add-on of $150 per person per day",
     "comida_d": "We take care of every meal during your stay in Los Roques, so all you have to do is enjoy.",
-    "comida_total": "{dias} days × {personas} guests × $150 = {total}",
     "comentarios": "Comments (optional)",
     "comentarios_ph": "Flights, celebrations, allergies, anything you want to tell us",
     "enviar": "Send via WhatsApp",
@@ -196,7 +195,7 @@
     "falta_nombre": "Write your name.",
     "confirmar": "Your booking is confirmed once we reply on WhatsApp.",
     "wa_intro": "Hi, I'd like to book {casa} with La Capital del Cielo.",
-    "wa_comida_si": "Meals: Yes, $150 per person per day ({detalle})",
+    "wa_comida_si": "Meals: Yes, $150 per person per day",
     "wa_comida_no": "Meals: No",
     "wa_comentarios": "Comments"
   }
