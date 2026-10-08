@@ -14,9 +14,16 @@
 
   function getCasas() {
     if (!casasPromise) {
-      casasPromise = fetch(DATA_URL, { cache: 'no-cache' })
+      /* las casas con calendario en data/disponibilidad.json reservan en reservar.html; las demás, directo por WhatsApp */
+      var dispPromise = fetch('data/disponibilidad.json', { cache: 'no-cache' })
         .then(function (r) { return r.json(); })
-        .then(function (json) { window.AMENIDADES_COMUNES = json.amenidades_comunes || []; return json.casas || []; })
+        .catch(function () { return { casas: {} }; });
+      casasPromise = Promise.all([fetch(DATA_URL, { cache: 'no-cache' }).then(function (r) { return r.json(); }), dispPromise])
+        .then(function (res) {
+          var json = res[0], conCalendario = res[1].casas || {};
+          window.AMENIDADES_COMUNES = json.amenidades_comunes || [];
+          return (json.casas || []).map(function (c) { c.calendario = !!conCalendario[c.id]; return c; });
+        })
         .catch(function (err) {
           console.error('[casas] No se pudo cargar ' + DATA_URL, err);
           return [];
@@ -121,7 +128,9 @@
           metaHTML(c) +
           '<div class="card-actions">' +
             '<a class="btn btn-outline btn-sm" href="casa.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.ver_casa')) + '</a>' +
-            '<a class="btn btn-primary btn-sm" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('nav.reservar')) + '</a>' +
+            (c.calendario
+              ? '<a class="btn btn-primary btn-sm" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('nav.reservar')) + '</a>'
+              : '<a class="btn btn-primary btn-sm" data-wa data-wa-text="' + esc(I18n.pick(c.whatsapp_mensaje)) + '" target="_blank" rel="noopener">' + esc(I18n.t('nav.reservar')) + '</a>') +
           '</div>' +
         '</div>' +
       '</article>';
@@ -179,8 +188,10 @@
     var sitio = c.sitio_propio
       ? '<a class="btn btn-outline" href="' + esc(c.sitio_propio) + '" target="_blank" rel="noopener">' + esc(I18n.t('casa.sitio_propio')) + '</a>'
       : '';
-    /* reservar lleva al calendario de la casa (reservar.html, js/reserva.js) */
-    var waBtn = '<a class="btn btn-primary" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.reservar_wa')) + '</a>';
+    /* con calendario: reservar lleva a reservar.html (js/reserva.js); sin calendario: directo a WhatsApp */
+    var waBtn = c.calendario
+      ? '<a class="btn btn-primary" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.reservar_wa')) + '</a>'
+      : '<a class="btn btn-primary" data-wa data-wa-text="' + esc(I18n.pick(c.whatsapp_mensaje)) + '" target="_blank" rel="noopener">' + esc(I18n.t('common.reservar_wa')) + '</a>';
 
     root.innerHTML =
       /* Hero */

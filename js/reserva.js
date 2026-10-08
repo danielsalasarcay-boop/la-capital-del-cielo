@@ -260,6 +260,7 @@
         '</div></section>';
         return;
       }
+      if (!(res[1].casas || {})[c.id]) { location.replace('casa.html?id=' + encodeURIComponent(c.id)); return; }
       document.title = t('titulo') + ' · ' + c.nombre + ' — ' + SITE.nombre;
       root.innerHTML = '<section class="section reserva" id="reservar"></section>';
       montar(c, res[1]);
