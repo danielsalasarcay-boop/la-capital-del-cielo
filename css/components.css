@@ -1658,3 +1658,55 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
   .product-add .lbl-short { display: inline; }
   .product-add { font-size: .74rem; letter-spacing: .08em; }
 }
+
+/* ---------- Disponibilidad y reserva (casa.html, js/reserva.js) ---------- */
+.reserva { background: var(--color-bg-alt); }
+.reserva-layout { display: grid; gap: var(--space-4); align-items: start; }
+@media (min-width: 960px) { .reserva-layout { grid-template-columns: 1.35fr 1fr; } }
+.reserva-sub { color: var(--color-muted); margin: .5rem 0 var(--space-3); max-width: 46ch; }
+.cal { position: relative; background: #fff; border: 1px solid var(--color-line); border-radius: 18px; padding: clamp(1rem, .8rem + 1vw, 1.5rem); box-shadow: 0 16px 40px -24px rgba(30, 80, 140, .25); }
+.cal-nav { position: absolute; top: clamp(.8rem, .6rem + 1vw, 1.2rem); left: clamp(.6rem, .4rem + 1vw, 1rem); right: clamp(.6rem, .4rem + 1vw, 1rem); display: flex; justify-content: space-between; pointer-events: none; }
+.cal-flecha { pointer-events: auto; width: 38px; height: 38px; border-radius: 50%; background: var(--color-brand-soft); color: var(--color-brand-deep); font-size: 1.4rem; line-height: 1; transition: background .2s; }
+.cal-flecha:hover:not(:disabled) { background: var(--color-brand); color: #fff; }
+.cal-flecha:disabled { opacity: .3; cursor: default; }
+.cal-meses { display: grid; gap: var(--space-4); }
+.cal-mes + .cal-mes { display: none; }
+@media (min-width: 640px) { .cal-meses { grid-template-columns: 1fr 1fr; } .cal-mes + .cal-mes { display: block; } }
+.cal-mes-t { text-align: center; font-family: var(--font-display); font-size: 1.15rem; line-height: 38px; margin-bottom: .6rem; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.cal-dow { text-align: center; font-size: var(--fs-xs); color: var(--color-muted); text-transform: uppercase; padding-bottom: .35rem; }
+.cal-dia { aspect-ratio: 1; min-height: 38px; border-radius: 10px; font-size: var(--fs-sm); color: var(--color-text); background: transparent; transition: background .15s, color .15s; }
+.cal-dia:hover:not(:disabled) { background: var(--color-brand-soft); }
+.cal-dia.is-hoy { box-shadow: inset 0 0 0 1px var(--color-brand); }
+.cal-dia.is-pasado { color: #C3C9D1; cursor: default; }
+.cal-dia.is-ocupado { color: #A7AEB8; text-decoration: line-through; background: repeating-linear-gradient(135deg, #F1F3F6 0 4px, #fff 4px 8px); }
+.cal-dia.is-rango { background: var(--color-brand-soft); border-radius: 0; color: var(--color-brand-deep); text-decoration: none; }
+.cal-dia.is-ini, .cal-dia.is-fin { background: var(--color-brand); color: #fff; border-radius: 10px; }
+.cal-leyenda { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--color-muted); }
+.cal-leyenda li { display: flex; align-items: center; gap: .45rem; }
+.cal-muestra { width: 16px; height: 16px; border-radius: 5px; border: 1px solid var(--color-line); background: #fff; }
+.cal-muestra.is-ocupado { background: repeating-linear-gradient(135deg, #E4E8EE 0 3px, #fff 3px 6px); }
+.cal-muestra.is-rango { background: var(--color-brand); border-color: var(--color-brand); }
+.cal-paso { margin-top: var(--space-2); padding: .7rem .9rem; border-radius: 12px; background: var(--color-bg-alt); font-size: var(--fs-sm); color: var(--color-brand-deep); }
+.cal-paso.is-aviso { background: #FDECEA; color: #B42318; }
+.reserva-form .form-row { grid-template-columns: 1fr 1fr; }
+.reserva-et { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .1em; color: var(--color-muted); }
+.reserva-fecha { font-family: var(--font-display); font-size: 1.05rem; color: var(--color-brand-deep); text-transform: capitalize; }
+.reserva-nota { font-size: var(--fs-xs); color: var(--color-muted); }
+.reserva-form textarea { width: 100%; border: 0; outline: none; background: transparent; padding: .7rem .9rem; font: inherit; font-size: 16px; color: var(--color-text); resize: vertical; }
+.reserva-form .field:has(textarea) { border: 1px solid var(--color-line); border-radius: 12px; background: #F8FBFE; padding-top: .55rem; }
+.reserva-form .field:has(textarea) label { padding: 0 .9rem; }
+.reserva-form .field:has(textarea):focus-within { border-color: var(--color-brand); background: #fff; box-shadow: 0 0 0 4px rgba(106, 170, 228, .18); }
+.reserva-comida { position: relative; display: flex; gap: .85rem; align-items: flex-start; padding: 1rem; border: 1px solid var(--color-line); border-radius: 14px; cursor: pointer; transition: border-color .2s, background .2s; }
+.reserva-comida:hover { border-color: rgba(106, 170, 228, .6); }
+.reserva-comida.is-on { border-color: var(--color-brand); background: var(--color-brand-soft); }
+.reserva-comida input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.reserva-check { flex: none; width: 22px; height: 22px; margin-top: .1rem; border-radius: 6px; border: 1.5px solid var(--color-brand); background: #fff; display: grid; place-items: center; }
+.reserva-comida.is-on .reserva-check { background: var(--color-brand); }
+.reserva-comida.is-on .reserva-check::after { content: ''; width: 6px; height: 11px; border: solid #fff; border-width: 0 2px 2px 0; transform: translateY(-1px) rotate(45deg); }
+.reserva-comida input:focus-visible + .reserva-check { box-shadow: 0 0 0 4px rgba(106, 170, 228, .3); }
+.reserva-comida-txt { display: grid; gap: .25rem; font-size: var(--fs-sm); color: var(--color-muted); }
+.reserva-comida-txt strong { color: var(--color-brand-deep); font-weight: normal; font-size: var(--fs-base); }
+.reserva-comida-precio { color: var(--color-brand-deep); }
+.reserva-comida-total { margin-top: .3rem; color: var(--color-brand-deep); font-family: var(--font-display); font-size: 1.05rem; }
+@media (max-width: 479px) { .reserva-fecha { font-size: .92rem; } }

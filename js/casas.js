@@ -255,6 +255,9 @@
         '<button type="button" class="lb-btn lb-next" aria-label="' + esc(I18n.t('roques.siguiente')) + '">&#8250;</button>' +
       '</div>' +
 
+      /* Calendario de disponibilidad + formulario a WhatsApp (lo rellena js/reserva.js) */
+      '<section class="section reserva" id="reservar"></section>' +
+
       /* Mapa */
       '<section class="section section--alt"><div class="container">' +
         '<h2 class="h2">' + esc(I18n.t('casa.mapa')) + '</h2>' +
@@ -280,6 +283,7 @@
     initManta();
     initPanda();
     initCarta();
+    document.dispatchEvent(new CustomEvent('casarender', { detail: c }));
   }
 
   /* Pez león de Casa 9: espinas que se alargan con el scroll y se mecen como bajo el agua */
