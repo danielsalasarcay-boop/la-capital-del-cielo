@@ -45,6 +45,37 @@
       startX = null;
     });
   }
+
+  /* Teléfono: flechas y contador del carrusel horizontal de .gallery-masonry */
+  function initGalleryNav() {
+    var track = document.querySelector('.gallery-masonry');
+    var nav = document.querySelector('.gallery-nav');
+    if (!track || !nav || nav.dataset.ready) return;
+    nav.dataset.ready = '1';
+    var prev = nav.querySelector('[data-gal-prev]'), next = nav.querySelector('[data-gal-next]');
+    var count = nav.querySelector('.gallery-count');
+    var items = track.querySelectorAll('.gallery-item');
+    function step() {
+      var a = items[0], b = items[1];
+      return a ? (b ? b.offsetLeft - a.offsetLeft : a.offsetWidth) : 0;
+    }
+    function update() {
+      var s = step(); if (!s) return;
+      var max = track.scrollWidth - track.clientWidth;
+      var i = Math.min(items.length - 1, Math.round(track.scrollLeft / s));
+      if (track.scrollLeft >= max - 4) i = items.length - 1;
+      count.textContent = (i + 1) + ' / ' + items.length;
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft >= max - 4;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
   window.initLightbox = initLightbox;
   document.addEventListener('DOMContentLoaded', initLightbox);
+  document.addEventListener('DOMContentLoaded', initGalleryNav);
 })();
