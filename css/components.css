@@ -548,11 +548,6 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
    Los Roques: galería tipo mosaico + visor
    ========================================================================== */
 .roques-hero > .media img { object-position: 55% 45%; }
-.gallery-masonry { columns: 1; column-gap: var(--space-2); }
-@media (min-width: 600px) { .gallery-masonry { columns: 2; } }
-@media (min-width: 960px) { .gallery-masonry { columns: 3; column-gap: var(--space-3); } }
-.gallery-item { break-inside: avoid; margin: 0 0 var(--space-2); }
-@media (min-width: 960px) { .gallery-item { margin-bottom: var(--space-3); } }
 .gallery-link { aspect-ratio: var(--r); }
 .gallery-item .gallery-link img { height: 100%; object-fit: cover; }
 .gallery-link { aspect-ratio: var(--r); }
@@ -562,30 +557,39 @@ html.is-loading .hero-logo img { animation-play-state: paused; }
 @media (hover: hover) { .gallery-link:hover img { transform: scale(1.04); } }
 .gallery-item figcaption { margin-top: 0.5rem; font-size: var(--fs-sm); color: var(--color-muted); }
 
-/* Teléfono: la galería es un carrusel horizontal con flechas (js/galeria.js) */
-.gallery-nav { display: none; }
-@media (max-width: 599px) {
-  .gallery-masonry {
-    columns: auto; display: flex; gap: 12px;
-    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
-    scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  }
-  .gallery-masonry::-webkit-scrollbar { display: none; }
-  .gallery-masonry .gallery-item { flex: 0 0 84%; margin: 0; scroll-snap-align: start; opacity: 1; transform: none; }
-  .gallery-masonry .gallery-link { aspect-ratio: 4 / 5; }
-  .gallery-masonry .gallery-link img { height: 100%; object-fit: cover; }
-  .gallery-nav { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: var(--space-3); }
-  .gallery-nav-btn {
-    width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
-    font-size: 1.9rem; line-height: 1; padding-bottom: 3px;
-    color: var(--color-brand-deep); background: var(--color-white); border: 1px solid var(--color-line);
-    box-shadow: 0 8px 20px -12px rgba(30, 80, 140, .45); transition: opacity .2s, transform .2s var(--ease);
-  }
-  .gallery-nav-btn:active { transform: scale(.92); }
-  .gallery-nav-btn:disabled { opacity: .35; }
-  .gallery-count { min-width: 4.5ch; text-align: center; font-size: var(--fs-sm); color: var(--color-muted); letter-spacing: .08em; }
+/* Galería de Los Roques: carrusel horizontal con flechas en todas las pantallas (js/galeria.js).
+   Teléfono: 1 foto y asoma la siguiente · tablet: 2 · computadora: 3 */
+.gallery-masonry {
+  --gal-gap: 12px;
+  display: flex; gap: var(--gal-gap);
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
 }
+.gallery-masonry::-webkit-scrollbar { display: none; }
+.gallery-masonry .gallery-item { flex: 0 0 84%; margin: 0; scroll-snap-align: start; opacity: 1; transform: none; }
+.gallery-masonry .gallery-link { aspect-ratio: 4 / 5; }
+.gallery-masonry .gallery-link img { height: 100%; object-fit: cover; }
+@media (max-width: 599px) {
+  .gallery-masonry { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+}
+@media (min-width: 600px) {
+  .gallery-masonry { --gal-gap: var(--space-3); }
+  .gallery-masonry .gallery-item { flex-basis: calc((100% - var(--gal-gap)) / 2); }
+}
+@media (min-width: 960px) {
+  .gallery-masonry .gallery-item { flex-basis: calc((100% - 2 * var(--gal-gap)) / 3); }
+}
+.gallery-nav { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: var(--space-3); }
+.gallery-nav-btn {
+  width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 1.9rem; line-height: 1; padding-bottom: 3px; cursor: pointer;
+  color: var(--color-brand-deep); background: var(--color-white); border: 1px solid var(--color-line);
+  box-shadow: 0 8px 20px -12px rgba(30, 80, 140, .45); transition: opacity .2s, transform .2s var(--ease), border-color .2s;
+}
+@media (hover: hover) { .gallery-nav-btn:not(:disabled):hover { border-color: var(--color-brand); transform: translateY(-1px); } }
+.gallery-nav-btn:active { transform: scale(.92); }
+.gallery-nav-btn:disabled { opacity: .35; cursor: default; }
+.gallery-count { min-width: 4.5ch; text-align: center; font-size: var(--fs-sm); color: var(--color-muted); letter-spacing: .08em; }
 
 .lightbox {
   position: fixed; inset: 0; z-index: 10000;

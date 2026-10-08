@@ -46,7 +46,7 @@
     });
   }
 
-  /* Teléfono: flechas y contador del carrusel horizontal de .gallery-masonry */
+  /* Flechas y contador del carrusel horizontal de .gallery-masonry (todas las pantallas) */
   function initGalleryNav() {
     var track = document.querySelector('.gallery-masonry');
     var nav = document.querySelector('.gallery-nav');
