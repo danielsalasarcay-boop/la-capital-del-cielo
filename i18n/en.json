@@ -20,7 +20,8 @@
     "habitaciones": "bedrooms",
     "capacidad": "Capacity",
     "cargando": "Loading…",
-    "imagen": "Image"
+    "imagen": "Image",
+    "reservar_online": "Book online"
   },
   "home": {
     "hero_kicker": "Los Roques · Venezuela",
