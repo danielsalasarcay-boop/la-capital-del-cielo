@@ -128,6 +128,16 @@
           '<input id="r-nombre" name="nombre" type="text" autocomplete="name" value="' + esc(st.nombre) + '"></div>' +
         '</div>' +
         '<div class="field fi">' +
+          '<label for="r-telefono">' + esc(t('telefono')) + '</label>' +
+          '<div class="fi-wrap"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5h3.5l1.8 4.6-2.3 1.5a11 11 0 0 0 6.4 6.4l1.5-2.3 4.6 1.8V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5z"/></svg>' +
+          '<input id="r-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="+58 412 000 0000" value="' + esc(st.telefono) + '"></div>' +
+        '</div>' +
+        '<div class="field fi">' +
+          '<label for="r-email">' + esc(t('email')) + '</label>' +
+          '<div class="fi-wrap"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>' +
+          '<input id="r-email" name="email" type="email" autocomplete="email" inputmode="email" value="' + esc(st.email) + '"></div>' +
+        '</div>' +
+        '<div class="field fi">' +
           '<label for="r-personas">' + esc(t('personas')) + '</label>' +
           '<div class="fi-wrap fi-stepper"><svg class="fi-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5c.5-3.4 2.7-5.3 5.5-5.3s5 1.9 5.5 5.3"/><circle cx="16.5" cy="9" r="2.4"/><path d="M15.8 14.4c2.5 0 4.2 1.8 4.7 5"/></svg>' +
             '<button type="button" class="step-btn" data-paso="-1" aria-label="-">−</button>' +
@@ -162,6 +172,8 @@
     return [
       t('wa_intro', { casa: c.nombre }),
       t('nombre') + ': ' + st.nombre,
+      t('telefono') + ': ' + st.telefono,
+      t('email') + ': ' + st.email,
       t('llegada') + ': ' + largo(st.ini),
       t('salida') + ': ' + largo(st.fin) + ' (' + n + ' ' + t(n === 1 ? 'noche' : 'noches') + ')',
       t('personas') + ': ' + st.personas,
@@ -175,7 +187,7 @@
     if (!sec) return;
     var datos = (disp.casas || {})[c.id];
     var st = estado[c.id] || (estado[c.id] = {
-      mes: 0, ini: null, fin: null, nombre: '', personas: Math.min(2, c.capacidad || 2), comida: false, comentarios: '', error: '', aviso: false
+      mes: 0, ini: null, fin: null, nombre: '', telefono: '', email: '', personas: Math.min(2, c.capacidad || 2), comida: false, comentarios: '', error: '', aviso: false
     });
     st.conDatos = !!datos;
     st.ocup = nochesOcupadas(datos && datos.ocupado);
@@ -184,7 +196,7 @@
     function render() { pintar(sec, c, st); }
     function leerForm() {
       var f = sec.querySelector('form').elements;
-      st.nombre = f.nombre.value; st.comentarios = f.comentarios.value;
+      st.nombre = f.nombre.value; st.telefono = f.telefono.value; st.email = f.email.value; st.comentarios = f.comentarios.value;
       st.personas = Math.max(1, Math.min(max, parseInt(f.personas.value, 10) || 1));
     }
 
@@ -222,8 +234,10 @@
     sec.onsubmit = function (e) {
       e.preventDefault();
       leerForm();
-      st.nombre = st.nombre.trim(); st.comentarios = st.comentarios.trim();
-      st.error = !(st.ini && st.fin) ? t('falta_fechas') : !st.nombre ? t('falta_nombre') : '';
+      st.nombre = st.nombre.trim(); st.telefono = st.telefono.trim(); st.email = st.email.trim(); st.comentarios = st.comentarios.trim();
+      st.error = !(st.ini && st.fin) ? t('falta_fechas') : !st.nombre ? t('falta_nombre') :
+        st.telefono.replace(/\D/g, '').length < 7 ? t('falta_telefono') :
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(st.email) ? t('falta_email') : '';
       if (st.error) { render(); return; }
       render();
       var url = waLink(mensaje(c, st));

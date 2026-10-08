@@ -197,6 +197,10 @@
     "wa_intro": "Hi, I'd like to book {casa} with La Capital del Cielo.",
     "wa_comida_si": "Meals: Yes, $150 per person per day",
     "wa_comida_no": "Meals: No",
-    "wa_comentarios": "Comments"
+    "wa_comentarios": "Comments",
+    "telefono": "Phone",
+    "email": "Email",
+    "falta_telefono": "Write your phone number.",
+    "falta_email": "Write a valid email address."
   }
 }

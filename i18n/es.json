@@ -197,6 +197,10 @@
     "wa_intro": "Hola, quiero reservar {casa} con La Capital del Cielo.",
     "wa_comida_si": "Alimentación: Sí, $150 por persona al día",
     "wa_comida_no": "Alimentación: No",
-    "wa_comentarios": "Comentarios"
+    "wa_comentarios": "Comentarios",
+    "telefono": "Teléfono",
+    "email": "Correo electrónico",
+    "falta_telefono": "Escribe tu número de teléfono.",
+    "falta_email": "Escribe un correo electrónico válido."
   }
 }
