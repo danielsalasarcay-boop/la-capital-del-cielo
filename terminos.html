@@ -42,7 +42,7 @@ tr:last-child td { border-bottom: 0; }
 </style>
 </head>
 <body>
-<header class="lg-top"><a class="lg-brand" href="index.html"><img src="img/general/logo-sm.png" alt="La Capital del Cielo" style="height:44px;width:auto;display:block" onerror="this.replaceWith(document.createTextNode('La Capital del Cielo'))"></a><div class="lg-lang" role="group" aria-label="Idioma / Language"><button type="button" data-lc="es">ES</button><button type="button" data-lc="en">EN</button></div></header>
+<header class="lg-top"><a class="lg-brand" href="index.html" data-home-en="index.html"><img src="img/general/logo-sm.png" alt="La Capital del Cielo" style="height:44px;width:auto;display:block" onerror="this.replaceWith(document.createTextNode('La Capital del Cielo'))"></a><div class="lg-lang" role="group" aria-label="Idioma / Language"><button type="button" data-lc="es">ES</button><button type="button" data-lc="en">EN</button></div></header>
 <main>
 <article data-lang="es" lang="es">
   <p class="lg-kicker">La Capital del Cielo · Los Roques</p>
@@ -70,10 +70,12 @@ tr:last-child td { border-bottom: 0; }
     document.querySelectorAll('article[data-lang]').forEach(function (a) { a.hidden = a.dataset.lang !== l; });
     document.querySelectorAll('.lg-lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lc === l); });
     document.documentElement.lang = l; document.title = titles[l];
-    if (save) { try { localStorage.setItem(KEY, l); } catch (e) {} }
+    var home = document.querySelector('.lg-brand'); if (home && home.dataset.homeEn) home.href = l === 'en' ? home.dataset.homeEn : 'index.html';
+    if (!KEY) document.querySelectorAll('.lg-docs a').forEach(function (a) { a.href = a.getAttribute('href').split('?')[0] + (l === 'es' ? '' : '?lang=' + l); });
+    if (save && KEY) { try { localStorage.setItem(KEY, l); } catch (e) {} }
   }
   var q = new URLSearchParams(location.search).get('lang'), saved = null;
-  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  if (KEY) { try { saved = localStorage.getItem(KEY); } catch (e) {} }
   setLang(q || saved || 'es', !!q);
   document.querySelectorAll('.lg-lang button').forEach(function (b) {
     b.addEventListener('click', function () { setLang(b.dataset.lc, true); });
