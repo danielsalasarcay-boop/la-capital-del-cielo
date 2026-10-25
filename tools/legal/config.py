@@ -5,7 +5,7 @@
 # PENDIENTE (lo da el dueño): razón social y RIF. Cuando estén, añadirlos en
 # "Quiénes somos" (Términos) y "Responsable" (Privacidad).
 
-VERSION = "2026-10-25.3"
+VERSION = "2026-10-25.4"
 WA = '<a href="https://wa.me/584127398347">+58 412 7398347</a>'
 MAIL = '<a href="mailto:info@lacapitaldelcielo.com">info@lacapitaldelcielo.com</a>'
 IG = '<a href="https://www.instagram.com/lacapitaldelcielo" rel="noopener">@lacapitaldelcielo</a>'
@@ -51,7 +51,7 @@ T_ES = [
         "Quien reserva debe ser mayor de edad y responde por el grupo de huéspedes.",
     ]]),
     ("4. Precios y pagos", [[
-        "El precio de cada estadía es el que indica la confirmación de reserva, en dólares estadounidenses y su equivalente en bolívares a la tasa oficial del Banco Central de Venezuela del día del pago, conforme a la normativa vigente.",
+        "El precio de cada estadía es el que indica la confirmación de reserva.",
         "Los precios en dólares son referenciales. El precio es el mismo cualquiera sea la moneda de pago: si pagas en bolívares, se calcula a la tasa oficial del Banco Central de Venezuela del día del pago.",
         "Salvo que la confirmación diga otra cosa, el precio no incluye boletos aéreos ni traslados hasta Los Roques, ni la tasa de ingreso al Parque Nacional que cobra la autoridad competente.",
     ]]),
@@ -66,11 +66,11 @@ T_ES = [
         "Los huéspedes responden por los daños que causen a la casa, su mobiliario o equipos, más allá del desgaste normal. Podrá pedirse un depósito de garantía si así lo indica la confirmación.",
         "Los menores de edad deben estar acompañados en todo momento por sus padres o por un adulto responsable, que responde por ellos.",
         "Las normas sobre mascotas, fumar, visitas y horarios de descanso son las que indica la confirmación de reserva. Si no se cumplen, podremos pedir que se corrija y, si es grave o se repite, terminar la estadía.",
-        "Cuida tus objetos de valor: La Capital del Cielo no responde por la pérdida o el daño de objetos personales, salvo que se deba a culpa suya o de su personal.",
+        "Cuida tus objetos de valor: ni La Capital del Cielo ni el propietario de la casa responden por la pérdida o el daño de objetos personales, salvo que se deba a culpa de alguno de ellos o de su personal.",
     ]]),
     ("7. Actividades en el mar y excursiones", [
         "Las salidas en bote, el baño en el mar, el snorkel y las demás actividades en el agua o en los cayos tienen riesgos propios. Debes seguir las indicaciones del personal y de quien conduzca el bote, usar chaleco salvavidas cuando se indique, no participar bajo los efectos del alcohol y vigilar en todo momento a los menores.",
-        "Participas bajo tu propia responsabilidad, salvo en lo que se deba a culpa de La Capital del Cielo o de su personal. Te recomendamos contratar un seguro de viaje con cobertura médica.",
+        "Participas bajo tu propia responsabilidad, salvo en lo que se deba a culpa de La Capital del Cielo, del propietario de la casa o de su personal. Te recomendamos contratar un seguro de viaje con cobertura médica.",
     ]),
     ("8. Si algo no está bien durante tu estadía", [
         "Si algo no funciona o no corresponde con lo confirmado, avísanos de inmediato, durante la estadía, para poder solucionarlo. Lo que no se reporta durante la estadía es más difícil de verificar y resolver después.",
@@ -128,7 +128,7 @@ T_EN = [
         "The person booking must be of legal age and is responsible for the group of guests.",
     ]]),
     ("4. Prices and payments", [[
-        "The price of each stay is the one stated in the booking confirmation, in US dollars and its equivalent in bolívares at the official Central Bank of Venezuela rate on the payment date, as required by law.",
+        "The price of each stay is the one stated in the booking confirmation.",
         "Prices in US dollars are for reference. The price is the same whatever the currency of payment: if you pay in bolívares, it is calculated at the official Central Bank of Venezuela rate on the payment date.",
         "Unless the confirmation says otherwise, the price does not include flights or transfers to Los Roques, nor the National Park entry fee charged by the authorities.",
     ]]),
@@ -143,11 +143,11 @@ T_EN = [
         "Guests are liable for damage they cause to the home, its furniture or equipment beyond normal wear. A security deposit may be requested if the confirmation says so.",
         "Minors must be accompanied at all times by their parents or a responsible adult, who is responsible for them.",
         "The rules on pets, smoking, visitors and quiet hours are those stated in the booking confirmation. If they are not followed, we may ask for it to be corrected and, if serious or repeated, end the stay.",
-        "Look after your valuables: La Capital del Cielo is not liable for loss of or damage to personal belongings, unless caused by its fault or that of its staff.",
+        "Look after your valuables: neither La Capital del Cielo nor the owner of the home is liable for loss of or damage to personal belongings, unless caused by the fault of either of them or their staff.",
     ]]),
     ("7. Sea activities and excursions", [
         "Boat trips, swimming in the sea, snorkeling and other activities in the water or on the cays carry their own risks. You must follow the instructions of the staff and of whoever operates the boat, wear a life jacket when told to, not take part under the influence of alcohol and supervise minors at all times.",
-        "You take part at your own risk, except for what is due to the fault of La Capital del Cielo or its staff. We recommend taking out travel insurance with medical coverage.",
+        "You take part at your own risk, except for what is due to the fault of La Capital del Cielo, the owner of the home or their staff. We recommend taking out travel insurance with medical coverage.",
     ]),
     ("8. If something is wrong during your stay", [
         "If something does not work or does not match what was confirmed, let us know right away, during your stay, so we can fix it. What is not reported during the stay is harder to verify and resolve afterwards.",
