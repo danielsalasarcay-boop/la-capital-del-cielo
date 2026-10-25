@@ -385,6 +385,10 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .footer-contact { display: flex; flex-wrap: wrap; gap: 0.25rem var(--space-4); }
 .footer-contact a { display: inline-flex; align-items: center; gap: 0.55rem; padding-block: 0.45rem; }
 .footer-contact svg { width: 19px; height: 19px; flex: none; filter: drop-shadow(0 1px 6px rgba(0, 45, 90, 0.3)); }
+.footer-legal a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+/* Enlaces legales en su propia línea, sin altura propia: se dibujan en el margen inferior del footer, que así mide lo mismo que antes */
+.footer-legal { display: block; height: 0; white-space: nowrap; }
+.footer-legal-sep { display: none; }
 .footer-copy { font-size: var(--fs-xs); opacity: 0.85; padding-top: var(--space-2); border-top: 1px solid rgba(255, 255, 255, 0.35); min-width: min(100%, 520px); }
 @media (min-width: 700px) {
   .footer-inner { max-width: min(640px, 62%); margin-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); margin-right: 0; padding-inline: 0; }

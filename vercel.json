@@ -88,12 +88,12 @@
     },
     {
       "source": "/pol%C3%ADtica-de-privacidad",
-      "destination": "/",
+      "destination": "/privacidad.html",
       "permanent": true
     },
     {
       "source": "/política-de-privacidad",
-      "destination": "/",
+      "destination": "/privacidad.html",
       "permanent": true
     }
   ]

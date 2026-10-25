@@ -123,7 +123,8 @@ window.waLink = waLink;
           '<li><a href="mailto:' + SITE.email + '">' + ICONS.mail + '<span>' + SITE.email + '</span></a></li>' +
           '<li><a href="' + SITE.instagramUrl + '" target="_blank" rel="noopener">' + ICONS.instagram + '<span>@' + SITE.instagram + '</span></a></li>' +
         '</ul>' +
-        '<p class="footer-copy">© ' + year + ' ' + SITE.nombre + '. <span data-i18n="footer.rights"></span></p>' +
+        '<p class="footer-copy">© ' + year + ' ' + SITE.nombre + '. <span data-i18n="footer.rights"></span>' +
+          '<span class="footer-legal"><span class="footer-legal-sep"> · </span><a href="terminos.html" data-i18n="footer.terminos"></a> · <a href="privacidad.html" data-i18n="footer.privacidad"></a> · <a href="cookies.html">Cookies</a></span></p>' +
       '</div>';
   }
 
