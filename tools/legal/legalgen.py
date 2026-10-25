@@ -44,7 +44,7 @@ def page(site, docs, key, lang_pages):
         arts.append(f"""<article data-lang="{lg}"{"" if lg == langs[0] else " hidden"} lang="{lg}">
   <p class="lg-kicker">{site["kicker"][lg]}</p>
   <h1>{d["title"]}</h1>
-  <p class="lg-meta"><span>{L["updated"]}: {site["updated"][lg]}</span> · <span>{L["version"]} {site["version"]}</span></p>
+  <p class="lg-meta"><span>{L["updated"]}: {site["updated"][lg]}</span> · <span>{L["version"]} {site.get("versions", {}).get(key, site["version"])}</span></p>
   <div class="lg-intro">{"".join(block(b) for b in d.get("intro", []))}</div>
   {secs}
   <nav class="lg-docs" aria-label="Legal">{nav}</nav>
@@ -59,16 +59,18 @@ def page(site, docs, key, lang_pages):
     if len(langs) > 1:
         script = f"""<script>
 (function () {{
-  var KEY = {site["lang_key"]!r}, titles = {{{", ".join(f"{lg!r}: {docs[key][lg]['title'] + ' — ' + site['name']!r}" for lg in langs)}}};
+  var KEY = {site.get("lang_key") or ''!r}, titles = {{{", ".join(f"{lg!r}: {docs[key][lg]['title'] + ' — ' + site['name']!r}" for lg in langs)}}};
   function setLang(l, save) {{
     if (!titles[l]) l = {langs[0]!r};
     document.querySelectorAll('article[data-lang]').forEach(function (a) {{ a.hidden = a.dataset.lang !== l; }});
     document.querySelectorAll('.lg-lang button').forEach(function (b) {{ b.setAttribute('aria-pressed', b.dataset.lc === l); }});
     document.documentElement.lang = l; document.title = titles[l];
-    if (save) {{ try {{ localStorage.setItem(KEY, {site.get("lang_store", "l")}); }} catch (e) {{}} }}
+    var home = document.querySelector('.lg-brand'); if (home && home.dataset.homeEn) home.href = l === 'en' ? home.dataset.homeEn : {site['home'][langs[0]]!r};
+    if (!KEY) document.querySelectorAll('.lg-docs a').forEach(function (a) {{ a.href = a.getAttribute('href').split('?')[0] + (l === {langs[0]!r} ? '' : '?lang=' + l); }});
+    if (save && KEY) {{ try {{ localStorage.setItem(KEY, {site.get("lang_store", "l")}); }} catch (e) {{}} }}
   }}
   var q = new URLSearchParams(location.search).get('lang'), saved = null;
-  try {{ saved = localStorage.getItem(KEY); }} catch (e) {{}}
+  if (KEY) {{ try {{ saved = localStorage.getItem(KEY); }} catch (e) {{}} }}
   setLang(q || {site.get("lang_read", "saved")} || {langs[0]!r}, !!q);
   document.querySelectorAll('.lg-lang button').forEach(function (b) {{
     b.addEventListener('click', function () {{ setLang(b.dataset.lc, true); }});
@@ -116,7 +118,7 @@ tr:last-child td {{ border-bottom: 0; }}
 </style>
 </head>
 <body>
-<header class="lg-top"><a class="lg-brand" href="{site["home"][langs[0]]}">{site["brand_html"]}</a>{toggle}</header>
+<header class="lg-top"><a class="lg-brand" href="{site["home"][langs[0]]}" data-home-en="{site["home"].get("en", "")}">{site["brand_html"]}</a>{toggle}</header>
 <main>
 {"".join(arts)}
 </main>
