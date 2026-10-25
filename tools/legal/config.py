@@ -5,7 +5,7 @@
 # PENDIENTE (lo da el dueño): razón social y RIF. Cuando estén, añadirlos en
 # "Quiénes somos" (Términos) y "Responsable" (Privacidad).
 
-VERSION = "2026-10-25.4"
+VERSION = "2026-10-25.5"
 WA = '<a href="https://wa.me/584127398347">+58 412 7398347</a>'
 MAIL = '<a href="mailto:info@lacapitaldelcielo.com">info@lacapitaldelcielo.com</a>'
 IG = '<a href="https://www.instagram.com/lacapitaldelcielo" rel="noopener">@lacapitaldelcielo</a>'
@@ -35,12 +35,12 @@ SITE = {
 
 T_ES = [
     ("1. Quiénes somos", [
-        f"La Capital del Cielo es una empresa venezolana que alquila casas privadas de lujo en Los Roques, con staff y atención personalizada en cada estadía. Contacto: WhatsApp {WA}, correo {MAIL} e Instagram {IG}.",
+        f"La Capital del Cielo es una empresa venezolana que actúa como intermediaria entre los huéspedes y los propietarios de casas privadas de lujo en Los Roques: te ayuda a elegir la casa y gestiona tu reserva. Contacto: WhatsApp {WA}, correo {MAIL} e Instagram {IG}.",
     ]),
     ("2. Qué ofrecemos", [[
-        "Estadías en las casas privadas que se muestran en el sitio, en el Parque Nacional Archipiélago Los Roques, Venezuela. La capacidad, lo que incluye y lo que no incluye cada casa se indican en su ficha; las condiciones definitivas de cada estadía son las de la confirmación de reserva.",
+        "Intermediación para reservar estadías en las casas privadas que se muestran en el sitio, en el Parque Nacional Archipiélago Los Roques, Venezuela. La capacidad, lo que incluye y lo que no incluye cada casa se indican en su ficha; las condiciones definitivas de cada estadía son las de la confirmación de reserva.",
         "Venta de camisas de La Capital del Cielo a través de la sección Merchandise.",
-        "La confirmación de reserva indica quién presta el alojamiento (La Capital del Cielo o el propietario de la casa) y a quién se hace el pago. La Capital del Cielo responde por la gestión de tu reserva y por la información que te da; cuando sea el propietario quien presta el alojamiento, él responde por el estado de la casa y por los servicios incluidos.",
+        "La Capital del Cielo es solo intermediaria: no es propietaria de las casas ni presta el alojamiento. Cada casa la presta su propietario, que es el único responsable del estado de la casa, de los servicios incluidos y de su personal. La confirmación de reserva indica a quién se hace el pago.",
     ]]),
     ("3. Cómo se reserva una casa", [[
         "Los formularios de reserva y de contacto, y los botones de WhatsApp, solo preparan un mensaje que tú decides enviar. Enviarlo es una consulta: no es una reserva ni genera ningún pago.",
@@ -58,22 +58,22 @@ T_ES = [
     ("5. Cancelaciones y cambios", [
         "Las cancelaciones, los cambios de fecha y los reembolsos se rigen por las condiciones indicadas en la confirmación de reserva, que conoces y aceptas antes de pagar.",
         "Si no te presentas en la fecha de llegada sin avisarnos, se trata como una cancelación, según las condiciones de la confirmación de reserva.",
-        "Si tuviéramos que cancelar una reserva confirmada por una causa que no sea tuya, te devolveremos el 100 % de lo pagado o, si lo prefieres, te ofreceremos otras fechas u otra casa disponible.",
+        "Si el propietario tuviera que cancelar una reserva confirmada por una causa que no sea tuya, se te devolverá el 100 % de lo pagado o, si lo prefieres, te ofreceremos otras fechas u otra casa disponible.",
     ]),
     ("6. Normas de la estadía", [[
         "No se admite un número de huéspedes mayor al confirmado.",
         "Los huéspedes deben respetar las normas del Parque Nacional Archipiélago Los Roques y de sus autoridades, en especial sobre fauna, arrecifes, residuos y pesca.",
         "Los huéspedes responden por los daños que causen a la casa, su mobiliario o equipos, más allá del desgaste normal. Podrá pedirse un depósito de garantía si así lo indica la confirmación.",
         "Los menores de edad deben estar acompañados en todo momento por sus padres o por un adulto responsable, que responde por ellos.",
-        "Las normas sobre mascotas, fumar, visitas y horarios de descanso son las que indica la confirmación de reserva. Si no se cumplen, podremos pedir que se corrija y, si es grave o se repite, terminar la estadía.",
-        "Cuida tus objetos de valor: ni La Capital del Cielo ni el propietario de la casa responden por la pérdida o el daño de objetos personales, salvo que se deba a culpa de alguno de ellos o de su personal.",
+        "Las normas sobre mascotas, fumar, visitas y horarios de descanso son las que indica la confirmación de reserva. Si no se cumplen, se podrá pedir que se corrija y, si es grave o se repite, terminar la estadía.",
+        "Cuida tus objetos de valor: La Capital del Cielo no responde por la pérdida o el daño de objetos personales. El propietario de la casa solo responde si se debe a culpa suya o de su personal.",
     ]]),
     ("7. Actividades en el mar y excursiones", [
         "Las salidas en bote, el baño en el mar, el snorkel y las demás actividades en el agua o en los cayos tienen riesgos propios. Debes seguir las indicaciones del personal y de quien conduzca el bote, usar chaleco salvavidas cuando se indique, no participar bajo los efectos del alcohol y vigilar en todo momento a los menores.",
-        "Participas bajo tu propia responsabilidad, salvo en lo que se deba a culpa de La Capital del Cielo, del propietario de la casa o de su personal. Te recomendamos contratar un seguro de viaje con cobertura médica.",
+        "Participas bajo tu propia responsabilidad. La Capital del Cielo no organiza ni presta estas actividades y no responde por ellas; el propietario de la casa solo responde por lo que se deba a culpa suya o de su personal. Te recomendamos contratar un seguro de viaje con cobertura médica.",
     ]),
     ("8. Si algo no está bien durante tu estadía", [
-        "Si algo no funciona o no corresponde con lo confirmado, avísanos de inmediato, durante la estadía, para poder solucionarlo. Lo que no se reporta durante la estadía es más difícil de verificar y resolver después.",
+        "Si algo no funciona o no corresponde con lo confirmado, avísanos de inmediato, durante la estadía, para pedirle al propietario que lo solucione. Lo que no se reporta durante la estadía es más difícil de verificar y resolver después.",
     ]),
     ("9. Camisas (Merchandise)", [[
         "Al usar el carrito y pulsar «Enviar pedido por WhatsApp» se prepara un mensaje con tu pedido. Es una solicitud: la compra queda confirmada cuando te confirmamos por WhatsApp la disponibilidad de las tallas, el total, la forma de pago y la forma de entrega, y recibimos el pago.",
@@ -91,7 +91,7 @@ T_ES = [
         "El sitio enlaza con WhatsApp e Instagram y muestra mapas de Google Maps. Esos servicios se rigen por sus propias condiciones y políticas de privacidad.",
     ]),
     ("13. Responsabilidad", [
-        "Hacemos lo posible para que la información del sitio sea exacta y esté actualizada, pero la disponibilidad, los precios y los servicios solo son vinculantes en la confirmación escrita. Nada de lo aquí escrito limita los derechos que la ley te reconoce como consumidor, que son irrenunciables.",
+        "Hacemos lo posible para que la información del sitio sea exacta y esté actualizada, pero la disponibilidad, los precios y los servicios solo son vinculantes en la confirmación escrita. Como intermediaria, La Capital del Cielo no responde por el alojamiento ni por los servicios que presta el propietario de cada casa. Nada de lo aquí escrito limita los derechos que la ley te reconoce como consumidor, que son irrenunciables.",
     ]),
     ("14. Si nos visitas o contratas desde otro país", [
         "Nuestros servicios se prestan en Venezuela y se rigen por la ley venezolana. Si usas el sitio o contratas desde otro país, eres responsable de cumplir las leyes de tu país. También es tu responsabilidad cumplir los requisitos para entrar a Venezuela y viajar a Los Roques (pasaporte, visado si corresponde y, para menores, los permisos de viaje que exija la ley).",
@@ -112,12 +112,12 @@ T_ES = [
 
 T_EN = [
     ("1. Who we are", [
-        f"La Capital del Cielo is a Venezuelan company that rents private luxury homes in Los Roques, with staff and personal attention on every stay. Contact: WhatsApp {WA}, email {MAIL} and Instagram {IG}.",
+        f"La Capital del Cielo is a Venezuelan company that acts as an intermediary between guests and the owners of private luxury homes in Los Roques: it helps you choose the home and manages your booking. Contact: WhatsApp {WA}, email {MAIL} and Instagram {IG}.",
     ]),
     ("2. What we offer", [[
-        "Stays in the private homes shown on the site, in the Archipiélago Los Roques National Park, Venezuela. Each home's capacity, what it includes and what it does not are stated on its page; the final conditions of each stay are those in the booking confirmation.",
+        "Intermediation to book stays in the private homes shown on the site, in the Archipiélago Los Roques National Park, Venezuela. Each home's capacity, what it includes and what it does not are stated on its page; the final conditions of each stay are those in the booking confirmation.",
         "Sale of La Capital del Cielo shirts through the Merchandise section.",
-        "The booking confirmation states who provides the accommodation (La Capital del Cielo or the owner of the home) and to whom payment is made. La Capital del Cielo is responsible for managing your booking and for the information it gives you; when the owner provides the accommodation, the owner is responsible for the condition of the home and the included services.",
+        "La Capital del Cielo is only an intermediary: it does not own the homes or provide the accommodation. Each home is provided by its owner, who is solely responsible for the condition of the home, the included services and its staff. The booking confirmation states to whom payment is made.",
     ]]),
     ("3. How to book a home", [[
         "The booking and contact forms, and the WhatsApp buttons, only prepare a message that you choose to send. Sending it is an inquiry: it is not a booking and involves no payment.",
@@ -135,22 +135,22 @@ T_EN = [
     ("5. Cancellations and changes", [
         "Cancellations, date changes and refunds are governed by the conditions stated in the booking confirmation, which you know and accept before paying.",
         "If you do not show up on the arrival date without notice, it is treated as a cancellation under the conditions of the booking confirmation.",
-        "If we have to cancel a confirmed booking for a reason not attributable to you, we will refund 100% of what you paid or, if you prefer, offer you other dates or another available home.",
+        "If the owner has to cancel a confirmed booking for a reason not attributable to you, 100% of what you paid will be refunded or, if you prefer, offer you other dates or another available home.",
     ]),
     ("6. House rules", [[
         "No more guests than confirmed are allowed.",
         "Guests must follow the rules of the Archipiélago Los Roques National Park and its authorities, especially regarding wildlife, reefs, waste and fishing.",
         "Guests are liable for damage they cause to the home, its furniture or equipment beyond normal wear. A security deposit may be requested if the confirmation says so.",
         "Minors must be accompanied at all times by their parents or a responsible adult, who is responsible for them.",
-        "The rules on pets, smoking, visitors and quiet hours are those stated in the booking confirmation. If they are not followed, we may ask for it to be corrected and, if serious or repeated, end the stay.",
-        "Look after your valuables: neither La Capital del Cielo nor the owner of the home is liable for loss of or damage to personal belongings, unless caused by the fault of either of them or their staff.",
+        "The rules on pets, smoking, visitors and quiet hours are those stated in the booking confirmation. If they are not followed, it may be requested to be corrected and, if serious or repeated, end the stay.",
+        "Look after your valuables: La Capital del Cielo is not liable for loss of or damage to personal belongings. The owner of the home is only liable if caused by their fault or that of their staff.",
     ]]),
     ("7. Sea activities and excursions", [
         "Boat trips, swimming in the sea, snorkeling and other activities in the water or on the cays carry their own risks. You must follow the instructions of the staff and of whoever operates the boat, wear a life jacket when told to, not take part under the influence of alcohol and supervise minors at all times.",
-        "You take part at your own risk, except for what is due to the fault of La Capital del Cielo, the owner of the home or their staff. We recommend taking out travel insurance with medical coverage.",
+        "You take part at your own risk. La Capital del Cielo does not organize or provide these activities and is not liable for them; the owner of the home is only liable for what is due to their fault or that of their staff. We recommend taking out travel insurance with medical coverage.",
     ]),
     ("8. If something is wrong during your stay", [
-        "If something does not work or does not match what was confirmed, let us know right away, during your stay, so we can fix it. What is not reported during the stay is harder to verify and resolve afterwards.",
+        "If something does not work or does not match what was confirmed, let us know right away, during your stay, so we can ask the owner to fix it. What is not reported during the stay is harder to verify and resolve afterwards.",
     ]),
     ("9. Shirts (Merchandise)", [[
         "Using the cart and tapping “Send order via WhatsApp” prepares a message with your order. It is a request: the purchase is confirmed when we confirm on WhatsApp the availability of sizes, the total, the payment method and the delivery method, and we receive the payment.",
@@ -168,7 +168,7 @@ T_EN = [
         "The site links to WhatsApp and Instagram and shows Google Maps maps. Those services are governed by their own terms and privacy policies.",
     ]),
     ("13. Liability", [
-        "We do our best to keep the site's information accurate and up to date, but availability, prices and services are only binding in the written confirmation. Nothing here limits the rights the law grants you as a consumer, which cannot be waived.",
+        "We do our best to keep the site's information accurate and up to date, but availability, prices and services are only binding in the written confirmation. As an intermediary, La Capital del Cielo is not liable for the accommodation or the services provided by the owner of each home. Nothing here limits the rights the law grants you as a consumer, which cannot be waived.",
     ]),
     ("14. If you visit or hire us from another country", [
         "Our services are provided in Venezuela and governed by Venezuelan law. If you use the site or hire us from another country, you are responsible for complying with the laws of your country. You are also responsible for meeting the requirements to enter Venezuela and travel to Los Roques (passport, visa where applicable and, for minors, any travel permits required by law).",
@@ -318,10 +318,10 @@ C_EN = [
 DOCS = {
     "terms": {
         "es": {"title": "Términos y condiciones", "description": "Condiciones de uso del sitio de La Capital del Cielo, de las reservas de casas en Los Roques y de la compra de camisas.",
-               "intro": ["Estos términos regulan el uso de este sitio web, las solicitudes y reservas de estadía en las casas de La Capital del Cielo en Los Roques, Venezuela, y la compra de camisas. Al usar el sitio, solicitar una reserva o hacer un pedido, aceptas estos términos."],
+               "intro": ["Estos términos regulan el uso de este sitio web, las solicitudes y reservas de estadía en las casas que ofrece La Capital del Cielo en Los Roques, Venezuela, y la compra de camisas. Al usar el sitio, solicitar una reserva o hacer un pedido, aceptas estos términos."],
                "sections": T_ES},
         "en": {"title": "Terms and conditions", "description": "Terms of use of the La Capital del Cielo website, home bookings in Los Roques and shirt purchases.",
-               "intro": ["These terms govern the use of this website, stay requests and bookings at La Capital del Cielo homes in Los Roques, Venezuela, and shirt purchases. By using the site, requesting a booking or placing an order, you accept these terms. The Spanish version prevails in case of discrepancy."],
+               "intro": ["These terms govern the use of this website, stay requests and bookings at the homes offered by La Capital del Cielo in Los Roques, Venezuela, and shirt purchases. By using the site, requesting a booking or placing an order, you accept these terms. The Spanish version prevails in case of discrepancy."],
                "sections": T_EN},
     },
     "privacy": {
