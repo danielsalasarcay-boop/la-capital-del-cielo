@@ -5,7 +5,7 @@
 # PENDIENTE (lo da el dueño): razón social y RIF. Cuando estén, añadirlos en
 # "Quiénes somos" (Términos) y "Responsable" (Privacidad).
 
-VERSION = "2026-10-25"
+VERSION = "2026-10-25.2"
 WA = '<a href="https://wa.me/584127398347">+58 412 7398347</a>'
 MAIL = '<a href="mailto:info@lacapitaldelcielo.com">info@lacapitaldelcielo.com</a>'
 IG = '<a href="https://www.instagram.com/lacapitaldelcielo" rel="noopener">@lacapitaldelcielo</a>'
@@ -38,6 +38,7 @@ T_ES = [
     ("2. Qué ofrecemos", [[
         "Estadías en las casas privadas que se muestran en el sitio, en el Parque Nacional Archipiélago Los Roques, Venezuela. La capacidad, lo que incluye y lo que no incluye cada casa se indican en su ficha; las condiciones definitivas de cada estadía son las de la confirmación de reserva.",
         "Venta de camisas de La Capital del Cielo a través de la sección Merchandise.",
+        "La confirmación de reserva indica quién presta el alojamiento (La Capital del Cielo o el propietario de la casa) y a quién se hace el pago. La Capital del Cielo responde por la gestión de tu reserva y por la información que te da; cuando sea el propietario quien presta el alojamiento, él responde por el estado de la casa y por los servicios incluidos.",
     ]]),
     ("3. Cómo se reserva una casa", [[
         "Los formularios de reserva y de contacto, y los botones de WhatsApp, solo preparan un mensaje que tú decides enviar. Enviarlo es una consulta: no es una reserva ni genera ningún pago.",
@@ -50,39 +51,57 @@ T_ES = [
     ("4. Precios y pagos", [[
         "El precio de cada estadía es el que indica la confirmación de reserva, en dólares estadounidenses y su equivalente en bolívares a la tasa oficial del Banco Central de Venezuela del día del pago, conforme a la normativa vigente.",
         "Los pagos en divisas pueden estar sujetos al Impuesto a las Grandes Transacciones Financieras (IGTF) cuando la ley lo exija.",
+        "Los precios en dólares son referenciales. El precio es el mismo cualquiera sea la moneda de pago: si pagas en bolívares, se calcula a la tasa oficial del Banco Central de Venezuela del día del pago.",
         "Salvo que la confirmación diga otra cosa, el precio no incluye boletos aéreos ni traslados hasta Los Roques, ni la tasa de ingreso al Parque Nacional que cobra la autoridad competente.",
     ]]),
     ("5. Cancelaciones y cambios", [
         "Las cancelaciones, los cambios de fecha y los reembolsos se rigen por las condiciones indicadas en la confirmación de reserva, que conoces y aceptas antes de pagar.",
+        "Si no te presentas en la fecha de llegada sin avisarnos, se trata como una cancelación, según las condiciones de la confirmación de reserva.",
         "Si tuviéramos que cancelar una reserva confirmada por una causa que no sea tuya, te devolveremos el 100 % de lo pagado o, si lo prefieres, te ofreceremos otras fechas u otra casa disponible.",
     ]),
     ("6. Normas de la estadía", [[
         "No se admite un número de huéspedes mayor al confirmado.",
         "Los huéspedes deben respetar las normas del Parque Nacional Archipiélago Los Roques y de sus autoridades, en especial sobre fauna, arrecifes, residuos y pesca.",
         "Los huéspedes responden por los daños que causen a la casa, su mobiliario o equipos, más allá del desgaste normal. Podrá pedirse un depósito de garantía si así lo indica la confirmación.",
+        "Los menores de edad deben estar acompañados en todo momento por sus padres o por un adulto responsable, que responde por ellos.",
+        "Las normas sobre mascotas, fumar, visitas y horarios de descanso son las que indica la confirmación de reserva. Si no se cumplen, podremos pedir que se corrija y, si es grave o se repite, terminar la estadía.",
+        "Cuida tus objetos de valor: La Capital del Cielo no responde por la pérdida o el daño de objetos personales, salvo que se deba a culpa suya o de su personal.",
     ]]),
-    ("7. Camisas (Merchandise)", [[
+    ("7. Actividades en el mar y excursiones", [
+        "Las salidas en bote, el baño en el mar, el snorkel y las demás actividades en el agua o en los cayos tienen riesgos propios. Debes seguir las indicaciones del personal y de quien conduzca el bote, usar chaleco salvavidas cuando se indique, no participar bajo los efectos del alcohol y vigilar en todo momento a los menores.",
+        "Participas bajo tu propia responsabilidad, salvo en lo que se deba a culpa de La Capital del Cielo o de su personal. Te recomendamos contratar un seguro de viaje con cobertura médica.",
+    ]),
+    ("8. Si algo no está bien durante tu estadía", [
+        "Si algo no funciona o no corresponde con lo confirmado, avísanos de inmediato, durante la estadía, para poder solucionarlo. Lo que no se reporta durante la estadía es más difícil de verificar y resolver después.",
+    ]),
+    ("9. Camisas (Merchandise)", [[
         "Al usar el carrito y pulsar «Enviar pedido por WhatsApp» se prepara un mensaje con tu pedido. Es una solicitud: la compra queda confirmada cuando te confirmamos por WhatsApp la disponibilidad de las tallas, el total, la forma de pago y la forma de entrega, y recibimos el pago.",
-        "Los precios publicados están en dólares estadounidenses. Los colores pueden variar ligeramente respecto a las fotos según la pantalla.",
+        "Los precios publicados están en dólares estadounidenses y son referenciales: el precio es el mismo cualquiera sea la moneda de pago, y si pagas en bolívares se calcula a la tasa oficial del Banco Central de Venezuela del día del pago. Los colores pueden variar ligeramente respecto a las fotos según la pantalla.",
         "Si una camisa llega con un defecto de fabricación, avísanos por WhatsApp o correo y te la cambiaremos o te devolveremos lo pagado, conforme a la ley.",
     ]]),
-    ("8. Fuerza mayor", [
+    ("10. Fuerza mayor", [
         "Ninguna de las partes responde por incumplimientos causados por hechos ajenos a su control que no pudo prever ni evitar (causa extraña no imputable, artículo 1.272 del Código Civil): suspensión de vuelos, cierre del acceso al Parque Nacional, condiciones climáticas, cortes de electricidad o de comunicaciones, emergencias sanitarias o decisiones de autoridades. Si ocurre, te avisaremos lo antes posible y buscaremos contigo reprogramar; las consecuencias económicas se resuelven según la confirmación de reserva y la ley.",
     ]),
-    ("9. Fotos y contenido del sitio", [
+    ("11. Fotos y contenido del sitio", [
         "Las fotografías muestran las casas, su entorno y Los Roques. Algunas tienen retoques digitales de luz, color o nitidez y son ilustrativas: la decoración, el mobiliario y la vista pueden variar.",
         "Los textos, fotos, logotipo, diseños de las camisas y diseño del sitio pertenecen a La Capital del Cielo o a sus titulares, y se usan con autorización. No pueden copiarse ni reutilizarse sin permiso escrito.",
     ]),
-    ("10. Servicios de terceros", [
+    ("12. Servicios de terceros", [
         "El sitio enlaza con WhatsApp e Instagram y muestra mapas de Google Maps. Esos servicios se rigen por sus propias condiciones y políticas de privacidad.",
     ]),
-    ("11. Responsabilidad", [
+    ("13. Responsabilidad", [
         "Hacemos lo posible para que la información del sitio sea exacta y esté actualizada, pero la disponibilidad, los precios y los servicios solo son vinculantes en la confirmación escrita. Nada de lo aquí escrito limita los derechos que la ley te reconoce como consumidor, que son irrenunciables.",
     ]),
-    ("12. Ley aplicable y reclamos", [
-        "Estos términos se rigen por las leyes de la República Bolivariana de Venezuela. Si tienes un reclamo, escríbenos primero por WhatsApp o correo y te responderemos en un plazo máximo de 10 días hábiles. También puedes acudir a la Superintendencia Nacional para la Defensa de los Derechos Socioeconómicos (SUNDDE) o a los tribunales competentes.",
+    ("14. Si nos visitas o contratas desde otro país", [
+        "Nuestros servicios se prestan en Venezuela y se rigen por la ley venezolana. Si usas el sitio o contratas desde otro país, eres responsable de cumplir las leyes de tu país. También es tu responsabilidad cumplir los requisitos para entrar a Venezuela y viajar a Los Roques (pasaporte, visado si corresponde y, para menores, los permisos de viaje que exija la ley).",
     ]),
-    ("13. Cambios", [
+    ("15. Uso del sitio", [
+        "No está permitido usar el sitio o nuestros canales de contacto con fines ilícitos o fraudulentos, enviar mensajes masivos no solicitados, intentar acceder sin autorización a sus sistemas ni copiar su contenido de forma automatizada.",
+    ]),
+    ("16. Ley aplicable y reclamos", [
+        "Estos términos se rigen por las leyes de la República Bolivariana de Venezuela. Si tienes un reclamo, escríbenos primero por WhatsApp o correo y te responderemos en un plazo máximo de 10 días hábiles. También puedes acudir a la Superintendencia Nacional para la Defensa de los Derechos Socioeconómicos (SUNDDE) o a los tribunales competentes. Para cualquier controversia, las partes eligen como domicilio especial la ciudad de Caracas, a cuyos tribunales se someten, sin perjuicio del fuero que la ley reconozca al consumidor.",
+    ]),
+    ("17. Cambios", [
         "Podemos actualizar estos términos. La versión vigente es la publicada en esta página con su fecha; cada reserva o compra se rige por la versión vigente cuando fue confirmada.",
     ]),
 ]
@@ -94,6 +113,7 @@ T_EN = [
     ("2. What we offer", [[
         "Stays in the private homes shown on the site, in the Archipiélago Los Roques National Park, Venezuela. Each home's capacity, what it includes and what it does not are stated on its page; the final conditions of each stay are those in the booking confirmation.",
         "Sale of La Capital del Cielo shirts through the Merchandise section.",
+        "The booking confirmation states who provides the accommodation (La Capital del Cielo or the owner of the home) and to whom payment is made. La Capital del Cielo is responsible for managing your booking and for the information it gives you; when the owner provides the accommodation, the owner is responsible for the condition of the home and the included services.",
     ]]),
     ("3. How to book a home", [[
         "The booking and contact forms, and the WhatsApp buttons, only prepare a message that you choose to send. Sending it is an inquiry: it is not a booking and involves no payment.",
@@ -106,39 +126,57 @@ T_EN = [
     ("4. Prices and payments", [[
         "The price of each stay is the one stated in the booking confirmation, in US dollars and its equivalent in bolívares at the official Central Bank of Venezuela rate on the payment date, as required by law.",
         "Payments in foreign currency may be subject to the Large Financial Transactions Tax (IGTF) when required by law.",
+        "Prices in US dollars are for reference. The price is the same whatever the currency of payment: if you pay in bolívares, it is calculated at the official Central Bank of Venezuela rate on the payment date.",
         "Unless the confirmation says otherwise, the price does not include flights or transfers to Los Roques, nor the National Park entry fee charged by the authorities.",
     ]]),
     ("5. Cancellations and changes", [
         "Cancellations, date changes and refunds are governed by the conditions stated in the booking confirmation, which you know and accept before paying.",
+        "If you do not show up on the arrival date without notice, it is treated as a cancellation under the conditions of the booking confirmation.",
         "If we have to cancel a confirmed booking for a reason not attributable to you, we will refund 100% of what you paid or, if you prefer, offer you other dates or another available home.",
     ]),
     ("6. House rules", [[
         "No more guests than confirmed are allowed.",
         "Guests must follow the rules of the Archipiélago Los Roques National Park and its authorities, especially regarding wildlife, reefs, waste and fishing.",
         "Guests are liable for damage they cause to the home, its furniture or equipment beyond normal wear. A security deposit may be requested if the confirmation says so.",
+        "Minors must be accompanied at all times by their parents or a responsible adult, who is responsible for them.",
+        "The rules on pets, smoking, visitors and quiet hours are those stated in the booking confirmation. If they are not followed, we may ask for it to be corrected and, if serious or repeated, end the stay.",
+        "Look after your valuables: La Capital del Cielo is not liable for loss of or damage to personal belongings, unless caused by its fault or that of its staff.",
     ]]),
-    ("7. Shirts (Merchandise)", [[
+    ("7. Sea activities and excursions", [
+        "Boat trips, swimming in the sea, snorkeling and other activities in the water or on the cays carry their own risks. You must follow the instructions of the staff and of whoever operates the boat, wear a life jacket when told to, not take part under the influence of alcohol and supervise minors at all times.",
+        "You take part at your own risk, except for what is due to the fault of La Capital del Cielo or its staff. We recommend taking out travel insurance with medical coverage.",
+    ]),
+    ("8. If something is wrong during your stay", [
+        "If something does not work or does not match what was confirmed, let us know right away, during your stay, so we can fix it. What is not reported during the stay is harder to verify and resolve afterwards.",
+    ]),
+    ("9. Shirts (Merchandise)", [[
         "Using the cart and tapping “Send order via WhatsApp” prepares a message with your order. It is a request: the purchase is confirmed when we confirm on WhatsApp the availability of sizes, the total, the payment method and the delivery method, and we receive the payment.",
-        "Published prices are in US dollars. Colors may vary slightly from the photos depending on your screen.",
+        "Published prices are in US dollars and are for reference: the price is the same whatever the currency of payment, and if you pay in bolívares it is calculated at the official Central Bank of Venezuela rate on the payment date. Colors may vary slightly from the photos depending on your screen.",
         "If a shirt arrives with a manufacturing defect, let us know on WhatsApp or by email and we will replace it or refund what you paid, as required by law.",
     ]]),
-    ("8. Force majeure", [
+    ("10. Force majeure", [
         "Neither party is liable for failures caused by events beyond its control that it could not foresee or avoid (article 1,272 of the Venezuelan Civil Code): flight suspensions, closure of access to the National Park, weather conditions, power or communication outages, health emergencies or decisions of authorities. If this happens, we will notify you as soon as possible and work with you to reschedule; the financial consequences are settled according to the booking confirmation and the law.",
     ]),
-    ("9. Photos and site content", [
+    ("11. Photos and site content", [
         "The photographs show the homes, their surroundings and Los Roques. Some have digital adjustments to light, color or sharpness and are illustrative: decoration, furniture and views may vary.",
         "The texts, photos, logo, shirt designs and site design belong to La Capital del Cielo or their owners and are used with permission. They may not be copied or reused without written permission.",
     ]),
-    ("10. Third-party services", [
+    ("12. Third-party services", [
         "The site links to WhatsApp and Instagram and shows Google Maps maps. Those services are governed by their own terms and privacy policies.",
     ]),
-    ("11. Liability", [
+    ("13. Liability", [
         "We do our best to keep the site's information accurate and up to date, but availability, prices and services are only binding in the written confirmation. Nothing here limits the rights the law grants you as a consumer, which cannot be waived.",
     ]),
-    ("12. Governing law and complaints", [
-        "These terms are governed by the laws of the Bolivarian Republic of Venezuela. If you have a complaint, write to us first on WhatsApp or by email and we will reply within 10 business days. You may also turn to the National Superintendence for the Defense of Socioeconomic Rights (SUNDDE) or the competent courts.",
+    ("14. If you visit or hire us from another country", [
+        "Our services are provided in Venezuela and governed by Venezuelan law. If you use the site or hire us from another country, you are responsible for complying with the laws of your country. You are also responsible for meeting the requirements to enter Venezuela and travel to Los Roques (passport, visa where applicable and, for minors, any travel permits required by law).",
     ]),
-    ("13. Changes", [
+    ("15. Use of the site", [
+        "You may not use the site or our contact channels for unlawful or fraudulent purposes, send unsolicited bulk messages, attempt unauthorized access to its systems or copy its content by automated means.",
+    ]),
+    ("16. Governing law and complaints", [
+        "These terms are governed by the laws of the Bolivarian Republic of Venezuela. If you have a complaint, write to us first on WhatsApp or by email and we will reply within 10 business days. You may also turn to the National Superintendence for the Defense of Socioeconomic Rights (SUNDDE) or the competent courts. For any dispute, the parties choose the city of Caracas as their special domicile and submit to its courts, without prejudice to the venue the law grants consumers.",
+    ]),
+    ("17. Changes", [
         "We may update these terms. The current version is the one published on this page with its date; each booking or purchase is governed by the version in force when it was confirmed.",
     ]),
 ]
