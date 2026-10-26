@@ -1744,3 +1744,13 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
 .reserva-comida-txt strong { color: var(--color-brand-deep); font-weight: normal; font-size: var(--fs-base); }
 .reserva-comida-precio { color: var(--color-brand-deep); }
 @media (max-width: 479px) { .reserva-fecha { font-size: .92rem; } }
+
+/* Galería de las fichas (desde 600px): todas las celdas iguales, aunque se mezclen fotos verticales y horizontales.
+   La foto se ve completa (contain) sobre un fondo difuminado de sí misma; las horizontales de proporción
+   parecida a la celda la llenan (is-cover, lo marca js/casas.js al cargar). */
+@media (min-width: 600px) {
+  .gallery-fit:not(.gallery-fit--big) .gallery-link { aspect-ratio: 4 / 3; }
+  .gallery-fit:not(.gallery-fit--big) .gallery-link::before { content: ""; position: absolute; inset: -30px; background: var(--bg) center / cover; filter: blur(24px) brightness(.9); }
+  .gallery-fit:not(.gallery-fit--big) .gallery-link img { position: relative; object-fit: contain; }
+  .gallery-fit:not(.gallery-fit--big) .gallery-link.is-cover img { object-fit: cover; }
+}

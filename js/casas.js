@@ -180,9 +180,9 @@
       if (!src) return media(src, c.nombre + ' · ' + I18n.t('common.imagen') + ' ' + (i + 1), 'ph-4x5');
       var label = c.nombre + ' · ' + I18n.t('common.imagen') + ' ' + (i + 1);
       var small = src.replace(/\.jpg$/, '-900.jpg');
-      /* cada foto abre el visor a pantalla completa (js/galeria.js) */
-      return '<a class="media ph-4x5 gallery-link" href="' + esc(src) + '" data-lightbox aria-label="' + esc(label) + '">' +
-        '<img src="' + esc(small) + '" alt="' + esc(label) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + esc(src) + '\'"></a>';
+      /* cada foto abre el visor a pantalla completa (js/galeria.js); --bg va con URL absoluta porque el CSS la resuelve desde css/ */
+      return '<a class="media ph-4x5 gallery-link" href="' + esc(src) + '" data-lightbox aria-label="' + esc(label) + '" style="--bg:url(\'' + esc(new URL(small, location.href).href) + '\')">' +
+        '<img src="' + esc(small) + '" alt="' + esc(label) + '" loading="lazy" decoding="async" onload="var r=this.naturalWidth/this.naturalHeight;if(r>1.2&&r<1.45)this.parentNode.classList.add(\'is-cover\')" onerror="this.onerror=null;this.src=\'' + esc(src) + '\'"></a>';
     }).join('');
     var sitio = c.sitio_propio
       ? '<a class="btn btn-outline" href="' + esc(c.sitio_propio) + '" target="_blank" rel="noopener">' + esc(I18n.t('casa.sitio_propio')) + '</a>'
