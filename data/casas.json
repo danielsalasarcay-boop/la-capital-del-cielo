@@ -662,9 +662,7 @@
         "img/casas/macanao-lodge/fachada-escaleras.jpg",
         "img/casas/macanao-lodge/fachada-posada.jpg",
         "img/casas/macanao-lodge/habitacion-balcon.jpg",
-        "img/casas/macanao-lodge/letrero.jpg",
         "img/casas/macanao-lodge/lobby.jpg",
-        "img/casas/macanao-lodge/letrero-fachada.jpg",
         "img/casas/macanao-lodge/bar.jpg",
         "img/casas/macanao-lodge/restaurante.jpg",
         "img/casas/macanao-lodge/terraza.jpg",
@@ -674,9 +672,16 @@
         "img/casas/macanao-lodge/bote.jpg",
         "img/casas/macanao-lodge/coco.jpg",
         "img/casas/macanao-lodge/playa-sombrilla.jpg",
-        "img/casas/macanao-lodge/coctel.jpg",
         "img/casas/macanao-lodge/bano-ducha.jpg",
-        "img/casas/macanao-lodge/bano.jpg"
+        "img/casas/macanao-lodge/bano.jpg",
+        "img/casas/macanao-lodge/letrero.jpg",
+        "img/casas/macanao-lodge/letrero-fachada.jpg",
+        "img/casas/macanao-lodge/coctel.jpg"
+      ],
+      "galeria_vertical": [
+        "img/casas/macanao-lodge/letrero.jpg",
+        "img/casas/macanao-lodge/letrero-fachada.jpg",
+        "img/casas/macanao-lodge/coctel.jpg"
       ],
       "whatsapp_mensaje": {
         "es": "Hola, quiero información para reservar una habitación en Macanao Lodge, Los Roques.",

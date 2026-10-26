@@ -1754,3 +1754,12 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
   .gallery-fit:not(.gallery-fit--big) .gallery-link img { position: relative; object-fit: contain; }
   .gallery-fit:not(.gallery-fit--big) .gallery-link.is-cover img { object-fit: cover; }
 }
+/* Fotos verticales de una ficha (galeria_vertical): última fila, en formato alto y completas, del mismo ancho que las columnas */
+.gallery-tall { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-top: .5rem; }
+.gallery-tall .gallery-link { flex: 0 0 calc((100% - .5rem) / 2); aspect-ratio: 9 / 16; border-radius: 6px; }
+.gallery-tall .gallery-link img { height: 100%; object-fit: cover; }
+@media (min-width: 600px) {
+  .gallery-tall { gap: var(--space-2); margin-top: var(--space-2); }
+  .gallery-tall .gallery-link { flex-basis: calc((100% - 2 * var(--space-2)) / 3); border-radius: var(--radius); }
+}
+@media (min-width: 960px) { .gallery-tall .gallery-link { flex-basis: calc((100% - 3 * var(--space-2)) / 4); } }
