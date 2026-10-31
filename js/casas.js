@@ -146,6 +146,12 @@
   /* ---------- Ficha de casa ---------- */
   function setMeta(selector, attr, value) {
     var el = document.querySelector(selector);
+    // casa.html no trae canonical fijo (cada ?id=slug es su propia página): se crea aquí
+    if (!el && selector === 'link[rel="canonical"]') {
+      el = document.createElement('link');
+      el.rel = 'canonical';
+      document.head.appendChild(el);
+    }
     if (el) el.setAttribute(attr, value);
   }
 

@@ -12,6 +12,11 @@
       "permanent": true
     },
     {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/about-us",
       "destination": "/los-roques.html",
       "permanent": true
