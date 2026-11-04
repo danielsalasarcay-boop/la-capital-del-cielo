@@ -129,7 +129,6 @@
           '<div class="card-actions">' +
             '<a class="btn btn-outline btn-sm" href="casa.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.ver_casa')) + '</a>' +
             '<a class="btn btn-primary btn-sm" data-wa data-wa-text="' + esc(I18n.pick(c.whatsapp_mensaje)) + '" target="_blank" rel="noopener">' + esc(I18n.t('nav.reservar')) + '</a>' +
-            (c.calendario ? '<a class="btn btn-outline btn-sm" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.reservar_online')) + '</a>' : '') +
           '</div>' +
         '</div>' +
       '</article>';
@@ -198,8 +197,6 @@
       ? '<a class="btn btn-outline" href="' + esc(c.sitio_propio) + '" target="_blank" rel="noopener">' + esc(I18n.t('casa.sitio_propio')) + '</a>'
       : '';
     var waBtn = '<a class="btn btn-primary" data-wa data-wa-text="' + esc(I18n.pick(c.whatsapp_mensaje)) + '" target="_blank" rel="noopener">' + esc(I18n.t('common.reservar_wa')) + '</a>';
-    /* casas con calendario: botón aparte para reservar en línea (reservar.html, js/reserva.js) */
-    if (c.calendario) waBtn += '<a class="btn btn-outline" href="reservar.html?id=' + encodeURIComponent(c.id) + '">' + esc(I18n.t('common.reservar_online')) + '</a>';
 
     root.innerHTML =
       /* Hero */
