@@ -84,7 +84,7 @@ def page(site, docs, key, lang_pages):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(first)} — {html.escape(site["name"])}</title>
 <meta name="description" content="{html.escape(docs[key][langs[0]]["description"])}">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">
 {site.get("head", "")}
 <style>
 :root {{ --bg: {s["bg"]}; --ink: {s["ink"]}; --muted: {s["muted"]}; --accent: {s["accent"]}; --line: {s["line"]}; --card: {s["card"]}; }}
