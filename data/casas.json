@@ -414,12 +414,12 @@
         "es": "Casa 9 está en Madrisqui, en el archipiélago de Los Roques. Tiene 5 habitaciones y un staff de 3 personas, incluido un chef.",
         "en": "Casa 9 is on Madrisqui, in the Los Roques archipelago. It has 5 bedrooms and a staff of 3, including a chef."
       },
-      "capacidad": 12,
+      "capacidad": 10,
       "habitaciones": 5,
       "distribucion": [
         {
-          "es": "4 habitaciones con cama king (10 personas)",
-          "en": "4 bedrooms with king bed (10 guests)"
+          "es": "4 habitaciones con cama king (8 personas)",
+          "en": "4 bedrooms with king bed (8 guests)"
         },
         {
           "es": "1 habitación con literas (2 personas)",
@@ -512,8 +512,8 @@
         {
           "icono": "personas",
           "texto": {
-            "es": "Hasta 12 huéspedes",
-            "en": "Up to 12 guests"
+            "es": "Hasta 10 huéspedes",
+            "en": "Up to 10 guests"
           }
         },
         {
