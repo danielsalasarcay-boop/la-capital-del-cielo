@@ -1,0 +1,187 @@
+/* ==========================================================================
+   hero-v2.css — Portada "Del cielo al mar" (solo index.html)
+   - Sin JS / prefers-reduced-motion: portada estática de una pantalla.
+   - Con html.hv2-on (lo pone el <head>): escena fijada con descenso por scroll
+     (js/hero-v2.js dibuja las fotos de dron en <canvas>).
+   ========================================================================== */
+.hv2 {
+  --hv2-deep: #05264a;                 /* azul profundo del mar abierto */
+  --hv2-ink: 3, 20, 40;                /* tinta de los degradados */
+  --hv2-pad: clamp(1.25rem, 5vw, 6rem);
+  display: block; place-items: normal;   /* anula el centrado de .hero */
+  min-height: 100svh;
+  color: var(--color-white);
+  text-align: left;
+  background: var(--hv2-deep);
+}
+.hv2-stage { position: relative; width: 100%; min-height: 100svh; overflow: hidden; isolation: isolate; }
+
+/* --- Imagen: póster (LCP) + canvas encima --- */
+.hv2-media, .hv2-shade, .hv2-grain, .hv2-veil { position: absolute; inset: 0; }
+.hv2-media { z-index: 0; background: var(--hv2-deep); }
+.hv2-poster img, .hv2-canvas { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.hv2-poster img { object-fit: cover; object-position: 60.7% 60.9%; }
+@media (orientation: portrait) { .hv2-poster img { object-position: 60.9% 60.9%; } }
+.hv2-canvas { display: none; }
+
+/* --- Legibilidad: degradados, viñeta y grano muy leves --- */
+.hv2-shade { z-index: 1; pointer-events: none; }
+.hv2-shade--base {
+  background:
+    linear-gradient(to bottom, rgba(var(--hv2-ink), 0.5) 0%, rgba(var(--hv2-ink), 0) 20%),
+    radial-gradient(ellipse 120% 100% at 50% 45%, rgba(var(--hv2-ink), 0) 55%, rgba(var(--hv2-ink), 0.42) 100%);
+}
+.hv2-shade--intro {
+  background:
+    radial-gradient(ellipse 70% 62% at 50% 50%, rgba(var(--hv2-ink), 0.44) 0%, rgba(var(--hv2-ink), 0.24) 50%, rgba(var(--hv2-ink), 0) 100%);
+}
+.hv2-shade--text {
+  background: linear-gradient(to top, rgba(var(--hv2-ink), 0.72) 0%, rgba(var(--hv2-ink), 0.36) 18%, rgba(var(--hv2-ink), 0) 40%);
+}
+.hv2-grain {
+  z-index: 1; pointer-events: none; opacity: 0.07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- Carga: la foto se ve desde el primer instante; el logo se arma encima
+       y un velo oscuro muy leve se levanta cuando termina --- */
+#loader { display: none; }                       /* en el home la reemplaza .hv2-veil */
+.hv2-veil {
+  z-index: 2; pointer-events: none; background: rgba(var(--hv2-ink), 0.1);
+  opacity: 0; transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html.is-loading .hv2-veil { opacity: 1; transition: none; }
+html.is-loading .hv2 .hero-logo-anim img { animation-play-state: running; }
+.site-header { transition: background 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease), opacity 0.9s var(--ease); }
+.float-actions { transition: opacity 0.5s var(--ease), visibility 0.5s; }
+.cart-fab { transition: opacity 0.5s var(--ease), visibility 0.5s, transform 0.25s var(--ease); }
+html.is-loading #site-header { opacity: 0; }                /* por id: oculto desde el primer pintado, sin destello */
+html.is-loading .float-actions,
+html.hv2-over .float-actions,
+html.hv2-over .cart-fab { opacity: 0; visibility: hidden; }   /* la portada ya trae su CTA de WhatsApp */
+
+/* --- Contenido --- */
+.hv2-ui {
+  position: relative; z-index: 3;
+  min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-3);
+  padding: calc(var(--header-h) + var(--space-4)) var(--hv2-pad) calc(var(--space-5) + env(safe-area-inset-bottom));
+  text-align: center;
+}
+.hv2-intro { display: flex; flex-direction: column; align-items: center; gap: clamp(1.1rem, 2.4vh, 1.75rem); }
+.hv2-logo { width: clamp(250px, 46vw, 640px); will-change: transform; }
+.hv2 .hero-logo-anim { width: 100%; filter: drop-shadow(0 8px 30px rgba(var(--hv2-ink), 0.45)); }
+.hv2-kicker {
+  color: rgba(255, 255, 255, 0.92); letter-spacing: 0.34em; margin: 0; padding-left: 0.34em;
+  text-shadow: 0 1px 10px rgba(var(--hv2-ink), 0.6);
+  transition: opacity 1s var(--ease) 0.5s;
+}
+html.is-loading .hv2-kicker, html.is-loading .hv2-scroll { opacity: 0; }
+
+.hv2-scroll, .hv2-rail { display: none; }
+
+.hv2-cta { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin-top: var(--space-2); }
+.hv2-cta-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin: 0; }
+.hv2-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
+  min-height: 58px; padding: 0.85rem 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.85); border-radius: 999px;
+  font-family: var(--font-body); font-size: 0.84rem; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.2;
+  color: var(--color-white); text-decoration: none; white-space: nowrap;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+  will-change: transform;
+}
+.hv2-btn:hover { text-decoration: none; }
+.hv2-btn svg { width: 20px; height: 20px; flex: none; }
+.hv2-btn [data-icon] { display: inline-flex; }
+.hv2-btn--wa { background: var(--color-white); color: #06213f; border-color: var(--color-white); }
+.hv2-btn--ghost { background: rgba(var(--hv2-ink), 0.28); }
+@media (hover: hover) {
+  .hv2-btn--wa:hover { background: #06213f; color: var(--color-white); border-color: #06213f; }
+  .hv2-btn--ghost:hover { background: var(--color-white); color: #06213f; border-color: var(--color-white); }
+}
+.hv2 :focus-visible { outline: 2px solid var(--color-white); outline-offset: 4px; }
+
+/* ==========================================================================
+   Modo cinematográfico (html.hv2-on): escena fijada + descenso por scroll
+   ========================================================================== */
+/* el scroll lo suaviza Lenis: el smooth nativo de base.css pelea con él y traba la rueda */
+html.hv2-on { scroll-behavior: auto !important; }
+html.lenis, html.lenis body { height: auto; }
+
+html.hv2-on .hv2 { --hv2-len: 4.8; height: calc(var(--hv2-len) * 100vh); height: calc(var(--hv2-len) * 100lvh); min-height: 0; }
+html.hv2-on .hv2-stage { position: sticky; top: 0; height: 100vh; height: 100lvh; min-height: 0; }
+html.hv2-on .hv2-canvas { display: block; }
+html.hv2-on .hv2-shade--text { opacity: 0; }
+html.hv2-on .hv2-ui {
+  position: absolute; inset: 0 0 auto 0; height: 100vh; height: 100svh; min-height: 0;
+  display: grid; place-items: center; padding: 0; gap: 0; text-align: left;
+}
+html.hv2-on .hv2-intro { grid-area: 1 / 1; }
+html.hv2-on .hv2-logo { transform-origin: 50% 50%; }
+
+/* Cierre: solo los dos CTA, abajo al centro. El mar es el protagonista. */
+html.hv2-on .hv2-cta { position: absolute; inset: 0; margin: 0; display: block; pointer-events: none; }
+html.hv2-on .hv2-cta.is-live .hv2-cta-btns { pointer-events: auto; }
+html.hv2-on .hv2-cta-btns {
+  position: absolute; left: var(--hv2-pad); right: var(--hv2-pad);
+  bottom: calc(clamp(2.25rem, 8vh, 5rem) + env(safe-area-inset-bottom));
+  justify-content: center; opacity: 0; will-change: transform;
+}
+
+/* Indicador de scroll */
+html.hv2-on .hv2-scroll {
+  display: block; position: absolute; left: 50%; bottom: calc(1.75rem + env(safe-area-inset-bottom));
+  width: 1px; height: 64px; margin-left: -0.5px; overflow: hidden;
+  background: rgba(255, 255, 255, 0.28);
+  transition: opacity 1s var(--ease) 0.9s;
+}
+html.hv2-on .hv2-scroll i {
+  position: absolute; inset: 0; background: var(--color-white);
+  transform: translateY(-101%); animation: hv2-scroll 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes hv2-scroll { 0% { transform: translateY(-101%); } 55%, 100% { transform: translateY(101%); } }
+
+/* Riel de descenso (desktop): línea fina que se llena con el scroll */
+@media (min-width: 900px) and (orientation: landscape) {
+  html.hv2-on .hv2-rail {
+    display: block; position: absolute; right: var(--hv2-pad); top: 50%; width: 1px; height: 132px; margin-top: -66px;
+    background: rgba(255, 255, 255, 0.26);
+  }
+  html.hv2-on .hv2-rail i { position: absolute; inset: 0; background: var(--color-white); transform-origin: 50% 0; transform: scaleY(0); }
+}
+
+/* --- Móvil / vertical: diseño propio --- */
+@media (max-width: 767px), (orientation: portrait) {
+  .hv2 { --hv2-pad: clamp(1.1rem, 5.5vw, 3rem); }
+  .hv2-logo { width: min(78vw, 440px); }
+  html.hv2-on .hv2 { --hv2-len: 4; }
+  html.hv2-on .hv2-intro { margin-top: -9svh; }        /* deja ver la lancha y su estela bajo el logo */
+  html.hv2-on .hv2-cta-btns { bottom: calc(clamp(1.5rem, 5svh, 3.5rem) + env(safe-area-inset-bottom)); }
+  html.hv2-on .hv2-scroll { height: 48px; bottom: calc(1.25rem + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 599px) {
+  .hv2-cta-btns { flex-direction: column; align-items: stretch; width: 100%; }
+  html.hv2-on .hv2-cta-btns { width: auto; }
+  .hv2-btn { width: 100%; }
+}
+/* Teléfono horizontal */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hv2-logo { width: clamp(200px, 34vw, 300px); }
+  html.hv2-on .hv2-cta-btns { bottom: calc(1rem + env(safe-area-inset-bottom)); }
+  html.hv2-on .hv2-scroll { display: none; }
+  .hv2-btn { min-height: 46px; padding-block: 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hv2-veil { display: none; }
+}
+
+/* el canvas aparece cuando ya dibujó su primer fotograma (antes se ve el póster) */
+.hv2-canvas { opacity: 0; }
+.hv2-canvas.is-on { opacity: 1; }
+
+/* el póster arranca con el mismo acercamiento que el canvas (sin salto al relevarlo) */
+html.hv2-on .hv2-poster img { transform: scale(1.075); transform-origin: 60.7% 60.9%; }
+@media (orientation: portrait) { html.hv2-on .hv2-poster img { transform-origin: 60.9% 60.9%; } }
