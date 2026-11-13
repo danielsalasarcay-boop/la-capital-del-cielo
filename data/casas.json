@@ -401,7 +401,7 @@
       "id": "casa-9",
       "nombre": "Casa 9",
       "tipo": "casa",
-      "logo": "",
+      "logo": "img/casas/casa-9/logo.png",
       "ubicacion": {
         "es": "Madrisqui · Los Roques",
         "en": "Madrisqui · Los Roques"
@@ -877,7 +877,7 @@
       "id": "casa-coro-coro",
       "nombre": "Casa Coro Coro",
       "tipo": "casa",
-      "logo": "",
+      "logo": "img/casas/casa-coro-coro/logo.png",
       "ubicacion": {
         "es": "Gran Roque, Los Roques",
         "en": "Gran Roque, Los Roques"
