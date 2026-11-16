@@ -246,7 +246,7 @@
     const ZI = gs ? 1.5 : 0;   // tramo inicial: la cámara se aleja del Gran Roque y el pueblo sube a cuadro
     tm.zoomIn = ZI; tm.plan = .3 + ZI; tm.f0 = 1.5 + ZI; tm.top = tm.f0 + nF * tm.D; tm.fac = tm.top + .1; tm.clean = tm.fac + 2.1; tm.sign0 = tm.clean + .2;
     tm.pan = tm.sign0 + 1; tm.panD = 8;
-    tm.down = tm.pan + tm.panD + .6; tm.downD = 2.6;
+    tm.hold = gs ? 6.6 : 0; tm.down = tm.pan + tm.panD + .6 + tm.hold; tm.downD = 2.6;   // la cámara se queda en la pista mientras la avioneta da su vuelta
     tm.under = tm.down + tm.downD + .3; tm.underD = 5;
     tm.rise = tm.under + tm.underD + .5; tm.riseD = 3;
     tm.sunset = tm.rise + tm.riseD + .2; tm.sunsetD = 3.4; tm.title = tm.sunset + tm.sunsetD - .4; tm.sign = tm.title + .9; tm.end = tm.sign + 1.4;
@@ -380,13 +380,14 @@
     {
       const x1 = PXB * XE + Wn * 1.45; let x = Wn * (v ? 1.05 : .98), i = 0;
       // en el cuadro final el titular ocupa la izquierda: ahí no va ningún cayo lejano (ni su rótulo)
-      const F0 = PXB * XE + Wn * .2, F1 = F0 + Wn * (v ? 0 : .4);
+      const F0 = PXB * XE + Wn * .2, F1 = F0 + Wn * (v ? 0 : .53), NAMES = CAYOS.filter((n) => n !== "Francisquí"); let forceF = !v;
       while (x < x1) {
-        const w = rnd(120, 230) * q, h = rnd(6, 13) * q;
+        let w = rnd(120, 230) * q; const h = rnd(6, 13) * q;
         if (x + w > F0 && x < F1) { x = F1 + 10 * q; continue; }
+        const isF = forceF && x >= F1; if (isF) { w = Math.min(w, 110 * q); forceF = false; }
         const p = pen().c([[x, SL], [x + w * .15, SL - h * .7], [x + w * .5, SL - h], [x + w * .85, SL - h * .6], [x + w, SL]]);
         for (let k = 0; k < 2 + (R() * 3 | 0); k++) { const px = x + w * rnd(.25, .75), py = SL - h * .8; p.l(px, py, px + 2 * q, py - 14 * q, .3, .1).l(px + 2 * q, py - 14 * q, px - 6 * q, py - 10 * q, 0, .1).l(px + 2 * q, py - 14 * q, px + 9 * q, py - 11 * q, 0, .1); }
-        const g = E("g", {}, L.cayos); S(g, p, "rq-m"); T(g, x + w / 2, SL - h - 22 * q, CAYOS[i % CAYOS.length], "middle", "rq-m");
+        const g = E("g", {}, L.cayos); S(g, p, "rq-m"); T(g, x + w / 2, SL - h - 22 * q, isF ? "Francisquí" : NAMES[i % NAMES.length], "middle", "rq-m");
         draw(tlI, g, 2 + i * .15, .8); x += w + rnd(.18, .34) * Wn; i++;
       }
     }
@@ -758,7 +759,7 @@
         draw(tlM, S(g, pen().l(sx, sy, sx, sy - 70 * q, .3).l(sx - 6 * q, sy, sx + 6 * q, sy, .2), ""), at, .5);
         const cone = sprite(lifeF, 40 * q, 16 * q), cp = pen().box([[0, 0], [38 * q, 4 * q], [38 * q, 12 * q], [0, 16 * q]], .2);
         for (let k = 1; k < 4; k++) cp.l(k * 9.5 * q, k * 1 * q, k * 9.5 * q, 16 * q - k * 1 * q, 0, 0);
-        S(cone, cp, "rq-o"); place(cone, sx, sy - 70 * q); show(tlM, cone, at + .4, .3);
+        S(cone, cp, "rq-red"); place(cone, sx, sy - 70 * q); show(tlM, cone, at + .4, .3);
         if (gs) { gs.set(cone, { transformOrigin: "0% 50%" }); amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(cone, { rotation: 7, scaleX: .86, duration: .7, ease: "sine.inOut" })); }
         const lb = T(g, sx - 4 * q, sy - 78 * q, "Pista · 900 m", "end", "rq-o"); txt(tlM, lb, at + .5);
       }
@@ -793,16 +794,31 @@
       S(e, p, ""); const prop = S(e, pr, "rq-o");
       const yR = G - 11 * q - ph + 4 * q, xP = SOCKX + 120 * q;
       place(e, xP, yR); show(tlM, e, tPan(SOCKX + 60 * q) + .5, .4);
+      // rótulo SASCA: uno al derecho y otro espejado, para que se lea también cuando regresa mirando a la izquierda
+      const sA = T(e, 50 * q, 23.4 * q, "SASCA", "middle", "rq-sasca"), sB = T(e, 50 * q, 23.4 * q, "SASCA", "middle", "rq-sasca");
+      sB.setAttribute("transform", `translate(${f(pw)} 0) scale(-1 1)`); sB.style.opacity = 0;
       if (tlM) {
-        // carrera lenta por la pista, el morro sube y trepa suave sobre el mar; con el scroll hacia atrás vuelve a la pista
-        const tv = tPan(SOCKX + 60 * q) + .7, t1 = clamp(tm.pan + tm.panD * iez(clamp((SOCKX - Wn * .28) / PAN, 0, 1)), tv, tm.pan + tm.panD - 2.9), t2 = t1 + 1.3, t3 = t2 + 2.6;
-        const xR = SOCKX + 292 * q - pw * .6;
-        e._nc = 1; gs.set(e, { transformOrigin: "30% 85%" });
-        tlM.to(e, { x: xR * s, duration: t2 - t1, ease: "power2.in" }, t1)
-          .to(e, { rotation: -7, duration: .9, ease: "sine.inOut" }, t2 - .35)
-          .to(e, { x: (xR + Wn * .7) * s, duration: t3 - t2, ease: "none" }, t2)
-          .to(e, { y: (yR - 150 * q) * s, duration: t3 - t2, ease: "power1.in" }, t2)
-          .to(e, { rotation: -4, duration: 1, ease: "sine.inOut" }, t3 - 1);
+        // con el scroll: rueda por la pista, despega y sube sobre el mar, da la vuelta, regresa de frente y aterriza;
+        // la cámara se queda quieta en la pista mientras tanto. Con el scroll hacia atrás todo se deshace.
+        const xR = SOCKX + 292 * q - pw * .6, xT = xR + Wn * .3, yT = yR - 130 * q, xL = xR + 16 * q;
+        let t = tm.pan + tm.panD - .9;
+        e._nc = 1; gs.set(e, { transformOrigin: "50% 70%" });
+        tlM.to(e, { x: xR * s, duration: 1.1, ease: "power2.in" }, t); t += 1.1;
+        tlM.to(e, { rotation: -7, duration: .7, ease: "sine.inOut" }, t - .3)
+          .to(e, { x: xT * s, duration: 1.9, ease: "none" }, t)
+          .to(e, { y: yT * s, duration: 1.9, ease: "sine.inOut" }, t)
+          .to(e, { rotation: 0, duration: .6, ease: "sine.inOut" }, t + 1.3); t += 1.9;
+        // la vuelta: avanza un poco más, se gira de perfil a perfil y queda mirando hacia la pista
+        tlM.to(e, { scaleX: -1, duration: 1.4, ease: "sine.inOut" }, t)
+          .to(e, { x: (xT + 46 * q) * s, y: (yT - 16 * q) * s, duration: .7, ease: "sine.out" }, t)
+          .to(e, { x: xT * s, y: (yT + 4 * q) * s, duration: .7, ease: "sine.in" }, t + .7)
+          .set(sA, { opacity: 0 }, t + .7).set(sB, { opacity: 1 }, t + .7); t += 1.4;
+        // aproximación y aterrizaje de frente
+        tlM.to(e, { x: xL * s, duration: 2, ease: "none" }, t)
+          .to(e, { y: (yR - 5 * q) * s, duration: 2, ease: "sine.inOut" }, t)
+          .to(e, { rotation: 2, duration: 1.2, ease: "sine.inOut" }, t + .4); t += 2;
+        tlM.to(e, { y: yR * s, rotation: 0, duration: .6, ease: "sine.out" }, t).to(e, { x: (xL - 36 * q) * s, duration: .6, ease: "none" }, t); t += .6;
+        tlM.to(e, { x: (xP - 20 * q) * s, duration: 1, ease: "power2.out" }, t);
       }
       if (gs) {
         amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(prop, { scaleY: 1 }, { scaleY: .15, svgOrigin: `${f(92 * q)} ${f(20 * q)}`, duration: .06, ease: "none" }));
@@ -876,10 +892,13 @@
       for (let k = 0; k < 4; k++) wk.l(x0 - 8 * q - k * 8 * q, y0 + 1 * q + k * .6 * q, x0 - 2 * q - k * 8 * q, y0 + 1 * q + k * .6 * q, 0, 0);
       S(g, p, ""); S(g, st, "rq-cverde"); const wake = S(g, wk, "rq-g");
       const nm = T(g, x0 + len * .46, y0 - hh * .1 - 2 * q, "MOSQUITO FREE", "middle", "rq-cverde-t"); nm.style.fontSize = "calc(var(--fs) * .62)";
-      const mx0 = -w, mx1 = Wn * (v ? 1.1 : 1.02) + PAN * .3, my = SL + 26 * q - y0;
+      const mx0 = Wn * .04, my = SL + 26 * q - y0;
       e._nc = 1; place(e, mx0, my); show(tlI, e, 2.4, .6);
+      if (tlM) {   // avanza solo cuando haces scroll: cruza la primera vista y luego acompaña el paseo por la playa
+        tlM.fromTo(e, { x: mx0 * s }, { x: Wn * .7 * s, duration: tm.pan, ease: "none", immediateRender: false }, 0)
+          .to(e, { x: (PAN + Wn * .8) * s, duration: tm.panD, ease: "power1.inOut" }, tm.pan);
+      }
       if (gs) {
-        amb.push(gs.timeline({ repeat: -1, paused: true }).fromTo(e, { x: mx0 * s }, { x: mx1 * s, duration: v ? 26 : 34, ease: "none" }));
         amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(g, { rotation: -1.6, y: 1.5 * q, svgOrigin: `${f(x0 + len * .5)} ${f(y0)}`, duration: 1.1, ease: "sine.inOut" }));
         amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(wake, { opacity: 1 }, { opacity: .3, duration: .35, ease: "none" }));
       } else place(e, Wn * .3, my);
@@ -1129,8 +1148,8 @@
       const dp = pen(); dp.raw("M" + pts.filter((p) => p[1] < SL - 8 * q).map((p) => f(p[0]) + " " + f(p[1] + 7 * q)).join("L"), 1); S(ca, dp, "rq-dots");
       // palmeras que se mecen
       // Madrisquí: Casa Panda y Casa 9 entre palmeras
-      const pX = cy1 + 34 * q, nX = pX + 120 * q + 46 * q, cB = (xx) => bedY(xx) + 1 * q;
-      casa("panda", pX, cB(pX + 60 * q), L.cayo, t0 + .3); casa("nueve", nX, cB(nX + 70 * q), L.cayo, t0 + .7);
+      const nX = cy1 + 34 * q, pX = nX + 140 * q + 46 * q, cB = (xx) => bedY(xx) + 1 * q;
+      casa("nueve", nX, cB(nX + 70 * q), L.cayo, t0 + .3); casa("panda", pX, cB(pX + 60 * q), L.cayo, t0 + .7);
       { // al caer el sol se encienden las ventanas, una por una
         const bP = cB(pX + 60 * q), bN = cB(nX + 70 * q), i1 = 1.4 * q, win = [];
         for (let k = 0; k < 4; k++) win.push([pX + (10 + k * 14) * q + i1, bP - 30 * q + i1, 14 * q - 2 * i1, 24 * q - 2 * i1]);
@@ -1140,7 +1159,7 @@
         order.forEach((k, n) => { const r = win[k], e = E("path", { class: "rq-win", d: poly([[r[0], r[1]], [r[0] + r[2], r[1]], [r[0] + r[2], r[1] + r[3]], [r[0], r[1] + r[3]]]) }, ca);
           if (tlM) { e.style.opacity = 0; tlM.to(e, { opacity: .85, duration: .25, ease: "power2.out" }, tm.sunset + tm.sunsetD * .3 + n * .28); } else e.style.opacity = .85; });
       }
-      [[pX + 143 * q, 104, -10], [nX + 158 * q, 118, 22], [nX + 190 * q, 84, 34]].forEach((c, i) => palm(ca, c[0], bedY(c[0]) + 2 * q, c[1] * q, c[2] * q, t0 + .5 + i * .25, true));
+      [[nX + 163 * q, 104, -10], [pX + 138 * q, 118, 22], [pX + 170 * q, 84, 34]].forEach((c, i) => palm(ca, c[0], bedY(c[0]) + 2 * q, c[1] * q, c[2] * q, t0 + .5 + i * .25, true));
       // rótulo del cayo
       const lb = E("g", {}, L.cotas), lx = cy1 + (cy2 - cy1) * .5, ly = SL + 40 * q;
       T(lb, lx, ly, "Madrisquí · N+1.20", "middle", "rq-o"); txt(tlM, lb, t0 + 1.4);
