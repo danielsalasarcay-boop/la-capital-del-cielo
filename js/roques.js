@@ -243,7 +243,8 @@
     // TIEMPOS DEL RECORRIDO
     // =====================================================================
     const tm = { D: 1.1 };
-    tm.plan = .3; tm.f0 = 1.5; tm.top = tm.f0 + nF * tm.D; tm.fac = tm.top + .1; tm.clean = tm.fac + 2.1; tm.sign0 = tm.clean + .2;
+    const ZI = gs ? 1.5 : 0;   // tramo inicial: la cámara se aleja del Gran Roque y el pueblo sube a cuadro
+    tm.zoomIn = ZI; tm.plan = .3 + ZI; tm.f0 = 1.5 + ZI; tm.top = tm.f0 + nF * tm.D; tm.fac = tm.top + .1; tm.clean = tm.fac + 2.1; tm.sign0 = tm.clean + .2;
     tm.pan = tm.sign0 + 1; tm.panD = 8;
     tm.down = tm.pan + tm.panD + .6; tm.downD = 2.6;
     tm.under = tm.down + tm.downD + .3; tm.underD = 5;
@@ -253,38 +254,45 @@
     const iez = (u) => u < .5 ? Math.sqrt(u / 2) : 1 - Math.sqrt((1 - u) / 2);
     const camAt = (t) => t < tm.pan ? 0 : t < tm.pan + tm.panD ? PAN * ez((t - tm.pan) / tm.panD) : t < tm.under ? PAN : t < tm.under + tm.underD ? PAN + PAN2 * ez((t - tm.under) / tm.underD) : XE;
     // cuándo entra a cuadro un punto del mundo (borde derecho de la cámara)
-    const tPan = (x) => x < Wn * .92 ? .2 + clamp(x / Wn, 0, 1) * 1.4 : tm.pan + tm.panD * iez(clamp((x - Wn * .92) / PAN, 0, 1));
+    const tPan = (x) => x < Wn * .92 ? ZI * .6 + clamp(x / Wn, 0, 1) * 1.4 : tm.pan + tm.panD * iez(clamp((x - Wn * .92) / PAN, 0, 1));
     const tUnd = (x) => x < PAN + Wn * .92 ? tm.down + tm.downD * .45 + clamp((x - PAN) / Wn, 0, 1) * 1.6 : tm.under + tm.underD * iez(clamp((x - PAN - Wn * .92) / PAN2, 0, 1));
 
     // =====================================================================
     // CÁMARA — mira el pueblo, corre por la playa, se mete al agua y sale en el cayo
     // =====================================================================
-    const cam = { x: gs ? 0 : XE, y: 0, bx: gs ? 0 : Wn * .22 }, par = { x: 0, y: 0 }, cull = [];
+    const cam = { x: gs ? 0 : XE, y: 0, bx: gs ? 0 : Wn * .22, z: gs ? 1 : 0, k: 1 }, par = { x: 0, y: 0 }, cull = [];
     let lifeFT = "";
     const applyLife = () => {
       const px = par.x, py = par.y, PP = 1400, zc = (z) => `translateZ(${z}px) scale(${((PP - z) / PP).toFixed(4)})`;
       world.style.transform = `rotateX(${(-py * 2.4).toFixed(3)}deg) rotateY(${(px * 3.4).toFixed(3)}deg)`;
       const zo = (z) => `translateZ(${z}px) translate(${f(W / 2)}px,${f(H / 2)}px) scale(${((PP - z) / PP).toFixed(4)}) translate(${f(-W / 2)}px,${f(-H / 2)}px)`;
       svgB.style.transform = zc(-320); svgM.style.transform = zc(-150); svgF.style.transform = zc(0);
-      lifeX.style.transform = zo(140) + ` translate3d(${f(-cam.x * FS * s)}px,${f(-cam.y * FS * s)}px,0)`;
+      lifeX.style.transform = zo(140) + ` translate3d(${f(-cam.x * FS * s)}px,${f((-cam.y * FS + lifeXP) * s)}px,0)`;
       lifeM.style.transform = lifeF.style.transform = lifeFT;
     };
-    let tB = "", tM = "", tF = "", deep = null;
+    let tB = "", tM = "", tF = "", deep = null, lifeXP = 0;
+    // zoom: z = acercamiento de entrada sobre el Gran Roque (1 → 0), k = acercamiento final (1 → KZ) con ancla en el horizonte
+    const AXZ = Wn * (v ? .5 : .62), AYZ = SL, KZ = v ? 1.08 : 1.12, FCX = (v ? .45 : .42) * Wn, FCY = SL - 170 * q;
+    const BT = { x: 0, y: 0, k: 1 }, FT = { x: 0, y: 0, k: 1 };
     const applyCam = () => {
-      const btx = -cam.x * PXB - cam.bx, bty = -cam.y * PYB, ftx = -cam.x, fty = -cam.y;
+      const k = cam.k, z = cam.z, push = z * Hn * .58;
+      const kb = (1 + (k - 1) * .3) * (1 + z * .5), ax = z > .001 ? FCX : AXZ, ay = z > .001 ? FCY : AYZ;
+      BT.k = kb; BT.x = kb * (-cam.x * PXB - cam.bx) + ax * (1 - kb) + z * (Wn * .5 - FCX); BT.y = kb * (-cam.y * PYB) + ay * (1 - kb) + z * (Hn * .56 - FCY);
+      const km = 1 + (k - 1) * .65, mx = km * (-cam.x * PXM) + AXZ * (1 - km), my = km * (-cam.y * PYM) + AYZ * (1 - km) + push * .78;
+      FT.k = k; FT.x = k * -cam.x + AXZ * (1 - k); FT.y = k * -cam.y + AYZ * (1 - k) + push;
       // en el fondo del mar los planos de atrás quedan tapados por completo: se apagan y dejan de repintarse
       const under = !!gs && !v && cam.y > DOWN - 4;
       if (under !== deep) { deep = under; svgB.style.visibility = svgM.style.visibility = under ? "hidden" : ""; }
       if (!under) {
-        const b = `translate(${f(btx)} ${f(bty)})`, m = `translate(${f(-cam.x * PXM)} ${f(-cam.y * PYM)})`;
+        const b = `translate(${f(BT.x)} ${f(BT.y)}) scale(${kb.toFixed(4)})`, m = `translate(${f(mx)} ${f(my)}) scale(${km.toFixed(4)})`;
         if (b !== tB) camB.setAttribute("transform", tB = b);
         if (m !== tM) camM.setAttribute("transform", tM = m);
       }
-      const fT = `translate(${f(ftx)} ${f(fty)})`; if (fT !== tF) camF.setAttribute("transform", tF = fT);
-      lifeFT = `translate3d(${f(ftx * s)}px,${f(fty * s)}px,0)`;
+      const fT = `translate(${f(FT.x)} ${f(FT.y)}) scale(${k.toFixed(4)})`; if (fT !== tF) camF.setAttribute("transform", tF = fT);
+      lifeFT = `translate3d(${f(FT.x * s)}px,${f(FT.y * s)}px,0) scale(${k.toFixed(4)})`; lifeXP = push * 1.25;
       // lo que vive lejos de cámara (aves, peces, botes, primer plano) tampoco se pinta
-      for (const e of sprites) { if (e._nc) continue; const k = e.parentNode === lifeX ? FS : 1, X = e._x / s - cam.x * k, Y = e._y / s - cam.y * k, vis = X + e._w > -SM && X < Wn + SM && Y + e._h > -SMV && Y < Hn + SMV; if (vis !== e._vis) { e._vis = vis; e.style.display = vis ? "" : "none"; } }
-      if (cull.length) { const x0 = cam.x - 70, x1 = cam.x + Wn + 70, y0 = cam.y - 70, y1 = cam.y + Hn + 70; for (const c of cull) { const vis = c[2] > x0 && c[1] < x1 && c[4] > y0 && c[3] < y1; if (vis !== c[5]) { c[5] = vis; c[0].style.display = vis ? "" : "none"; } } }
+      for (const e of sprites) { if (e._nc) continue; const fx = e.parentNode === lifeX, kk = fx ? 1 : k, X = fx ? e._x / s - cam.x * FS : FT.x + k * e._x / s, Y = fx ? e._y / s - cam.y * FS + lifeXP : FT.y + k * e._y / s, vis = X + e._w * kk > -SM && X < Wn + SM && Y + e._h * kk > -SMV && Y < Hn + SMV; if (vis !== e._vis) { e._vis = vis; e.style.display = vis ? "" : "none"; } }
+      if (cull.length) { const x0 = -FT.x / k - 70, x1 = (Wn - FT.x) / k + 70, y0 = -FT.y / k - 70, y1 = (Hn - FT.y) / k + 70; for (const c of cull) { const vis = c[2] > x0 && c[1] < x1 && c[4] > y0 && c[3] < y1; if (vis !== c[5]) { c[5] = vis; c[0].style.display = vis ? "" : "none"; } } }
       applyLife();
     };
 
@@ -1191,7 +1199,7 @@
     {
       // segunda fila de casitas, más atrás y más tenue: corre a media velocidad entre el cerro y el pueblo
       const gM = E("g", { class: "rq-mid" }, camM), yM = G - 20 * q, xEnd = PAN * PXM + Wn * (v ? .35 : .22);
-      const tMid = (x) => x < Wn * .9 ? .3 + clamp(x / Wn, 0, 1) * 1.3 : tm.pan + tm.panD * iez(clamp((x - Wn * .9) / (PAN * PXM), 0, 1));
+      const tMid = (x) => x < Wn * .9 ? ZI * .5 + clamp(x / Wn, 0, 1) * 1.3 : tm.pan + tm.panD * iez(clamp((x - Wn * .9) / (PAN * PXM), 0, 1));
       let x = -40 * q;
       while (x < xEnd) {
         const w = rnd(30, 64) * q, h = rnd(20, 40) * q, g = E("g", {}, gM), at = tMid(x);
@@ -1230,7 +1238,9 @@
         .to(cam, { y: DOWN, duration: tm.downD, ease: "power2.inOut" }, tm.down)
         .to(cam, { x: XE, duration: tm.underD, ease: "power1.inOut" }, tm.under)
         .to(cam, { y: 0, duration: tm.riseD, ease: "power2.inOut" }, tm.rise)
-        .to(cam, { bx: Wn * .22, duration: tm.underD, ease: "none" }, tm.under);
+        .to(cam, { bx: Wn * .22, duration: tm.underD, ease: "none" }, tm.under)
+        .to(cam, { z: 0, duration: ZI + .5, ease: "power2.inOut" }, 0)
+        .to(cam, { k: KZ, duration: tm.title + .9 - tm.sunset, ease: "sine.inOut" }, tm.sunset);
       gs.set(chars, { yPercent: 110, opacity: 0 }); gs.set(sign, { opacity: 0 });
       tlM.to(chars, { yPercent: 0, opacity: 1, duration: .6, stagger: .035, ease: "power3.out" }, tm.title).to(sign, { opacity: 1, duration: .6, ease: "none" }, tm.sign).set({}, {}, tm.end);
       if (hud) { hud.style.opacity = 0; tlI.to(hud, { opacity: 1, duration: .6, ease: "none" }, .3); }
@@ -1253,7 +1263,7 @@
       ["pueblo", "playa", "obra", "arrecife", "cayo", "cotas", "muelle", "fondo"].forEach((n) => [...L[n].children].forEach((ch) => add(ch, 40)));
     }
     // la luz del faro vive en el plano de atrás: se mueve con su paralaje
-    const beam = L.beam, applyBeam = () => { const x = (beam._bx - cam.x * PXB - cam.bx + cam.x) * s, y = (beam._by - cam.y * PYB + cam.y) * s; if (gs) gs.set(beam, { x, y }); else beam.style.transform = `translate(${f(x)}px,${f(y)}px)`; };
+    const beam = L.beam, applyBeam = () => { const bw = 80 * q, bh = 15 * q, sx = BT.x + BT.k * (beam._bx + bw), sy = BT.y + BT.k * (beam._by + bh), x = ((sx - FT.x) / FT.k - bw) * s, y = ((sy - FT.y) / FT.k - bh) * s; if (gs) gs.set(beam, { x, y }); else beam.style.transform = `translate(${f(x)}px,${f(y)}px)`; };
     const camUp = () => { applyCam(); applyBeam(); };
     camUp();
     if (tlI) { beam.style.opacity = 0; tlI.to(beam, { opacity: 1, duration: .5 }, 2.6); }
@@ -1285,7 +1295,17 @@
 
     // ---------- recorrido (contador) y arranque ----------
     let running = false, lastPct = -1, started = false, measure = null, onScroll = null;
-    const prog = { p: 0, t: -1 }, setP = (v) => { gs.killTweensOf(prog); prog.p = prog.t = v; tlM.progress(v); };
+    // avance suave: un resorte amortiguado sigue al scroll cuadro a cuadro; la velocidad cambia de forma continua
+    // (sin reiniciar una transición en cada golpe de rueda, que es lo que daba tirones)
+    const spr = { x: 0, v: 0, t: 0, raf: 0, last: 0 }, W0 = 7.5;
+    const stepSpr = (now) => {
+      const dt = Math.min(.05, Math.max(.001, (now - spr.last) / 1000)); spr.last = now;
+      spr.v += (W0 * W0 * (spr.t - spr.x) - 2 * W0 * spr.v) * dt; spr.x += spr.v * dt;
+      if (Math.abs(spr.t - spr.x) < 2e-5 && Math.abs(spr.v) < 2e-4) { spr.x = spr.t; spr.v = 0; spr.raf = 0; tlM.progress(spr.x); return; }
+      tlM.progress(clamp(spr.x, 0, 1)); spr.raf = requestAnimationFrame(stepSpr);
+    };
+    const follow = (t) => { spr.t = t; if (!spr.raf) { spr.last = performance.now(); spr.raf = requestAnimationFrame(stepSpr); } };
+    const setP = (v) => { if (spr.raf) cancelAnimationFrame(spr.raf); spr.raf = 0; spr.x = spr.t = v; spr.v = 0; tlM.progress(v); };
     if (tlM) {
       tlM.eventCallback("onUpdate", () => {
         camUp();
@@ -1298,9 +1318,12 @@
         // aunque cambie el alto de la página, la ventana o se vuelva de otra pestaña
         measure = () => { const len = (sec.offsetHeight - innerHeight) * .95; return len > 0 ? clamp(-sec.getBoundingClientRect().top / len, 0, 1) : 0; };
         onScroll = () => {
-          if (!started && sec.getBoundingClientRect().top < innerHeight * .3) { started = true; if (running) tlI.play(); }
-          const t = measure(); if (Math.abs(t - prog.t) < 1e-5) return; prog.t = t;
-          gs.to(prog, { p: t, duration: 1.1, ease: "power3.out", overwrite: true, onUpdate: () => tlM.progress(prog.p) });
+          // el Gran Roque se dibuja cuando el cerro entra en pantalla; si subes hasta salir de la sección,
+          // se borra fuera de cuadro y vuelve a dibujarse cuando regresas
+          const top0 = sec.getBoundingClientRect().top;
+          if (!started && top0 < innerHeight * .6) { started = true; if (running) tlI.play(); }
+          else if (started && top0 > innerHeight * .9) { started = false; tlI.pause(); tlI.progress(0); }
+          follow(measure());
         };
         addEventListener("scroll", onScroll, { passive: true }); addEventListener("resize", onScroll);
       } else {
@@ -1331,7 +1354,7 @@
       destroy() {
         if (gs) {
           if (onScroll) { removeEventListener("scroll", onScroll); removeEventListener("resize", onScroll); } amb.forEach((l) => l.kill()); tlI.kill(); tlM.kill();
-          gs.killTweensOf([cam, par, prog]); if (hoverOK) stage.removeEventListener("pointermove", onMove);
+          gs.killTweensOf([cam, par]); if (spr.raf) cancelAnimationFrame(spr.raf); if (hoverOK) stage.removeEventListener("pointermove", onMove);
           gs.set([hud, sign].concat(chars), { clearProps: "all" });
         } else if (hud) hud.style.opacity = "";
         made.forEach((e) => e.remove());
