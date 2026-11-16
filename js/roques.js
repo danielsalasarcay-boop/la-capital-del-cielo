@@ -2,7 +2,7 @@
    Croquis de línea 100% dibujado en código, con el mismo lápiz y la misma cámara que "Caracas, en obra":
    el Gran Roque y sus faros, el pueblo de posadas y una que se construye piso por piso, la playa con sus
    peñeros y la avioneta que aterriza, el muelle, la bajada al arrecife y la subida en un cayo al atardecer.
-   Usa GSAP + ScrollTrigger. Sin GSAP o con "reducir movimiento": queda la lámina final, completa y quieta. */
+   Usa GSAP (el avance con el scroll lo mide la propia pieza). Sin GSAP o con "reducir movimiento": queda la lámina final, completa y quieta. */
 (function () {
   "use strict";
   const NS = "http://www.w3.org/2000/svg";
@@ -29,16 +29,25 @@
   const CAYOS = ["Francisquí", "Crasquí", "Noronquí", "Cayo de Agua", "Carenero", "Rabusquí"];
   const BOATS = ["DOÑA CARMEN", "EL ROQUEÑO", "MI NEGRA", "LA PERLA", "SAN JOSÉ"];
 
+  // inglés: los rótulos del dibujo se traducen al vuelo (el sitio avisa con el evento "langchange")
+  const EN = { "Faro Holandés · 1870": "Dutch Lighthouse · 1870", "Faro · 120 m": "Lighthouse · 120 m", "N±0.00 · mar": "N±0.00 · sea", "Pista · 900 m": "Airstrip · 900 m",
+    "Muelle": "Pier", "Langosta": "Lobster", "3 hab · frente al mar": "3 bed · beachfront", "4 hab · chef": "4 bed · chef", "5 hab · chef": "5 bed · chef",
+    "Posada · por habitación": "Guesthouse · by the room", "5 hab · baño privado": "5 bed · private bath" };
+  const isEn = () => /^en/i.test(document.documentElement.lang || "");
+  const COPY = {
+    es: { t: '<span class="l">Del cielo</span><span class="l">al <b>mar.</b></span>', s: "<span>La Capital del Cielo — </span><span>Casas privadas en Los Roques.</span>", tag: "Los Roques, a mano", pct: "Recorrido " },
+    en: { t: '<span class="l">From sky</span><span class="l">to <b>sea.</b></span>', s: "<span>La Capital del Cielo — </span><span>Private houses in Los Roques.</span>", tag: "Los Roques, by hand", pct: "Route ",
+      title: "Los Roques, by hand", desc: "Line sketch on black: Gran Roque with the Dutch Lighthouse, the new lighthouse and the Los Roques sign; in front, the village with Casa Verde, Casa Bleu, Macanao Lodge, Casa Coro Coro and Casa Panza by the airstrip. The view dives down the reef wall among corals, fish, a turtle, jellyfish and a manta ray, and surfaces at Madrisquí, with Casa Panda and Casa 9, as the sun sets." },
+  };
+
   secs.forEach(mount);
 
   function mount(sec) {
     const stage = sec.querySelector(".rq__stage");
     const title = sec.querySelector(".rq__title");
     if (!stage || !title) return;
-    // titular letra por letra (el texto real queda en aria-label)
-    title.setAttribute("aria-label", title.textContent.replace(/\s+/g, " ").trim());
-    title.querySelectorAll(".l").forEach((l) => l.setAttribute("aria-hidden", "true"));
-    (function split(node) {
+    // textos según el idioma del sitio; el titular va letra por letra (el texto real queda en aria-label)
+    const split = (node) => {
       [...node.childNodes].forEach((n) => {
         if (n.nodeType === 3) {
           const frag = document.createDocumentFragment();
@@ -49,10 +58,25 @@
           n.replaceWith(frag);
         } else if (n.nodeType === 1) split(n);
       });
-    })(title);
+    };
+    const esTitle = sec.dataset.title || "", esDesc = sec.dataset.desc || "", own = /Del cielo/.test(title.textContent);   // solo se traduce el texto propio de la pieza
+    let builtEn = null;
+    const setCopy = () => {
+      const en = isEn(), c = COPY[en ? "en" : "es"]; builtEn = en;
+      if (own) {
+        title.innerHTML = c.t;
+        const sg = sec.querySelector(".rq__sign"), tg = sec.querySelector(".rq__tag"), pc = sec.querySelector(".rq__pct");
+        if (sg) sg.innerHTML = c.s; if (tg) tg.textContent = c.tag; if (pc && pc.firstChild && pc.firstChild.nodeType === 3) pc.firstChild.nodeValue = c.pct;
+        sec.dataset.title = en ? c.title : esTitle; sec.dataset.desc = en ? c.desc : esDesc;
+      }
+      title.setAttribute("aria-label", [...title.querySelectorAll(".l")].map((l) => l.textContent.trim()).join(" ") || title.textContent.trim());
+      title.querySelectorAll(".l").forEach((l) => l.setAttribute("aria-hidden", "true"));
+      split(title);
+    };
+    setCopy();
 
     let scene = null, W = 0, H = 0, timer = 0, inView = false;
-    const canAnim = () => !!(window.gsap && window.ScrollTrigger) && !reduce.matches;
+    const canAnim = () => !!window.gsap && !reduce.matches;
     const sync = () => scene && scene.run(inView && !document.hidden);
     const rebuild = () => {
       const w = stage.clientWidth, h = stage.clientHeight;
@@ -60,7 +84,7 @@
       const keep = scene ? scene.state() : null;
       if (scene) scene.destroy();
       const anim = canAnim(), scrub = anim && mqScrub.matches;
-      sec.classList.toggle("is-scrub", scrub);
+      sec.classList.toggle("is-scrub", scrub); sec.classList.toggle("rq--static", !scrub);
       W = stage.clientWidth; H = stage.clientHeight;
       scene = build(sec, stage, W, H, anim, scrub);
       scene.restore(keep);
@@ -73,12 +97,14 @@
     if ("IntersectionObserver" in window) new IntersectionObserver((es) => { inView = es[es.length - 1].isIntersecting; sync(); }, { threshold: 0 }).observe(stage);
     else inView = true;
     document.addEventListener("visibilitychange", sync);
+    document.addEventListener("langchange", () => { if (isEn() !== builtEn) { setCopy(); rebuild(); } });
     sec.rq = { seek: (p) => scene && scene.seek(p), get scene() { return scene; } };
   }
 
   function build(sec, stage, W, H, anim, scrub) {
     const gs = anim ? window.gsap : null;
     const R = rng(23), rnd = (a, b) => a + R() * (b - a), pick = (a) => a[Math.floor(R() * a.length)];
+    const en = isEn(), tr = (x) => (en && EN[x]) || x;
 
     // ---------- medidas (unidades nominales; s = px por unidad) ----------
     const v = W / H < .85;
@@ -158,7 +184,7 @@
       }
       const e = E("path", { d: p.d, class: cls || "" }, parent); e._L = L; return e;
     };
-    const T = (parent, x, y, str, anchor, cls) => { const t = E("text", { x: f(x), y: f(y), "text-anchor": anchor || "start", class: cls || "" }, parent); t.textContent = str; return t; };
+    const T = (parent, x, y, str, anchor, cls) => { const t = E("text", { x: f(x), y: f(y), "text-anchor": anchor || "start", class: cls || "" }, parent); t.textContent = tr(str); return t; };
     const paths = (e) => e.tagName === "path" ? [e] : [...e.querySelectorAll("path")].filter((p) => p._L);
     const poly = (pts) => "M" + pts.map((p) => f(p[0]) + " " + f(p[1])).join("L") + "Z";
     const occ = (parent, pts) => E("path", { class: "rq-occ", d: poly(pts) }, parent);
@@ -228,7 +254,7 @@
     // =====================================================================
     // CÁMARA — mira el pueblo, corre por la playa, se mete al agua y sale en el cayo
     // =====================================================================
-    const cam = { x: gs ? 0 : XE, y: 0 }, par = { x: 0, y: 0 }, cull = [];
+    const cam = { x: gs ? 0 : XE, y: 0, bx: gs ? 0 : Wn * .22 }, par = { x: 0, y: 0 }, cull = [];
     let lifeFT = "";
     const applyLife = () => {
       const px = par.x, py = par.y, PP = 1400, zc = (z) => `translateZ(${z}px) scale(${((PP - z) / PP).toFixed(4)})`;
@@ -239,7 +265,7 @@
       lifeM.style.transform = lifeF.style.transform = lifeFT;
     };
     const applyCam = () => {
-      const btx = -cam.x * PXB, bty = -cam.y * PYB, ftx = -cam.x, fty = -cam.y;
+      const btx = -cam.x * PXB - cam.bx, bty = -cam.y * PYB, ftx = -cam.x, fty = -cam.y;
       camB.setAttribute("transform", `translate(${f(btx)} ${f(bty)})`); camM.setAttribute("transform", `translate(${f(-cam.x * PXM)} ${f(-cam.y * PYM)})`);
       camF.setAttribute("transform", `translate(${f(ftx)} ${f(fty)})`);
       lifeFT = `translate3d(${f(ftx * s)}px,${f(fty * s)}px,0)`;
@@ -325,9 +351,13 @@
     }
     // cayos lejanos sobre el horizonte, con su nombre
     {
-      const x1 = PXB * XE + Wn * 1.2; let x = Wn * (v ? 1.05 : .98), i = 0;
+      const x1 = PXB * XE + Wn * 1.45; let x = Wn * (v ? 1.05 : .98), i = 0;
+      // en el cuadro final el titular ocupa la izquierda: ahí no va ningún cayo lejano (ni su rótulo)
+      const F0 = PXB * XE + Wn * .2, F1 = F0 + Wn * (v ? 0 : .4);
       while (x < x1) {
-        const w = rnd(120, 230) * q, h = rnd(6, 13) * q, p = pen().c([[x, SL], [x + w * .15, SL - h * .7], [x + w * .5, SL - h], [x + w * .85, SL - h * .6], [x + w, SL]]);
+        const w = rnd(120, 230) * q, h = rnd(6, 13) * q;
+        if (x + w > F0 && x < F1) { x = F1 + 10 * q; continue; }
+        const p = pen().c([[x, SL], [x + w * .15, SL - h * .7], [x + w * .5, SL - h], [x + w * .85, SL - h * .6], [x + w, SL]]);
         for (let k = 0; k < 2 + (R() * 3 | 0); k++) { const px = x + w * rnd(.25, .75), py = SL - h * .8; p.l(px, py, px + 2 * q, py - 14 * q, .3, .1).l(px + 2 * q, py - 14 * q, px - 6 * q, py - 10 * q, 0, .1).l(px + 2 * q, py - 14 * q, px + 9 * q, py - 11 * q, 0, .1); }
         const g = E("g", {}, L.cayos); S(g, p, "rq-m"); T(g, x + w / 2, SL - h - 22 * q, CAYOS[i % CAYOS.length], "middle", "rq-m");
         draw(tlI, g, 2 + i * .15, .8); x += w + rnd(.18, .34) * Wn; i++;
@@ -986,12 +1016,12 @@
       // atardecer: una franja cálida sobre el horizonte que se enciende y se apaga con el scroll
       const SH = 300 * q, sgr = E("linearGradient", { id: uid + "s", x1: 0, y1: f(SL - SH), x2: 0, y2: f(SL), gradientUnits: "userSpaceOnUse" }, defs);
       [[0, "#ff5a1f", 0], [.3, "#ff6a24", .22], [.6, "#ff7a2a", .46], [.84, "#ff9636", .7], [1, "#ffbd5c", .95]].forEach((c) => E("stop", { offset: c[0], "stop-color": c[1], "stop-opacity": c[2] }, sgr));
-      const glow = E("path", { class: "rq-water", style: `fill:url(#${uid}s)`, d: `M${f(XE - 60)} ${f(SL - SH)}H${f(XE + Wn + 60)}V${f(SL)}H${f(XE - 60)}Z` }, L.sol);
+      const glow = E("path", { class: "rq-water", style: `fill:url(#${uid}s)`, d: `M${f(XE - Wn * .4)} ${f(SL - SH)}H${f(XE + Wn * 1.4)}V${f(SL)}H${f(XE - Wn * .4)}Z` }, L.sol);
       // el mismo color tiñe el agua junto al horizonte
       const wgr = E("linearGradient", { id: uid + "r", x1: 0, y1: f(SL), x2: 0, y2: f(SL + 110 * q), gradientUnits: "userSpaceOnUse" }, defs);
       [[0, "#ff9a40", .55], [.5, "#ff7a2a", .2], [1, "#ff6a24", 0]].forEach((c) => E("stop", { offset: c[0], "stop-color": c[1], "stop-opacity": c[2] }, wgr));
-      const wglow = E("path", { class: "rq-water", style: `fill:url(#${uid}r)`, d: `M${f(XE - 60)} ${f(SL)}H${f(XE + Wn + 60)}V${f(SL + 110 * q)}H${f(XE - 60)}Z` }, L.mar);
-      const bands = E("g", {}, L.sol); [[6, "#ffc060"], [15, "#ffa040"], [27, "#ff8a2a"], [42, "#ff7424"], [62, "#ff6a24"]].forEach((c) => { const e = S(bands, pen().l(XE - 40, SL - c[0] * q, XE + Wn + 40, SL - c[0] * q, 0, 0), "rq-t"); e.style.stroke = c[1]; });
+      const wglow = E("path", { class: "rq-water", style: `fill:url(#${uid}r)`, d: `M${f(XE - Wn * .4)} ${f(SL)}H${f(XE + Wn * 1.4)}V${f(SL + 110 * q)}H${f(XE - Wn * .4)}Z` }, L.mar);
+      const bands = E("g", {}, L.sol); [[6, "#ffc060"], [15, "#ffa040"], [27, "#ff8a2a"], [42, "#ff7424"], [62, "#ff6a24"]].forEach((c) => { const e = S(bands, pen().l(XE - Wn * .4, SL - c[0] * q, XE + Wn * 1.4, SL - c[0] * q, 0, 0), "rq-t"); e.style.stroke = c[1]; });
       const bE = bands;
       if (tlM) { [glow, wglow, bE].forEach((el, i) => { const top = [1, 1, .6][i], end = [.42, .25, 0][i]; el.style.opacity = 0; tlM.to(el, { opacity: top, duration: tm.sunsetD * .45, ease: "sine.out" }, tm.sunset).to(el, { opacity: end, duration: tm.sunsetD * .5, ease: "sine.in" }, tm.sunset + tm.sunsetD * .5); }); }
       else { glow.style.opacity = .6; wglow.style.opacity = .4; bE.style.opacity = .25; }
@@ -1184,7 +1214,8 @@
       tlM.to(cam, { x: PAN, duration: tm.panD, ease: "power1.inOut" }, tm.pan)
         .to(cam, { y: DOWN, duration: tm.downD, ease: "power2.inOut" }, tm.down)
         .to(cam, { x: XE, duration: tm.underD, ease: "power1.inOut" }, tm.under)
-        .to(cam, { y: 0, duration: tm.riseD, ease: "power2.inOut" }, tm.rise);
+        .to(cam, { y: 0, duration: tm.riseD, ease: "power2.inOut" }, tm.rise)
+        .to(cam, { bx: Wn * .22, duration: tm.underD, ease: "none" }, tm.under);
       gs.set(chars, { yPercent: 110, opacity: 0 }); gs.set(sign, { opacity: 0 });
       tlM.to(chars, { yPercent: 0, opacity: 1, duration: .6, stagger: .035, ease: "power3.out" }, tm.title).to(sign, { opacity: 1, duration: .6, ease: "none" }, tm.sign).set({}, {}, tm.end);
       if (hud) { hud.style.opacity = 0; tlI.to(hud, { opacity: 1, duration: .6, ease: "none" }, .3); }
@@ -1207,7 +1238,7 @@
       ["pueblo", "playa", "obra", "arrecife", "cayo", "cotas", "muelle", "fondo"].forEach((n) => [...L[n].children].forEach((ch) => add(ch, 40)));
     }
     // la luz del faro vive en el plano de atrás: se mueve con su paralaje
-    const beam = L.beam, applyBeam = () => { const x = (beam._bx - cam.x * PXB + cam.x) * s, y = (beam._by - cam.y * PYB + cam.y) * s; if (gs) gs.set(beam, { x, y }); else beam.style.transform = `translate(${f(x)}px,${f(y)}px)`; };
+    const beam = L.beam, applyBeam = () => { const x = (beam._bx - cam.x * PXB - cam.bx + cam.x) * s, y = (beam._by - cam.y * PYB + cam.y) * s; if (gs) gs.set(beam, { x, y }); else beam.style.transform = `translate(${f(x)}px,${f(y)}px)`; };
     const camUp = () => { applyCam(); applyBeam(); };
     camUp();
     if (tlI) { beam.style.opacity = 0; tlI.to(beam, { opacity: 1, duration: .5 }, 2.6); }
@@ -1238,7 +1269,8 @@
     else if (gs) amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true, onUpdate: applyLife }).fromTo(par, { x: -.55, y: -.3 }, { x: .55, y: .35, duration: 7, ease: "sine.inOut" }));
 
     // ---------- recorrido (contador) y arranque ----------
-    let running = false, lastPct = -1, started = false, stg = null, stIn = null;
+    let running = false, lastPct = -1, started = false, measure = null, onScroll = null;
+    const prog = { p: 0, t: -1 }, setP = (v) => { gs.killTweensOf(prog); prog.p = prog.t = v; tlM.progress(v); };
     if (tlM) {
       tlM.eventCallback("onUpdate", () => {
         camUp();
@@ -1246,14 +1278,19 @@
         const n = Math.round(clamp(t / tm.title, 0, 1) * 100);
         if (n !== lastPct && pct) { lastPct = n; pct.textContent = String(n).padStart(3, "0"); }
       });
-      const ST = window.ScrollTrigger; gs.registerPlugin(ST);
       if (scrub) {
-        stg = ST.create({ trigger: sec, start: "top top", end: () => "+=" + (sec.offsetHeight - innerHeight) * .95, scrub: 1.1, animation: tlM, invalidateOnRefresh: false });
-        stIn = ST.create({ trigger: sec, start: "top 96%", once: true, onEnter: () => { started = true; tlI.play(); } });
+        // el avance se mide de la posición real de la sección en cada scroll (sin ScrollTrigger): no puede desfasarse
+        // aunque cambie el alto de la página, la ventana o se vuelva de otra pestaña
+        measure = () => { const len = (sec.offsetHeight - innerHeight) * .95; return len > 0 ? clamp(-sec.getBoundingClientRect().top / len, 0, 1) : 0; };
+        onScroll = () => {
+          if (!started && sec.getBoundingClientRect().top < innerHeight * .96) { started = true; if (running) tlI.play(); }
+          const t = measure(); if (Math.abs(t - prog.t) < 1e-5) return; prog.t = t;
+          gs.to(prog, { p: t, duration: 1.1, ease: "power3.out", overwrite: true, onUpdate: () => tlM.progress(prog.p) });
+        };
+        addEventListener("scroll", onScroll, { passive: true }); addEventListener("resize", onScroll);
       } else {
         tlI.eventCallback("onComplete", () => { if (running) tlM.play(); });
         tlM.timeScale(1.5);
-        stIn = ST.create({ trigger: sec, start: "top 85%", once: true, onEnter: () => { started = true; if (running) tlI.play(); } });
       }
     } else if (pct) pct.textContent = "100";
 
@@ -1262,22 +1299,24 @@
       state: () => (tlM ? { started, intro: tlI.progress(), p: tlM.progress() } : null),
       restore(k) {
         if (!tlM) return;
-        if (scrub) { if (stg.progress > 0 || (k && k.started)) { started = true; tlI.progress(1); tlM.progress(stg.progress); } }
+        if (scrub) { const p0 = measure(); if (p0 > 0 || (k && k.started)) { started = true; tlI.progress(1); setP(p0); } }
         else if (k && k.started) { started = true; tlI.progress(k.intro); tlM.progress(k.p); }
         camUp();
       },
       run(on) {
         running = on; if (!tlM) return;
         amb.forEach((l) => (on ? l.play() : l.pause()));
+        if (on && !started && !scrub) started = true;
+        if (on && scrub) onScroll();
         if (!started) return;
         if (!on) { tlI.pause(); if (!scrub) tlM.pause(); return; }
         if (tlI.progress() < 1) tlI.play(); else if (!scrub && tlM.progress() < 1) tlM.play();
       },
-      seek(p) { if (!tlM) return; started = true; tlI.progress(1); if (!scrub) tlM.pause(); tlM.progress(p); },
+      seek(p) { if (!tlM) return; started = true; tlI.progress(1); if (!scrub) tlM.pause(); setP(p); },
       destroy() {
         if (gs) {
-          [stg, stIn].forEach((x) => x && x.kill()); amb.forEach((l) => l.kill()); tlI.kill(); tlM.kill();
-          gs.killTweensOf([cam, par]); if (hoverOK) stage.removeEventListener("pointermove", onMove);
+          if (onScroll) { removeEventListener("scroll", onScroll); removeEventListener("resize", onScroll); } amb.forEach((l) => l.kill()); tlI.kill(); tlM.kill();
+          gs.killTweensOf([cam, par, prog]); if (hoverOK) stage.removeEventListener("pointermove", onMove);
           gs.set([hud, sign].concat(chars), { clearProps: "all" });
         } else if (hud) hud.style.opacity = "";
         made.forEach((e) => e.remove());

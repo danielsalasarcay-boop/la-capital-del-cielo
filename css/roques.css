@@ -169,6 +169,19 @@
 /* atardecer: ventanas y luz de tope que se encienden */
 .rq svg path.rq-win { fill: #ffb35a; stroke: none; filter: drop-shadow(0 0 3px rgba(255, 150, 60, .9)); }
 
+/* la escena se inclina con el cursor: el dibujo puede asomar más allá de su caja (el escenario lo recorta) */
+.rq__svg { overflow: visible; }
+
+/* cajetín a la izquierda: a la derecha chocaría con botones flotantes del sitio */
+.rq__sheet { right: auto; left: var(--pl); }
+/* computadora: el alto del recorrido lo fija el CSS desde el primer instante, así al recargar el navegador te devuelve a tu sitio
+   aunque el script llegue después; si la pieza queda estática (sin GSAP), vuelve a una pantalla */
+@media (min-width: 901px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .rq { height: 2200vh; }
+  .rq .rq__stage { position: sticky; top: 0; height: 100vh; }
+  .rq.rq--static { height: 100vh; }
+}
+
 /* dentro del sitio: que las reglas globales de svg no deformen el dibujo */
 .rq svg { max-width: none; }
 .rq .rq__svg { height: calc(100% + 52px); }
