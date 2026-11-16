@@ -1763,3 +1763,25 @@ html.is-loading .hero--photo .bg-media img { animation-play-state: paused; }
   .gallery-tall .gallery-link { flex-basis: calc((100% - 2 * var(--space-2)) / 3); border-radius: var(--radius); }
 }
 @media (min-width: 960px) { .gallery-tall .gallery-link { flex-basis: calc((100% - 3 * var(--space-2)) / 4); } }
+
+
+/* ==========================================================================
+   Header: botones en cápsula. Una pastilla azul (el azul de la marca) se desliza
+   al botón que señalas y descansa en la página actual; "Reservar" también es cápsula.
+   ========================================================================== */
+.site-header .btn { border-radius: 999px; }
+@media (min-width: 960px) {
+  .site-header .nav-list { position: relative; gap: 4px; align-items: center; }
+  .site-header .nav-list > li > a { position: relative; z-index: 1; display: inline-block; padding: .62rem 1.05rem !important; border-radius: 999px;
+    transition: color .35s var(--ease), text-shadow .35s var(--ease); }
+  .site-header .nav-list > li > a[aria-current="page"] { box-shadow: none; }
+  .site-header .nav-list > li > a:hover, .site-header .nav-list > li > a:focus { text-decoration: none; }
+  .site-header .nav-list > li > a.is-pill,
+  .site-header.over-hero:not(.menu-open) .nav-list > li > a.is-pill { color: var(--color-brand-deep); text-shadow: none; }
+  .site-header .nav-pill { position: absolute; left: 0; top: 0; z-index: 0; width: 0; height: 0; margin: 0; padding: 0; list-style: none; border-radius: 999px;
+    background: var(--color-brand); box-shadow: 0 6px 16px -6px rgba(60, 130, 220, .65), inset 0 1px 0 rgba(255, 255, 255, .4);
+    opacity: 0; pointer-events: none;
+    transition: transform .45s cubic-bezier(.2, .8, .2, 1), width .45s cubic-bezier(.2, .8, .2, 1), height .3s, opacity .3s; }
+}
+@media (max-width: 959px) { .site-header .nav-pill { display: none; } }
+@media (prefers-reduced-motion: reduce) { .site-header .nav-pill { transition: opacity .2s; } }

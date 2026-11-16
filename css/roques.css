@@ -188,3 +188,13 @@
 
 /* solo para computadora: en teléfonos y tablets la sección no aparece (ni se dibuja) */
 @media (max-width: 900px), (pointer: coarse) { .rq { display: none; } }
+
+
+/* mientras la sección está bajo el header, el header se vuelve negro (logo blanco, textos claros) */
+html.rq-dark .site-header { background: rgba(10, 10, 10, .9); border-bottom-color: rgba(255, 255, 255, .08); box-shadow: none; }
+html.rq-dark .site-header .header-logo img { content: url(../img/general/logo-white.png); }
+html.rq-dark .site-header .nav-list > li > a, html.rq-dark .site-header .icon-link { color: #f4f1ec; }
+html.rq-dark .site-header .nav-list > li > a.is-pill { color: #1a1a1a; }
+html.rq-dark .site-header .icon-link:hover { background: rgba(255, 255, 255, .12); }
+html.rq-dark .site-header .lang-switch { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .28); }
+html.rq-dark .site-header .lang-switch .lang-btn:not(.is-active) { color: rgba(244, 241, 236, .8); }
