@@ -202,3 +202,5 @@ html.rq-dark .site-header .lang-switch .lang-btn:not(.is-active) { color: rgba(2
 /* trazo nítido: geometría precisa y texto con suavizado de alta calidad */
 .rq svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
 .rq svg text.rq-cverde-t { fill: #2ba88c; letter-spacing: .06em; }
+.rq .rq-red { stroke: #e5484d; }
+.rq svg text.rq-sasca { font-family: var(--display, "Archivo", system-ui, sans-serif); font-weight: 700; font-size: calc(var(--fs) * .7); letter-spacing: .14em; fill: var(--rq-orange); }
