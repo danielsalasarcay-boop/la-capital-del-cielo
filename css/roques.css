@@ -1,0 +1,174 @@
+/* ============================================================
+   Los Roques, a mano
+   Pieza aislada: solo clases .rq / .rq-*. No toca nada del sitio.
+   ============================================================ */
+.rq {
+  --rq-bg: #0a0a0a;
+  --rq-cream: #f4f1ec;
+  --rq-muted: #8f8b85;
+  --rq-orange: #6aaae4;
+  --rq-hot: #ff741f;
+  --rq-green: #8fd8d2;
+  --u: 1px; --pl: 20px; --gy: 60vh; --ft: 52; --sw: 1.25px; --fs: 10px;
+  position: relative; height: 100vh; background: var(--rq-bg); color: var(--rq-cream);
+}
+.rq__stage { position: relative; height: 100vh; overflow: hidden; background: var(--rq-bg); perspective: 1400px; }
+/* mundo en 3D: cada capa vive a su profundidad y todo se inclina con el cursor */
+.rq__world { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+@supports (height: 100svh) {
+  .rq, .rq__stage { height: 100svh; }
+}
+/* computadora: el escenario se queda fijo (sticky, sin pin por JS) y la obra avanza con el scroll */
+.rq.is-scrub { height: 2200vh; }
+.rq.is-scrub .rq__stage { position: sticky; top: 0; height: 100vh; }
+
+.rq__life { transition: opacity .4s; }
+.rq__svg, .rq__life { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+/* el dibujo sobresale 26px por lado: margen para que el paralaje del cursor nunca enseñe el borde */
+.rq__svg { inset: auto; left: -26px; top: -26px; width: calc(100% + 52px); height: calc(100% + 52px); will-change: transform; }
+.rq__life { overflow: hidden; }
+.rq__life--cam { overflow: visible; will-change: transform; transform-origin: 0 0; }
+.rq__sp { position: absolute; left: 0; top: 0; overflow: visible; will-change: transform; }
+.rq__flock { position: absolute; left: 0; top: 0; will-change: transform; }
+.rq__sp--glow { filter: drop-shadow(0 0 4px rgba(240, 90, 37, .6)); }
+.rq__sp--lamp { filter: drop-shadow(0 0 3px rgba(255, 116, 31, .95)) drop-shadow(0 0 10px rgba(240, 90, 37, .75)); }
+
+/* ---- trazo ---- */
+.rq svg path { fill: none; stroke: var(--rq-cream); stroke-width: var(--sw); stroke-linecap: round; stroke-linejoin: round; }
+.rq .rq-g { stroke: var(--rq-green); }
+.rq .rq-o { stroke: var(--rq-orange); }
+.rq .rq-h { stroke: var(--rq-hot); }
+.rq .rq-m { stroke: var(--rq-muted); }
+.rq .rq-t { stroke-width: calc(var(--sw) * .7); }
+.rq svg path.rq-flow { stroke-width: calc(var(--sw) * .8); stroke-dasharray: calc(var(--u-n, 1) * 4px) calc(var(--u-n, 1) * 9px); opacity: .9; }
+.rq svg path.rq-axis { stroke-dasharray: 9 3 1.5 3; opacity: .5; }
+.rq svg text.rq-lv { font-weight: 500; font-size: calc(var(--fs) * 1.08); letter-spacing: .06em; }
+.rq .rq-r { stroke-width: calc(var(--sw) * 1.3); }
+.rq .rq-b { stroke-width: calc(var(--sw) * 1.9); }
+.rq .rq-glow { stroke-width: calc(var(--sw) * 4.6); opacity: .17; }
+.rq .rq-dim { opacity: .5; }
+.rq .rq-occ { fill: var(--rq-bg); stroke: none; }
+.rq svg path.rq-under { stroke: var(--rq-bg); stroke-width: calc(var(--sw) * 8); }
+.rq svg text.rq-word { font-family: var(--display, "Archivo", system-ui, sans-serif); font-weight: 800; font-stretch: 110%; letter-spacing: -.01em; stroke: none; }
+.rq svg text.rq-wsub { letter-spacing: .3em; stroke: none; }
+.rq svg text {
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace); font-size: var(--fs); letter-spacing: .04em;
+  fill: var(--rq-cream); stroke: var(--rq-bg); stroke-width: calc(var(--sw) * 3.4); paint-order: stroke; stroke-linejoin: round;
+}
+.rq svg text.rq-o { fill: var(--rq-orange); stroke: var(--rq-bg); }
+.rq svg text.rq-m { fill: var(--rq-muted); stroke: var(--rq-bg); }
+
+/* ---- rótulo de lámina y avance ---- */
+.rq__hud {
+  position: absolute; z-index: 3; left: var(--pl); right: var(--pl); top: max(88px, calc(96 * var(--u)));
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; pointer-events: none;
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+}
+.rq__tag { color: var(--rq-orange); display: inline-flex; align-items: center; gap: 10px; }
+.rq__tag::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+.rq__pct { color: var(--rq-muted); white-space: nowrap; }
+.rq__pct b { font-weight: 400; color: var(--rq-orange); }
+/* siluetas dentro de las ventanas: tapan el rayado de luz, como alguien a contraluz */
+.rq svg path.rq-sil { fill: var(--rq-bg); stroke: var(--rq-cream); stroke-width: calc(var(--sw) * .7); }
+.rq__sp--win { overflow: hidden; }
+/* reloj del andén: agujas rellenas y un resplandor tenue, como una esfera iluminada */
+.rq svg path.rq-hand { fill: var(--rq-cream); stroke: none; }
+.rq svg path.rq-hand.rq-o { fill: var(--rq-orange); }
+.rq .rq__clock { filter: drop-shadow(0 0 3px rgba(244, 241, 236, .35)); }
+.rq__clip { position: absolute; overflow: hidden; }
+.rq__clip .rq__sp { will-change: transform; }
+.rq svg text.rq-wbg { stroke: var(--rq-bg); stroke-width: calc(var(--sw) * 3); paint-order: stroke; }
+/* camioncito de La Capital del Cielo: su azul de marca, para que resalte entre el naranja */
+.rq svg path.rq-lcg { fill: #7db6ea; stroke: #7db6ea; stroke-width: .55px; vector-effect: non-scaling-stroke; }
+.rq__sp--lcdc { filter: drop-shadow(0 0 5px rgba(106, 170, 228, .55)); }
+.rq .rq__sp--lcdc path:not(.rq-lcg):not(.rq-h):not(.rq-glow) { stroke: #cfe4f7; }
+/* transiciones: retícula de plano y barrido de plotter */
+.rq__grid {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  background-image: linear-gradient(rgba(244, 241, 236, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(244, 241, 236, .035) 1px, transparent 1px), linear-gradient(rgba(106, 170, 228, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(106, 170, 228, .07) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 160px 160px, 160px 160px;
+}
+.rq__scan { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; opacity: 0; background: var(--rq-orange); box-shadow: 0 0 10px 1px rgba(106, 170, 228, .5); opacity: .7; will-change: transform; }
+.rq__scan--v { width: 1px; height: 100%; }
+.rq__scan--h { width: 100%; height: 1px; }
+/* primer plano: trazo más grueso y tenue, pasa rápido */
+.rq__sp--fore { opacity: .34; }
+.rq .rq__sp--fore path { stroke-width: calc(var(--sw) * 2.3); }
+/* cajetín de plano: lámina, escala y nivel en vivo */
+.rq__sheet {
+  position: absolute; z-index: 3; right: var(--pl); bottom: max(22px, calc(26 * var(--u))); display: flex; pointer-events: none;
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--rq-muted);
+  border: 1px solid rgba(244, 241, 236, .28); background: rgba(10, 10, 10, .88);
+}
+.rq__sheet span { padding: 7px 11px; min-width: 5.2em; text-align: center; white-space: nowrap; }
+.rq__sheet span + span { border-left: 1px solid rgba(244, 241, 236, .28); }
+.rq__sheet b { font-weight: 500; color: var(--rq-orange); }
+.rq[data-comp="v"] .rq__sheet { bottom: calc(18px + env(safe-area-inset-bottom, 0px)); font-size: 10px; }
+/* señal de scroll: una plomada que baja */
+.rq__hint { position: absolute; z-index: 3; left: 50%; bottom: 26px; width: 1px; height: 46px; background: rgba(244, 241, 236, .22); pointer-events: none; overflow: hidden; }
+.rq__hint i { position: absolute; left: 0; top: 0; width: 1px; height: 16px; background: var(--rq-orange); animation: rq-plomada 1.7s cubic-bezier(.7, 0, .2, 1) infinite; }
+@keyframes rq-plomada { from { transform: translateY(-16px); } to { transform: translateY(46px); } }
+@media (prefers-reduced-motion: reduce) { .rq__hint { display: none; } }
+
+
+/* ---- titular ---- */
+.rq__copy { position: absolute; z-index: 3; left: var(--pl); top: var(--gy); pointer-events: none; }
+.rq__title {
+  margin: 0; font-family: "Marcellus", Georgia, serif; font-weight: 400; font-size: calc(var(--ft) * var(--u));
+  letter-spacing: -.02em; line-height: .95; white-space: nowrap; color: var(--rq-cream);
+}
+.rq__title .l { display: block; }
+.rq__title .c { display: inline-block; will-change: transform, opacity; }
+.rq__title b { font-weight: 400; color: var(--rq-orange); }
+.rq__sign {
+  margin: 0; font-family: "Tenor Sans", var(--mono, ui-monospace), sans-serif; font-size: max(10px, calc(11 * var(--u)));
+  letter-spacing: .08em; line-height: 1.5; text-transform: uppercase; color: var(--rq-muted);
+}
+.rq__sign span { white-space: nowrap; }
+/* horizontal: el titular se para sobre la línea de terreno, como un edificio más; la firma va bajo tierra */
+.rq[data-comp="h"] .rq__title { position: absolute; left: 0; bottom: 100%; }
+.rq[data-comp="h"] .rq__sign { margin-top: calc(18 * var(--u)); white-space: nowrap; }
+/* vertical (teléfono): el edificio manda y el titular va debajo de la línea de terreno */
+.rq[data-comp="v"] .rq__copy { top: calc(var(--gy) + 64 * var(--u)); right: var(--pl); }
+.rq[data-comp="v"] .rq__sign { margin-top: calc(12 * var(--u)); }
+.rq[data-comp="v"] .rq__sign span { display: block; }
+.rq[data-comp="v"] .rq__hud { top: max(84px, calc(84 * var(--u))); font-size: 11px; }
+.rq[data-comp="v"] .rq__copy { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* ---- Los Roques: agua, arena y sol ---- */
+.rq svg path.rq-water { stroke: none; }
+.rq svg path.rq-dots { stroke-dasharray: .1 calc(var(--sw) * 6); stroke-width: calc(var(--sw) * 1.6); opacity: .55; }
+.rq svg path.rq-ray { stroke: var(--rq-green); opacity: .1; stroke-width: calc(var(--sw) * 4); }
+.rq svg path.rq-fill-o { fill: var(--rq-orange); stroke: none; }
+.rq svg path.rq-fill-c { fill: var(--rq-cream); stroke: none; }
+.rq svg path.rq-cut { stroke: var(--rq-bg); stroke-width: calc(var(--sw) * 2.6); }
+.rq__sp--sun { filter: drop-shadow(0 0 14px rgba(255, 116, 31, .55)); }
+
+/* ---- nuestras casas: su color y su rótulo ---- */
+.rq .rq-cverde { stroke: #2ba88c; }
+.rq .rq-cpanza { stroke: #34c3cb; }
+.rq .rq-cbleu { stroke: #3d8fe6; }
+.rq .rq-cmac { stroke: #6eb2ae; }
+.rq .rq-ccoro { stroke: #e9b44c; }
+.rq .rq-cpanda { stroke: #6f8fe0; }
+.rq .rq-cwood { stroke: #c8935a; }
+.rq svg text.rq-name { font-family: "Marcellus", Georgia, serif; font-size: calc(var(--fs) * 1.75); letter-spacing: .01em; fill: var(--rq-cream); }
+.rq svg text.rq-sub { font-size: calc(var(--fs) * .8); fill: var(--rq-orange); letter-spacing: .06em; }
+.rq svg text.rq-nine { font-family: "Marcellus", Georgia, serif; fill: none; stroke: #c8935a; stroke-width: calc(var(--sw) * 1.3); paint-order: normal; }
+/* kiter de La Capital del Cielo: su silueta azul marino con franjas, con un filo azul para que se lea sobre el negro */
+.rq__sp--kiter image { filter: drop-shadow(0 0 1px rgba(106, 170, 228, .9)) drop-shadow(0 0 6px rgba(106, 170, 228, .35)); }
+
+/* el mar: trazo fino, como un plano */
+.rq .rq-arrecife path, .rq .rq-fondo path, .rq .rq-cotas path, .rq .rq__sp--sea path { stroke-width: calc(var(--sw) * .62); }
+
+/* profundidad: la segunda fila del pueblo va atrás y tenue; el primer plano, en trazo fino */
+.rq .rq-mid path:not(.rq-occ) { stroke-width: calc(var(--sw) * .7); opacity: .55; }
+.rq__sp--fore { opacity: .3; }
+.rq .rq__sp--fore path { stroke-width: calc(var(--sw) * 1.4); }
+
+/* atardecer: ventanas y luz de tope que se encienden */
+.rq svg path.rq-win { fill: #ffb35a; stroke: none; filter: drop-shadow(0 0 3px rgba(255, 150, 60, .9)); }
+
+/* dentro del sitio: que las reglas globales de svg no deformen el dibujo */
+.rq svg { max-width: none; }
+.rq .rq__svg { height: calc(100% + 52px); }
