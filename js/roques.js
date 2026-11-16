@@ -97,6 +97,9 @@
     if ("IntersectionObserver" in window) new IntersectionObserver((es) => { inView = es[es.length - 1].isIntersecting; sync(); }, { threshold: 0 }).observe(stage);
     else inView = true;
     document.addEventListener("visibilitychange", sync);
+    // el sitio puede oscurecer su header mientras la pieza está debajo (clase en <html>)
+    const dark = () => { const r = sec.getBoundingClientRect(); document.documentElement.classList.toggle("rq-dark", r.width > 0 && r.top <= 36 && r.bottom > 36); };
+    addEventListener("scroll", dark, { passive: true }); addEventListener("resize", dark); dark();
     document.addEventListener("langchange", () => { if (isEn() !== builtEn) { setCopy(); rebuild(); } });
     sec.rq = { seek: (p) => scene && scene.seek(p), get scene() { return scene; } };
   }
@@ -226,8 +229,10 @@
     ["cerro", "faros", "cayos"].forEach((n) => { L[n] = E("g", { class: "rq-" + n }, camB); });
     ["sol", "agua", "rayos", "fondo", "arrecife", "mar", "tierra", "pueblo", "playa", "obra", "andamio", "muelle", "cayo", "cotas"].forEach((n) => { L[n] = E("g", { class: "rq-" + n }, camF); });
 
-    const sprite = (layer, w, h, cls) => E("svg", { class: "rq__sp " + (cls || ""), viewBox: `0 0 ${f(w)} ${f(h)}`, width: f(w * s), height: f(h * s), "aria-hidden": "true", focusable: "false" }, layer);
-    const place = (e, x, y) => { e._x = x * s; e._y = y * s; if (gs) gs.set(e, { x: e._x, y: e._y }); else e.style.transform = `translate(${f(e._x)}px,${f(e._y)}px)`; };
+    const sprites = [], SM = Wn * .45, SMV = 280 * q;
+    const sprite = (layer, w, h, cls) => { const e = sprite0(layer, w, h, cls); e._w = w; e._h = h; return e; };
+    const sprite0 = (layer, w, h, cls) => E("svg", { class: "rq__sp " + (cls || ""), viewBox: `0 0 ${f(w)} ${f(h)}`, width: f(w * s), height: f(h * s), "aria-hidden": "true", focusable: "false" }, layer);
+    const place = (e, x, y) => { if (e._x == null && e._w != null) sprites.push(e); e._x = x * s; e._y = y * s; if (gs) gs.set(e, { x: e._x, y: e._y }); else e.style.transform = `translate(${f(e._x)}px,${f(e._y)}px)`; };
 
     const tlI = gs ? gs.timeline({ paused: true }) : null;   // entrada: el Gran Roque se dibuja solo
     const tlM = gs ? gs.timeline({ paused: true }) : null;   // maestro: el recorrido
@@ -264,11 +269,21 @@
       lifeX.style.transform = zo(140) + ` translate3d(${f(-cam.x * FS * s)}px,${f(-cam.y * FS * s)}px,0)`;
       lifeM.style.transform = lifeF.style.transform = lifeFT;
     };
+    let tB = "", tM = "", tF = "", deep = null;
     const applyCam = () => {
       const btx = -cam.x * PXB - cam.bx, bty = -cam.y * PYB, ftx = -cam.x, fty = -cam.y;
-      camB.setAttribute("transform", `translate(${f(btx)} ${f(bty)})`); camM.setAttribute("transform", `translate(${f(-cam.x * PXM)} ${f(-cam.y * PYM)})`);
-      camF.setAttribute("transform", `translate(${f(ftx)} ${f(fty)})`);
+      // en el fondo del mar los planos de atrás quedan tapados por completo: se apagan y dejan de repintarse
+      const under = !!gs && !v && cam.y > DOWN - 4;
+      if (under !== deep) { deep = under; svgB.style.visibility = svgM.style.visibility = under ? "hidden" : ""; }
+      if (!under) {
+        const b = `translate(${f(btx)} ${f(bty)})`, m = `translate(${f(-cam.x * PXM)} ${f(-cam.y * PYM)})`;
+        if (b !== tB) camB.setAttribute("transform", tB = b);
+        if (m !== tM) camM.setAttribute("transform", tM = m);
+      }
+      const fT = `translate(${f(ftx)} ${f(fty)})`; if (fT !== tF) camF.setAttribute("transform", tF = fT);
       lifeFT = `translate3d(${f(ftx * s)}px,${f(fty * s)}px,0)`;
+      // lo que vive lejos de cámara (aves, peces, botes, primer plano) tampoco se pinta
+      for (const e of sprites) { if (e._nc) continue; const k = e.parentNode === lifeX ? FS : 1, X = e._x / s - cam.x * k, Y = e._y / s - cam.y * k, vis = X + e._w > -SM && X < Wn + SM && Y + e._h > -SMV && Y < Hn + SMV; if (vis !== e._vis) { e._vis = vis; e.style.display = vis ? "" : "none"; } }
       if (cull.length) { const x0 = cam.x - 70, x1 = cam.x + Wn + 70, y0 = cam.y - 70, y1 = cam.y + Hn + 70; for (const c of cull) { const vis = c[2] > x0 && c[1] < x1 && c[4] > y0 && c[3] < y1; if (vis !== c[5]) { c[5] = vis; c[0].style.display = vis ? "" : "none"; } } }
       applyLife();
     };
@@ -809,7 +824,7 @@
     const flyover = (x0, x1, y, n, big, at, dur) => {
       for (let i = 0; i < n; i++) {
         const [e, g] = bird(big), yy = y + rnd(-26, 26) * q, d = (dur || 18) * rnd(.85, 1.15), dl = i * rnd(.3, .9);
-        place(e, x0, yy);
+        e._nc = 1; place(e, x0, yy);
         if (gs) {
           amb.push(gs.timeline({ repeat: -1, paused: true, delay: dl }).fromTo(e, { x: (x0 - i * 30 * q) * s, y: yy * s }, { x: x1 * s, y: (yy - rnd(-40, 40) * q) * s, duration: d, ease: "none" }));
           amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(g, { scaleY: 1 }, { scaleY: -.5, svgOrigin: `0 ${f(big ? 11 * q : 6 * q)}`, duration: big ? .7 : .32, ease: "sine.inOut" }));
@@ -1128,7 +1143,7 @@
       const tr = pen().l(0, Y(14), X(18), Y(14), 0, 0).l(tl * .2, Y(15.5), X(18), Y(15.5), 0, 0);
       const trail = S(e, tr, "rq-axis rq-m rq-t"); trail.style.opacity = .55;
       const y0 = SL - (v ? 430 : 480) * q, xa = XE - w - 40, xb = XE + Wn + 60;
-      place(e, xa, y0);
+      e._nc = 1; place(e, xa, y0);
       if (gs) {
         gs.set(e, { opacity: 0 }); show(tlM, e, tm.rise + tm.riseD * .4, .6);
         amb.push(gs.timeline({ repeat: -1, repeatDelay: 3, paused: true }).fromTo(e, { x: xa * s }, { x: xb * s, duration: v ? 16 : 26, ease: "none" }));
