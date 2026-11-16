@@ -172,3 +172,6 @@
 /* dentro del sitio: que las reglas globales de svg no deformen el dibujo */
 .rq svg { max-width: none; }
 .rq .rq__svg { height: calc(100% + 52px); }
+
+/* solo para computadora: en teléfonos y tablets la sección no aparece (ni se dibuja) */
+@media (max-width: 900px), (pointer: coarse) { .rq { display: none; } }
