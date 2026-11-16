@@ -12,9 +12,9 @@
   --u: 1px; --pl: 20px; --gy: 60vh; --ft: 52; --sw: 1.25px; --fs: 10px;
   position: relative; height: 100vh; background: var(--rq-bg); color: var(--rq-cream);
 }
-.rq__stage { position: relative; height: 100vh; overflow: hidden; background: var(--rq-bg); perspective: 1400px; }
+.rq__stage { position: relative; height: 100vh; overflow: hidden; background: var(--rq-bg); }
 /* mundo en 3D: cada capa vive a su profundidad y todo se inclina con el cursor */
-.rq__world { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+.rq__world { position: absolute; inset: 0; }
 @supports (height: 100svh) {
   .rq, .rq__stage { height: 100svh; }
 }
@@ -25,11 +25,11 @@
 .rq__life { transition: opacity .4s; }
 .rq__svg, .rq__life { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
 /* el dibujo sobresale 26px por lado: margen para que el paralaje del cursor nunca enseñe el borde */
-.rq__svg { inset: auto; left: -26px; top: -26px; width: calc(100% + 52px); height: calc(100% + 52px); will-change: transform; }
+.rq__svg { inset: auto; left: -26px; top: -26px; width: calc(100% + 52px); height: calc(100% + 52px); }
 .rq__life { overflow: hidden; }
-.rq__life--cam { overflow: visible; will-change: transform; transform-origin: 0 0; }
-.rq__sp { position: absolute; left: 0; top: 0; overflow: visible; will-change: transform; }
-.rq__flock { position: absolute; left: 0; top: 0; will-change: transform; }
+.rq__life--cam { overflow: visible; transform-origin: 0 0; }
+.rq__sp { position: absolute; left: 0; top: 0; overflow: visible; }
+.rq__flock { position: absolute; left: 0; top: 0; }
 .rq__sp--glow { filter: drop-shadow(0 0 4px rgba(240, 90, 37, .6)); }
 .rq__sp--lamp { filter: drop-shadow(0 0 3px rgba(255, 116, 31, .95)) drop-shadow(0 0 10px rgba(240, 90, 37, .75)); }
 
@@ -76,7 +76,7 @@
 .rq svg path.rq-hand.rq-o { fill: var(--rq-orange); }
 .rq .rq__clock { filter: drop-shadow(0 0 3px rgba(244, 241, 236, .35)); }
 .rq__clip { position: absolute; overflow: hidden; }
-.rq__clip .rq__sp { will-change: transform; }
+
 .rq svg text.rq-wbg { stroke: var(--rq-bg); stroke-width: calc(var(--sw) * 3); paint-order: stroke; }
 /* camioncito de La Capital del Cielo: su azul de marca, para que resalte entre el naranja */
 .rq svg path.rq-lcg { fill: #7db6ea; stroke: #7db6ea; stroke-width: .55px; vector-effect: non-scaling-stroke; }
@@ -159,7 +159,7 @@
 .rq__sp--kiter image { filter: drop-shadow(0 0 1px rgba(106, 170, 228, .9)) drop-shadow(0 0 6px rgba(106, 170, 228, .35)); }
 
 /* el mar: trazo fino, como un plano */
-.rq .rq-arrecife path, .rq .rq-fondo path, .rq .rq-cotas path, .rq .rq__sp--sea path { stroke-width: calc(var(--sw) * .62); }
+.rq .rq-arrecife path, .rq .rq-fondo path, .rq .rq-cotas path, .rq .rq__sp--sea path { stroke-width: calc(var(--sw) * .78); }
 
 /* profundidad: la segunda fila del pueblo va atrás y tenue; el primer plano, en trazo fino */
 .rq .rq-mid path:not(.rq-occ) { stroke-width: calc(var(--sw) * .7); opacity: .55; }
@@ -198,3 +198,6 @@ html.rq-dark .site-header .nav-list > li > a.is-pill { color: #1a1a1a; }
 html.rq-dark .site-header .icon-link:hover { background: rgba(255, 255, 255, .12); }
 html.rq-dark .site-header .lang-switch { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .28); }
 html.rq-dark .site-header .lang-switch .lang-btn:not(.is-active) { color: rgba(244, 241, 236, .8); }
+
+/* trazo nítido: geometría precisa y texto con suavizado de alta calidad */
+.rq svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }

@@ -124,7 +124,7 @@
     const PXB = .24, PYB = .3, MG = 26 / s;
     const padL = v ? 20 : 80;
     const ft = v ? clamp(Wn * .133, 46, 66) : clamp(Wn * .06, 60, 96);
-    const sw = (v ? 1 : 1.08) * clamp(s / .6, .72, 1) / s, fs = (v ? 9 : 10.5) * clamp(s / .72, .6, 1) / s;
+    const sw = (v ? 1.15 : 1.3) * clamp(s / .6, .78, 1) / s, fs = (v ? 9 : 10.5) * clamp(s / .72, .6, 1) / s;
     // la casa que se construye
     const bw = v ? 46 : 66, fh = v ? 40 : 56, nF = 2, dx = 16 * q, dy = 9 * q;
     const bx = v ? Math.round((Wn - 3 * bw - dx) / 2) : Math.round(Wn * .44), xR = bx + 3 * bw;
@@ -262,15 +262,19 @@
     // =====================================================================
     const cam = { x: gs ? 0 : XE, y: 0, bx: gs ? 0 : Wn * .22, z: gs ? 1 : 0, k: 1 }, par = { x: 0, y: 0 }, cull = [];
     let lifeFT = "";
+    // profundidad con el cursor: cada plano se desplaza según su distancia (el de atrás menos, el primer plano más),
+    // sin perspectiva ni ampliaciones, así todo se dibuja siempre a la resolución nativa de la pantalla
     const applyLife = () => {
-      const px = par.x, py = par.y, PP = 1400, zc = (z) => `translateZ(${z}px) scale(${((PP - z) / PP).toFixed(4)})`;
-      world.style.transform = `rotateX(${(-py * 2.4).toFixed(3)}deg) rotateY(${(px * 3.4).toFixed(3)}deg)`;
-      const zo = (z) => `translateZ(${z}px) translate(${f(W / 2)}px,${f(H / 2)}px) scale(${((PP - z) / PP).toFixed(4)}) translate(${f(-W / 2)}px,${f(-H / 2)}px)`;
-      svgB.style.transform = zc(-320); svgM.style.transform = zc(-150); svgF.style.transform = zc(0);
-      lifeX.style.transform = zo(140) + ` translate3d(${f(-cam.x * FS * s)}px,${f((-cam.y * FS + lifeXP) * s)}px,0)`;
-      lifeM.style.transform = lifeF.style.transform = lifeFT;
+      const px = par.x, py = par.y;
+      svgB.style.transform = `translate(${f(-px * 6)}px,${f(-py * 4)}px)`;
+      svgM.style.transform = `translate(${f(-px * 11)}px,${f(-py * 7)}px)`;
+      svgF.style.transform = `translate(${f(-px * 17)}px,${f(-py * 10)}px)`;
+      const lf = lifeFT.replace("translate3d(", "").split(")")[0].split(","), sc = (lifeFT.match(/scale\(([^)]+)\)/) || [0, "1"])[1];
+      lifeM.style.transform = lifeF.style.transform = `translate(${f(parseFloat(lf[0]) - px * 17)}px,${f(parseFloat(lf[1]) - py * 10)}px) scale(${sc})`;
+      lifeX.style.transform = `translate(${f(-cam.x * FS * s - px * 30)}px,${f((-cam.y * FS + lifeXP) * s - py * 17)}px)`;
+      if (beamUp) beamUp();
     };
-    let tB = "", tM = "", tF = "", deep = null, lifeXP = 0;
+    let tB = "", tM = "", tF = "", deep = null, lifeXP = 0, beamUp = null;
     // zoom: z = acercamiento de entrada sobre el Gran Roque (1 → 0), k = acercamiento final (1 → KZ) con ancla en el horizonte
     const AXZ = Wn * (v ? .5 : .62), AYZ = SL, KZ = v ? 1.08 : 1.12, FCX = (v ? .45 : .42) * Wn, FCY = SL - 170 * q;
     const BT = { x: 0, y: 0, k: 1 }, FT = { x: 0, y: 0, k: 1 };
@@ -1263,7 +1267,8 @@
       ["pueblo", "playa", "obra", "arrecife", "cayo", "cotas", "muelle", "fondo"].forEach((n) => [...L[n].children].forEach((ch) => add(ch, 40)));
     }
     // la luz del faro vive en el plano de atrás: se mueve con su paralaje
-    const beam = L.beam, applyBeam = () => { const bw = 80 * q, bh = 15 * q, sx = BT.x + BT.k * (beam._bx + bw), sy = BT.y + BT.k * (beam._by + bh), x = ((sx - FT.x) / FT.k - bw) * s, y = ((sy - FT.y) / FT.k - bh) * s; if (gs) gs.set(beam, { x, y }); else beam.style.transform = `translate(${f(x)}px,${f(y)}px)`; };
+    const beam = L.beam, applyBeam = () => { const bw = 80 * q, bh = 15 * q, sx = BT.x + BT.k * (beam._bx + bw), sy = BT.y + BT.k * (beam._by + bh), x = ((sx - FT.x + (par.x * 11) / s) / FT.k - bw) * s, y = ((sy - FT.y + (par.y * 6) / s) / FT.k - bh) * s; if (gs) gs.set(beam, { x, y }); else beam.style.transform = `translate(${f(x)}px,${f(y)}px)`; };
+    beamUp = applyBeam;
     const camUp = () => { applyCam(); applyBeam(); };
     camUp();
     if (tlI) { beam.style.opacity = 0; tlI.to(beam, { opacity: 1, duration: .5 }, 2.6); }
