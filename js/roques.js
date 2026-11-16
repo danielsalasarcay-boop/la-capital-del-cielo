@@ -529,7 +529,7 @@
       // ejes A–D con sus círculos
       const ax = pen(); for (let i = 0; i <= 3; i++) ax.l(X(i), G + 12 * q, X(i), axT + 9 * q, 0, 0);
       const axG = S(ct, ax, "rq-axis rq-o"); draw(tlM, axG, tm.plan, .9, "power1.inOut");
-      const axC = E("g", {}, ct); for (let i = 0; i <= 3; i++) { S(axC, pen().o(X(i), axT, 8 * q), "rq-o"); T(axC, X(i), axT + 3.4 * q, "ABCD"[i], "middle", "rq-o"); }
+      const axC = E("g", {}, ct); for (let i = 0; i <= 3; i++) { S(axC, pen().o(X(i), axT, 8 * q), "rq-o"); txt(tlM, T(axC, X(i), axT + 3.4 * q, "ABCD"[i], "middle", "rq-o"), tm.plan + .6 + i * .08); }
       draw(tlM, axC, tm.plan + .3, .7);
       // huella en el terreno
       const pl = pen().box([[bx, G], [xR, G], [xR + dx, G - dy], [bx + dx, G - dy]], 1);
@@ -1298,7 +1298,7 @@
         // aunque cambie el alto de la página, la ventana o se vuelva de otra pestaña
         measure = () => { const len = (sec.offsetHeight - innerHeight) * .95; return len > 0 ? clamp(-sec.getBoundingClientRect().top / len, 0, 1) : 0; };
         onScroll = () => {
-          if (!started && sec.getBoundingClientRect().top < innerHeight * .96) { started = true; if (running) tlI.play(); }
+          if (!started && sec.getBoundingClientRect().top < innerHeight * .3) { started = true; if (running) tlI.play(); }
           const t = measure(); if (Math.abs(t - prog.t) < 1e-5) return; prog.t = t;
           gs.to(prog, { p: t, duration: 1.1, ease: "power3.out", overwrite: true, onUpdate: () => tlM.progress(prog.p) });
         };
@@ -1314,7 +1314,7 @@
       state: () => (tlM ? { started, intro: tlI.progress(), p: tlM.progress() } : null),
       restore(k) {
         if (!tlM) return;
-        if (scrub) { const p0 = measure(); if (p0 > 0 || (k && k.started)) { started = true; tlI.progress(1); setP(p0); } }
+        if (scrub) { const p0 = measure(); if (k && k.started) { started = true; tlI.progress(k.intro); setP(p0); } else if (p0 > 0) { started = true; tlI.progress(p0 * tlM.duration() < tm.plan + .6 ? 0 : 1); setP(p0); } }
         else if (k && k.started) { started = true; tlI.progress(k.intro); tlM.progress(k.p); }
         camUp();
       },
