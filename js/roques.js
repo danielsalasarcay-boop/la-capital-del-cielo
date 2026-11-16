@@ -246,7 +246,7 @@
     const ZI = gs ? 1.5 : 0;   // tramo inicial: la cámara se aleja del Gran Roque y el pueblo sube a cuadro
     tm.zoomIn = ZI; tm.plan = .3 + ZI; tm.f0 = 1.5 + ZI; tm.top = tm.f0 + nF * tm.D; tm.fac = tm.top + .1; tm.clean = tm.fac + 2.1; tm.sign0 = tm.clean + .2;
     tm.pan = tm.sign0 + 1; tm.panD = 8;
-    tm.hold = gs ? 6.6 : 0; tm.down = tm.pan + tm.panD + .6 + tm.hold; tm.downD = 2.6;   // la cámara se queda en la pista mientras la avioneta da su vuelta
+    tm.hold = gs ? 7.2 : 0; tm.down = tm.pan + tm.panD + .6 + tm.hold; tm.downD = 2.6;   // la cámara se queda en la pista mientras la avioneta da su vuelta
     tm.under = tm.down + tm.downD + .3; tm.underD = 5;
     tm.rise = tm.under + tm.underD + .5; tm.riseD = 3;
     tm.sunset = tm.rise + tm.riseD + .2; tm.sunsetD = 3.4; tm.title = tm.sunset + tm.sunsetD - .4; tm.sign = tm.title + .9; tm.end = tm.sign + 1.4;
@@ -800,23 +800,23 @@
       if (tlM) {
         // con el scroll: rueda por la pista, despega y sube sobre el mar, da la vuelta, regresa de frente y aterriza;
         // la cámara se queda quieta en la pista mientras tanto. Con el scroll hacia atrás todo se deshace.
-        const xR = SOCKX + 292 * q - pw * .6, xT = xR + Wn * .3, yT = yR - 130 * q, xL = xR + 16 * q;
-        let t = tm.pan + tm.panD - .9;
+        const xR = SOCKX + 292 * q - pw * .6, xT = xR + Wn * (v ? .4 : .52), yT = yR - 150 * q, xL = xR + 16 * q;
+        let t = tm.pan + tm.panD - 2.2;
         e._nc = 1; gs.set(e, { transformOrigin: "50% 70%" });
         tlM.to(e, { x: xR * s, duration: 1.1, ease: "power2.in" }, t); t += 1.1;
         tlM.to(e, { rotation: -7, duration: .7, ease: "sine.inOut" }, t - .3)
-          .to(e, { x: xT * s, duration: 1.9, ease: "none" }, t)
-          .to(e, { y: yT * s, duration: 1.9, ease: "sine.inOut" }, t)
-          .to(e, { rotation: 0, duration: .6, ease: "sine.inOut" }, t + 1.3); t += 1.9;
+          .to(e, { x: xT * s, duration: 2.6, ease: "none" }, t)
+          .to(e, { y: yT * s, duration: 2.6, ease: "sine.inOut" }, t)
+          .to(e, { rotation: 0, duration: .7, ease: "sine.inOut" }, t + 1.9); t += 2.6;
         // la vuelta: avanza un poco más, se gira de perfil a perfil y queda mirando hacia la pista
         tlM.to(e, { scaleX: -1, duration: 1.4, ease: "sine.inOut" }, t)
           .to(e, { x: (xT + 46 * q) * s, y: (yT - 16 * q) * s, duration: .7, ease: "sine.out" }, t)
           .to(e, { x: xT * s, y: (yT + 4 * q) * s, duration: .7, ease: "sine.in" }, t + .7)
           .set(sA, { opacity: 0 }, t + .7).set(sB, { opacity: 1 }, t + .7); t += 1.4;
         // aproximación y aterrizaje de frente
-        tlM.to(e, { x: xL * s, duration: 2, ease: "none" }, t)
-          .to(e, { y: (yR - 5 * q) * s, duration: 2, ease: "sine.inOut" }, t)
-          .to(e, { rotation: 2, duration: 1.2, ease: "sine.inOut" }, t + .4); t += 2;
+        tlM.to(e, { x: xL * s, duration: 2.8, ease: "none" }, t)
+          .to(e, { y: (yR - 5 * q) * s, duration: 2.8, ease: "sine.inOut" }, t)
+          .to(e, { rotation: 2, duration: 1.4, ease: "sine.inOut" }, t + .9); t += 2.8;
         tlM.to(e, { y: yR * s, rotation: 0, duration: .6, ease: "sine.out" }, t).to(e, { x: (xL - 36 * q) * s, duration: .6, ease: "none" }, t); t += .6;
         tlM.to(e, { x: (xP - 20 * q) * s, duration: 1, ease: "power2.out" }, t);
       }
@@ -1004,19 +1004,103 @@
       cp.l(ax + 44 * q, ay - 4 * q, ax + 58 * q, ay - 4 * q, .2).l(ax + 50 * q, ay - 4 * q, ax + 50 * q, ay - 14 * q, .2);
       draw(tlM, S(UA, cp, "rq-m"), tUnd(ax) + .2, 1.2);
     }
-    // peces: cardúmenes que van y vienen
-    const fishSchool = (x, y, n, span, cls) => {
-      const w = 80 * q, h = 40 * q, e = sprite(lifeF, w, h, "rq__sp--sea"), gg = E("g", {}, e), p = pen();
-      for (let i = 0; i < n; i++) { const fx = rnd(8, w - 16 * q), fy = rnd(6, h - 6), L = rnd(7, 11) * q; p.pl([[fx, fy], [fx + L * .45, fy - L * .3], [fx + L, fy], [fx + L * .45, fy + L * .3]], true).pl([[fx, fy], [fx - L * .35, fy - L * .25], [fx - L * .35, fy + L * .25]], true); }
-      S(gg, p, cls || "rq-g"); place(e, x, y);
+    // =====================================================================
+    // VIDA BAJO EL AGUA — ordenada por carriles y sin choques: la mantarraya y la tortuga cruzan cada una
+    // por su carril; medusas, cardúmenes de sardinas, la bola y el buzo se ubican fuera de esos carriles y
+    // sin tocarse entre sí, contando todo lo que se mueven
+    // =====================================================================
+    const WX0 = LE + Wn * .3, WX1 = cy1 - Wn * (v ? .04 : .12);
+    // los carriles van entre las isóbatas, para no pasar sobre sus rótulos: mantarraya entre −10 y −15 m, tortuga entre −15 y −20 m
+    const mY = (m) => SL + (DEEP - SL) * m / 22, LANE_M = mY(12.5), LANE_T = mY(17.5), HM = 55 * q, HT = 26 * q;   // medio alto real de cada animal, con su aleteo
+    const boxes = [[-1e9, LANE_M - HM, 1e9, LANE_M + HM], [-1e9, LANE_T - HT, 1e9, LANE_T + HT]];
+    // los rótulos de profundidad y la regla del veril también ocupan su sitio: nada se les pone encima
+    boxes.push([LE + Wn * .3 - 10 * q, SL, LE + Wn * .3 + 56 * q, DEEP]);
+    [5, 10, 15, 20].forEach((m) => { const y = mY(m); [LE + Wn * .55, cy0 - Wn * .05].forEach((lx) => boxes.push([lx - 40 * q, y - 16 * q, lx + 40 * q, y + 4 * q])); });
+    const fits = (b, pad) => boxes.every((o) => b[2] + pad < o[0] || b[0] - pad > o[2] || b[3] + pad < o[1] || b[1] - pad > o[3]);
+    const wet = (b) => b[1] > SL + 34 * q && [b[0], (b[0] + b[2]) / 2, b[2]].every((x) => bedY(x) - 66 * q > b[3]);
+    const zone = (y0, y1, h) => { const a = []; for (let y = y0; y + h <= y1; y += 12 * q) a.push(y); return a; };
+    const UPPER = (h) => zone(SL + 40 * q, LANE_M - HM, h), MIDDLE = (h) => zone(LANE_M + HM, LANE_T - HT, h), LOWER = (h) => zone(LANE_T + HT, DEEP, h);
+    const seat = (w, h, tx, ys) => {   // el sitio libre más cercano a tx: primero con margen amplio y, si no cabe, con uno justo
+      for (const pad of [24 * q, 10 * q]) for (let d = 0; d < WX1 - WX0; d += 12 * q) for (const sg of [1, -1]) {
+        const x = tx + sg * d; if (x < WX0 || x + w > WX1) continue;
+        for (const y of ys) { const b = [x, y, x + w, y + h]; if (wet(b) && fits(b, pad)) { boxes.push(b); return b; } }
+      }
+      return null;
+    };
+    const span = WX1 - WX0, at = (u) => WX0 + span * u;
+    // sardina: cuerpo fusiforme, cola en horquilla, línea lateral y ojo; mira a la derecha (ang en radianes)
+    const sardine = (body, line, fx, fy, L, ang) => {
+      const ca = Math.cos(ang), sa = Math.sin(ang), P = (u, w2) => [fx + (u * ca - w2 * sa) * L, fy + (u * sa + w2 * ca) * L];
+      body.pl([P(1, 0), P(.74, -.12), P(.26, -.09), P(0, 0), P(.26, .08), P(.74, .11)], true).pl([P(0, 0), P(-.24, -.16)]).pl([P(0, 0), P(-.24, .16)]);
+      line.pl([P(.2, -.01), P(.8, -.025)]); const ey = P(.86, -.03); line.o(ey[0], ey[1], .045 * L);
+    };
+    // cardumen de sardinas en formación: todas hacia el mismo lado, sin encimarse
+    const school = (ys, tx, n) => {
+      const w = 104 * q, h = 36 * q, sp = rnd(60, 110) * q, b = seat(w + sp, h + 6 * q, tx, ys); if (!b) return;
+      const x = b[0], y = b[1] + 6 * q, e = sprite(lifeF, w, h, "rq__sp--sea"), gg = E("g", {}, e), body = pen(), line = pen(), pts = [];
+      for (let tries = 0; pts.length < n && tries < 400; tries++) {
+        const u = rnd(-1, 1), vv = rnd(-1, 1) * Math.sqrt(1 - u * u), px = w / 2 + u * (w / 2 - 16 * q), py = h / 2 + vv * (h / 2 - 6 * q);
+        if (pts.every((o) => Math.hypot(o[0] - px, (o[1] - py) * 2.2) > 13 * q)) pts.push([px, py]);
+      }
+      pts.forEach((o) => sardine(body, line, o[0] - 6 * q, o[1], rnd(10, 12.5) * q, rnd(-.07, .07)));
+      S(gg, body, ""); S(gg, line, "rq-o"); place(e, x, y);
       if (gs) {
-        gs.set(gg, { transformOrigin: "50% 50%" }); const d = rnd(7, 11);
-        amb.push(gs.timeline({ repeat: -1, paused: true }).to(e, { x: (x + span) * s, duration: d, ease: "sine.inOut" }).set(gg, { scaleX: -1 }).to(e, { x: x * s, duration: d, ease: "sine.inOut" }).set(gg, { scaleX: 1 }));
-        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { y: (y - 10 * q) * s, duration: rnd(1.6, 2.4), ease: "sine.inOut" }));
-        show(tlM, e, tm.down + .8, .6);
+        gs.set(gg, { transformOrigin: "50% 50%" }); const d = rnd(7, 10);
+        amb.push(gs.timeline({ repeat: -1, paused: true }).to(e, { x: (x + sp) * s, duration: d, ease: "sine.inOut" }).to(gg, { scaleX: -1, duration: .5, ease: "power1.inOut" }).to(e, { x: x * s, duration: d, ease: "sine.inOut" }).to(gg, { scaleX: 1, duration: .5, ease: "power1.inOut" }));
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { y: (y - 6 * q) * s, duration: rnd(1.8, 2.6), ease: "sine.inOut" }));
+        e._nc = 1; show(tlM, e, tm.down + .8, .6);
       }
     };
-    for (let x = PAN + Wn * .15; x < cy0; x += rnd(.16, .26) * Wn) { const y = rnd(SL + 140 * q, DEEP - 140 * q); if (bedY(x - 20 * q) < y + 60 * q || bedY(x + 260 * q) < y + 60 * q) continue; fishSchool(x, y, 5 + (R() * 6 | 0), rnd(80, 180) * q, R() > .6 ? "rq-o" : "rq-g"); }
+    // el buzo con sus burbujas (arriba, fuera de los carriles)
+    {
+      const bxD = seat(130 * q, 150 * q, at(.62), UPPER(150 * q));
+      if (bxD) {
+        const w = 80 * q, h = 30 * q, e = sprite(lifeF, w, h, "rq__sp--sea"), p = pen(), dx0 = bxD[0], dy0 = bxD[3] - 36 * q;
+        p.o(66 * q, 12 * q, 5 * q).r(62 * q, 9 * q, 7 * q, 4 * q, .1).l(60 * q, 14 * q, 30 * q, 16 * q, .3).r(36 * q, 6 * q, 20 * q, 6 * q, .2).l(30 * q, 16 * q, 14 * q, 12 * q, .2).l(30 * q, 16 * q, 14 * q, 20 * q, .2)
+          .l(14 * q, 12 * q, 2 * q, 8 * q, .2).l(14 * q, 20 * q, 2 * q, 24 * q, .2).l(56 * q, 15 * q, 70 * q, 22 * q, .2);
+        S(e, p, ""); place(e, dx0, dy0); show(tlM, e, tUnd(dx0), .5); e._nc = 1;
+        const bb = sprite(lifeF, 20 * q, 80 * q), bp = pen(); [[10, 72, 2.2], [6, 50, 1.7], [12, 28, 2.5], [8, 8, 1.9]].forEach((c) => bp.o(c[0] * q, c[1] * q, c[2] * q)); S(bb, bp, "rq-g rq-t");
+        place(bb, dx0 + 60 * q, dy0 - 76 * q); show(tlM, bb, tUnd(dx0) + .3, .5); bb._nc = 1;
+        if (gs) { amb.push(gs.timeline({ repeat: -1, paused: true }).fromTo(bb, { y: (dy0 - 70 * q) * s }, { y: (dy0 - 112 * q) * s, duration: 2.6, ease: "none" }).fromTo(bb, { opacity: 1 }, { opacity: 0, duration: .6, ease: "none" }, 2));
+          amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { x: (dx0 + 34 * q) * s, y: (dy0 - 6 * q) * s, duration: 6, ease: "sine.inOut" })); }
+      }
+    }
+    // bola de sardinas: anillos de peces orientados en su giro, que da vueltas despacio
+    {
+      const r0 = 48 * q, w = r0 * 2 + 34 * q, bxB = seat(w * 1.12 + 54 * q, w * .8 + 26 * q, at(.3), UPPER(w * .8 + 26 * q));
+      if (bxB) {
+        const e = sprite(lifeF, w, w, "rq__sp--sea"), ball = E("g", {}, e), body = pen(), line = pen(), c = w / 2;
+        [[16, 6], [27, 11], [38, 16], [48, 20]].forEach((ring, ri) => { for (let i = 0; i < ring[1]; i++) { const a = i / ring[1] * Math.PI * 2 + ri * .4, rr = ring[0] * q, fx = c + Math.cos(a) * rr, fy = c + Math.sin(a) * rr; sardine(body, line, fx - Math.cos(a + Math.PI / 2) * 4 * q, fy - Math.sin(a + Math.PI / 2) * 4 * q, 8.5 * q, a + Math.PI / 2); } });
+        S(ball, body, ""); S(ball, line, "rq-o");
+        const bx2 = bxB[0], by2 = bxB[1] - w * .1; place(e, bx2, by2); show(tlM, e, tm.down + 1.4, .8); e._nc = 1;
+        gs && gs.set(e, { scaleY: .78, transformOrigin: "50% 50%" });
+        if (gs) { amb.push(gs.timeline({ repeat: -1, paused: true }).fromTo(ball, { rotation: 0 }, { rotation: 360, svgOrigin: `${f(c)} ${f(c)}`, duration: 16, ease: "none" }));
+          amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { x: (bx2 + 48 * q) * s, y: (by2 + 14 * q) * s, scaleX: 1.1, duration: 6, ease: "sine.inOut" })); }
+      }
+    }
+    // medusas: arriba, cada una en su sitio (campana facetada, canales radiales, borde lobulado, brazos y tentáculos)
+    [.06, .5, .9].slice(0, v ? 2 : 3).forEach((u) => {
+      const w = 44 * q, h = 104 * q, c = w / 2, r = 15 * q, yb = 22 * q, bJ = seat(w + 12 * q, h + 48 * q, at(u), UPPER(h + 48 * q));
+      if (!bJ) return;
+      const jx = bJ[0], jy = bJ[1] + 46 * q;
+      const e = sprite(lifeF, w, h, "rq__sp--sea"), bell = E("g", {}, e), arms = E("g", {}, e), p = pen(), cn = pen(), ar = pen(), tn = pen();
+      const dome = (rr, sq) => { const pts = []; for (let i = 0; i <= 10; i++) { const a = Math.PI + i * Math.PI / 10; pts.push([c + Math.cos(a) * rr, yb + Math.sin(a) * rr * sq]); } return pts; };
+      const out = dome(r, .9); p.pl(out).pl(dome(r * .8, .78));
+      const lp = [[c - r, yb]]; for (let i = 1; i <= 12; i++) lp.push([c - r + 2 * r * (i - .5) / 12, yb + (i % 2 ? 2.4 : .6) * q]); lp.push([c + r, yb]); p.pl(lp);
+      for (let i = 1; i < 10; i++) cn.l(c, yb - r * .9, out[i][0], out[i][1], 0, 0);
+      [-1, 1].forEach((sd) => cn.pl([[c + sd * 3 * q, yb - 6 * q], [c + sd * 6 * q, yb - 9 * q], [c + sd * 9 * q, yb - 6 * q]]));
+      for (let i = 0; i < 4; i++) { const ax = c - 4.5 * q + i * 3 * q, pts = []; for (let j = 0; j <= 9; j++) pts.push([ax + (j % 2 ? 1.6 : -1.6) * q + (i - 1.5) * j * .5 * q, yb + 2 * q + j * 4 * q]); ar.pl(pts); }
+      for (let i = 0; i < 8; i++) { const tx = c - r + 2 * r * (i + .5) / 8; tn.l(tx, yb + 2 * q, tx + (i - 3.5) * 1.2 * q, yb + rnd(54, 78) * q, 0, 0); }
+      S(bell, p, ""); S(bell, cn, "rq-o rq-t"); S(arms, ar, "rq-g"); S(arms, tn, "rq-m rq-t");
+      place(e, jx, jy); show(tlM, e, tm.down + 1, .6); e._nc = 1;
+      if (gs) {
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(bell, { scaleY: 1, scaleX: 1 }, { scaleY: .82, scaleX: 1.1, svgOrigin: `${f(c)} ${f(yb)}`, duration: .85, ease: "sine.inOut" }));
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(arms, { skewX: -4 }, { skewX: 4, svgOrigin: `${f(c)} ${f(yb)}`, duration: 1.7, ease: "sine.inOut" }));
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { y: (jy - 44 * q) * s, x: (jx + 10 * q) * s, duration: rnd(6, 8), ease: "sine.inOut" }));
+      }
+    });
+    // cardúmenes de sardinas: entre los carriles y abajo, repartidos
+    [[MIDDLE, .12, 13], [UPPER, .42, 12], [MIDDLE, .55, 14], [MIDDLE, .9, 12], [UPPER, .8, 11]].forEach((c) => school(c[0](42 * q), at(c[1]), c[2]));
     // la tortuga carey: nada con nosotros durante el paseo
     {
       const w = 90 * q, h = 46 * q, e = sprite(lifeF, w, h, "rq__sp--sea"), p = pen(), fl = E("g", {}, e), hx = pen();
@@ -1026,41 +1110,12 @@
       S(e, p, ""); S(e, hx, "rq-o rq-t");
       const ffp = pen().pl([[58 * q, 27 * q], [52 * q, 36 * q], [38 * q, 44 * q], [50 * q, 33 * q], [63 * q, 27 * q]]); S(fl, ffp, "");
       const bf = pen().pl([[22 * q, 27 * q], [15 * q, 35 * q], [25 * q, 31 * q]]); S(e, bf, "");
-      const ta = tm.under + .3, tb = tm.under + tm.underD - .4, ya = SL + (DOWN * .45), yb = SL + DOWN * .7;
+      const ta = tm.under + .3, tb = tm.under + tm.underD - .4, ya = LANE_T - 23 * q, yb = LANE_T - 23 * q;   // cruza por su carril, en recto
       if (tlM) {
         gs.set(e, { opacity: 0 });
-        tlM.set(e, { opacity: 1 }, ta).fromTo(e, { x: Math.max(camAt(ta) - w, LE + Wn * .38) * s, y: ya * s }, { x: (camAt(tb) + Wn * .55) * s, y: yb * s, duration: tb - ta, ease: "none", immediateRender: false }, ta).to(e, { opacity: 0, duration: .3 }, tb);
+        tlM.set(e, { opacity: 1 }, ta).fromTo(e, { x: Math.max(camAt(ta) - w, WX0) * s, y: ya * s }, { x: (camAt(tb) + Wn * .55) * s, y: yb * s, duration: tb - ta, ease: "none", immediateRender: false }, ta).to(e, { opacity: 0, duration: .3 }, tb);
         amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(fl, { rotation: -16 }, { rotation: 18, svgOrigin: `${f(58 * q)} ${f(26 * q)}`, duration: 1.1, ease: "sine.inOut" }));
       } else e.remove();
-    }
-    // medusas: campana facetada con canales radiales, borde lobulado, brazos orales con volantes y tentáculos finos
-    for (let k = 0; k < (v ? 3 : 4); k++) {
-      const jx = PAN + Wn * (.5 + k * (v ? .45 : .3)), jy = SL + DOWN * (.28 + (k % 2) * .16), w = 44 * q, h = 104 * q, c = w / 2, r = 15 * q, yb = 22 * q;
-      const e = sprite(lifeF, w, h, "rq__sp--sea"), bell = E("g", {}, e), arms = E("g", {}, e), p = pen(), cn = pen(), ar = pen(), tn = pen();
-      const dome = (rr, sq) => { const pts = []; for (let i = 0; i <= 10; i++) { const a = Math.PI + i * Math.PI / 10; pts.push([c + Math.cos(a) * rr, yb + Math.sin(a) * rr * sq]); } return pts; };
-      const out = dome(r, .9); p.pl(out).pl(dome(r * .8, .78));
-      // borde lobulado (lapetas): dientes rectos entre los dos extremos
-      const lp = [[c - r, yb]]; for (let i = 1; i <= 12; i++) lp.push([c - r + 2 * r * (i - .5) / 12, yb + (i % 2 ? 2.4 : .6) * q]); lp.push([c + r, yb]); p.pl(lp);
-      for (let i = 1; i < 10; i++) cn.l(c, yb - r * .9, out[i][0], out[i][1] + (out[i][1] < yb - 1 ? 0 : 0), 0, 0);
-      [-1, 1].forEach((sd) => cn.pl([[c + sd * 3 * q, yb - 6 * q], [c + sd * 6 * q, yb - 9 * q], [c + sd * 9 * q, yb - 6 * q]]));   // gónadas
-      for (let i = 0; i < 4; i++) { const ax = c - 4.5 * q + i * 3 * q, pts = []; for (let j = 0; j <= 9; j++) pts.push([ax + (j % 2 ? 1.6 : -1.6) * q + (i - 1.5) * j * .5 * q, yb + 2 * q + j * 4 * q]); ar.pl(pts); }
-      for (let i = 0; i < 8; i++) { const tx = c - r + 2 * r * (i + .5) / 8; tn.l(tx, yb + 2 * q, tx + (i - 3.5) * 1.2 * q, yb + rnd(54, 78) * q, 0, 0); }
-      S(bell, p, ""); S(bell, cn, "rq-o rq-t"); S(arms, ar, "rq-g"); S(arms, tn, "rq-m rq-t");
-      place(e, jx, jy); show(tlM, e, tm.down + 1, .6);
-      if (gs) {
-        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(bell, { scaleY: 1, scaleX: 1 }, { scaleY: .82, scaleX: 1.1, svgOrigin: `${f(c)} ${f(yb)}`, duration: .85, ease: "sine.inOut" }));
-        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(arms, { skewX: -4 }, { skewX: 4, svgOrigin: `${f(c)} ${f(yb)}`, duration: 1.7, ease: "sine.inOut" }));
-        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { y: (jy - 46 * q) * s, x: (jx + 10 * q) * s, duration: rnd(6, 8), ease: "sine.inOut" }));
-      }
-    }
-    // cardumen en bola: decenas de peces girando a media agua
-    {
-      const r0 = 46 * q, w = r0 * 2 + 30 * q, e = sprite(lifeF, w, w, "rq__sp--sea"), ball = E("g", {}, e), p = pen(), c = w / 2;
-      for (let i = 0; i < 46; i++) { const a = rnd(0, Math.PI * 2), rr = r0 * Math.sqrt(R()), fx = c + Math.cos(a) * rr, fy = c + Math.sin(a) * rr * .7, L = 6 * q, dx2 = -Math.sin(a), dy2 = Math.cos(a) * .7;
-        p.l(fx, fy, fx + dx2 * L, fy + dy2 * L, 0, 0).l(fx, fy, fx - dy2 * 2 * q, fy + dx2 * 2 * q, 0, 0); }
-      S(ball, p, "rq-g"); const bx2 = PAN + Wn * (v ? .9 : .78), by2 = SL + DOWN * .38; place(e, bx2, by2); show(tlM, e, tm.down + 1.4, .8);
-      if (gs) { amb.push(gs.timeline({ repeat: -1, paused: true }).fromTo(ball, { rotation: 0 }, { rotation: 360, svgOrigin: `${f(c)} ${f(c)}`, duration: 14, ease: "none" }));
-        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { x: (bx2 + 60 * q) * s, y: (by2 + 24 * q) * s, scaleX: 1.15, duration: 6, ease: "sine.inOut" })); }
     }
     // mantarraya de perfil: cuerpo en lente, lóbulos cefálicos al frente, una ala arriba y otra abajo que aletean opuestas, cola larga
     {
@@ -1079,7 +1134,7 @@
       nw.pl([[X(50), cyB - X(10)], [X(80), cyB - X(40)], [X(106), cyB - X(62)], [X(113), cyB - X(52)], [X(126), cyB - X(10)]]).pl([[X(66), cyB - X(14)], [X(98), cyB - X(48)]]);
       fw.pl([[X(56), cyB + X(8)], [X(88), cyB + X(34)], [X(110), cyB + X(52)], [X(117), cyB + X(43)], [X(128), cyB + X(8)]]);
       S(far, fw, "rq-m"); S(body, bp, ""); S(body, dt, "rq-o rq-t"); S(near, nw, "");
-      const ta = tm.under + .1, tb = tm.under + tm.underD, ya = SL + DOWN * .48, yb2 = SL + DOWN * .36;
+      const ta = tm.under + .1, tb = tm.under + tm.underD, ya = LANE_M - cyB, yb2 = LANE_M - cyB;   // cruza por su carril, en recto
       if (tlM) {
         gs.set(e, { opacity: 0 });
         tlM.set(e, { opacity: 1 }, ta).fromTo(e, { x: (camAt(ta) + Wn + 40) * s, y: ya * s }, { x: (camAt(tb) - w - 60) * s, y: yb2 * s, duration: tb - ta, ease: "none", immediateRender: false }, ta).set(e, { opacity: 0 }, tb);
@@ -1098,17 +1153,6 @@
       const rx = LE + Wn * .62, ry = bedY(rx) - 70 * q;
       place(e, rx, ry); show(tlM, e, tUnd(rx), .6);
       if (gs) { amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { x: (rx + 220 * q) * s, y: (ry + 20 * q) * s, duration: 14, ease: "sine.inOut" })); amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(wg, { scaleY: 1 }, { scaleY: .7, transformOrigin: "50% 50%", duration: 1.3, ease: "sine.inOut" })); }
-    }
-    // buzo con sus burbujas
-    {
-      const w = 80 * q, h = 30 * q, e = sprite(lifeF, w, h, "rq__sp--sea"), p = pen();
-      p.o(66 * q, 12 * q, 5 * q).r(62 * q, 9 * q, 7 * q, 4 * q, .1).l(60 * q, 14 * q, 30 * q, 16 * q, .3).r(36 * q, 6 * q, 20 * q, 6 * q, .2).l(30 * q, 16 * q, 14 * q, 12 * q, .2).l(30 * q, 16 * q, 14 * q, 20 * q, .2)
-        .l(14 * q, 12 * q, 2 * q, 8 * q, .2).l(14 * q, 20 * q, 2 * q, 24 * q, .2).l(56 * q, 15 * q, 70 * q, 22 * q, .2);
-      S(e, p, ""); const dx0 = LE + Wn * .5 + (cy0 - LE - Wn * .5) * .62, dy0 = SL + DOWN * .55;
-      place(e, dx0, dy0); show(tlM, e, tUnd(dx0), .5);
-      const bb = sprite(lifeF, 20 * q, 120 * q), bp = pen(); [[10, 110, 2.4], [6, 80, 1.8], [12, 50, 2.8], [8, 22, 2]].forEach((c) => bp.o(c[0] * q, c[1] * q, c[2] * q)); S(bb, bp, "rq-g rq-t");
-      place(bb, dx0 + 60 * q, dy0 - 112 * q); show(tlM, bb, tUnd(dx0) + .3, .5);
-      if (gs) { amb.push(gs.timeline({ repeat: -1, paused: true }).fromTo(bb, { y: (dy0 - 100 * q) * s }, { y: (dy0 - 180 * q) * s, duration: 3, ease: "none" })); amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(e, { x: (dx0 + 40 * q) * s, y: (dy0 - 8 * q) * s, duration: 6, ease: "sine.inOut" })); }
     }
 
     // =====================================================================
