@@ -201,3 +201,4 @@ html.rq-dark .site-header .lang-switch .lang-btn:not(.is-active) { color: rgba(2
 
 /* trazo nítido: geometría precisa y texto con suavizado de alta calidad */
 .rq svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
+.rq svg text.rq-cverde-t { fill: #2ba88c; letter-spacing: .06em; }

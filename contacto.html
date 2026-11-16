@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="css/base.css?v=20261006a">
   <link rel="stylesheet" href="css/layout.css?v=20261006a">
   <link rel="stylesheet" href="css/components.css?v=20261116b">
-  <link rel="stylesheet" href="css/roques.css?v=20261116e">
+  <link rel="stylesheet" href="css/roques.css?v=20261116f">
 </head>
 <body>
   <!-- Pantalla de carga con el logo (la controla js/main.js) -->
@@ -155,7 +155,7 @@
       var mq = window.matchMedia("(min-width: 901px) and (pointer: fine)"), done = false;
       function add(src, ok) { var s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = fail; document.body.appendChild(s); }
       function fail() { var r = document.querySelector("[data-rq]"); if (r) r.classList.add("rq--static"); }
-      function go() { if (done || !mq.matches) return; done = true; var rq = function () { add("js/roques.js?v=20261116e", null); }; if (window.gsap) rq(); else add("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", rq); }
+      function go() { if (done || !mq.matches) return; done = true; var rq = function () { add("js/roques.js?v=20261116f", null); }; if (window.gsap) rq(); else add("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", rq); }
       go(); if (mq.addEventListener) mq.addEventListener("change", go); else if (mq.addListener) mq.addListener(go);
     })();
   </script>

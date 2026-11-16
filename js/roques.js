@@ -27,7 +27,7 @@
     [.33, 264], [.37, 280], [.4, 268], [.435, 250], [.47, 260], [.515, 288], [.56, 300], [.6, 284], [.64, 252], [.68, 236], [.72, 212],
     [.76, 168], [.8, 118], [.84, 70], [.88, 32], [.92, 9], [.96, 0], [1.3, 0]];
   const CAYOS = ["Francisquí", "Crasquí", "Noronquí", "Cayo de Agua", "Carenero", "Rabusquí"];
-  const BOATS = ["DOÑA CARMEN", "EL ROQUEÑO", "MI NEGRA", "LA PERLA", "SAN JOSÉ"];
+  const BOATS = ["EL ROQUEÑO", "MI NEGRA", "LA PERLA", "SAN JOSÉ", "DOÑA ROSA"];
 
   // inglés: los rótulos del dibujo se traducen al vuelo (el sitio avisa con el evento "langchange")
   const EN = { "Faro Holandés · 1870": "Dutch Lighthouse · 1870", "Faro · 120 m": "Lighthouse · 120 m", "N±0.00 · mar": "N±0.00 · sea", "Pista · 900 m": "Airstrip · 900 m",
@@ -780,7 +780,7 @@
     }
 
     // =====================================================================
-    // 4 · LA AVIONETA — siempre en la pista, junto a Casa Panza
+    // 4 · LA AVIONETA — espera en la pista junto a Casa Panza y despega despacio, a ritmo de avioneta, cuando pasamos
     // =====================================================================
     {
       const pw = 96 * q, ph = 40 * q, e = sprite(lifeF, pw, ph), p = pen(), pr = pen();
@@ -793,6 +793,17 @@
       S(e, p, ""); const prop = S(e, pr, "rq-o");
       const yR = G - 11 * q - ph + 4 * q, xP = SOCKX + 120 * q;
       place(e, xP, yR); show(tlM, e, tPan(SOCKX + 60 * q) + .5, .4);
+      if (tlM) {
+        // carrera lenta por la pista, el morro sube y trepa suave sobre el mar; con el scroll hacia atrás vuelve a la pista
+        const tv = tPan(SOCKX + 60 * q) + .7, t1 = clamp(tm.pan + tm.panD * iez(clamp((SOCKX - Wn * .28) / PAN, 0, 1)), tv, tm.pan + tm.panD - 2.9), t2 = t1 + 1.3, t3 = t2 + 2.6;
+        const xR = SOCKX + 292 * q - pw * .6;
+        e._nc = 1; gs.set(e, { transformOrigin: "30% 85%" });
+        tlM.to(e, { x: xR * s, duration: t2 - t1, ease: "power2.in" }, t1)
+          .to(e, { rotation: -7, duration: .9, ease: "sine.inOut" }, t2 - .35)
+          .to(e, { x: (xR + Wn * .7) * s, duration: t3 - t2, ease: "none" }, t2)
+          .to(e, { y: (yR - 150 * q) * s, duration: t3 - t2, ease: "power1.in" }, t2)
+          .to(e, { rotation: -4, duration: 1, ease: "sine.inOut" }, t3 - 1);
+      }
       if (gs) {
         amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(prop, { scaleY: 1 }, { scaleY: .15, svgOrigin: `${f(92 * q)} ${f(20 * q)}`, duration: .06, ease: "none" }));
       }
@@ -826,6 +837,53 @@
       if (gs) { gs.set(pe, { transformOrigin: "60% 100%" }); amb.push(gs.timeline({ repeat: -1, repeatDelay: 3, paused: true }).to(pe, { rotation: -8, duration: .4, ease: "sine.inOut" }).to(pe, { rotation: 0, duration: .5, ease: "sine.inOut" }, "+=1.2")); }
     }
 
+    // ---------- yate de pesca deportiva: navega despacio mar afuera, pasado el muelle ----------
+    {
+      const w = 210 * q, h = 132 * q, Y = (k) => (k + 24) * q, X = (k) => k * q, e = sprite(lifeF, w, h), g = E("g", {}, e), p = pen(), d = pen(), tw = pen(), wk = pen();
+      // casco: popa baja a la izquierda, proa alta y lanzada a la derecha
+      p.pl([[X(12), Y(76)], [X(120), Y(74)], [X(168), Y(66)], [X(196), Y(57)]]).pl([[X(16), Y(96)], [X(120), Y(97)], [X(170), Y(88)], [X(196), Y(57)]]).l(X(12), Y(76), X(16), Y(96), 0, 0)
+        .pl([[X(13), Y(82)], [X(120), Y(80)], [X(178), Y(70)]], false);
+      // salón con su franja de ventanas, flybridge y parabrisas
+      p.pl([[X(60), Y(74)], [X(65), Y(57)], [X(140), Y(55)], [X(158), Y(67)]]).pl([[X(70), Y(57)], [X(74), Y(45)], [X(124), Y(44)], [X(132), Y(55)]]).l(X(110), Y(44), X(118), Y(36), 0, 0).l(X(118), Y(36), X(128), Y(44), 0, 0);
+      d.r(X(72), Y(60), X(66), Y(7) - Y(0), 0); for (let k = 1; k < 6; k++) d.l(X(72 + k * 11), Y(60), X(72 + k * 11), Y(67), 0, 0);
+      d.pl([[X(17), Y(92)], [X(150), Y(92)], [X(178), Y(83)]]);
+      // silla de pelea en la bañera
+      p.l(X(34), Y(76), X(34), Y(66), 0, 0).pl([[X(28), Y(66)], [X(40), Y(66)], [X(42), Y(58)]]).l(X(30), Y(70), X(38), Y(70), 0, 0);
+      // torre de pesca y tangones
+      tw.pl([[X(84), Y(45)], [X(92), Y(10)]]).pl([[X(118), Y(44)], [X(110), Y(10)]]).l(X(86), Y(10), X(116), Y(10), 0, 0).l(X(84), Y(4), X(118), Y(4), 0, 0).l(X(86), Y(10), X(84), Y(4), 0, 0).l(X(116), Y(10), X(118), Y(4), 0, 0)
+        .l(X(88), Y(28), X(114), Y(28), 0, 0).l(X(87), Y(36), X(113), Y(18), 0, 0).l(X(113), Y(36), X(89), Y(18), 0, 0)
+        .l(X(96), Y(44), X(18), Y(-16), 0, 0).l(X(104), Y(44), X(46), Y(-22), 0, 0);
+      for (let k = 0; k < 4; k++) wk.l(X(-2 - k * 10), Y(95 + k * .8), X(6 - k * 10), Y(95 + k * .8), 0, 0);
+      S(g, p, ""); S(g, d, "rq-o"); S(g, tw, "rq-m"); const wake = S(g, wk, "rq-g");
+      const yx0 = pier1 + 40 * q, yx1 = pier1 + Wn * (v ? .12 : .26), yy = SL - Y(96) + 3 * q;
+      e._nc = 1; place(e, yx0, yy); show(tlM, e, tPan(pier1) + .3, .6);
+      if (gs) {
+        gs.set(g, { transformOrigin: "50% 50%" });
+        amb.push(gs.timeline({ repeat: -1, paused: true }).to(e, { x: yx1 * s, duration: 30, ease: "sine.inOut" }).to(g, { scaleX: -1, duration: 1.4, ease: "power1.inOut" }).to(e, { x: yx0 * s, duration: 30, ease: "sine.inOut" }).to(g, { scaleX: 1, duration: 1.4, ease: "power1.inOut" }));
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(g, { rotation: -1, y: 2 * q, duration: 2.6, ease: "sine.inOut" }));
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(wake, { opacity: 1 }, { opacity: .35, duration: .5, ease: "none" }));
+      }
+    }
+    // ---------- el Mosquito Free: peñero en el verde de Casa Verde, navegando por el canal azul ----------
+    {
+      const len = 74 * q, hh = len * .2, x0 = 22 * q, y0 = 30 * q, w = 110 * q, h = 40 * q, e = sprite(lifeF, w, h), g = E("g", {}, e), p = pen(), st = pen(), wk = pen();
+      p.pl([[x0, y0 - hh * .75], [x0 + len * .5, y0 - hh * .7], [x0 + len * .85, y0 - hh * .95], [x0 + len, y0 - hh * 1.5]])
+        .pl([[x0 + 2 * q, y0], [x0 + len * .55, y0 + 1 * q], [x0 + len * .85, y0 - hh * .35], [x0 + len, y0 - hh * 1.5]]).l(x0, y0 - hh * .75, x0 + 2 * q, y0, 0, 0);
+      for (let k = 1; k < 4; k++) p.l(x0 + len * k / 4.3, y0 - hh * .72, x0 + len * k / 4.3, y0 - hh * .1, 0, 0);
+      p.r(x0 - 7 * q, y0 - hh * 1.3, 6 * q, hh * .65, 0).l(x0 - 4 * q, y0 - hh * .65, x0 - 4 * q, y0 + hh * .45, 0, 0);
+      p.o(x0 + 9 * q, y0 - hh * 1.75, 2 * q).l(x0 + 9 * q, y0 - hh * 1.55, x0 + 9 * q, y0 - hh * .8, 0, 0).l(x0 + 9 * q, y0 - hh * 1.3, x0 + 2 * q, y0 - hh * 1.05, 0, 0);   // el marinero, mano en el motor
+      st.pl([[x0 + 1 * q, y0 - hh * .42], [x0 + len * .5, y0 - hh * .36], [x0 + len * .9, y0 - hh * .9]]);
+      for (let k = 0; k < 4; k++) wk.l(x0 - 8 * q - k * 8 * q, y0 + 1 * q + k * .6 * q, x0 - 2 * q - k * 8 * q, y0 + 1 * q + k * .6 * q, 0, 0);
+      S(g, p, ""); S(g, st, "rq-cverde"); const wake = S(g, wk, "rq-g");
+      const nm = T(g, x0 + len * .46, y0 - hh * .1 - 2 * q, "MOSQUITO FREE", "middle", "rq-cverde-t"); nm.style.fontSize = "calc(var(--fs) * .62)";
+      const mx0 = -w, mx1 = Wn * (v ? 1.1 : 1.02) + PAN * .3, my = SL + 26 * q - y0;
+      e._nc = 1; place(e, mx0, my); show(tlI, e, 2.4, .6);
+      if (gs) {
+        amb.push(gs.timeline({ repeat: -1, paused: true }).fromTo(e, { x: mx0 * s }, { x: mx1 * s, duration: v ? 26 : 34, ease: "none" }));
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).to(g, { rotation: -1.6, y: 1.5 * q, svgOrigin: `${f(x0 + len * .5)} ${f(y0)}`, duration: 1.1, ease: "sine.inOut" }));
+        amb.push(gs.timeline({ repeat: -1, yoyo: true, paused: true }).fromTo(wake, { opacity: 1 }, { opacity: .3, duration: .35, ease: "none" }));
+      } else place(e, Wn * .3, my);
+    }
     // ---------- aves: pelícanos y gaviotas que cruzan ----------
     const bird = (big) => {
       const w = (big ? 46 : 22) * q, h = (big ? 16 : 9) * q, e = sprite(lifeF, w, h), p = pen();
